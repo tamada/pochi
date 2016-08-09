@@ -12,8 +12,8 @@ import com.github.kunai.source.DataSource;
 import com.github.kunai.source.DataSourceFactory;
 import com.github.kunai.source.DefaultDataSourceFactory;
 
-public class Main {
-    public Main(String[] args){
+public class Demo {
+    public Demo(String[] args){
         Arrays.stream(args).forEach(item -> {
             try {
                 listSource(item);
@@ -47,6 +47,6 @@ public class Main {
     }
 
     public static final void main(String[] args) throws Exception{
-        new Main(args);
+        new Demo(args);
     }
 }

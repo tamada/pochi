@@ -111,7 +111,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.github.kunai.Main</mainClass>
+              <mainClass>com.github.kunai.Demo</mainClass>
               <addClasspath>true</addClasspath>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>
