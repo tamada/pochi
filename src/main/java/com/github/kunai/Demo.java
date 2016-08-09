@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 import com.github.kunai.entries.Entry;
 import com.github.kunai.source.DataSource;
-import com.github.kunai.source.DataSourceFactory;
-import com.github.kunai.source.DefaultDataSourceFactory;
+import com.github.kunai.source.factories.DataSourceFactory;
+import com.github.kunai.source.factories.DefaultDataSourceFactory;
 
 public class Demo {
     public Demo(String[] args){

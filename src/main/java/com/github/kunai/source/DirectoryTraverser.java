@@ -18,19 +18,17 @@ public class DirectoryTraverser {
 
     public List<Path> traverse(Path... paths){
         FileSystem system = FileSystems.getDefault();
-
         return traverse(system.provider(), paths);
     }
 
     public List<Path> traverse(FileSystemProvider provider, Path... paths){
-        List<Path> list = new ArrayList<>();
-        return traverse(provider, list, paths);
+        return traverse(provider, new ArrayList<>(), paths);
     }
 
     private List<Path> traverse(FileSystemProvider provider, List<Path> list, Path... paths){
-        Arrays.stream(paths).forEach(path -> {
-            traverse(provider, list, path);
-        });
+        Arrays.stream(paths).forEach(path -> 
+            traverse(provider, list, path)
+        );
         return Collections.unmodifiableList(list);
     }
 
@@ -44,12 +42,10 @@ public class DirectoryTraverser {
 
     private void traverseDirectory(FileSystemProvider provider, List<Path> list, Path path){
         Optional<BasicFileAttributes> optional = getAttributes(provider, path);
-            
         optional.ifPresent(attr -> doTraverse(provider, list, path, attr));
     }
 
-    private void doTraverse(FileSystemProvider provider, List<Path> list,
-            Path path, BasicFileAttributes attr){
+    private void doTraverse(FileSystemProvider provider, List<Path> list, Path path, BasicFileAttributes attr){
         if(attr.isDirectory()){
             traverse(provider, list, path);
             return;
@@ -64,12 +60,4 @@ public class DirectoryTraverser {
         }
         return Optional.empty();
     }
-
-    private static class EveryFileAcceptFilter implements DirectoryStream.Filter<Path>{
-        @Override
-        public boolean accept(Path entry) throws IOException {
-            return true;
-        }
-    }
-
 }

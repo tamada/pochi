@@ -10,4 +10,8 @@ public interface PathResolver {
     InputStream openStream(Path path) throws IOException;
 
     ClassName parseClassName(Path path);
+
+    default ClassName resolveClassName(Path path) throws IOException{
+        return ClassNameExtractVisitor.extractClassName(openStream(path));
+    }
 }

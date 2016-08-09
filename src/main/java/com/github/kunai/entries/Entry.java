@@ -2,11 +2,16 @@ package com.github.kunai.entries;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 
 public interface Entry {
-    public InputStream getInputStream() throws IOException;
+    InputStream getInputStream() throws IOException;
 
-    public ClassName getClassName();
+    ClassName getClassName();
 
-    public boolean isName(String name);
+    boolean isClass();
+
+    boolean isName(String name);
+
+    URI loadFrom();
 }
