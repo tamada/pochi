@@ -17,6 +17,11 @@ public class PathEntry implements Entry{
     }
 
     @Override
+    public Path getPath(){
+        return path;
+    }
+
+    @Override
     public ClassName getClassName() {
         return source.parseClassName(path);
     }
