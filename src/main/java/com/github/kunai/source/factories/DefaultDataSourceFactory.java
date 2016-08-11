@@ -1,9 +1,10 @@
 package com.github.kunai.source.factories;
 
 import java.io.IOException;
-import java.nio.file.Files;
+import java.nio.file.FileSystem;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.spi.FileSystemProvider;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,11 +23,12 @@ public class DefaultDataSourceFactory implements DataSourceFactory{
     }
 
     @Override
-    public DataSource build(Path path) throws KunaiException{
+    public DataSource build(Path path, FileSystem system) throws KunaiException{
         try{
-            BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
+            FileSystemProvider provider = system.provider();
+            BasicFileAttributes attr = provider.readAttributes(path, BasicFileAttributes.class);
             Optional<DataSourceFactory> source = factories.stream()
-                    .filter(factory -> factory.isTarget(path, attr))
+                    .filter(factory -> factory.isTarget(path, system, attr))
                     .findFirst();
 
             return build(source, path);
@@ -36,15 +38,13 @@ public class DefaultDataSourceFactory implements DataSourceFactory{
     }
 
     private DataSource build(Optional<DataSourceFactory> source, Path path) throws KunaiException{
-        if(source.isPresent()){
-            DataSourceFactory factory = source.get();
-            return factory.build(path);
-        }
-        throw new UnsupportedDataSourceException(path.toString());
+        return source
+                .orElseThrow(() -> new UnsupportedDataSourceException(path.toString()))
+                .build(path);
     }
 
     @Override
-    public boolean isTarget(Path path, BasicFileAttributes attributes) {
+    public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes) {
         return true;
     }
 

@@ -10,22 +10,22 @@ import com.github.kunai.entries.KunaiException;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.JarFileDataSource;
 
-public class JarFileDataSourceFactory implements DataSourceFactory{
+class JarFileDataSourceFactory implements DataSourceFactory{
     public JarFileDataSourceFactory(){
     }
 
     @Override
-    public boolean isTarget(Path path, BasicFileAttributes attributes){
+    public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
         String name = path.toString();
         return name.endsWith(".jar") && attributes.isRegularFile();
     }
 
     @Override
-    public DataSource build(Path path) throws KunaiException{
+    public DataSource build(Path path, FileSystem system) throws KunaiException{
         try{
             ClassLoader loader = getClass().getClassLoader();
-            FileSystem system = FileSystems.newFileSystem(path, loader);
-            return buildDataSource(system);
+            FileSystem jarSystem = FileSystems.newFileSystem(path, loader);
+            return buildDataSource(jarSystem);
         } catch(IOException e){
             throw new UnsupportedDataSourceException(e.getMessage());
         }

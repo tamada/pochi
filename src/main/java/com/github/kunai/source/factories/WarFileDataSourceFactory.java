@@ -7,12 +7,12 @@ import java.nio.file.attribute.BasicFileAttributes;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.WarFileDataSource;
 
-public class WarFileDataSourceFactory extends JarFileDataSourceFactory{
+class WarFileDataSourceFactory extends JarFileDataSourceFactory{
     public WarFileDataSourceFactory(){
     }
 
     @Override
-    public boolean isTarget(Path path, BasicFileAttributes attributes){
+    public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
         String name = path.toString();
         return name.endsWith(".war") && attributes.isRegularFile();
     }

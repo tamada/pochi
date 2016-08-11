@@ -14,7 +14,7 @@ import com.github.kunai.entries.ClassName;
 import com.github.kunai.entries.Entry;
 import com.github.kunai.entries.PathEntry;
 
-public class JarFileDataSource extends AbstractDataSource implements PathResolver{
+class JarFileDataSource extends AbstractDataSource implements PathResolver{
     private FileSystem system;
 
     public JarFileDataSource(FileSystem system){

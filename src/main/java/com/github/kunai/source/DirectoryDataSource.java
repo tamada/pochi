@@ -11,7 +11,7 @@ import com.github.kunai.entries.ClassName;
 import com.github.kunai.entries.Entry;
 import com.github.kunai.entries.PathEntry;
 
-public class DirectoryDataSource extends AbstractDataSource implements PathResolver{
+class DirectoryDataSource extends AbstractDataSource implements PathResolver{
     private Path basePath;
 
     public DirectoryDataSource(Path path){

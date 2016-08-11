@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class DirectoryTraverser {
+class DirectoryTraverser {
     private static final DirectoryStream.Filter<Path> FILTER = new EveryFileAcceptFilter();
 
     public List<Path> traverse(Path... paths){
