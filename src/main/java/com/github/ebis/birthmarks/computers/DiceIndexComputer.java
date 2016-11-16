@@ -1,26 +1,15 @@
 package com.github.ebis.birthmarks.computers;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.github.ebis.birthmarks.Birthmark;
+import com.github.ebis.birthmarks.Elements;
 
 public class DiceIndexComputer implements Computer {
-    private static ComputerName TYPE = new ComputerName("DiceIndex");
-
     @Override
-    public <T> double compare(Birthmark<T> b1, Birthmark<T> b2) {
-        Set<T> values1 = b1.elements().toSet();
-        Set<T> values2 = b2.elements().toSet();
+    public <T> Similarity compare(Birthmark<T> b1, Birthmark<T> b2) {
+        Elements<T> e1 = b1.elements();
+        Elements<T> e2 = b2.elements();
+        Elements<T> intersection = e1.intersect(e2);
 
-        Set<T> intersection = new HashSet<>(values1);
-        intersection.retainAll(values2);
-
-        return 2.0 * intersection.size() / (values1.size() + values2.size());
-    }
-
-    @Override
-    public ComputerName getName() {
-        return TYPE;
+        return new Similarity(2.0 * intersection.size() / (e1.size() + e2.size()));
     }
 }

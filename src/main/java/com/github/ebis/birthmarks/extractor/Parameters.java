@@ -1,4 +1,4 @@
-package com.github.ebis.birthmarks;
+package com.github.ebis.birthmarks.extractor;
 
 import java.util.HashMap;
 import java.util.Map;

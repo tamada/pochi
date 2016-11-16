@@ -5,15 +5,15 @@ import java.io.InputStream;
 import com.github.ebis.Context;
 import com.github.ebis.birthmarks.Birthmark;
 import com.github.ebis.birthmarks.BirthmarkException;
+import com.github.ebis.birthmarks.BirthmarkType;
 import com.github.ebis.birthmarks.Element;
-import com.github.ebis.birthmarks.Parameters;
 
 public abstract class AbstractExtractor<T> implements Extractor<T> {
     private Parameters defaultParameters = new Parameters();
-    private String name;
+    private BirthmarkType name;
     private Parameters parameters;
 
-    public AbstractExtractor(String name) {
+    public AbstractExtractor(BirthmarkType name) {
         this.name = name;
 
         initialize();
@@ -31,7 +31,7 @@ public abstract class AbstractExtractor<T> implements Extractor<T> {
     }
 
     @Override
-    public String getName() {
+    public BirthmarkType getName() {
         return name;
     }
 

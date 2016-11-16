@@ -9,15 +9,27 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 
 import com.github.ebis.Context;
-import com.github.ebis.Rules;
 import com.github.ebis.birthmarks.Birthmark;
 import com.github.ebis.birthmarks.BirthmarkType;
 import com.github.ebis.birthmarks.Element;
 import com.github.ebis.birthmarks.MutableElements;
+import com.github.ebis.rules.Rules;
 
 public class UCExtractor extends ASMExtractor<String> {
     public UCExtractor() {
-        super("uc");
+        super(new BirthmarkType("uc"));
+    }
+
+    @Override
+    public Birthmark<String> parse(String line){
+        MutableElements<String> elements = new MutableElements<>();
+
+        String[] items = line.split(",");
+        Arrays.stream(items)
+        .sorted()
+        .forEach(item -> elements.add(buildElement(item)));
+
+        return new Birthmark<String>(getName(), elements);
     }
 
     @Override
@@ -35,6 +47,7 @@ public class UCExtractor extends ASMExtractor<String> {
     public EbisClassVisitor<String> getVisitor(final Context context) {
         final Rules manager = context.rules();
         final List<String> list = new ArrayList<>();
+
         return new EbisClassVisitor<String>() {
             private Birthmark<String> birthmark;
 
@@ -51,10 +64,16 @@ public class UCExtractor extends ASMExtractor<String> {
                     list.add(superName);
                 }
                 Arrays.stream(interfaces)
-                    .filter(item -> manager.anyMatch(name))
-                    .forEach(item -> list.add(item));
+                .filter(item -> manager.anyMatch(name))
+                .forEach(item -> list.add(item));
 
                 super.visit(version, access, name, signature, superName, interfaces);
+            }
+
+            private void checkArray(List<String> list, Type type, Rules rules){
+                if (type.getSort() == Type.OBJECT) {
+                    checkAndAdd(list, type.getElementType().getClassName(), manager);
+                }
             }
 
             @Override
@@ -70,9 +89,7 @@ public class UCExtractor extends ASMExtractor<String> {
                 if (type.getSort() == Type.OBJECT) {
                     checkAndAdd(list, type.getClassName(), manager);
                 } else if (type.getSort() == Type.ARRAY) {
-                    if (type.getElementType().getSort() == Type.OBJECT) {
-                        checkAndAdd(list, type.getElementType().getClassName(), manager);
-                    }
+                    checkArray(list, type.getElementType(), manager);
                 }
                 return super.visitField(access, name, desc, signature, value);
             }

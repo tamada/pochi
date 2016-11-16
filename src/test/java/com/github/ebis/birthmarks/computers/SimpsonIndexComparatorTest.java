@@ -36,6 +36,9 @@ public class SimpsonIndexComparatorTest {
     @Test
     public void testBasic() throws Exception {
         Computer comp = new SimpsonIndexComputer();
-        assertThat(comp.<String> compare(b1, b2), is(closeTo(3.0 / 3, 0.0001)));
+        Similarity actual = comp.<String>compare(b1, b2);
+        Similarity expected = new Similarity(3.0 / 3);
+
+        assertThat(actual.isCloseTo(expected, Tolerance.DEFAULT), is(true));
     }
 }

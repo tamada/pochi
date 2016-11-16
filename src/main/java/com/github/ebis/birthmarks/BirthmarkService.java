@@ -6,22 +6,21 @@ import com.github.ebis.birthmarks.extractor.Extractor;
 public class BirthmarkService<T> {
     private Computer comparator;
     private Extractor<T> extractor;
-    private String type;
 
-    public BirthmarkService(String type, Extractor<T> extractor, Computer comparator) {
+    public BirthmarkService(Extractor<T> extractor, Computer comparator) {
         this.extractor = extractor;
         this.comparator = comparator;
     }
 
-    public Computer getComparator() {
+    public Computer computer() {
         return comparator;
     }
 
-    public Extractor<T> getExtractor() {
+    public Extractor<T> extractor() {
         return extractor;
     }
 
-    public String getType() {
-        return type;
+    public BirthmarkType type() {
+        return extractor.getName();
     }
 }

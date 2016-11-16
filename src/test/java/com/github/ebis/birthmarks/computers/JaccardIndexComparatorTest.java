@@ -36,6 +36,8 @@ public class JaccardIndexComparatorTest {
     @Test
     public void testBasic() throws Exception {
         Computer comp = new JaccardIndexComputer();
-        assertThat(comp.<String> compare(b1, b2), is(closeTo(3.0 / 5, 0.0001)));
+        Similarity expected = new Similarity(3.0 / 5);
+        Similarity actual = comp.<String>compare(b1, b2);
+        assertThat(expected.isCloseTo(actual, Tolerance.DEFAULT), is(true));
     }
 }

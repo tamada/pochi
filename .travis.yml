@@ -1,0 +1,9 @@
+language: java
+jdk:
+    - oraclejdk8
+
+env:
+    - secure: "c4nxyPBs/RiDgGrlL+GMqemZog0dFMDjbE44Y/ycySjrtjQJeBZBjOdvhaIxuABmOs7B5C7WlaisUnszoI+mSQJktZR4vv1zZFuG20AjgrRDhiuMf9exoDlaLUFwm1mpoToMLrhhspDMmTcrflXAtWyB+OLqaJdvcss2NTKjE0ujKlhfOR9jHQU1eusw70gxI9u37HvTGyNA4am0u1Vykkow+f8hRFtakipZ63w0/SgMT0qZQAuhfK0aAVUGbLYluu6CJVs9YySm599iUz/SsP0rbMLWpFzawCLZsOQ/n+7puXQr3AAsE5chXxC0JA64O4/IWRS9nGv9JrZJSuvERnyDBgAn5Xd4qqCRKP0hHHt/n7JSk51fhRy+1YTloYjgmzi2NLK0pJSvIxPRnpMuX55Dzu8hVBS8kCfwpj1Ab9URoS5hhvJpxPVqpVOS5A/O6Om2PhKy4PKw1aJkHPfVRcwL6S0/WFfqu1AWneU55A5U0WO34mRQ39UffLNbimb5PcVx+Ova/k4g2JVaPzG5ckHYLtriXgu/YcKZhO+kBjQwQ1A05zFs5PsJmUpBrT4VdD41fJvTMqI3ETFAxQfL2TAbq5oYoO77ezEVhoRsq+m4PsK2yk1HeE72BfkV19jHRBG1BZUhtBJD2xrBlbAxPKGvNX/REZSFcvnK62u57i8="
+
+after_success:
+    - mvn -DrepoToken=$COVERALLS_TOKEN clean test jacoco:report coveralls:report

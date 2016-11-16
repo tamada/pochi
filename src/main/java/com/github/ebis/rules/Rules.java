@@ -1,4 +1,4 @@
-package com.github.ebis;
+package com.github.ebis.rules;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,8 @@ public class Rules {
     }
 
     public boolean anyMatch(String className) {
-        return rules.stream().anyMatch(rule -> rule.isFollow(className));
+        return rules.stream()
+                .anyMatch(rule -> rule.isMatch(className));
     }
 
     public Rule remove(int index) {

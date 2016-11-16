@@ -1,6 +1,5 @@
 package com.github.ebis.birthmarks.computers;
 
-import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -36,6 +35,10 @@ public class DiceIndexComparatorTest {
     @Test
     public void testBasic() throws Exception {
         Computer comp = new DiceIndexComputer();
-        assertThat(comp.<String> compare(b1, b2), is(closeTo((2.0 * 3) / 8, 0.0001)));
+        Similarity expected = new Similarity(2.0 * 3 / 8);
+        Similarity actual = comp.<String>compare(b1, b2);
+
+        assertThat(expected.isCloseTo(actual), is(true));
+        assertThat(expected.isCloseTo(actual, Tolerance.DEFAULT), is(true));
     }
 }

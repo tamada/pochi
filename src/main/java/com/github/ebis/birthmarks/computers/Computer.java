@@ -1,14 +1,12 @@
 package com.github.ebis.birthmarks.computers;
 
 import com.github.ebis.birthmarks.Birthmark;
+import com.github.ebis.birthmarks.Pair;
 
 public interface Computer {
-    <T> double compare(Birthmark<T> birthmark1, Birthmark<T> birthmark2);
+    <T> Similarity compare(Birthmark<T> b1, Birthmark<T> b2);
 
-    /**
-     * returns the name of this comparator (almost comparison algorithm).
-     * 
-     * @return comparator name.
-     */
-    ComputerName getName();
+    default <T> Similarity compare(Pair<T> pair){
+        return pair.compute(this);
+    }
 }

@@ -1,23 +1,22 @@
-package com.github.ebis;
+package com.github.ebis.birthmarks;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import com.github.ebis.birthmarks.BirthmarkService;
 import com.github.ebis.birthmarks.computers.Computer;
 import com.github.ebis.birthmarks.extractor.Extractor;
 
 public class BirthmarkServices {
-    private Map<String, BirthmarkService<?>> services = new HashMap<>();
+    private Map<BirthmarkType, BirthmarkService<?>> services = new HashMap<>();
 
     public void registerService(BirthmarkService<?> service) {
-        services.put(service.getType(), service);
+        services.put(service.type(), service);
     }
 
-    public <T> void registerService(String type, Extractor<T> extractor, Computer comparator) {
-        registerService(new BirthmarkService<T>(type, extractor, comparator));
+    public <T> void registerService(Extractor<T> extractor, Computer comparator) {
+        registerService(new BirthmarkService<T>(extractor, comparator));
     }
 
     public Iterator<BirthmarkService<?>> services() {

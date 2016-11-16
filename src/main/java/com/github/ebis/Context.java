@@ -1,16 +1,13 @@
 package com.github.ebis;
 
-import com.github.ebis.birthmarks.BirthmarkService;
+import com.github.ebis.birthmarks.pairmaker.PairMaker;
+import com.github.ebis.rules.Rules;
 
 public class Context {
     private Rules manager = new Rules();
-    private BirthmarkServices services = new BirthmarkServices();
+    private PairMaker pairs;
 
     public Rules rules() {
         return manager;
-    }
-
-    public BirthmarkService services(){
-        return services;
     }
 }

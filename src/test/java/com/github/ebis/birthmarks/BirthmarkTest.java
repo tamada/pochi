@@ -27,7 +27,7 @@ public class BirthmarkTest {
 
     @Test
     public void testBasic() {
-        assertThat(b1.getType(), is(new BirthmarkType("sample")));
+        assertThat(b1.type(), is(new BirthmarkType("sample")));
 
         Elements<String> e1 = b1.elements();
         assertThat(e1.size(), is(6));

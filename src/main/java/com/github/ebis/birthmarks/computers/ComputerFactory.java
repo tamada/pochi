@@ -13,10 +13,16 @@ public class ComputerFactory {
     private Map<ComputerName, Computer> computers = new HashMap<>();
 
     public ComputerFactory() {
-
+        computers.put(ComputerName.DiceIndex, new DiceIndexComputer());
+        computers.put(ComputerName.SimpsonIndex, new SimpsonIndexComputer());
+        computers.put(ComputerName.JaccardIndex, new JaccardIndexComputer());
     }
 
-    public Computer createComputer(ComputerName type) {
+    public Computer get(ComputerName type) {
         return computers.get(type);
+    }
+
+    public void register(ComputerName type, Computer computer){
+        computers.put(type, computer);
     }
 }

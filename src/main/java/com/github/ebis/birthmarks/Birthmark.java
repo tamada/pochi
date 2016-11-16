@@ -13,11 +13,11 @@ public class Birthmark<T> implements Serializable {
         this.elements = elements;
     }
 
-    public Elements<T> elements() {
+    public final Elements<T> elements() {
         return elements;
     }
 
-    public final BirthmarkType getType() {
+    public final BirthmarkType type() {
         return type;
     }
 }

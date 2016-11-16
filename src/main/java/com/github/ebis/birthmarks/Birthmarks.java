@@ -6,25 +6,25 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Birthmarks implements Iterable<Birthmark<?>>, Serializable {
+public class Birthmarks<T> implements Iterable<Birthmark<T>>, Serializable {
     private static final long serialVersionUID = -2157060520279910519L;
 
-    private List<Birthmark<?>> birthmarks = new ArrayList<>();
+    private List<Birthmark<T>> birthmarks = new ArrayList<>();
 
-    public void add(Birthmark<?> birthmark) {
-        birthmarks.add(birthmark);
+    public Birthmarks(List<Birthmark<T>> birthmarks){
+        this.birthmarks.addAll(birthmarks);
     }
 
-    public <T> Birthmark<?> get(int index) {
-        return birthmarks.get(index);
+    public Birthmarks(Stream<Birthmark<T>> stream){
+        stream.forEach(item -> birthmarks.add(item));
     }
 
     @Override
-    public Iterator<Birthmark<?>> iterator() {
+    public Iterator<Birthmark<T>> iterator() {
         return birthmarks.iterator();
     }
 
-    public Stream<Birthmark<?>> stream() {
+    public Stream<Birthmark<T>> stream() {
         return birthmarks.stream();
     }
 }

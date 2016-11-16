@@ -8,10 +8,11 @@ import org.objectweb.asm.ClassReader;
 import com.github.ebis.Context;
 import com.github.ebis.birthmarks.Birthmark;
 import com.github.ebis.birthmarks.BirthmarkException;
+import com.github.ebis.birthmarks.BirthmarkType;
 import com.github.ebis.birthmarks.Element;
 
 public abstract class ASMExtractor<T> extends AbstractExtractor<T> {
-    public ASMExtractor(String name) {
+    public ASMExtractor(BirthmarkType name) {
         super(name);
     }
 
