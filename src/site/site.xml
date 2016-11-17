@@ -1,0 +1,69 @@
+<project>
+  <bannerLeft>
+    <!-- Reflow Maven Skin, but with "Reflow" highlighted -->
+    <src>/images/ebis_logo.png</src>
+    <href>./index.html</href>
+  </bannerLeft>
+  <skin>
+    <groupId>lt.velykis.maven.skins</groupId>
+    <artifactId>reflow-maven-skin</artifactId>
+    <version>1.1.1</version>
+  </skin>
+
+  <custom>
+    <reflowSkin>
+      <theme>bootswatch-spacelab</theme>
+      <highlightJs>true</highlightJs>
+      <topNav>RegEx</topNav>
+      <brand>
+        <name>ebis</name>
+        <href>http://tamada.github.io/ebis</href>
+      </brand>
+      <slogan>Extensible Birthmarking Interaction System.</slogan>
+      <titleTemplate>%2$s | %1$s</titleTemplate>
+      <toc>top</toc>
+      <topNav>Download|reports</topNav>
+      <bottomNav>
+        <column>Main|Download</column>
+        <column>Documents</column>
+        <column>reports|modules</column>
+      </bottomNav>
+      <bottomDescription>
+      </bottomDescription>
+      <breadcrumbs>false</breadcrumbs>
+      <pages>
+        <index project="project-id">
+          <shortTitle>Welcome</shortTitle>
+          <breadcrumbs>false</breadcrumbs>
+          <toc>false</toc>
+          <sections>
+            <carousel />
+            <body />
+            <sidebar />
+            <thumbs>2</thumbs>
+            <columns>3</columns>
+          </sections>
+        </index>
+        <developer-info>
+          <toc>sidebar</toc>
+        </developer-info>
+      </pages>
+    </reflowSkin>
+  </custom>
+
+  <body>
+    <links>
+      <item name="Documents"      href="document.html" />
+      <item name="GitHub Project" href="http://github.com/tamada/ebis/" />
+    </links>
+
+    <menu name="Main" inherit="top">
+      <item name="Home" href="./index.html" />
+    </menu>
+    <menu name="Documents" inherit="bottom">
+      <item name="Plan" href="plan.html" />
+      <item name="Attribution" href="attributions.html" />
+    </menu>
+    <menu name="Maven documentation" ref="reports" inherit="bottom"/>
+  </body>
+</project>
