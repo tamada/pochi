@@ -19,7 +19,7 @@
         <name>ebis</name>
         <href>http://tamada.github.io/ebis</href>
       </brand>
-      <slogan>Extensible Birthmarking Interaction System.</slogan>
+      <slogan>Extendable Birthmarking Interaction System.</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
       <toc>top</toc>
       <topNav>Download|reports</topNav>
@@ -32,15 +32,14 @@
       </bottomDescription>
       <breadcrumbs>false</breadcrumbs>
       <pages>
-        <index project="project-id">
+        <index>
           <shortTitle>Welcome</shortTitle>
           <breadcrumbs>false</breadcrumbs>
           <toc>false</toc>
           <sections>
-            <carousel />
+            <carousel/>
+            <thumbs>4</thumbs>
             <body />
-            <sidebar />
-            <thumbs>2</thumbs>
             <columns>3</columns>
           </sections>
         </index>
