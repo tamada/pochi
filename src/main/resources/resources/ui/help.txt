@@ -1,0 +1,23 @@
+java -jar ${project.name}-${project.version}.jar [OPTIONS] [SCRIPT [ARGV...]]
+
+OPTIONS:
+    -e <EXPRESSION>:     one line of script.
+                         -engine option is required for this option.
+    -cp <CLASSPATHS...>: specify classpaths.
+                         each classpath is separated by separator char of the OS.
+    -engine <NAME>:      specify the script engine name.
+                         default value is JavaScript.
+                         available values are: JavaScript, and Groovy.
+    -config <CONFIG>:    specify the configuration file.
+
+    -help:               print this message and exit.
+    -version:            print the version.
+    -license:            print the license.
+
+SCRIPT [ARGV...]
+    Specify the script file for executing.
+    Suitable script engine is parsed from extension of the script file.
+    ARGV is arguments list for the script.
+
+NO SCRIPT FILE, NO ONE LINER
+    If no script file and no one liner were specified, the ${project.name} runs on interactive mode.
