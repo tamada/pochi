@@ -8,9 +8,9 @@ import java.nio.file.Paths;
 
 import com.github.ebis.birthmarks.entities.Results;
 import com.github.ebis.birthmarks.io.DefaultDumper;
-import com.github.kunai.entries.KunaiException;
+import com.github.kunai.KunaiException;
 import com.github.kunai.source.DataSource;
-import com.github.kunai.source.factories.DefaultDataSourceFactory;
+import com.github.kunai.source.DefaultDataSourceFactory;
 
 public class IOHelper {
     private PrintWriter out;

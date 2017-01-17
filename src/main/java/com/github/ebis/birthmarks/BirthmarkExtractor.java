@@ -19,7 +19,7 @@ public interface BirthmarkExtractor extends Service<BirthmarkType>{
 
     default Results<Birthmarks> extract(DataSource source, Configuration context){
         Stream<Birthmark> stream = source.stream()
-                .filter(entry -> entry.isClass())
+                .filter(entry -> entry.className() != null)
                 .map(entry -> extractEach(entry, context))
                 .filter(item -> item.isPresent())
                 .map(item -> item.get());

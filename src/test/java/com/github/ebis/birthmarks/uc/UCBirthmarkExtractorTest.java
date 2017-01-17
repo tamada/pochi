@@ -20,7 +20,7 @@ import com.github.ebis.birthmarks.entities.Results;
 import com.github.ebis.config.ConfigurationBuilder;
 import com.github.kunai.entries.ClassName;
 import com.github.kunai.source.DataSource;
-import com.github.kunai.source.factories.DefaultDataSourceFactory;
+import com.github.kunai.source.DefaultDataSourceFactory;
 
 public class UCBirthmarkExtractorTest {
     public Results<Birthmarks> extract(String path) throws Exception{
