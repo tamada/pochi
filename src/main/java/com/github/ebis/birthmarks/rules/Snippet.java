@@ -1,6 +1,11 @@
 package com.github.ebis.birthmarks.rules;
 
-public class Snippet{
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Snippet implements Serializable{
+    private static final long serialVersionUID = 8096441643141119024L;
+
     private String value;
 
     public Snippet(String value){
@@ -14,5 +19,21 @@ public class Snippet{
     @Override
     public String toString(){
         return value;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hashCode(value);
+    }
+
+    @Override
+    public boolean equals(Object other){
+        return other instanceof Snippet
+                && equals((Snippet)other);
+    }
+
+    private boolean equals(Snippet snippet){
+        return Objects.equals(value(), 
+                snippet.value());
     }
 }

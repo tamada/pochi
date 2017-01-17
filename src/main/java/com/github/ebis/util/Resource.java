@@ -15,10 +15,14 @@ public class Resource {
 
     public void print(PrintWriter out){
         try(BufferedReader in = openStream()){
-            in.lines().forEach(out::println);
-            out.flush();
-        } catch (IOException e) {
-        }
+            printAll(out, in);
+        } catch (IOException e) { }
+    }
+
+    private void printAll(PrintWriter out, BufferedReader in) throws IOException{
+        in.lines()
+        .forEach(out::println);
+        out.flush();
     }
 
     private BufferedReader openStream(){
