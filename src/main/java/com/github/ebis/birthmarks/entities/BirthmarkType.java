@@ -19,9 +19,8 @@ public final class BirthmarkType implements Serializable{
 
     @Override
     public boolean equals(Object object){
-        if(object instanceof BirthmarkType)
-            return equals((BirthmarkType)object);
-        return false;
+        return object instanceof BirthmarkType
+                && equals((BirthmarkType)object);
     }
 
     public boolean equals(BirthmarkType name){

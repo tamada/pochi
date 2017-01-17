@@ -27,7 +27,7 @@ public class Dumper {
     }
 
     public void print(BirthmarkType type, Birthmark birthmark){
-        Metadata source = birthmark.source();
+        Metadata source = birthmark.metadata();
         StringJoiner joiner = new StringJoiner(",");
         joiner.add(source.toString());
         joiner.add(type.toString());

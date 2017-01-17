@@ -9,11 +9,11 @@ import com.github.kunai.entries.ClassName;
 public class Birthmark implements Serializable{
     private static final long serialVersionUID = -2383836180204233756L;
 
-    private Metadata source;
+    private Metadata metadata;
     private Elements elements;
 
-    public Birthmark(Metadata source, Elements elements){
-        this.source = source;
+    public Birthmark(Metadata metadata, Elements elements){
+        this.metadata = metadata;
         this.elements = elements;
     }
 
@@ -25,11 +25,11 @@ public class Birthmark implements Serializable{
         elements.forEach(predicate, consumer);
     }
 
-    public boolean isExtractedFrom(ClassName name){
-        return source.hasSameName(name);
+    public boolean is(ClassName name){
+        return metadata.hasSameName(name);
     }
 
-    public Metadata source(){
-        return source;
+    public Metadata metadata(){
+        return metadata;
     }
 }

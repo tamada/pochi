@@ -18,7 +18,7 @@ public class Birthmarks {
 
     public Optional<Birthmark> find(ClassName name){
         return birthmarks.stream()
-                .filter(birthmark -> birthmark.isExtractedFrom(name))
+                .filter(birthmark -> birthmark.is(name))
                 .reduce((first, second) -> first);
     }
 
@@ -31,9 +31,8 @@ public class Birthmarks {
         .forEach(consumer);
     }
 
-    public Birthmarks andThen(Stream<Birthmark> stream){
-        return new Birthmarks(Stream.concat(
-                stream, birthmarks.stream()));
+    public Birthmarks append(Birthmarks birthmarks){
+        return append(birthmarks.stream());
     }
 
     public Birthmarks append(Stream<Birthmark> stream){

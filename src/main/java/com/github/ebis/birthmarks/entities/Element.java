@@ -1,8 +1,11 @@
 package com.github.ebis.birthmarks.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Element {
+public class Element implements Serializable{
+    private static final long serialVersionUID = -4912875456020999024L;
+
     private String element;
 
     public Element(String element){
