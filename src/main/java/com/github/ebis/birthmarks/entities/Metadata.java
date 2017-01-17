@@ -19,6 +19,10 @@ public class Metadata implements Serializable{
         this.name = name;
     }
 
+    public ClassName className(){
+        return name;
+    }
+
     @Override
     public String toString(){
         return new StringJoiner(",").add(name.toString())
@@ -28,6 +32,10 @@ public class Metadata implements Serializable{
 
     public boolean hasSameName(ClassName otherName){
         return Objects.equals(name, otherName);
+    }
+
+    public boolean hasSameName(Metadata other){
+        return hasSameName(other.className());
     }
 
     public static Metadata build(Entry entry){

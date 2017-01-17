@@ -21,7 +21,7 @@ import org.kohsuke.args4j.Option;
 
 import com.github.ebis.config.Classpath;
 import com.github.ebis.config.Configuration;
-import com.github.ebis.scripts.Initializer;
+import com.github.ebis.config.ConfigurationBuilder;
 import com.github.ebis.scripts.ScriptRunner;
 import com.github.ebis.scripts.ScriptRunnerBuilder;
 
@@ -72,7 +72,7 @@ public class Arguments {
     }
 
     public Configuration configuration(){
-        Initializer initializer = new Initializer(configFile());
+        ConfigurationBuilder initializer = new ConfigurationBuilder(configFile());
         Configuration config = initializer.configuration();
         Optional.ofNullable(classpath)
         .ifPresent(path -> updateClasspaths(path, config)); 

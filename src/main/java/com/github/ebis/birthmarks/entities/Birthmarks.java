@@ -3,17 +3,19 @@ package com.github.ebis.birthmarks.entities;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.github.ebis.util.Timer;
 import com.github.kunai.entries.ClassName;
 
-public class Birthmarks {
+public class Birthmarks extends Timer{
     private List<Birthmark> birthmarks;
 
     public Birthmarks(Stream<Birthmark> stream){
-        birthmarks = stream
-                .collect(Collectors.toList());
+        timer(() -> birthmarks = stream
+                .collect(Collectors.toList()));
     }
 
     public Optional<Birthmark> find(ClassName name){
@@ -26,9 +28,17 @@ public class Birthmarks {
         return birthmarks.stream();
     }
 
+    public int count(){
+        return birthmarks.size();
+    }
+
     public void forEach(Consumer<Birthmark> consumer){
+        stream().forEach(consumer);
+    }
+
+    public void forEach(Predicate<Birthmark> predicate, Consumer<Birthmark> consumer){
         birthmarks.stream()
-        .forEach(consumer);
+        .filter(predicate).forEach(consumer);
     }
 
     public Birthmarks append(Birthmarks birthmarks){

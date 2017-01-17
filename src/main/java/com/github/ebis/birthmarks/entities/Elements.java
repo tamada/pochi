@@ -17,8 +17,16 @@ public class Elements implements Serializable{
                 item -> elements.add(item));
     }
 
+    public boolean contains(Element element){
+        return elements.contains(element);
+    }
+
     public void forEach(Consumer<Element> consumer){
         forEach(item -> true, consumer);
+    }
+
+    public int size(){
+        return elements.size();
     }
 
     public void forEach(Predicate<Element> predicate, Consumer<Element> consumer){

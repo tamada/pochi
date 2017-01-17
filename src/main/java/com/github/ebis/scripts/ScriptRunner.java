@@ -96,7 +96,9 @@ public class ScriptRunner {
             try{
                 Object object = engine.eval(line);
                 out.println(object);
-            } catch(ScriptException e){
+            } catch(EndOfFileException e){
+                throw e;
+            } catch(Exception e){
                 out.printf("%s: %s%n", e.getClass().getName(), e.getMessage());
             }
             out.flush();

@@ -12,14 +12,14 @@ import org.objectweb.asm.Type;
 
 import com.github.ebis.birthmarks.entities.Element;
 import com.github.ebis.birthmarks.entities.Elements;
-import com.github.ebis.scripts.Initializer;
+import com.github.ebis.config.ConfigurationBuilder;
 
 public class UCBirthmarkHelperTest {
     private UCBirthmarkHelper helper;
 
     @Before
     public void setUp(){
-        helper = new UCBirthmarkHelper(new Initializer().configuration());
+        helper = new UCBirthmarkHelper(new ConfigurationBuilder().configuration());
     }
 
     @Test

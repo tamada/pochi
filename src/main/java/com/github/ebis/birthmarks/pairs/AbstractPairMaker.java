@@ -10,6 +10,7 @@ public abstract class AbstractPairMaker implements PairMaker{
         this.type = type;
     }
 
+    @Override
     public final PairMakerType type(){
         return type;
     }

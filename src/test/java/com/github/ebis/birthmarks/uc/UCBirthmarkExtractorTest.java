@@ -16,23 +16,23 @@ import com.github.ebis.birthmarks.entities.Birthmark;
 import com.github.ebis.birthmarks.entities.BirthmarkType;
 import com.github.ebis.birthmarks.entities.Birthmarks;
 import com.github.ebis.birthmarks.entities.Element;
-import com.github.ebis.birthmarks.entities.ExtractionResults;
-import com.github.ebis.scripts.Initializer;
+import com.github.ebis.birthmarks.entities.Results;
+import com.github.ebis.config.ConfigurationBuilder;
 import com.github.kunai.entries.ClassName;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.factories.DefaultDataSourceFactory;
 
 public class UCBirthmarkExtractorTest {
-    public ExtractionResults extract(String path) throws Exception{
-        BirthmarkExtractor extractor = new BirthmarkExtractors().extractor(new BirthmarkType("uc"));
+    public Results<Birthmarks> extract(String path) throws Exception{
+        BirthmarkExtractor extractor = new BirthmarkExtractors().service(new BirthmarkType("uc"));
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(path));
-        return extractor.extract(source, new Initializer().configuration());
+        return extractor.extract(source, new ConfigurationBuilder().configuration());
     }
 
     @Test
     public void testBasic() throws Exception{
-        ExtractionResults set = extract("target/test-classes/resources/HelloWorld.class");
-        Birthmarks birthmarks = set.birthmarks();
+        Results<Birthmarks> set = extract("target/test-classes/resources/HelloWorld.class");
+        Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("HelloWorld")).isPresent(), is(true));
@@ -52,8 +52,8 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic2() throws Exception{
-        ExtractionResults set = extract("target/test-classes/resources/Fibonacci.class");
-        Birthmarks birthmarks = set.birthmarks();
+        Results<Birthmarks> set = extract("target/test-classes/resources/Fibonacci.class");
+        Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("Fibonacci")).isPresent(), is(true));
@@ -64,7 +64,7 @@ public class UCBirthmarkExtractorTest {
         List<Element> elements = new ArrayList<>();
         list.get(0).forEach(item -> elements.add(item));
 
-        assertThat(list.get(0).isExtractedFrom(new ClassName("Fibonacci")), is(true));
+        assertThat(list.get(0).is(new ClassName("Fibonacci")), is(true));
         assertThat(elements.size(), is(13));
         assertThat(elements.get(0), is(new Element("java.io.PrintStream")));
         assertThat(elements.get(1), is(new Element("java.lang.Integer")));
@@ -83,8 +83,8 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic3() throws Exception{
-        ExtractionResults set = extract("target/test-classes/resources/MazeBuilder.class");
-        Birthmarks birthmarks = set.birthmarks();
+        Results<Birthmarks> set = extract("target/test-classes/resources/MazeBuilder.class");
+        Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("MazeBuilder")).isPresent(), is(true));
@@ -106,8 +106,8 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic4() throws Exception{
-        ExtractionResults set = extract("target/test-classes/resources/MyServer.class");
-        Birthmarks birthmarks = set.birthmarks();
+        Results<Birthmarks> set = extract("target/test-classes/resources/MyServer.class");
+        Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("MyServer")).isPresent(), is(true));

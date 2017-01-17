@@ -44,6 +44,7 @@ public class Classpaths implements Serializable{
     private URL[] toUrls(){
         return stream().map(classpath -> classpath.toUrl())
                 .filter(optional -> optional.isPresent())
+                .map(optional -> optional.get())
                 .toArray(size -> new URL[size]);
     }
 }

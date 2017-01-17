@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.github.ebis.birthmarks.entities.ExtractionResults;
-import com.github.ebis.birthmarks.io.Dumper;
+import com.github.ebis.birthmarks.entities.Results;
+import com.github.ebis.birthmarks.io.DefaultDumper;
 import com.github.kunai.entries.KunaiException;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.factories.DefaultDataSourceFactory;
@@ -37,8 +37,13 @@ public class IOHelper {
         return open(Paths.get(path));
     }
 
-    public void print(ExtractionResults set){
-        Dumper dumper = new Dumper(out);
+    public <T> void print(Results<T> set){
+        DefaultDumper dumper = new DefaultDumper(out);
         dumper.print(set);
+    }
+
+    public void print(String string){
+        out.println(string);
+        out.flush();
     }
 }

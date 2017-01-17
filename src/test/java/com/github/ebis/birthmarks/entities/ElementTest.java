@@ -1,7 +1,6 @@
 package com.github.ebis.birthmarks.entities;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
@@ -16,6 +15,6 @@ public class ElementTest {
 
         assertThat(new Element(element), is(new Element("element1")));
 
-        assertThat(element, is(not(new Object())));
+        assertThat(element.equals(new Object()), is(false));
     }
 }

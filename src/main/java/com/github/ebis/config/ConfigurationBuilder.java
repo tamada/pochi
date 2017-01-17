@@ -1,4 +1,4 @@
-package com.github.ebis.scripts;
+package com.github.ebis.config;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,37 +8,36 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.ebis.config.Configuration;
 
-public class Initializer {
+public class ConfigurationBuilder {
     private static URL defaultResource(){
-        return Initializer.class
+        return ConfigurationBuilder.class
                 .getResource("/resources/config.json");
     }
-    private Configuration context;
+    private Configuration configuration;
 
-    public Initializer(){
+    public ConfigurationBuilder(){
         this(Optional.empty());
     }
 
-    public Initializer(Optional<URL> url){
+    public ConfigurationBuilder(Optional<URL> url){
         this(url.orElseGet(() -> defaultResource()));
     }
 
-    private Initializer(URL url){
+    private ConfigurationBuilder(URL url){
         try{ initialize(url); }
         catch(IOException e){ }
     }
 
     public Configuration configuration(){
-        return context;
+        return configuration;
     }
 
     private void initialize(URL url) throws IOException{
         try(Reader in = new InputStreamReader(url.openStream())){
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
-            context = mapper.readValue(in, Configuration.class);
+            configuration = mapper.readValue(in, Configuration.class);
         }
     }
 }

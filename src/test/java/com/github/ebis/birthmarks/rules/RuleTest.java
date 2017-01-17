@@ -12,6 +12,8 @@ public class RuleTest {
 
         assertThat(rule.match("java.lang.String"), is(true));
         assertThat(rule.match("javax.swing.JFrame"), is(false));
+
+        assertThat(rule.toString(), is("PREFIX,java."));
     }
 
     @Test
@@ -21,6 +23,8 @@ public class RuleTest {
         assertThat(rule.match("java.lang.String"), is(true));
         assertThat(rule.match("java.lang.Strings"), is(false));
         assertThat(rule.match("javax.swing.JFrame"), is(false));
+
+        assertThat(rule.toString(), is("EXACT,java.lang.String"));
     }
 
     @Test
@@ -31,10 +35,14 @@ public class RuleTest {
         assertThat(rule1.match("java.lang.Strings"), is(true));
         assertThat(rule1.match("javax.swing.JFrame"), is(false));
 
+        assertThat(rule1.toString(), is("REGEX,.*[ST].*"));
+
         Rule rule2 = new Rule(Position.SUFFIX, new Snippet("Test"));
 
         assertThat(rule2.match(getClass().getName()), is(true));
         assertThat(rule2.match("java.lang.Strings"), is(false));
         assertThat(rule2.match("javax.swing.JFrame"), is(false));
+
+        assertThat(rule2.toString(), is("SUFFIX,Test"));
     }
 }

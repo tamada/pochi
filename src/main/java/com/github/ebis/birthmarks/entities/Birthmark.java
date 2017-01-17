@@ -17,8 +17,24 @@ public class Birthmark implements Serializable{
         this.elements = elements;
     }
 
+    public boolean isSameClassName(Birthmark other){
+        return metadata.hasSameName(other.metadata());
+    }
+
+    public ClassName className(){
+        return metadata.className();
+    }
+
     public void forEach(Consumer<Element> consumer){
         elements.forEach(consumer);
+    }
+
+    public boolean contains(Element element){
+        return elements.contains(element);
+    }
+
+    public int elementCount(){
+        return elements.size();
     }
 
     public void forEach(Predicate<Element> predicate, Consumer<Element> consumer){

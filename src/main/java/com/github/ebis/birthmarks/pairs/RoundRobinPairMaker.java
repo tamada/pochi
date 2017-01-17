@@ -10,12 +10,8 @@ import com.github.ebis.birthmarks.entities.PairMakerType;
 public class RoundRobinPairMaker extends AbstractPairMaker{
     private boolean includeSamePair = false;
 
-    public RoundRobinPairMaker(){
-        this(false);
-    }
-
-    public RoundRobinPairMaker(boolean includeSamePair){
-        super(new PairMakerType("roundrobin"));
+    public RoundRobinPairMaker(PairMakerType type, boolean includeSamePair){
+        super(type);
         this.includeSamePair = includeSamePair;
     }
 
@@ -33,8 +29,8 @@ public class RoundRobinPairMaker extends AbstractPairMaker{
     }
 
     private int firstIndex(){
-        if(includeSamePair) return 1;
-        return 0;
+        if(includeSamePair) return 0;
+        return 1;
     }
 
     @Override
@@ -42,19 +38,5 @@ public class RoundRobinPairMaker extends AbstractPairMaker{
         return birthmarks1.stream()
                 .flatMap(birthmark1 -> birthmarks2.stream()
                         .map(birthmark2 -> new Pair<>(birthmark1, birthmark2)));
-    }
-
-    private static class Index{
-        private int index;
-
-        public Index(int index){
-            this.index = index;
-        }
-
-        public int index(){
-            int i = index;
-            index++;
-            return i;
-        }
     }
 }

@@ -24,7 +24,7 @@ public class Item implements Serializable{
     }
 
     public boolean is(ItemValue otherValue){
-        return key.equals(otherValue);
+        return value.equals(otherValue);
     }
 
     public ItemKey key(){

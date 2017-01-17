@@ -1,28 +1,32 @@
 package com.github.ebis.birthmarks;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.github.ebis.birthmarks.entities.BirthmarkType;
 
 public class BirthmarkExtractorsTest {
-    private BirthmarkExtractors extractors;
+    @Test
+    public void testUC() throws Exception{
+        BirthmarkSystem system = new BirthmarkSystem();
+        BirthmarkType[] types = system.availableExtractors();
+        assertThat(types.length, is(1));
+        assertThat(types, is(arrayContainingInAnyOrder(new BirthmarkType("uc"))));
 
-    @Before
-    public void setUp(){
-        extractors = new BirthmarkExtractors();
+
+        BirthmarkExtractor extractor = system.extractor(new BirthmarkType("uc"));
+        assertThat(extractor, is(instanceOf(BirthmarkExtractor.class)));
     }
 
     @Test
-    public void testUC() throws Exception{
-        BirthmarkType[] types = extractors.availableTypes();
-        assertThat(types.length, is(1));
-        assertThat(types[0], is(new BirthmarkType("uc")));
+    public void testByExtractors() throws Exception{
+        BirthmarkExtractors extractors = new BirthmarkExtractors();
 
-        BirthmarkExtractor extractor = extractors.extractor(new BirthmarkType("uc"));
-        assertThat(extractor, is(instanceOf(BirthmarkExtractor.class)));
+        assertThat(extractors.available(new BirthmarkType("uc")), is(true));
+        assertThat(extractors.available(new BirthmarkType("unknown")), is(false));
     }
 }

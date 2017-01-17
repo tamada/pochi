@@ -7,7 +7,8 @@ import com.github.ebis.birthmarks.entities.Birthmarks;
 import com.github.ebis.birthmarks.entities.Pair;
 import com.github.ebis.birthmarks.entities.PairMakerType;
 
-public interface PairMaker {
+public interface PairMaker extends Service<PairMakerType>{
+    @Override
     public PairMakerType type();
 
     public Stream<Pair<Birthmark>> pairUpWith(Birthmarks birthmarks);
