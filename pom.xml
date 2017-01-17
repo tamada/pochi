@@ -153,7 +153,7 @@
       <plugin>
         <groupId>org.eluder.coveralls</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
-        <version>2.2.0</version>
+        <version>4.2.0</version>
         <configuration>
           <sourceEncoding>utf-8</sourceEncoding>
         </configuration>
@@ -162,7 +162,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.4.201502262128</version>
+        <version>0.7.7.201606060606</version>
         <executions>
           <execution>
             <id>prepare-agent</id>
