@@ -46,10 +46,10 @@ public class JarFileDataSourceTest {
 
         assertThat(entries[3].isName("sample/hello/HelloWorld.class"), is(true));
         assertThat(entries[3].isClass(), is(true));
-        assertThat(entries[3].getClassName(), is(new ClassName("sample.hello.HelloWorld")));
+        assertThat(entries[3].className(), is(new ClassName("sample.hello.HelloWorld")));
 
         assertThat(entries[4].isName("sample/hello/Launcher.class"), is(true));
         assertThat(entries[4].isClass(), is(true));
-        assertThat(entries[4].getClassName(), is(new ClassName("sample.hello.Launcher")));
+        assertThat(entries[4].className(), is(new ClassName("sample.hello.Launcher")));
     }
 }

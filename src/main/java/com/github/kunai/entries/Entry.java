@@ -6,15 +6,20 @@ import java.net.URI;
 import java.nio.file.Path;
 
 public interface Entry {
-    InputStream getInputStream() throws IOException;
+    InputStream openStream() throws IOException;
 
-    ClassName getClassName();
+    ClassName className();
 
-    boolean isClass();
+    default boolean isClass(){
+        String name = path().toString();
+        return name.endsWith(".class");
+    }
 
     boolean isName(String name);
 
-    URI loadFrom();
+    default URI loadFrom(){
+        return path().toUri();
+    }
 
-    Path getPath();
+    Path path();
 }

@@ -13,11 +13,10 @@ public class Name implements Serializable{
     }
 
     @Override
-    public boolean equals(Object o){
-        if(o instanceof Name){
-            return Objects.equals(name, ((Name)o).name);
-        }
-        return false;
+    public boolean equals(Object other){
+        return other instanceof Name
+            && Objects.equals(name,
+                    ((Name)other).name);
     }
 
     @Override

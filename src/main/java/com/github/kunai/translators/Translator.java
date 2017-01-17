@@ -1,16 +1,14 @@
 package com.github.kunai.translators;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
 import com.github.kunai.entries.Entry;
+import com.github.kunai.entries.KunaiException;
 
-public interface Translator {
-    default void translate(Entry entry, OutputStream out) throws IOException{
+public interface Translator<T> {
+    default T translate(Entry entry) throws KunaiException{
         supply(entry);
-        consume(out);
+        return consume();
     }
-    void supply(Entry entry) throws IOException;
+    void supply(Entry entry) throws KunaiException;
 
-    void consume(OutputStream out) throws IOException;
+    T consume() throws KunaiException;
 }

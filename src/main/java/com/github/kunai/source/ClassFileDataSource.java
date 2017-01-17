@@ -10,7 +10,7 @@ import com.github.kunai.entries.ClassName;
 import com.github.kunai.entries.Entry;
 import com.github.kunai.entries.PathEntry;
 
-class ClassFileDataSource extends AbstractDataSource implements PathResolver{
+public class ClassFileDataSource extends AbstractDataSource implements PathResolver{
     private Path path;
     private ClassName name = null;
 
@@ -35,17 +35,15 @@ class ClassFileDataSource extends AbstractDataSource implements PathResolver{
 
     @Override
     public ClassName parseClassName(Path path) {
-        if(name == null){
+        if(name == null)
             name = extractClassName(path);
-        }
         return name;
     }
 
     private ClassName extractClassName(Path path){
         try{
-            return this.resolveClassName(path);
-        } catch(IOException e){
-        }
+            return resolveClassName(path);
+        } catch(IOException e){ }
         return null;
     }
 }

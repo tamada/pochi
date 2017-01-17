@@ -7,9 +7,7 @@ public abstract class AbstractDataSource implements DataSource{
 
     int getStartIndex(String name){
         int startIndex = 0;
-        if(name.startsWith("/")){
-            startIndex = 1;
-        }
+        if(name.startsWith("/")) startIndex = 1;
         return startIndex;
     }
 }

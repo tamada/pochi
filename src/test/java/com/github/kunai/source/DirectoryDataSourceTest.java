@@ -37,10 +37,10 @@ public class DirectoryDataSourceTest {
 
         assertThat(entries[0].isName("sample/hello/HelloWorld.class"), is(true));
         assertThat(entries[0].isClass(), is(true));
-        assertThat(entries[0].getClassName(), is(new ClassName("sample.hello.HelloWorld")));
+        assertThat(entries[0].className(), is(new ClassName("sample.hello.HelloWorld")));
 
         assertThat(entries[1].isName("sample/hello/Launcher.class"), is(true));
         assertThat(entries[1].isClass(), is(true));
-        assertThat(entries[1].getClassName(), is(new ClassName("sample.hello.Launcher")));
+        assertThat(entries[1].className(), is(new ClassName("sample.hello.Launcher")));
     }
 }

@@ -9,20 +9,18 @@ import com.github.kunai.translators.NullTranslator;
 import com.github.kunai.translators.Translator;
 
 public abstract class AbstractDataSink implements DataSink{
-    private Translator translator = new NullTranslator();
+    private Translator<Entry> translator = new NullTranslator();
 
     @Override
-    public final void setTranslator(Translator translator) {
+    public final void setTranslator(Translator<Entry> translator) {
         this.translator = translator;
     }
 
     @Override
     public void supply(Entry entry) throws KunaiException {
         try(ByteArrayOutputStream out = new ByteArrayOutputStream()){
-            translator.translate(entry, out);
-
+            translator.translate(entry);
             consume(entry, out.toByteArray());
-
         } catch(IOException e){
             throw new KunaiException(e.getMessage());
         }

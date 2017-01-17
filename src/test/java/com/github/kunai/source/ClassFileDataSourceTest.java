@@ -34,6 +34,6 @@ public class ClassFileDataSourceTest {
         assertThat(entries.length, is(1));
         assertThat(entries[0].isName("sample/hello/HelloWorld.class"), is(true));
         assertThat(entries[0].isClass(), is(true));
-        assertThat(entries[0].getClassName(), is(new ClassName("sample.hello.HelloWorld")));
+        assertThat(entries[0].className(), is(new ClassName("sample.hello.HelloWorld")));
     }
 }

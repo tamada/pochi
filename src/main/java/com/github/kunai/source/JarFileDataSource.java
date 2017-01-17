@@ -6,15 +6,14 @@ import java.nio.file.FileSystem;
 import java.nio.file.Path;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.List;
-import java.util.Spliterator;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import com.github.kunai.entries.ClassName;
 import com.github.kunai.entries.Entry;
 import com.github.kunai.entries.PathEntry;
+import com.github.kunai.util.StreamHelper;
 
-class JarFileDataSource extends AbstractDataSource implements PathResolver{
+public class JarFileDataSource extends AbstractDataSource implements PathResolver{
     private FileSystem system;
 
     public JarFileDataSource(FileSystem system){
@@ -23,11 +22,9 @@ class JarFileDataSource extends AbstractDataSource implements PathResolver{
 
     @Override
     public Stream<Entry> stream(){
-        Path[] paths = getRootPaths();
-        List<Path> list = getAllFilesFromPaths(paths);
-        
+        List<Path> list = getAllFilesFromPaths(getRootPaths());
         return list.stream()
-                .map(path -> mapToEntry(path));
+                .map(path -> toEntry(path));
     }
 
     private List<Path> getAllFilesFromPaths(Path[] paths){
@@ -37,10 +34,9 @@ class JarFileDataSource extends AbstractDataSource implements PathResolver{
     }
 
     private Path[] getRootPaths(){
-        Iterable<Path> iterable = system.getRootDirectories();
-        Spliterator<Path> spliterator = iterable.spliterator();
-
-        return StreamSupport.stream(spliterator, false).toArray(Path[]::new);
+        return StreamHelper
+                .stream(system.getRootDirectories())
+                .toArray(size -> new Path[size]);
     }
 
     @Override
@@ -59,7 +55,7 @@ class JarFileDataSource extends AbstractDataSource implements PathResolver{
         return provider.newInputStream(entry);
     }
 
-    private Entry mapToEntry(Path path){
+    private Entry toEntry(Path path){
         return new PathEntry(path, this);
     }
 

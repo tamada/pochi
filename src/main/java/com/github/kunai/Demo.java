@@ -38,7 +38,7 @@ public class Demo {
 
     private void showContent(Entry entry){
         System.out.println(entry);
-        try(BufferedReader in = new BufferedReader(new InputStreamReader(entry.getInputStream()))){
+        try(BufferedReader in = new BufferedReader(new InputStreamReader(entry.openStream()))){
             in.lines().forEach(System.out::println);
 
         } catch (IOException e) {

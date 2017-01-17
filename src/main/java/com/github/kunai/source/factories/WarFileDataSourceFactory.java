@@ -14,7 +14,8 @@ class WarFileDataSourceFactory extends JarFileDataSourceFactory{
     @Override
     public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
         String name = path.toString();
-        return name.endsWith(".war") && attributes.isRegularFile();
+        return name.endsWith(".war")
+                && attributes.isRegularFile();
     }
 
     @Override

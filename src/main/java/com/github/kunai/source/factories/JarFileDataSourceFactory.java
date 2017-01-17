@@ -17,18 +17,24 @@ class JarFileDataSourceFactory implements DataSourceFactory{
     @Override
     public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
         String name = path.toString();
-        return name.endsWith(".jar") && attributes.isRegularFile();
+        return name.endsWith(".jar")
+                && attributes.isRegularFile();
     }
 
     @Override
     public DataSource build(Path path, FileSystem system) throws KunaiException{
-        try{
-            ClassLoader loader = getClass().getClassLoader();
-            FileSystem jarSystem = FileSystems.newFileSystem(path, loader);
-            return buildDataSource(jarSystem);
-        } catch(IOException e){
-            throw new UnsupportedDataSourceException(e.getMessage());
+        try{ 
+            return buildDataSource(path, system);
         }
+        catch(IOException e){
+            throw new UnsupportedDataSourceException(e.getMessage()); 
+        }
+    }
+
+    private DataSource buildDataSource(Path path, FileSystem system) throws IOException{
+        ClassLoader loader = getClass().getClassLoader();
+        FileSystem jarSystem = FileSystems.newFileSystem(path, loader);
+        return buildDataSource(jarSystem);
     }
 
     DataSource buildDataSource(FileSystem system){

@@ -15,7 +15,8 @@ class ClassFileDataSourceFactory implements DataSourceFactory{
     @Override
     public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
         String name = path.toString();
-        return name.endsWith(".class") && attributes.isRegularFile();
+        return name.endsWith(".class")
+                && attributes.isRegularFile();
     }
 
     @Override

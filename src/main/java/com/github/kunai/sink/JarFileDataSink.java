@@ -7,10 +7,10 @@ import com.github.kunai.entries.Entry;
 import com.github.kunai.entries.KunaiException;
 
 public class JarFileDataSink extends AbstractDataSink {
-    private FileSystem sysytem;
+    private FileSystem system;
 
     public JarFileDataSink(FileSystem system){
-        this.sysytem = system;
+        this.system = system;
     }
 
     @Override
@@ -19,6 +19,6 @@ public class JarFileDataSink extends AbstractDataSink {
 
     @Override
     public void consume(Entry entry, byte[] data) throws KunaiException {
-        entry.getPath();
+        entry.path();
     }
 }

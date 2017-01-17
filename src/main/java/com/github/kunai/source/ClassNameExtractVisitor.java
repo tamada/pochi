@@ -1,5 +1,9 @@
 package com.github.kunai.source;
 
+import static org.objectweb.asm.ClassReader.SKIP_CODE;
+import static org.objectweb.asm.ClassReader.SKIP_DEBUG;
+import static org.objectweb.asm.ClassReader.SKIP_FRAMES;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -21,14 +25,9 @@ class ClassNameExtractVisitor extends ClassVisitor{
         this.className = name;
     }
 
-    public String getClassName(){
-        return className;
-    }
-
     public static ClassName extractClassName(InputStream in) throws IOException{
         ClassNameExtractVisitor visitor = new ClassNameExtractVisitor();
-        ClassReader reader = new ClassReader(in);
-        reader.accept(visitor, ClassReader.SKIP_CODE | ClassReader.SKIP_DEBUG | ClassReader.SKIP_FRAMES);
-        return new ClassName(visitor.getClassName());
+        new ClassReader(in).accept(visitor, SKIP_CODE | SKIP_DEBUG | SKIP_FRAMES);
+        return new ClassName(visitor.className);
     }
 }

@@ -6,9 +6,10 @@
  * Path path = Paths.get("some/data/source/path");
  * DataSourceFactory factory = DefaltDataSourceFactory();
  * try(DataSource source = factory.build(path)){
- *     source.stream().forEach(entry -> {
- *         // some operation...
- *     });
+ *     source.stream()
+ *         .forEach(entry -> 
+ *             // some operation
+ *         );
  * }</pre>
  * 
  * @author Haruaki Tamada

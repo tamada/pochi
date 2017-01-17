@@ -18,7 +18,7 @@ class DirectoryTraverser {
 
     public List<Path> traverse(Path... paths){
         FileSystem system = FileSystems.getDefault();
-        return traverse(system.provider(), paths);
+        return traverse(system.provider(), new ArrayList<>(), paths);
     }
 
     public List<Path> traverse(FileSystemProvider provider, Path... paths){
@@ -26,9 +26,8 @@ class DirectoryTraverser {
     }
 
     private List<Path> traverse(FileSystemProvider provider, List<Path> list, Path... paths){
-        Arrays.stream(paths).forEach(path -> 
-            traverse(provider, list, path)
-        );
+        Arrays.stream(paths)
+        .forEach(path -> traverse(provider, list, path));
         return Collections.unmodifiableList(list);
     }
 

@@ -7,7 +7,7 @@ import com.github.kunai.entries.KunaiException;
 import com.github.kunai.translators.Translator;
 
 public interface DataSink extends AutoCloseable{
-    void setTranslator(Translator translator);
+    void setTranslator(Translator<Entry> translator);
 
     void supply(Entry entry) throws KunaiException;
 

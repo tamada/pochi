@@ -2,7 +2,6 @@ package com.github.kunai.entries;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.nio.file.Path;
 
 import com.github.kunai.source.PathResolver;
@@ -17,25 +16,20 @@ public class PathEntry implements Entry{
     }
 
     @Override
-    public Path getPath(){
+    public Path path(){
         return path;
     }
 
     @Override
-    public ClassName getClassName() {
+    public ClassName className() {
         return source.parseClassName(path);
     }
 
     @Override
-    public InputStream getInputStream() throws IOException{
+    public InputStream openStream() throws IOException{
         return source.openStream(path);
     }
 
-    public boolean isClass(){
-        String name = path.toString();
-        return name.endsWith(".class");
-    }
-    
     public boolean isName(Name name){
         return path.endsWith(name.toString());
     }
@@ -46,17 +40,7 @@ public class PathEntry implements Entry{
     }
 
     @Override
-    public URI loadFrom(){
-        return path.toUri();
-    }
-
-    @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(loadFrom());
-        if(isClass()){
-            sb.append(" <").append(getClassName()).append(">");
-        }
-        return new String(sb);
+        return String.format("%s <%s>", loadFrom(), className());
     }
 }
