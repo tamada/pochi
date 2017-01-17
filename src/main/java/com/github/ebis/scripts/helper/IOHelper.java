@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.github.ebis.birthmarks.entities.BirthmarksSet;
+import com.github.ebis.birthmarks.entities.ExtractionResults;
 import com.github.ebis.birthmarks.io.Dumper;
 import com.github.kunai.entries.KunaiException;
 import com.github.kunai.source.DataSource;
@@ -37,7 +37,7 @@ public class IOHelper {
         return open(Paths.get(path));
     }
 
-    public void print(BirthmarksSet set){
+    public void print(ExtractionResults set){
         Dumper dumper = new Dumper(out);
         dumper.print(set);
     }

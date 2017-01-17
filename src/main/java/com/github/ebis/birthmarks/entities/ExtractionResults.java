@@ -2,11 +2,11 @@ package com.github.ebis.birthmarks.entities;
 
 import java.util.Objects;
 
-public class BirthmarksSet {
+public class ExtractionResults {
     private Birthmarks birthmarks;
     private BirthmarkType birthmarkType;
 
-    public BirthmarksSet(BirthmarkType type, Birthmarks birthmarks){
+    public ExtractionResults(BirthmarkType type, Birthmarks birthmarks){
         this.birthmarkType = type;
         this.birthmarks = birthmarks;
     }

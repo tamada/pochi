@@ -36,13 +36,14 @@ class UCBirthmarkExtractMethodVisitor extends MethodVisitor {
         super.visitMultiANewArrayInsn(desc, dims);
     }
 
-    @Override
-    public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
-        helper.add(Type.getType(desc));
-        visitor.addSignatureClass(signature);
-
-        super.visitLocalVariable(name, desc, signature, start, end, index);
-    }
+//    @Override
+//    public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
+//        System.out.printf("visitLocalVariable(%s, %s, %s, %d)%n", name, desc, signature, index);
+//        helper.add(Type.getType(desc));
+//        visitor.addSignatureClass(signature);
+//
+//        super.visitLocalVariable(name, desc, signature, start, end, index);
+//    }
 
     @Override
     public void visitFieldInsn(int opcode, String owner, String name, String desc) {

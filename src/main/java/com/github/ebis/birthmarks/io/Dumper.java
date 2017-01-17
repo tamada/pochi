@@ -6,7 +6,7 @@ import java.util.StringJoiner;
 import com.github.ebis.birthmarks.entities.Birthmark;
 import com.github.ebis.birthmarks.entities.BirthmarkType;
 import com.github.ebis.birthmarks.entities.Birthmarks;
-import com.github.ebis.birthmarks.entities.BirthmarksSet;
+import com.github.ebis.birthmarks.entities.ExtractionResults;
 import com.github.ebis.birthmarks.entities.Metadata;
 
 public class Dumper {
@@ -16,7 +16,7 @@ public class Dumper {
         this.out = out;
     }
 
-    public void print(BirthmarksSet birthmarks){
+    public void print(ExtractionResults birthmarks){
         BirthmarkType type = birthmarks.type();
         print(type, birthmarks.birthmarks());
         out.flush();

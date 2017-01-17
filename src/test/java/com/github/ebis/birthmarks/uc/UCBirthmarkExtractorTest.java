@@ -1,0 +1,126 @@
+package com.github.ebis.birthmarks.uc;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.Test;
+
+import com.github.ebis.birthmarks.BirthmarkExtractor;
+import com.github.ebis.birthmarks.BirthmarkExtractors;
+import com.github.ebis.birthmarks.entities.Birthmark;
+import com.github.ebis.birthmarks.entities.BirthmarkType;
+import com.github.ebis.birthmarks.entities.Birthmarks;
+import com.github.ebis.birthmarks.entities.Element;
+import com.github.ebis.birthmarks.entities.ExtractionResults;
+import com.github.ebis.scripts.Initializer;
+import com.github.kunai.entries.ClassName;
+import com.github.kunai.source.DataSource;
+import com.github.kunai.source.factories.DefaultDataSourceFactory;
+
+public class UCBirthmarkExtractorTest {
+    public ExtractionResults extract(String path) throws Exception{
+        BirthmarkExtractor extractor = new BirthmarkExtractors().extractor(new BirthmarkType("uc"));
+        DataSource source = new DefaultDataSourceFactory().build(Paths.get(path));
+        return extractor.extract(source, new Initializer().configuration());
+    }
+
+    @Test
+    public void testBasic() throws Exception{
+        ExtractionResults set = extract("target/test-classes/resources/HelloWorld.class");
+        Birthmarks birthmarks = set.birthmarks();
+
+        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
+        assertThat(birthmarks.find(new ClassName("HelloWorld")).isPresent(), is(true));
+
+        List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
+        assertThat(list.size(), is(1));
+
+        List<Element> elements = new ArrayList<>();
+        list.get(0).forEach(item -> elements.add(item));
+
+        assertThat(elements.size(), is(4));
+        assertThat(elements.get(0), is(new Element("java.io.PrintStream")));
+        assertThat(elements.get(1), is(new Element("java.lang.Object")));
+        assertThat(elements.get(2), is(new Element("java.lang.String")));
+        assertThat(elements.get(3), is(new Element("java.lang.System")));
+    }
+
+    @Test
+    public void testBasic2() throws Exception{
+        ExtractionResults set = extract("target/test-classes/resources/Fibonacci.class");
+        Birthmarks birthmarks = set.birthmarks();
+
+        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
+        assertThat(birthmarks.find(new ClassName("Fibonacci")).isPresent(), is(true));
+
+        List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
+        assertThat(list.size(), is(1));
+
+        List<Element> elements = new ArrayList<>();
+        list.get(0).forEach(item -> elements.add(item));
+
+        assertThat(list.get(0).isExtractedFrom(new ClassName("Fibonacci")), is(true));
+        assertThat(elements.size(), is(13));
+        assertThat(elements.get(0), is(new Element("java.io.PrintStream")));
+        assertThat(elements.get(1), is(new Element("java.lang.Integer")));
+        assertThat(elements.get(2), is(new Element("java.lang.Object")));
+        assertThat(elements.get(3), is(new Element("java.lang.String")));
+        assertThat(elements.get(4), is(new Element("java.lang.System")));
+        assertThat(elements.get(5), is(new Element("java.util.Iterator")));
+        assertThat(elements.get(6), is(new Element("java.util.List")));
+        assertThat(elements.get(7), is(new Element("java.util.function.IntFunction")));
+        assertThat(elements.get(8), is(new Element("java.util.function.IntUnaryOperator")));
+        assertThat(elements.get(9), is(new Element("java.util.stream.Collector")));
+        assertThat(elements.get(10), is(new Element("java.util.stream.Collectors")));
+        assertThat(elements.get(11), is(new Element("java.util.stream.IntStream")));
+        assertThat(elements.get(12), is(new Element("java.util.stream.Stream")));
+    }
+
+    @Test
+    public void testBasic3() throws Exception{
+        ExtractionResults set = extract("target/test-classes/resources/MazeBuilder.class");
+        Birthmarks birthmarks = set.birthmarks();
+
+        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
+        assertThat(birthmarks.find(new ClassName("MazeBuilder")).isPresent(), is(true));
+
+        List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
+        assertThat(list.size(), is(1));
+
+        List<Element> elements = new ArrayList<>();
+        list.get(0).forEach(item -> elements.add(item));
+
+        assertThat(elements.size(), is(6));
+        assertThat(elements.get(0), is(new Element("java.io.PrintStream")));
+        assertThat(elements.get(1), is(new Element("java.lang.Integer")));
+        assertThat(elements.get(2), is(new Element("java.lang.Object")));
+        assertThat(elements.get(3), is(new Element("java.lang.String")));
+        assertThat(elements.get(4), is(new Element("java.lang.System")));
+        assertThat(elements.get(5), is(new Element("java.util.Random")));
+    }
+
+    @Test
+    public void testBasic4() throws Exception{
+        ExtractionResults set = extract("target/test-classes/resources/MyServer.class");
+        Birthmarks birthmarks = set.birthmarks();
+
+        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
+        assertThat(birthmarks.find(new ClassName("MyServer")).isPresent(), is(true));
+
+        List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
+        assertThat(list.size(), is(1));
+
+        List<Element> elements = new ArrayList<>();
+        list.get(0).forEach(item -> elements.add(item));
+
+        assertThat(elements.size(), is(3));
+        assertThat(elements.get(0), is(new Element("java.io.IOException")));
+        assertThat(elements.get(1), is(new Element("java.lang.Object")));
+        assertThat(elements.get(2), is(new Element("java.net.ServerSocket")));
+    }
+}
