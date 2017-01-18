@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.github.kunai.sink.ClassFileDataSink;
 import com.github.kunai.sink.DataSink;
-import com.github.kunai.sink.DatabaseDataSink;
 import com.github.kunai.sink.DirectoryDataSink;
 import com.github.kunai.sink.JarFileDataSink;
 import com.github.kunai.sink.WarFileDataSink;
@@ -18,7 +17,6 @@ public class DataSinkFactoryBuilder {
         factories.add(new DataSinkFactory(path -> path.endsWith(".jar"),   path -> new JarFileDataSink(path)));
         factories.add(new DataSinkFactory(path -> path.endsWith(".war"),   path -> new WarFileDataSink(path)));
         factories.add(new DataSinkFactory(path -> path.endsWith(".class"), path -> new ClassFileDataSink(path)));
-        factories.add(new DataSinkFactory(path -> path.endsWith(".db"),    path -> new DatabaseDataSink(path)));
         factories.add(new DataSinkFactory(path -> true,                    path -> new DirectoryDataSink(path)));
     }
 

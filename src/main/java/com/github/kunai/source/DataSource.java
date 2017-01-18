@@ -1,6 +1,7 @@
 package com.github.kunai.source;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import com.github.kunai.entries.Entry;
@@ -12,6 +13,10 @@ import com.github.kunai.entries.Entry;
  */
 public interface DataSource extends AutoCloseable{
     Stream<Entry> stream();
+
+    default void forEach(Consumer<Entry> consumer){
+        stream().forEach(consumer);
+    }
 
     @Override
     void close() throws IOException;

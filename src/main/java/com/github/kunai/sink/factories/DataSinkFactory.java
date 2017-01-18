@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import com.github.kunai.sink.DataSink;
 
-public class DataSinkFactory {
+class DataSinkFactory {
     private Predicate<Path> predicate;
     private Function<Path, DataSink> function;
 
