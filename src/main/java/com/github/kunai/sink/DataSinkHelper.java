@@ -6,9 +6,7 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,26 +22,9 @@ public class DataSinkHelper {
         return null;
     }
 
-    private static boolean exists(FileSystemProvider provider, Path path){
-        try{
-            provider.readAttributes(path, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
-            return true;
-        } catch(IOException e){ return false; }
-    }
-
-    public static void createDirectories(FileSystem system, Path path){
+    public static OutputStream newOutputStream(FileSystem system, Path path) throws IOException{
         FileSystemProvider provider = system.provider();
-        
-    }
-
-    private void createDirectoriesImpl(FileSystemProvider provider, Path path) throws IOException{
-        while(path != null){
-            if(!exists(provider, path)){
-                createDirectoriesImpl(provider, path);
-                provider.createDirectory(path);
-            }
-            path = path.getParent();
-        }
+        return provider.newOutputStream(path);
     }
 
     public static void copy(InputStream in, OutputStream out) throws IOException{

@@ -3,35 +3,38 @@ package com.github.kunai.sink;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.FileSystem;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import com.github.kunai.entries.Entry;
 import com.github.kunai.entries.KunaiException;
 
-public class JarFileDataSink extends AbstractDataSink {
-    private FileSystem system;
+public class DirectoryDataSink extends AbstractDataSink {
     private Path base;
 
-    public JarFileDataSink(Path path){
-        this.system = DataSinkHelper.buildFileSystem(path);
-        this.base = system.getPath("/");
+    public DirectoryDataSink(Path path){
+        this.base = path;
     }
 
     @Override
     public void close() throws IOException {
-        system.close();
     }
 
     @Override
     public void consume(InputStream in, Entry entry) throws KunaiException {
         Path outputPath = base.resolve(createPath(entry));
-        DirectoryMaker.mkdirs(system, outputPath);
+        createDirectories(outputPath.getParent());
         consume(in, outputPath);
     }
 
+    private void createDirectories(Path path){
+        try{ Files.createDirectories(path); }
+        catch(IOException e){ }
+    }
+
     private void consume(InputStream in, Path path) throws KunaiException{
-        try(OutputStream out = DataSinkHelper.newOutputStream(system, path)){
+        try(OutputStream out = Files.newOutputStream(path)){
             DataSinkHelper.copy(in, out);
         } catch(IOException e){
             throw new KunaiException(e.getMessage());
@@ -40,7 +43,7 @@ public class JarFileDataSink extends AbstractDataSink {
 
     private Path createPath(Entry entry){
         if(entry.isClass())
-            return system.getPath(entry.className().toString().replace('.', '/') + ".class");
-        return system.getPath(entry.path().toString());
+            return Paths.get(entry.className().toString().replace('.', '/') + ".class");
+        return Paths.get(entry.path().toString());
     }
 }
