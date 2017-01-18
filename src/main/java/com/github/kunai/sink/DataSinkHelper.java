@@ -13,10 +13,13 @@ import java.util.Map;
 
 public class DataSinkHelper {
     public static FileSystem buildFileSystem(Path path){
+        Map<String, String> environment = new HashMap<>();
+        environment.put("create", "true");
+        return buildFileSystem(path, environment);
+    }
+
+    public static FileSystem buildFileSystem(Path path, Map<String, String> environment){
         try {
-            Map<String, String> environment = new HashMap<>();
-            environment.put("create", "true");
-            System.out.println("jar:" + path.toAbsolutePath().toUri());
             return FileSystems.newFileSystem(URI.create("jar:file:" + path.toAbsolutePath()), environment);
         } catch (IOException e) { e.printStackTrace(); }
         return null;

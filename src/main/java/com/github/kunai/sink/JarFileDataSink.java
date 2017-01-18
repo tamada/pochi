@@ -18,6 +18,11 @@ public class JarFileDataSink extends AbstractDataSink {
         this.base = system.getPath("/");
     }
 
+    JarFileDataSink(FileSystem system, String base){
+        this.system = system;
+        this.base = system.getPath(base);
+    }
+
     @Override
     public void close() throws IOException {
         system.close();

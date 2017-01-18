@@ -10,27 +10,17 @@ import java.nio.file.Paths;
 import com.github.kunai.entries.Entry;
 import com.github.kunai.entries.KunaiException;
 
-public class DirectoryDataSink extends AbstractDataSink {
-    private Path base;
+public class DirectoryDataSink extends ClassFileDataSink {
 
     public DirectoryDataSink(Path path){
-        this.base = path;
-    }
-
-    @Override
-    public void close() throws IOException {
+        super(path);
     }
 
     @Override
     public void consume(InputStream in, Entry entry) throws KunaiException {
-        Path outputPath = base.resolve(createPath(entry));
+        Path outputPath = path().resolve(createPath(entry));
         createDirectories(outputPath.getParent());
         consume(in, outputPath);
-    }
-
-    private void createDirectories(Path path){
-        try{ Files.createDirectories(path); }
-        catch(IOException e){ }
     }
 
     private void consume(InputStream in, Path path) throws KunaiException{
