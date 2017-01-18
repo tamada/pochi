@@ -12,6 +12,10 @@ public class Name implements Serializable{
         this.name = name;
     }
 
+    String name(){
+        return name;
+    }
+
     @Override
     public boolean equals(Object other){
         return other instanceof Name

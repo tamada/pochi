@@ -8,6 +8,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 import com.github.kunai.entries.Entry;
+import com.github.kunai.entries.KunaiException;
+import com.github.kunai.sink.DataSink;
+import com.github.kunai.sink.JarFileDataSink;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.factories.DataSourceFactory;
 import com.github.kunai.source.factories.DefaultDataSourceFactory;
@@ -27,13 +30,15 @@ public class Demo {
         DataSourceFactory factory = new DefaultDataSourceFactory();
         Path path = Paths.get(item);
         DataSource source = factory.build(path);
+        DataSink sink = new JarFileDataSink(Paths.get("hoge.jar"));
 
-        System.out.println(path);
-        source.stream().peek(entry -> {
-            System.out.println(entry);
-        })
+        source.stream()
+        .peek(entry -> System.out.println(entry))
+        .peek(entry -> { try{ sink.consume(entry); } catch(KunaiException e){ e.printStackTrace(); } })
         .filter(entry -> entry.isName("MANIFEST.MF"))
         .forEach(entry -> showContent(entry));
+
+        sink.close();
     }
 
     private void showContent(Entry entry){

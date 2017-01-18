@@ -41,6 +41,6 @@ public class PathEntry implements Entry{
 
     @Override
     public String toString(){
-        return String.format("%s <%s>", loadFrom(), className());
+        return String.format("%s <%s>", loadFrom(), isClass()? className(): path);
     }
 }

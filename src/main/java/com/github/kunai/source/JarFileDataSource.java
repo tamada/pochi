@@ -41,11 +41,7 @@ public class JarFileDataSource extends AbstractDataSource implements PathResolve
 
     @Override
     public ClassName parseClassName(Path path){
-        String name = path.toString();
-        int startIndex = getStartIndex(name);
-        int lastIndex = getLastIndex(name, ".class");
-        name = name.substring(startIndex, lastIndex);
-
+        String name = parseClassName(path.toString());
         return new ClassName(name);        
     }
 
