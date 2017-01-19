@@ -2,11 +2,24 @@ package com.github.kunai.entries;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.nio.file.Path;
 
 public interface Entry {
-    public InputStream getInputStream() throws IOException;
+    InputStream openStream() throws IOException;
 
-    public ClassName getClassName();
+    ClassName className();
 
-    public boolean isName(String name);
+    default boolean isClass(){
+        String name = path().toString();
+        return name.endsWith(".class");
+    }
+
+    boolean isName(String name);
+
+    default URI loadFrom(){
+        return path().toUri();
+    }
+
+    Path path();
 }

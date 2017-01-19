@@ -1,4 +1,4 @@
-package com.github.kunai.source;
+package com.github.kunai.source.factories;
 
 import com.github.kunai.entries.KunaiException;
 
