@@ -1,18 +1,20 @@
 package com.github.kunai.sink;
 
+import static java.nio.file.LinkOption.NOFOLLOW_LINKS;
+
 import java.io.IOException;
 import java.nio.file.FileSystem;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.spi.FileSystemProvider;
 
+import com.github.kunai.util.Exceptions;
+
 public class DirectoryMaker {
     private static boolean exists(FileSystemProvider provider, Path path){
-        try{
-            provider.readAttributes(path, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
-            return true;
-        } catch(IOException e){ return false; }
+        return Exceptions.isThrowed(provider, path, 
+                (givenProvider, givenPath) -> givenProvider.readAttributes(
+                        givenPath, BasicFileAttributes.class, NOFOLLOW_LINKS));
     }
 
     public static void mkdirs(FileSystem system, Path path){

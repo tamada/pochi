@@ -2,6 +2,7 @@ package com.github.kunai.source.factories;
 
 import java.io.IOException;
 import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.spi.FileSystemProvider;
@@ -17,6 +18,10 @@ public class DataSourceFactories{
         factories.add(new WarFileDataSourceFactory());
         factories.add(new ClassFileDataSourceFactory());
         factories.add(new DirectoryDataSourceFactory());
+    }
+
+    public Optional<DataSourceFactory> find(Path path) throws IOException{
+        return find(path, FileSystems.getDefault());
     }
 
     public Optional<DataSourceFactory> find(Path path, FileSystem system) throws IOException{

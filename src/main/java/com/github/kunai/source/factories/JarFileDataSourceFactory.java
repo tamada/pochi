@@ -9,6 +9,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import com.github.kunai.entries.KunaiException;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.JarFileDataSource;
+import com.github.kunai.util.PathHelper;
 
 class JarFileDataSourceFactory implements DataSourceFactory{
     public JarFileDataSourceFactory(){
@@ -16,8 +17,7 @@ class JarFileDataSourceFactory implements DataSourceFactory{
 
     @Override
     public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
-        String name = path.toString();
-        return name.endsWith(".jar")
+        return PathHelper.endsWith(path, ".jar")
                 && attributes.isRegularFile();
     }
 

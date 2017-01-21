@@ -17,8 +17,11 @@ public class NameTest {
     @Test
     public void testBasic(){
         assertThat(name, is(new Name("Haruaki Tamada")));
+        assertThat(name, is(not(new Name("Nanashi no Gonbe"))));
         assertThat(name, is(not("Haruaki Tamada")));
+        assertThat(name, is(not(new Object())));
 
         assertThat(name.toString(), is("Haruaki Tamada"));
+        assertThat(name.name(), is("Haruaki Tamada"));
     }
 }

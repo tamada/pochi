@@ -25,5 +25,7 @@ public class ClassNameTest {
         assertThat(name2, is(new Name("com.github.kunai.entries.NameTest")));
         assertThat(name2, is(not("com.github.kunai.entries.NameTest")));
         assertThat(name2.toString(), is("com.github.kunai.entries.NameTest"));
+
+        assertThat(name1, is(not(name2)));
     }
 }
