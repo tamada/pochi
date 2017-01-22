@@ -19,6 +19,8 @@ class DirectoryDataSourceFactory implements DataSourceFactory{
 
     @Override
     public DataSource build(Path path, FileSystem system) throws KunaiException{
+        if(!isTarget(path, system))
+            throw new UnsupportedDataSourceException(path + ": not supported.");
         return new DirectoryDataSource(path);
     }
 }

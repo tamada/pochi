@@ -35,7 +35,7 @@ class DirectoryTraverser {
     private List<Path> traverse(FileSystemProvider provider, List<Path> list, Path path){
         try(DirectoryStream<Path> stream = provider.newDirectoryStream(path, FILTER)){
             stream.forEach(p -> traverseDirectory(provider, list, p));
-        } catch (Exception e) { }
+        } catch (Exception e){ }
         return list;
     }
 

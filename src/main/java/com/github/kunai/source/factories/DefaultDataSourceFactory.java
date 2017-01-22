@@ -29,11 +29,6 @@ public class DefaultDataSourceFactory implements DataSourceFactory{
 
     @Override
     public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes) {
-        return true;
-    }
-
-    @Override
-    public boolean isTarget(Path path) {
-        return true;
+        return path != null;
     }
 }

@@ -26,7 +26,7 @@ public class DataSourceFactoriesTest {
 
     @Test
     public void testJar() throws Exception{
-        Optional<DataSourceFactory> factory = factories.find(Paths.get("target/test-classes/hello/target/hello-1.0-SNAPSHOT.jar"), FileSystems.getDefault());
+        Optional<DataSourceFactory> factory = factories.find(Paths.get("target/test-classes/hello/target/hello-1.0-SNAPSHOT.jar"));
 
         assertThat(factory.isPresent(), is(true));
         assertThat(factory.get(), is(instanceOf(JarFileDataSourceFactory.class)));

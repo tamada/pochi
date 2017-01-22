@@ -4,14 +4,14 @@ import java.util.Optional;
 
 public class Exceptions {
     public static <T> boolean isThrowed(T argument, ThrowableConsumer<T, Exception> consumer){
-        try{  consumer.apply(argument); }
+        try{  consumer.accept(argument); }
         catch(Exception e){ return false; }
         return true;
     }
 
     public static <T, S> boolean isThrowed(T argument1, S argument2, 
             ThrowableBiConsumer<T, S, Exception> consumer){
-        try{  consumer.apply(argument1, argument2); }
+        try{  consumer.accept(argument1, argument2); }
         catch(Exception e){ return false; }
         return true;
     }
@@ -30,7 +30,7 @@ public class Exceptions {
 
     public static <A1, A2, R> Optional<R> map(A1 argument1, A2 argument2,
             ThrowableBiFunction<A1, A2, R, Exception> func){
-        try{ return Optional.of(func.apply(argument1, argument2)); }
+        try{ return Optional.ofNullable(func.apply(argument1, argument2)); }
         catch(Exception e){ }
         return Optional.empty();
     }

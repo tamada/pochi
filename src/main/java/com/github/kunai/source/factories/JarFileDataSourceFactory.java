@@ -23,12 +23,16 @@ class JarFileDataSourceFactory implements DataSourceFactory{
 
     @Override
     public DataSource build(Path path, FileSystem system) throws KunaiException{
-        try{ 
-            return buildDataSource(path, system);
-        }
+        try{ return buildImpl(path, system); }
         catch(IOException e){
             throw new UnsupportedDataSourceException(e.getMessage()); 
         }
+    }
+
+    private DataSource buildImpl(Path path, FileSystem system) throws KunaiException, IOException{
+        if(!isTarget(path, system))
+            throw new UnsupportedDataSourceException(path + ": not supported");
+        return buildDataSource(path, system);
     }
 
     private DataSource buildDataSource(Path path, FileSystem system) throws IOException{
