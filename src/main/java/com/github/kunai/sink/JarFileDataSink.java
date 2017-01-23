@@ -31,7 +31,7 @@ public class JarFileDataSink extends AbstractDataSink {
     @Override
     public void consume(InputStream in, Entry entry) throws KunaiException {
         Path outputPath = base.resolve(createPath(entry));
-        DirectoryMaker.mkdirs(system, outputPath);
+        DirectoryMaker.mkdirs(outputPath.getParent(), system);
         consume(in, outputPath);
     }
 

@@ -9,6 +9,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import com.github.kunai.entries.KunaiException;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.JarFileDataSource;
+import com.github.kunai.util.PathHelper;
 
 class JarFileDataSourceFactory implements DataSourceFactory{
     public JarFileDataSourceFactory(){
@@ -16,19 +17,22 @@ class JarFileDataSourceFactory implements DataSourceFactory{
 
     @Override
     public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
-        String name = path.toString();
-        return name.endsWith(".jar")
+        return PathHelper.endsWith(path, ".jar")
                 && attributes.isRegularFile();
     }
 
     @Override
     public DataSource build(Path path, FileSystem system) throws KunaiException{
-        try{ 
-            return buildDataSource(path, system);
-        }
+        try{ return buildImpl(path, system); }
         catch(IOException e){
             throw new UnsupportedDataSourceException(e.getMessage()); 
         }
+    }
+
+    private DataSource buildImpl(Path path, FileSystem system) throws KunaiException, IOException{
+        if(!isTarget(path, system))
+            throw new UnsupportedDataSourceException(path + ": not supported");
+        return buildDataSource(path, system);
     }
 
     private DataSource buildDataSource(Path path, FileSystem system) throws IOException{

@@ -3,7 +3,7 @@ package com.github.kunai;
 import java.nio.file.Paths;
 
 import com.github.kunai.sink.DataSink;
-import com.github.kunai.sink.factories.DataSinkFactoryBuilder;
+import com.github.kunai.sink.factories.DefaultDataSinkFactory;
 import com.github.kunai.source.DataSource;
 import com.github.kunai.source.factories.DefaultDataSourceFactory;
 
@@ -14,7 +14,7 @@ public class Demo {
 
     private void copy(String from, String to) throws Exception{
         try(DataSource source = new DefaultDataSourceFactory().build(Paths.get(from));
-                DataSink sink = new DataSinkFactoryBuilder().create(Paths.get(to))){
+                DataSink sink = new DefaultDataSinkFactory().create(Paths.get(to))){
             copy(source, sink);
         }
     }

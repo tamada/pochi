@@ -7,6 +7,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import com.github.kunai.entries.KunaiException;
 import com.github.kunai.source.ClassFileDataSource;
 import com.github.kunai.source.DataSource;
+import com.github.kunai.util.PathHelper;
 
 class ClassFileDataSourceFactory implements DataSourceFactory{
     public ClassFileDataSourceFactory(){
@@ -14,8 +15,7 @@ class ClassFileDataSourceFactory implements DataSourceFactory{
 
     @Override
     public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
-        String name = path.toString();
-        return name.endsWith(".class")
+        return PathHelper.endsWith(path, ".class")
                 && attributes.isRegularFile();
     }
 

@@ -1,6 +1,5 @@
 package com.github.kunai.source;
 
-import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -12,6 +11,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import com.github.kunai.util.Exceptions;
 
 class DirectoryTraverser {
     private static final DirectoryStream.Filter<Path> FILTER = new EveryFileAcceptFilter();
@@ -34,8 +35,7 @@ class DirectoryTraverser {
     private List<Path> traverse(FileSystemProvider provider, List<Path> list, Path path){
         try(DirectoryStream<Path> stream = provider.newDirectoryStream(path, FILTER)){
             stream.forEach(p -> traverseDirectory(provider, list, p));
-        } catch (Exception e) {
-        }
+        } catch (Exception e){ }
         return list;
     }
 
@@ -53,10 +53,7 @@ class DirectoryTraverser {
     }
 
     private Optional<BasicFileAttributes> getAttributes(FileSystemProvider provider, Path path){
-        try {
-            return Optional.of(provider.readAttributes(path, BasicFileAttributes.class));
-        } catch (IOException e) {
-        }
-        return Optional.empty();
+        return Exceptions.map(provider, path, (p2, path2) -> 
+            provider.readAttributes(path, BasicFileAttributes.class));
     }
 }
