@@ -30,13 +30,15 @@ public class PathEntry implements Entry{
         return source.openStream(path);
     }
 
-    public boolean isName(Name name){
-        return path.endsWith(name.toString());
+    @Override
+    public boolean endsWith(String suffix){
+        return path.toString()
+                .endsWith(suffix);
     }
 
     @Override
     public boolean isName(String name){
-        return isName(new Name(name));
+        return path.endsWith(name);
     }
 
     @Override

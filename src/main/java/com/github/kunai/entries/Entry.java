@@ -15,6 +15,8 @@ public interface Entry {
         return name.endsWith(".class");
     }
 
+    boolean endsWith(String suffix);
+
     boolean isName(String name);
 
     default URI loadFrom(){
