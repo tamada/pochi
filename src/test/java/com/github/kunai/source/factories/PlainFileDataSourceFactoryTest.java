@@ -34,8 +34,10 @@ public class PlainFileDataSourceFactoryTest {
         Entry[] entries = source.stream().toArray(size -> new Entry[size]);
 
         assertThat(entries.length, is(1));
+        assertThat(entries[0].endsWith(".class"), is(true));
         assertThat(entries[0].loadFrom(), is(path.toUri()));
         assertThat(entries[0].className(), is(nullValue()));
         assertThat(entries[0].isClass(), is(true));
+        assertThat(entries[0].toString(), is(String.format("%s <%s>", path.toUri(), path)));
     }
 }
