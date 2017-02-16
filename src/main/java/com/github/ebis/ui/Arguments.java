@@ -38,7 +38,7 @@ public class Arguments {
     @Option(name="-config", usage="specify the configuration file.")
     private String configuration = null;
 
-    @Option(name="-help", usage="print this message.")
+    @Option(name="-help", aliases={ "--help", "-h" }, usage="print this message.")
     private boolean help = false;
 
     @Option(name="-version", usage="print the version.")

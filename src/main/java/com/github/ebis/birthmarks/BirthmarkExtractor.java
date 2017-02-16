@@ -17,13 +17,15 @@ import com.github.kunai.source.DataSource;
 public interface BirthmarkExtractor extends Service<BirthmarkType>{
     BirthmarkType type();
 
+    default Stream<Birthmark> extractForStream(DataSource source, Configuration context){
+        Stream<Optional<Birthmark>> stream = source.stream()
+                .filter(entry -> entry.endsWith(".class"))
+                .map(entry -> extractEach(entry, context));
+        return filter(stream);
+    }
+
     default Results<Birthmarks> extract(DataSource source, Configuration context){
-        Stream<Birthmark> stream = source.stream()
-                .filter(entry -> entry.className() != null)
-                .map(entry -> extractEach(entry, context))
-                .filter(item -> item.isPresent())
-                .map(item -> item.get());
-        return new Results<>(type(), new Birthmarks(stream));
+        return new Results<>(type(), new Birthmarks(extractForStream(source, context)));
     }
 
     EbisClassVisitor visitor(ClassVisitor parent, Configuration context);

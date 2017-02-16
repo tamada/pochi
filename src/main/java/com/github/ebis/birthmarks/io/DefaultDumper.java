@@ -24,8 +24,8 @@ public class DefaultDumper{
 
     @SuppressWarnings("unchecked")
     private <T> Dumper<T> obtainDumper(Object target){
-        String name = target
-                .getClass().getName();
+        String name = target.getClass()
+                .getName();
         return (Dumper<T>)map.get(name);
     }
 

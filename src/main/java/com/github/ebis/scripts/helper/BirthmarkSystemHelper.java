@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.github.ebis.birthmarks.BirthmarkExtractor;
 import com.github.ebis.birthmarks.BirthmarkSystem;
+import com.github.ebis.birthmarks.DefaultBirthmarkParser;
 import com.github.ebis.birthmarks.PairMaker;
 import com.github.ebis.birthmarks.comparators.ComparatorType;
 import com.github.ebis.birthmarks.entities.BirthmarkType;
@@ -27,6 +28,10 @@ public class BirthmarkSystemHelper {
     public BirthmarkSystemHelper(BirthmarkSystem system, Configuration configuration){
         this.system = system;
         this.configuration = configuration;
+    }
+
+    public Parser parser(){
+        return new Parser(new DefaultBirthmarkParser(), configuration);
     }
 
     public PairMaker pairMaker(String maker){

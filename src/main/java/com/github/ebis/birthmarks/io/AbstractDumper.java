@@ -12,4 +12,8 @@ public abstract class AbstractDumper<T> implements Dumper<T>{
     PrintWriter out(){
         return out;
     }
+
+    void flush(){
+        out.flush();
+    }
 }

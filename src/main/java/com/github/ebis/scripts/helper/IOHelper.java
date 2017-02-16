@@ -8,9 +8,10 @@ import java.nio.file.Paths;
 
 import com.github.ebis.birthmarks.entities.Results;
 import com.github.ebis.birthmarks.io.DefaultDumper;
-import com.github.kunai.KunaiException;
+import com.github.kunai.entries.KunaiException;
 import com.github.kunai.source.DataSource;
-import com.github.kunai.source.DefaultDataSourceFactory;
+import com.github.kunai.source.factories.DataSourceFactory;
+import com.github.kunai.source.factories.DefaultDataSourceFactory;
 
 public class IOHelper {
     private PrintWriter out;
@@ -24,12 +25,12 @@ public class IOHelper {
     }
 
     public DataSource open(File file) throws IOException, KunaiException{
-        DefaultDataSourceFactory factory = new DefaultDataSourceFactory();
+        DataSourceFactory factory = new DefaultDataSourceFactory();
         return factory.build(file);
     }
 
     public DataSource open(Path path) throws IOException, KunaiException{
-        DefaultDataSourceFactory factory = new DefaultDataSourceFactory();
+        DataSourceFactory factory = new DefaultDataSourceFactory();
         return factory.build(path);
     }
 

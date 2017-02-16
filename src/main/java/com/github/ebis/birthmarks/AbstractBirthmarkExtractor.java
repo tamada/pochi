@@ -16,7 +16,7 @@ import com.github.kunai.entries.Entry;
 
 public abstract class AbstractBirthmarkExtractor implements BirthmarkExtractor{
     private BirthmarkType type;
-    private FailedSources sources = new FailedSources();
+    private FailedSources failedSources = new FailedSources();
 
     public AbstractBirthmarkExtractor(BirthmarkType type){
         this.type = type;
@@ -26,7 +26,7 @@ public abstract class AbstractBirthmarkExtractor implements BirthmarkExtractor{
     public Optional<Birthmark> extractEach(Entry entry, Configuration context){
         try{ return Optional.of(extractImpl(entry, context)); }
         catch(IOException e){ }
-        sources.add(Metadata.build(entry));
+        failedSources.add(Metadata.build(entry));
         return Optional.empty();
     }
 
@@ -48,6 +48,6 @@ public abstract class AbstractBirthmarkExtractor implements BirthmarkExtractor{
     }
 
     public Stream<Metadata> failedSources(){
-        return sources.stream();
+        return failedSources.stream();
     }
 }

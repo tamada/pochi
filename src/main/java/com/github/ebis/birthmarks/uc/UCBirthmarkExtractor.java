@@ -17,5 +17,4 @@ public class UCBirthmarkExtractor extends AbstractBirthmarkExtractor{
     public EbisClassVisitor visitor(ClassVisitor parent, Configuration context) {
         return new UCBirthmarkExtractVisitor(parent, context);
     }
-
 }

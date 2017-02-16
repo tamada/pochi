@@ -17,7 +17,7 @@ public class ExtractionResultsDumper extends AbstractDumper<Birthmarks>{
     public void print(Results<Birthmarks> birthmarks) {
         BirthmarkType type = birthmarks.type();
         print(type, birthmarks.result());
-        out().flush();
+        flush();
     }
 
     public void print(BirthmarkType type, Birthmarks birthmarks) {

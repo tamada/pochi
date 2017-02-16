@@ -37,7 +37,7 @@ public class ScriptRunner {
     }
 
     private void registerHelpers(Configuration configuration){
-        engine.put("io", new IOHelper());
+        engine.put("fs", new IOHelper());
         engine.put("sys", new SystemInfoHelper());
         engine.put("bmsys", new BirthmarkSystemHelper(configuration));
     }

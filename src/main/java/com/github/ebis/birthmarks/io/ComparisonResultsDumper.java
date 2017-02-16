@@ -15,7 +15,7 @@ public class ComparisonResultsDumper extends AbstractDumper<Comparisons>{
     public void print(Results<Comparisons> results){
         print(results.type(),
                 results.result());
-        out().flush();
+        flush();
     }
 
     public void print(BirthmarkType type, Comparisons target){

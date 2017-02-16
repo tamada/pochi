@@ -39,7 +39,7 @@ public class Metadata implements Serializable{
     }
 
     public static Metadata build(Entry entry){
-        return new Metadata(entry.toUri(),
+        return new Metadata(entry.loadFrom(),
                 entry.className());
     }
 }
