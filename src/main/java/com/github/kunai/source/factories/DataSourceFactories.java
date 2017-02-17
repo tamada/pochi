@@ -18,6 +18,7 @@ public class DataSourceFactories{
         factories.add(new WarFileDataSourceFactory());
         factories.add(new ClassFileDataSourceFactory());
         factories.add(new DirectoryDataSourceFactory());
+        factories.add(new PlainFileDataSourceFactory());
     }
 
     public Optional<DataSourceFactory> find(Path path) throws IOException{

@@ -14,11 +14,11 @@ public abstract class AbstractDataSource implements DataSource{
     String parseClassName(String name){
         int start = getStartIndex(name);
         int last = getLastIndex(name, ".class");
-        return parseClassName(name, start, last);
+        return trimName(name, start, last);
     }
 
-    private String parseClassName(String name, int start, int last){
-        if(start > 0 && start < last)
+    String trimName(String name, int start, int last){
+        if(start >= 0 && start < last)
             return name.substring(start, last);
         return name;
     }

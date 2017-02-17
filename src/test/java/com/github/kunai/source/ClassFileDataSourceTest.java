@@ -28,12 +28,12 @@ public class ClassFileDataSourceTest {
 
         assertThat(factory.isTarget(path), is(true));
 
-        DataSource source = factory.build(path);
-
-        Entry[] entries = source.stream().toArray(count -> new Entry[count]);
-        assertThat(entries.length, is(1));
-        assertThat(entries[0].isName("sample/hello/HelloWorld.class"), is(true));
-        assertThat(entries[0].isClass(), is(true));
-        assertThat(entries[0].className(), is(new ClassName("sample.hello.HelloWorld")));
+        try(DataSource source = factory.build(path)){
+            Entry[] entries = source.stream().toArray(count -> new Entry[count]);
+            assertThat(entries.length, is(1));
+            assertThat(entries[0].isName("sample/hello/HelloWorld.class"), is(true));
+            assertThat(entries[0].isClass(), is(true));
+            assertThat(entries[0].className(), is(new ClassName("sample.hello.HelloWorld")));
+        }
     }
 }

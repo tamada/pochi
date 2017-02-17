@@ -29,15 +29,9 @@ public class DirectoryDataSource extends AbstractDataSource implements PathResol
     public ClassName parseClassName(Path targetPath){
         Path path = basePath.relativize(targetPath);
         String name = path.toString();
-        return parse(name, getLastIndex(name, ".class"));
+        return new ClassName(super.parseClassName(name));
     }
 
-    private ClassName parse(String name, int lastIndex){
-        if(lastIndex > 0) 
-            name = name.substring(0, lastIndex);
-        return new ClassName(name);
-    }
-    
     @Override
     public void close(){
         // do nothing
