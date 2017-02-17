@@ -3,6 +3,7 @@ package com.github.ebis.birthmarks.uc;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +25,15 @@ import com.github.kunai.source.factories.DefaultDataSourceFactory;
 
 public class UCBirthmarkExtractorTest {
     public Results<Birthmarks> extract(String path) throws Exception{
+        URL location = getClass().getResource(path);
         BirthmarkExtractor extractor = new BirthmarkExtractors().service(new BirthmarkType("uc"));
-        DataSource source = new DefaultDataSourceFactory().build(Paths.get(path));
+        DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
         return extractor.extract(source, new ConfigurationBuilder().configuration());
     }
 
     @Test
     public void testBasic() throws Exception{
-        Results<Birthmarks> set = extract("target/test-classes/resources/HelloWorld.class");
+        Results<Birthmarks> set = extract("/resources/HelloWorld.class");
         Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
@@ -52,7 +54,7 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic2() throws Exception{
-        Results<Birthmarks> set = extract("target/test-classes/resources/Fibonacci.class");
+        Results<Birthmarks> set = extract("/resources/Fibonacci.class");
         Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
@@ -83,7 +85,7 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic3() throws Exception{
-        Results<Birthmarks> set = extract("target/test-classes/resources/MazeBuilder.class");
+        Results<Birthmarks> set = extract("/resources/MazeBuilder.class");
         Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
@@ -106,11 +108,12 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic4() throws Exception{
-        Results<Birthmarks> set = extract("target/test-classes/resources/MyServer.class");
+        Results<Birthmarks> set = extract("/resources/MyServer2.class");
         Birthmarks birthmarks = set.result();
 
         assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
-        assertThat(birthmarks.find(new ClassName("MyServer")).isPresent(), is(true));
+        assertThat(set.type(), is(new BirthmarkType("uc")));
+        assertThat(birthmarks.find(new ClassName("MyServer2")).isPresent(), is(true));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));

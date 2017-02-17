@@ -1,6 +1,5 @@
 import java.io.*;
 import org.objectweb.asm.*;
-import org.objectweb.asm.tree.*;
 
 /**
  * 以下の原稿にあるクラスファイルを作成するためのクラス．
