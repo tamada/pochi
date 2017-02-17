@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Optional;
 
+import com.github.ebis.nasubi.Exceptions;
+
 public class PathHelper {
     public static boolean endsWith(Path path, String suffix){
         String name = path.toString();

@@ -1,8 +1,11 @@
-package com.github.kunai.util;
+package com.github.ebis.nasubi;
 
 import java.util.Optional;
 
 public class Exceptions {
+    private Exceptions(){
+    }
+
     public static <T> boolean isThrowed(T argument, ThrowableConsumer<T, Exception> consumer){
         try{  consumer.accept(argument); }
         catch(Exception e){ return false; }
@@ -26,6 +29,12 @@ public class Exceptions {
             ThrowableBiPredicate<T, S, Exception> predicate){
         try{ return predicate.test(argument1, argument2); }
         catch(Exception e){ return false; }
+    }
+
+    public static <A, R> Optional<R> map(A argument, ThrowableFunction<A, R, Exception> function){
+        try{ return Optional.ofNullable(function.apply(argument)); }
+        catch(Exception e){ }
+        return Optional.empty();
     }
 
     public static <A1, A2, R> Optional<R> map(A1 argument1, A2 argument2,

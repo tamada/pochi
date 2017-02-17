@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.nio.file.Path;
 
-import com.github.kunai.util.Exceptions;
+import com.github.ebis.nasubi.Exceptions;
 import com.github.kunai.util.PathHelper;
 
 public class DirectoryMaker {

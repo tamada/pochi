@@ -1,4 +1,4 @@
-package com.github.kunai.util;
+package com.github.ebis.nasubi;
 
 @FunctionalInterface
 public interface ThrowableBiPredicate<S1, S2, E extends Exception> {

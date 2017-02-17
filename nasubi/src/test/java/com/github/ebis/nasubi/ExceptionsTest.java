@@ -1,4 +1,4 @@
-package com.github.kunai.util;
+package com.github.ebis.nasubi;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -40,6 +40,14 @@ public class ExceptionsTest {
 
     @Test
     public void testMap() throws Exception{
+        assertThat(Exceptions.map("a", s1 -> s1 + s1), is(Optional.of("aa")));
+        assertThat(Exceptions.map("a", s1 -> null), is(Optional.empty()));
+        assertThat(Exceptions.map("a", s1 -> { throw new Exception(); }),
+                is(Optional.empty()));
+    }
+
+    @Test
+    public void testMap2() throws Exception{
         assertThat(Exceptions.map("a", "b", (s1, s2) -> s1 + s2), is(Optional.of("ab")));
         assertThat(Exceptions.map("a", "b", (s1, s2) -> null), is(Optional.empty()));
         assertThat(Exceptions.map("a", "b", (s1, s2) -> { throw new Exception(); }),

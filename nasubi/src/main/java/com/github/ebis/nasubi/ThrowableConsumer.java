@@ -1,4 +1,4 @@
-package com.github.kunai.util;
+package com.github.ebis.nasubi;
 
 @FunctionalInterface
 public interface ThrowableConsumer<S, E extends Exception> {

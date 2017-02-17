@@ -11,11 +11,6 @@ import com.github.kunai.sink.DirectoryMaker;
 
 public class HelpersTest {
     @Test
-    public void testMeaninglessExceptinos() throws Exception{
-        Exceptions exceptions = new Exceptions();
-        assertThat(exceptions, is(not(nullValue())));
-    }
-    @Test
     public void testMeaninglessPathsHelper() throws Exception{
         PathHelper helper = new PathHelper();
         assertThat(helper, is(not(nullValue())));

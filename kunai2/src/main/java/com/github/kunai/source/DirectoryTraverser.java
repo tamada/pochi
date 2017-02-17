@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.github.kunai.util.Exceptions;
+import com.github.ebis.nasubi.Exceptions;
 
 class DirectoryTraverser {
     private static final DirectoryStream.Filter<Path> FILTER = new EveryFileAcceptFilter();
