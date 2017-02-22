@@ -4,18 +4,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github</groupId>
-  <artifactId>ninja</artifactId>
+  <artifactId>pochi</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>nasubi</module>
     <module>kunai2</module>
-    <module>runner</module>
+    <module>pochi-runner</module>
   </modules>
 
-  <name>ninja: extensible birhtmark toolkit</name>
-  <url>http://github.com/tamada/ninja</url>
+  <name>pochi: extensible birhtmark toolkit</name>
+  <url>http://github.com/tamada/pochi</url>
 
   <developers>
     <developer>
@@ -37,14 +37,14 @@
   </licenses>
 
   <issueManagement>
-    <url>https://github.com/tamada/ninja/issues</url>
+    <url>https://github.com/tamada/pochi/issues</url>
     <system>Github issues</system>
   </issueManagement>
 
   <scm>
-    <connection>scm:git:https://github.com/tamada/ninja.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com:tamada/ninja.git</developerConnection>
-    <url>https://github.com/tamada/ninja</url>
+    <connection>scm:git:https://github.com/tamada/pochi.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:tamada/pochi.git</developerConnection>
+    <url>https://github.com/tamada/pochi</url>
     <tag>HEAD</tag>
   </scm>
 
