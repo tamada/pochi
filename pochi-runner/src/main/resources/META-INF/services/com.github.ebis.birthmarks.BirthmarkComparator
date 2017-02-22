@@ -1,3 +1,0 @@
-com.github.ebis.birthmarks.comparators.DiceIndexBirthmarkComparator
-com.github.ebis.birthmarks.comparators.JaccardIndexBirthmarkComparator
-com.github.ebis.birthmarks.comparators.SimpsonIndexBirthmarkComparator

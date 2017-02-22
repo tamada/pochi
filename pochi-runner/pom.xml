@@ -13,7 +13,7 @@
   <artifactId>runner</artifactId>
   <packaging>jar</packaging>
 
-  <name>runner</name>
+  <name>pochi-runner</name>
 
   <dependencies>
     <dependency>
