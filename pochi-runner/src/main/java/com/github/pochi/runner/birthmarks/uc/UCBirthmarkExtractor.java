@@ -15,6 +15,6 @@ public class UCBirthmarkExtractor extends AbstractBirthmarkExtractor{
 
     @Override
     public PochiClassVisitor visitor(ClassVisitor parent, Configuration context) {
-        return new UCBirthmarkExtractVisitor(parent, context);
+        return new UCBirthmarkExtractVisitor(parent, context, type());
     }
 }

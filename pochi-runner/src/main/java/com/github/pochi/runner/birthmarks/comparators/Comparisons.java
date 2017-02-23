@@ -1,19 +1,22 @@
 package com.github.pochi.runner.birthmarks.comparators;
 
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.github.pochi.runner.util.Timer;
+import com.github.pochi.runner.util.TimeredList;
+import com.github.pochi.runner.util.Unit;
 
-public class Comparisons extends Timer{
-    private List<Comparison> comparisons;
+public class Comparisons{
+    private TimeredList<Comparison> comparisons;
 
     public Comparisons(Stream<Comparison> stream){
-        timer(() -> comparisons = stream
-                .collect(Collectors.toList()));
+        comparisons = new TimeredList<>(stream);
+    }
+
+    public Comparisons filter(Predicate<Comparison> predicate){
+        return new Comparisons(comparisons.stream()
+                .filter(predicate));
     }
 
     public void forEach(Consumer<Comparison> consumer){
@@ -24,5 +27,13 @@ public class Comparisons extends Timer{
         comparisons.stream()
         .filter(predicate)
         .forEach(consumer);
+    }
+
+    public long time(){
+        return comparisons.time();
+    }
+
+    public double time(Unit unit){
+        return comparisons.time(unit);
     }
 }

@@ -6,13 +6,12 @@ import com.github.pochi.runner.birthmarks.comparators.Similarity;
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Pair;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.config.Configuration;
 
 public interface BirthmarkComparator extends Service<ComparatorType>{
     ComparatorType type();
 
-    Results<Comparisons> compare(Results<Birthmarks> results, PairMaker maker, Configuration config);
+    Comparisons compare(Birthmarks results, PairMaker maker, Configuration config);
 
     default Similarity compare(Pair<Birthmark> pair, Configuration config){
         return compare(pair.left(),

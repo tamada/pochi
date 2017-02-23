@@ -6,6 +6,8 @@ import java.util.Objects;
 public final class BirthmarkType implements Serializable{
     private static final long serialVersionUID = 6123912530056878788L;
 
+    public static final BirthmarkType UNKNOWN = new BirthmarkType("UNKNOWN");
+
     private String type;
 
     public BirthmarkType(String name){

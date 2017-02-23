@@ -1,7 +1,7 @@
 package com.github.pochi.runner.util;
 
 public class Timer{
-    public long time;
+    long time;
 
     public void timer(Runnable runnable){
         long begin = System.nanoTime();

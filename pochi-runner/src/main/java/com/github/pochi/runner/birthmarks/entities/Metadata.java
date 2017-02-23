@@ -11,35 +11,54 @@ import com.github.pochi.kunai.entries.Entry;
 public class Metadata implements Serializable{
     private static final long serialVersionUID = 5188434750286102391L;
 
+    public static Metadata build(Entry entry){
+        return build(entry, BirthmarkType.UNKNOWN);
+    }
+
+    public static Metadata build(Entry entry, BirthmarkType type){
+        return new Metadata(entry.className(), entry.loadFrom(), type);
+    }
+    
     private URI location;
     private ClassName name;
 
-    public Metadata(URI location, ClassName name){
-        this.location = location;
+    private BirthmarkType type;
+
+    public Metadata(ClassName name, URI location, BirthmarkType type){
         this.name = name;
+        this.location = location;
+        this.type = type;
     }
 
     public ClassName className(){
         return name;
     }
 
+    public boolean isSame(BirthmarkType otherType){
+        return Objects.equals(type(), otherType);
+    }
+
+    public boolean isSame(ClassName otherName){
+        return Objects.equals(className(), otherName);
+    }
+
+    public boolean isSame(URI otherLocation){
+        return Objects.equals(location(), otherLocation);
+    }
+
+    public URI location(){
+        return location;
+    }
+
     @Override
     public String toString(){
         return new StringJoiner(",").add(name.toString())
                 .add(location.toASCIIString())
+                .add(type.toString())
                 .toString();
     }
 
-    public boolean hasSameName(ClassName otherName){
-        return Objects.equals(name, otherName);
-    }
-
-    public boolean hasSameName(Metadata other){
-        return hasSameName(other.className());
-    }
-
-    public static Metadata build(Entry entry){
-        return new Metadata(entry.loadFrom(),
-                entry.className());
+    public BirthmarkType type(){
+        return type;
     }
 }

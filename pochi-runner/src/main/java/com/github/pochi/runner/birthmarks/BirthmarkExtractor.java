@@ -11,7 +11,6 @@ import com.github.pochi.runner.birthmarks.entities.Birthmark;
 import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Metadata;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.config.Configuration;
 
 public interface BirthmarkExtractor extends Service<BirthmarkType>{
@@ -24,8 +23,8 @@ public interface BirthmarkExtractor extends Service<BirthmarkType>{
         return filter(stream);
     }
 
-    default Results<Birthmarks> extract(DataSource source, Configuration context){
-        return new Results<>(type(), new Birthmarks(extractForStream(source, context)));
+    default Birthmarks extract(DataSource source, Configuration context){
+        return new Birthmarks(extractForStream(source, context));
     }
 
     PochiClassVisitor visitor(ClassVisitor parent, Configuration context);

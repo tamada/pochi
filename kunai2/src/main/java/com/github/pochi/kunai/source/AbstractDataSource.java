@@ -6,9 +6,9 @@ public abstract class AbstractDataSource implements DataSource{
     }
 
     int getStartIndex(String name){
-        int startIndex = 0;
-        if(name.startsWith("/")) startIndex = 1;
-        return startIndex;
+        if(name.startsWith("/"))
+            return 1;
+        return 0;
     }
 
     String parseClassName(String name){

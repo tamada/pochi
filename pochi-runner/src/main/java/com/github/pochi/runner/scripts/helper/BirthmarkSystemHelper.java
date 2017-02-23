@@ -8,6 +8,7 @@ import com.github.pochi.runner.birthmarks.BirthmarkSystem;
 import com.github.pochi.runner.birthmarks.DefaultBirthmarkParser;
 import com.github.pochi.runner.birthmarks.PairMaker;
 import com.github.pochi.runner.birthmarks.comparators.ComparatorType;
+import com.github.pochi.runner.birthmarks.comparators.Threshold;
 import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 import com.github.pochi.runner.birthmarks.entities.PairMakerType;
 import com.github.pochi.runner.birthmarks.pairs.PairMakers;
@@ -32,6 +33,10 @@ public class BirthmarkSystemHelper {
 
     public Parser parser(){
         return new Parser(new DefaultBirthmarkParser(), configuration);
+    }
+
+    public Threshold threshold(double threshold){
+        return new Threshold(threshold);
     }
 
     public PairMaker pairMaker(String maker){

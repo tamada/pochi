@@ -21,12 +21,14 @@ public class UCBirthmarkHelper {
 
     public void addAll(String[] names){
         if(names != null)
-            Arrays.stream(names).forEach(name -> add(name));
+            Arrays.stream(names)
+            .forEach(this::add);
     }
 
     public void addAll(Type[] types){
         if(types != null)
-            Arrays.stream(types).forEach(type -> add(type));
+            Arrays.stream(types)
+            .forEach(this::add);
     }
 
     public void add(String name){

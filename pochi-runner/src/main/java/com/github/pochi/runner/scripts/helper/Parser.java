@@ -6,7 +6,6 @@ import com.github.pochi.kunai.source.DataSource;
 import com.github.pochi.runner.birthmarks.BirthmarkParser;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Metadata;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.config.Configuration;
 
 public class Parser {
@@ -18,7 +17,7 @@ public class Parser {
         this.context = context;
     }
 
-    public Results<Birthmarks> parse(DataSource source){
+    public Birthmarks parse(DataSource source){
         return parser.parse(source, context);
     }
 

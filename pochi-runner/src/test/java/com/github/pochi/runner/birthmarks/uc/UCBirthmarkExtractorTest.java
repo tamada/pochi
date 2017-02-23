@@ -20,11 +20,10 @@ import com.github.pochi.runner.birthmarks.entities.Birthmark;
 import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.config.ConfigurationBuilder;
 
 public class UCBirthmarkExtractorTest {
-    public Results<Birthmarks> extract(String path) throws Exception{
+    public Birthmarks extract(String path) throws Exception{
         URL location = getClass().getResource(path);
         BirthmarkExtractor extractor = new BirthmarkExtractors().service(new BirthmarkType("uc"));
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
@@ -33,10 +32,8 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic() throws Exception{
-        Results<Birthmarks> set = extract("/resources/HelloWorld.class");
-        Birthmarks birthmarks = set.result();
+        Birthmarks birthmarks = extract("/resources/HelloWorld.class");
 
-        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("HelloWorld")).isPresent(), is(true));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
@@ -54,10 +51,8 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic2() throws Exception{
-        Results<Birthmarks> set = extract("/resources/Fibonacci.class");
-        Birthmarks birthmarks = set.result();
+        Birthmarks birthmarks = extract("/resources/Fibonacci.class");
 
-        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("Fibonacci")).isPresent(), is(true));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
@@ -66,7 +61,6 @@ public class UCBirthmarkExtractorTest {
         List<Element> elements = new ArrayList<>();
         list.get(0).forEach(item -> elements.add(item));
 
-        assertThat(list.get(0).is(new ClassName("Fibonacci")), is(true));
         assertThat(elements.size(), is(13));
         assertThat(elements.get(0), is(new Element("java.io.PrintStream")));
         assertThat(elements.get(1), is(new Element("java.lang.Integer")));
@@ -85,10 +79,8 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic3() throws Exception{
-        Results<Birthmarks> set = extract("/resources/MazeBuilder.class");
-        Birthmarks birthmarks = set.result();
+        Birthmarks birthmarks = extract("/resources/MazeBuilder.class");
 
-        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("MazeBuilder")).isPresent(), is(true));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
@@ -108,11 +100,8 @@ public class UCBirthmarkExtractorTest {
 
     @Test
     public void testBasic4() throws Exception{
-        Results<Birthmarks> set = extract("/resources/MyServer2.class");
-        Birthmarks birthmarks = set.result();
+        Birthmarks birthmarks = extract("/resources/MyServer2.class");
 
-        assertThat(set.isSameType(new BirthmarkType("uc")), is(true));
-        assertThat(set.type(), is(new BirthmarkType("uc")));
         assertThat(birthmarks.find(new ClassName("MyServer2")).isPresent(), is(true));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());

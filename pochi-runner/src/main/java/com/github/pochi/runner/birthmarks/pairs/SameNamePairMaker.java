@@ -47,7 +47,7 @@ public class SameNamePairMaker extends AbstractPairMaker{
 
     private void pickUpPairs(List<Pair<Birthmark>> list, Birthmarks birthmarks1, Birthmarks birthmarks2){
         birthmarks1.forEach(item1 -> birthmarks2.forEach(
-                item2 -> item1.isSameClassName(item2),
+                item2 -> item1.isSame(item2.className()),
                 item2 -> list.add(new Pair<>(item1, item2))));
     }
 }

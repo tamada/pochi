@@ -6,18 +6,19 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.github.pochi.kunai.entries.ClassName;
 import com.github.pochi.kunai.entries.Entry;
+import com.github.pochi.kunai.source.DataSource;
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
 import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
+import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Element;
 import com.github.pochi.runner.birthmarks.entities.Elements;
 import com.github.pochi.runner.birthmarks.entities.Metadata;
 import com.github.pochi.runner.config.Configuration;
+import com.github.pochi.runner.util.TimeredList;
 
 public class DefaultBirthmarkParser implements BirthmarkParser{
     private BirthmarkType type;
@@ -29,26 +30,37 @@ public class DefaultBirthmarkParser implements BirthmarkParser{
     }
 
     @Override
-    public Stream<Birthmark> parseEntry(Entry entry, Configuration context){
+    public TimeredList<Birthmark> parseForStream(DataSource source, Configuration context){
+        return source.stream()
+                .filter(entry -> entry.endsWith(".csv"))
+                .map(entry -> parseEntry(entry, context))
+                .reduce((first, second) -> first.merge(second)).get();
+    }
+
+    public Birthmarks parse(DataSource source, Configuration context){
+        TimeredList<Birthmark> stream = parseForStream(source, context);
+        // do termination operation before calling ```type()``` 
+        return new Birthmarks(stream);
+    }
+
+
+    @Override
+    public TimeredList<Birthmark> parseEntry(Entry entry, Configuration context){
         try(BufferedReader in = new BufferedReader(new InputStreamReader(entry.openStream()))){
             return readLines(in.lines());
         } catch(IOException e){
             failedSources.add(Metadata.build(entry));
         }
-        return Stream.of();
+        return new TimeredList<>(Stream.of());
     }
 
-    private Stream<Birthmark> readLines(Stream<String> stream) throws IOException{
-        // do termination operation before closing BufferedReader.
-        List<Birthmark> list = stream.map(line -> readLine(line))
-                .collect(Collectors.toList());
-        return list.stream();
+    private TimeredList<Birthmark> readLines(Stream<String> stream) throws IOException{
+        return new TimeredList<>(stream.map(this::readLine));
     }
 
     private Birthmark readLine(String line){
         String[] items = line.split(",");
-        this.type = new BirthmarkType(items[2]);
-        return new Birthmark(buildMetadata(items[1], items[0]), buildElements(items));
+        return new Birthmark(buildMetadata(items[0], items[1], items[2]), buildElements(items));
     }
 
     private Elements buildElements(String[] items){
@@ -56,9 +68,9 @@ public class DefaultBirthmarkParser implements BirthmarkParser{
                 .map(item -> new Element(item)));
     }
 
-    private Metadata buildMetadata(String uri, String className){
+    private Metadata buildMetadata(String className, String uri, String type){
         try {
-            return new Metadata(new URI(uri), new ClassName(className));
+            return new Metadata(new ClassName(className), new URI(uri), new BirthmarkType(type));
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

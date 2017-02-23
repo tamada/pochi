@@ -8,26 +8,17 @@ import com.github.pochi.runner.birthmarks.entities.Birthmark;
 import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Metadata;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.config.Configuration;
+import com.github.pochi.runner.util.TimeredList;
 
 public interface BirthmarkParser extends Service<BirthmarkType> {
     BirthmarkType type();
 
-    default Stream<Birthmark> parseForStream(DataSource source, Configuration context){
-        return source.stream()
-                .filter(entry -> entry.endsWith(".csv"))
-                .flatMap(entry -> parseEntry(entry, context));
-    }
+    TimeredList<Birthmark> parseForStream(DataSource source, Configuration context);
 
-    default Results<Birthmarks> parse(DataSource source, Configuration context){
-        Stream<Birthmark> stream = parseForStream(source, context);
-        // do termination operation before calling ```type()``` 
-        Birthmarks birthmarks = new Birthmarks(stream);
-        return new Results<>(type(), birthmarks);
-    }
+    Birthmarks parse(DataSource source, Configuration context);
 
-    Stream<Birthmark> parseEntry(Entry entry, Configuration context);
+    TimeredList<Birthmark> parseEntry(Entry entry, Configuration context);
 
     Stream<Metadata> failedSources();    
 }

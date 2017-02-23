@@ -10,7 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.pochi</groupId>
-  <artifactId>runner</artifactId>
+  <artifactId>pochi-runner</artifactId>
   <packaging>jar</packaging>
 
   <name>pochi-runner</name>

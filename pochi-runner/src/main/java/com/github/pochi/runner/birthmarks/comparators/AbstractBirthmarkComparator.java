@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 import com.github.pochi.runner.birthmarks.BirthmarkComparator;
 import com.github.pochi.runner.birthmarks.PairMaker;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.config.Configuration;
 
 public abstract class AbstractBirthmarkComparator implements BirthmarkComparator{
@@ -16,13 +15,13 @@ public abstract class AbstractBirthmarkComparator implements BirthmarkComparator
         this.type = type;
     }
 
-    public Results<Comparisons> compare(Results<Birthmarks> results, PairMaker maker, Configuration config){
+    public Comparisons compare(Birthmarks results, PairMaker maker, Configuration config){
         Comparisons comparisons = new Comparisons(compareWith(results, maker, config));
-        return new Results<>(results.type(), comparisons);
+        return comparisons;
     }
 
-    private Stream<Comparison> compareWith(Results<Birthmarks> results, PairMaker maker, Configuration config){
-        return maker.pairUpWith(results.result())
+    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMaker maker, Configuration config){
+        return maker.pairUpWith(extractedBirthmarks)
                 .map(pair -> new Comparison(pair, compare(pair, config)));
     }
 

@@ -15,13 +15,19 @@ public class MetadataTest {
 
     @Before
     public void setUp() throws Exception{
-        metadata = new Metadata(new URI("hoge"), new ClassName("test"));
+        metadata = new Metadata(new ClassName("test"), new URI("hoge"), new BirthmarkType("type"));
     }
 
     @Test
-    public void testBasic(){
-        assertThat(metadata.hasSameName(new ClassName("test")), is(true));
+    public void testBasic() throws Exception{
+        assertThat(metadata.isSame(new ClassName("test")), is(true));
+        assertThat(metadata.isSame(new URI("hoge")), is(true));
+        assertThat(metadata.isSame(new BirthmarkType("type")), is(true));
 
-        assertThat(metadata.toString(), is("test,hoge"));
+        assertThat(metadata.className(), is(new ClassName("test")));
+        assertThat(metadata.location(), is(new URI("hoge")));
+        assertThat(metadata.type(), is(new BirthmarkType("type")));
+
+        assertThat(metadata.toString(), is("test,hoge,type"));
     }
 }

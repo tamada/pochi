@@ -16,7 +16,9 @@ public class Main {
     private void perform(Arguments args){
         ScriptRunner runner = args.buildRunner();
         try{ args.perform(runner); }
-        catch(IOException | ScriptException e){ }
+        catch(IOException | ScriptException e){
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args){

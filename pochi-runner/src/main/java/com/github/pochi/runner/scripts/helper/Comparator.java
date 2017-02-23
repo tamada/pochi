@@ -4,7 +4,6 @@ import com.github.pochi.runner.birthmarks.BirthmarkComparator;
 import com.github.pochi.runner.birthmarks.PairMaker;
 import com.github.pochi.runner.birthmarks.comparators.Comparisons;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.config.Configuration;
 
 public class Comparator {
@@ -16,7 +15,7 @@ public class Comparator {
         this.config = config;
     }
 
-    public Results<Comparisons> compare(Results<Birthmarks> results, PairMaker maker){
-        return comparator.compare(results, maker, config);
+    public Comparisons compare(Birthmarks birthmarks, PairMaker maker){
+        return comparator.compare(birthmarks, maker, config);
     }
 }
