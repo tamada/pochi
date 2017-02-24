@@ -1,1 +1,6 @@
 com.github.pochi.runner.birthmarks.uc.UCBirthmarkExtractor
+com.github.pochi.runner.birthmarks.kgram.K2GramBasedBirthmarkExtractor
+com.github.pochi.runner.birthmarks.kgram.K3GramBasedBirthmarkExtractor
+com.github.pochi.runner.birthmarks.kgram.K4GramBasedBirthmarkExtractor
+com.github.pochi.runner.birthmarks.kgram.K5GramBasedBirthmarkExtractor
+com.github.pochi.runner.birthmarks.kgram.K6GramBasedBirthmarkExtractor

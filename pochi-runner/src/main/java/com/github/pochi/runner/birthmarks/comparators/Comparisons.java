@@ -23,12 +23,6 @@ public class Comparisons{
         comparisons.forEach(consumer);
     }
 
-    public void forEach(Predicate<Comparison> predicate, Consumer<Comparison> consumer){
-        comparisons.stream()
-        .filter(predicate)
-        .forEach(consumer);
-    }
-
     public long time(){
         return comparisons.time();
     }

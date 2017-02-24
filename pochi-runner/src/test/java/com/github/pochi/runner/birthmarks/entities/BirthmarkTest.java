@@ -40,7 +40,7 @@ public class BirthmarkTest {
 
         list.clear();
 
-        birthmark.forEach(e -> e.equals(new Element("e3")), e -> list.add(e));
+        birthmark.filter(e -> e.equals(new Element("e3"))).forEach(e -> list.add(e));
         assertThat(list.size(), is(1));
         assertThat(list.get(0), is(new Element("e3")));
 

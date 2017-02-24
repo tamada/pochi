@@ -21,7 +21,7 @@ public class SameNamePairMaker extends AbstractPairMaker{
         VectorMap<ClassName, Birthmark> map = new VectorMap<>();
         birthmarks.forEach(birthmark -> putTo(map, birthmark));
 
-        return map.stream().map(entry -> entry.getValue())
+        return map.stream().map(entry -> entry.value())
                 .filter(list -> list.size() > 1)
                 .flatMap(list -> eachPair(list));
     }

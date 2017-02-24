@@ -34,8 +34,9 @@ public class Birthmark implements Serializable{
         elements.forEach(consumer);
     }
 
-    public void forEach(Predicate<Element> predicate, Consumer<Element> consumer){
-        elements.forEach(predicate, consumer);
+    public Birthmark filter(Predicate<Element> predicate){
+        return new Birthmark(metadata(),
+                elements.filter(predicate));
     }
 
     public boolean isSame(ClassName name){

@@ -22,16 +22,25 @@ public class Elements implements Serializable{
     }
 
     public void forEach(Consumer<Element> consumer){
-        forEach(item -> true, consumer);
+        elements.stream()
+        .forEach(consumer);
     }
 
     public int size(){
         return elements.size();
     }
 
-    public void forEach(Predicate<Element> predicate, Consumer<Element> consumer){
-        elements.stream()
-        .filter(predicate)
-        .forEach(consumer);
+    public Elements filter(Predicate<Element> predicate){
+        return new Elements(elements.stream()
+                .filter(predicate));
+    }
+
+    public static Elements empty(){
+        return new Elements(Stream.of());
+    }
+
+    public Elements merge(Elements other){
+        return new Elements(Stream.concat(elements.stream(), 
+                other.elements.stream()));
     }
 }

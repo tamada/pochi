@@ -12,9 +12,9 @@ public class DiceIndexBirthmarkComparator extends IndexBirthmarkComparator {
     }
 
     @Override
-    public Similarity compare(Birthmark left, Birthmark right, Configuration config){
+    public Similarity similarity(Birthmark left, Birthmark right, Configuration config){
         List<Element> intersection = intersect(left, right);
         int denominator = left.elementCount() + right.elementCount();
-        return new Similarity(1.0 * intersection.size() / denominator);
+        return new Similarity(2.0 * intersection.size() / denominator);
     }
 }

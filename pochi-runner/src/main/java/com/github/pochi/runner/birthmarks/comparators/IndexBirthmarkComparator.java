@@ -22,8 +22,8 @@ public abstract class IndexBirthmarkComparator extends AbstractBirthmarkComparat
 
     List<Element> intersect(Birthmark left, Birthmark right){
         List<Element> intersection = new ArrayList<>();
-        right.forEach(item -> left.contains(item),
-                item -> intersection.add(item));
+        right.filter(item -> left.contains(item))
+        .forEach(item -> intersection.add(item));
         return intersection;
     }
 }

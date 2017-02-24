@@ -18,8 +18,8 @@ public class Threshold implements Serializable{
     }
 
     public boolean isInconclusive(Similarity similarity){
-        return similarity.value < (1 - threshold)
-                && similarity.value > threshold;
+        return !isStolen(similarity)
+                && !isInnocent(similarity);
     }
 
     public boolean isInnocent(Similarity similarity){
