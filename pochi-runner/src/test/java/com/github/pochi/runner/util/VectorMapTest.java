@@ -1,13 +1,15 @@
 package com.github.pochi.runner.util;
 
+import static com.github.pochi.runner.Assert.assertThrows;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-import static com.github.pochi.runner.Assert.assertThrows;
-
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -70,6 +72,54 @@ public class VectorMapTest {
 
         assertThat(map.get("even"),
                 is(contains(new Integer(2), new Integer(4), new Integer(6), new Integer(8))));
+    }
+
+    @Test
+    public void testStream(){
+        Stream<VectorMap.Entry<String, List<Integer>>> stream = map.stream();
+        List<VectorMap.Entry<String, List<Integer>>> list = stream.collect(Collectors.toList());
+        assertThat(list.size(), is(3));
+        assertThat(list.get(0).key(), is("primes"));
+        assertThat(list.get(0).value(), is(contains(new Integer(2), new Integer(3), new Integer(5), new Integer(7))));
+        assertThat(list.get(1).key(), is("even"));
+        assertThat(list.get(1).value(), is(contains(new Integer(2), new Integer(4), new Integer(6), new Integer(8))));
+        assertThat(list.get(2).key(), is("odd"));
+        assertThat(list.get(2).value(), is(contains(new Integer(1), new Integer(3), new Integer(5), new Integer(7), new Integer(9))));
+    }
+
+    @Test
+    public void testFlatStream(){
+        Stream<VectorMap.Entry<String, Integer>> stream = map.flatStream();
+        List<VectorMap.Entry<String, Integer>> list = stream.collect(Collectors.toList());
+        assertThat(list.size(), is(13));
+        assertThat(list.get(0).key(), is("primes"));
+        assertThat(list.get(0).value(), is(2));
+        assertThat(list.get(1).key(), is("primes"));
+        assertThat(list.get(1).value(), is(3));
+        assertThat(list.get(2).key(), is("primes"));
+        assertThat(list.get(2).value(), is(5));
+        assertThat(list.get(3).key(), is("primes"));
+        assertThat(list.get(3).value(), is(7));
+
+        assertThat(list.get(4).key(), is("even"));
+        assertThat(list.get(4).value(), is(2));
+        assertThat(list.get(5).key(), is("even"));
+        assertThat(list.get(5).value(), is(4));
+        assertThat(list.get(6).key(), is("even"));
+        assertThat(list.get(6).value(), is(6));
+        assertThat(list.get(7).key(), is("even"));
+        assertThat(list.get(7).value(), is(8));
+
+        assertThat(list.get(8).key(), is("odd"));
+        assertThat(list.get(8).value(), is(1));
+        assertThat(list.get(9).key(), is("odd"));
+        assertThat(list.get(9).value(), is(3));
+        assertThat(list.get(10).key(), is("odd"));
+        assertThat(list.get(10).value(), is(5));
+        assertThat(list.get(11).key(), is("odd"));
+        assertThat(list.get(11).value(), is(7));
+        assertThat(list.get(12).key(), is("odd"));
+        assertThat(list.get(12).value(), is(9));
     }
 
     @Test
