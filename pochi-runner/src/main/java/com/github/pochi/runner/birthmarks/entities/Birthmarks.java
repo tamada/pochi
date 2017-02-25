@@ -56,6 +56,10 @@ public class Birthmarks{
         .filter(predicate).forEach(consumer);
     }
 
+    public Birthmarks merge(Birthmarks other){
+        return Birthmarks.merge(this, other);
+    }
+
     public static Birthmarks merge(Birthmarks b1, Birthmarks b2){
         TimeredList<Birthmark> list = new TimeredList<>(b1.birthmarks);
         return new Birthmarks(list.merge(b2.birthmarks));
