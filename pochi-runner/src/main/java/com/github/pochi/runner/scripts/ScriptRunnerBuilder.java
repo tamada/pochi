@@ -7,6 +7,7 @@ import java.net.URLClassLoader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,14 +15,23 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
 import com.github.pochi.runner.config.Configuration;
+import com.github.pochi.runner.config.ConfigurationBuilder;
 
 public class ScriptRunnerBuilder {
     public static final String DEFAULT_SCRIPT_ENGINE_NAME = "JavaScript";
 
     private Configuration configuration;
 
+    public ScriptRunnerBuilder(){
+        this(new ConfigurationBuilder().configuration());
+    }
+
     public ScriptRunnerBuilder(Configuration configuration){
         this.configuration = configuration;
+    }
+
+    public ScriptRunner build(){
+        return build(new HashMap<>());
     }
 
     public ScriptRunner build(Map<String, Object> properties){
@@ -32,7 +42,7 @@ public class ScriptRunnerBuilder {
 
     private ScriptEngine buildImpl(Map<String, Object> properties){
         String[] args = (String[])properties.get("args");
-        if(args.length > 0)
+        if(args != null && args.length > 0)
             return buildByFile(new File(args[0]), args);
         return buildByName((String)properties.getOrDefault("engine", DEFAULT_SCRIPT_ENGINE_NAME));
     }
