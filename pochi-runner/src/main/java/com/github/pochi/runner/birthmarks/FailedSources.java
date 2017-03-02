@@ -9,9 +9,6 @@ import com.github.pochi.runner.birthmarks.entities.Metadata;
 public class FailedSources {
     private List<Metadata> list = new ArrayList<>();
 
-    public FailedSources(){
-    }
-
     public void add(Metadata source){
         list.add(source);
     }

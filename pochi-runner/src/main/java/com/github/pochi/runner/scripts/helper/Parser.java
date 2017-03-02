@@ -9,19 +9,19 @@ import com.github.pochi.runner.birthmarks.entities.Metadata;
 import com.github.pochi.runner.config.Configuration;
 
 public class Parser {
-    private BirthmarkParser parser;
+    private BirthmarkParser target;
     private Configuration context;
 
     public Parser(BirthmarkParser parser, Configuration context){
-        this.parser = parser;
+        this.target = parser;
         this.context = context;
     }
 
     public Birthmarks parse(DataSource source){
-        return parser.parse(source, context);
+        return target.parse(source, context);
     }
 
     public Stream<Metadata> failedSources(){
-        return parser.failedSources();
+        return target.failedSources();
     }
 }

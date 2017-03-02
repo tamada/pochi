@@ -32,24 +32,26 @@ public class UCBirthmarkHelper {
     }
 
     public void add(String name){
-        name = normalize(name);
-        if(!names.contains(name) && context.isSystemName(name))
-            names.add(name);
+        String normalizedName = normalize(name);
+        if(!names.contains(normalizedName) && context.isSystemName(normalizedName))
+            names.add(normalizedName);
     }
 
     public void add(Type type){
-        type = stripType(type);
-        if(type.getSort() == Type.OBJECT)
-            add(type.getClassName());
+        Type strippedType = stripType(type);
+        if(strippedType.getSort() == Type.OBJECT)
+            add(strippedType.getClassName());
     }
 
-    String normalize(String name){
+    String normalize(String givenName){
+        String name = givenName;
         if(name.startsWith("L") && name.endsWith(";"))
             name = name.substring(1, name.length() - 1);
         return name.replace('/', '.');
     }
 
-    Type stripType(Type type){
+    Type stripType(Type givenType){
+        Type type = givenType;
         while(type.getSort() == Type.ARRAY)
             type = type.getElementType();
         return type;

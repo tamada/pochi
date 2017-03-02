@@ -11,38 +11,38 @@ public class Properties implements Serializable{
     private static final long serialVersionUID = -7716178184705408249L;
 
     @JsonProperty("properties")
-    private Map<String, String> properties = new HashMap<>();
+    private Map<String, String> map = new HashMap<>();
 
     public void forEach(Consumer<Item> consumer){
-        properties.entrySet()
-        .stream().map(entry -> new Item(entry))
+        map.entrySet()
+        .stream().map(Item::new)
         .forEach(consumer);
     }
 
     public Item[] toArray(){
-        return properties.entrySet()
-                .stream().map(entry -> new Item(entry))
-                .toArray(size -> new Item[size]);
+        return map.entrySet()
+                .stream().map(Item::new)
+                .toArray(Item[]::new);
     }
 
     public ItemValue property(ItemKey key){
         String keyString = key.toString();
-        return new ItemValue(properties.get(keyString));
+        return new ItemValue(map.get(keyString));
     }
 
     public boolean contains(ItemKey key){
         String keyString = key.toString();
-        return properties.containsKey(keyString);
+        return map.containsKey(keyString);
     }
 
     public void put(ItemKey key, ItemValue value){
         String keyString = key.toString();
         String valueString = value.toString();
-        properties.put(keyString, valueString);
+        map.put(keyString, valueString);
     }
 
     public void put(Item item){
-        properties.put(item.key().toString(), 
+        map.put(item.key().toString(), 
                 item.value().toString());
     }
 }

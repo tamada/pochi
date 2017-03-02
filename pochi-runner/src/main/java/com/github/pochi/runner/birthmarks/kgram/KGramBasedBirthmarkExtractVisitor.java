@@ -34,8 +34,7 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor {
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
         List<Integer> list = createList(name + desc);
-        MethodVisitor extractionVisitor = createVisitor(access, name, desc, signature, exceptions, list);
-        return extractionVisitor;
+        return createVisitor(access, name, desc, signature, exceptions, list);
     }
 
     private List<Integer> createList(String key){
@@ -51,7 +50,7 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor {
 
     private Elements buildElements(Map<String, List<Integer>> map){
         return map.values()
-                .stream().map(list -> toElements(list))
+                .stream().map(this::toElements)
                 .reduce(Elements.empty(), Elements::merge);
     }
 

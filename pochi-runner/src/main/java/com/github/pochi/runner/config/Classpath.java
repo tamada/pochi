@@ -8,25 +8,30 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.github.pochi.runner.util.LogHelper;
 
 public class Classpath implements Serializable{
     private static final long serialVersionUID = -2908802480835399355L;
 
-    private String classpath;
+    private String value;
 
     @JsonCreator
     public Classpath(String path){
-        this.classpath = path;
+        this.value = path;
     }
 
     public Optional<URL> toUrl(){
-        try{ return Optional.of(convertToUrl()); }
-        catch(MalformedURLException e){ }
+        try{
+            return Optional.of(convertToUrl());
+        }
+        catch(MalformedURLException e){
+            LogHelper.warn(this, e);
+        }
         return Optional.empty();
     }
 
     private URL convertToUrl() throws MalformedURLException{
-        return Paths.get(classpath)
+        return Paths.get(value)
                 .toUri().toURL();        
     }
 
@@ -34,16 +39,16 @@ public class Classpath implements Serializable{
     public boolean equals(Object object){
         return object instanceof Classpath
                 && Objects.equals(
-                        classpath, ((Classpath)object).classpath);
+                        value, ((Classpath)object).value);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hashCode(classpath);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString(){
-        return classpath;
+        return value;
     }
 }

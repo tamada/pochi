@@ -30,6 +30,7 @@ public class KGram<T extends Serializable> implements Serializable{
         return values.size();
     }
 
+    @Override
     public String toString(){
         return values.stream()
                 .map(String::valueOf)

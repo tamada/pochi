@@ -5,6 +5,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -14,19 +15,19 @@ public class Classpaths implements Serializable{
     private static final long serialVersionUID = -3046402976706943359L;
 
     @JsonProperty("classpaths")
-    private List<Classpath> classpaths = new ArrayList<>();
+    private List<Classpath> list = new ArrayList<>();
 
     public void forEach(Consumer<Classpath> consumer){
         stream().forEach(consumer);
     }
 
     public void add(Classpath classpath){
-        classpaths.add(classpath);
+        list.add(classpath);
     }
 
     public Classpath[] toArray(){
-        return classpaths.stream()
-                .toArray(size -> new Classpath[size]);
+        return list.stream()
+                .toArray(Classpath[]::new);
     }
 
     public ClassLoader buildClassLoader(){
@@ -38,13 +39,13 @@ public class Classpaths implements Serializable{
     }
 
     private Stream<Classpath> stream(){
-        return classpaths.stream();
+        return list.stream();
     }
 
     private URL[] toUrls(){
-        return stream().map(classpath -> classpath.toUrl())
-                .filter(optional -> optional.isPresent())
-                .map(optional -> optional.get())
-                .toArray(size -> new URL[size]);
+        return stream().map(Classpath::toUrl)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toArray(URL[]::new);
     }
 }

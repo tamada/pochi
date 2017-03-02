@@ -8,36 +8,41 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pochi.runner.util.LogHelper;
 
 public class ConfigurationBuilder {
-    private static URL defaultResource(){
-        return ConfigurationBuilder.class
-                .getResource("/resources/config.json");
-    }
     private Configuration configuration;
 
-    public ConfigurationBuilder(){
+    public ConfigurationBuilder() {
         this(Optional.empty());
     }
 
-    public ConfigurationBuilder(Optional<URL> url){
-        this(url.orElseGet(() -> defaultResource()));
+    public ConfigurationBuilder(Optional<URL> url) {
+        this(url.orElseGet(ConfigurationBuilder::defaultResource));
     }
 
-    private ConfigurationBuilder(URL url){
-        try{ initialize(url); }
-        catch(IOException e){ }
+    private ConfigurationBuilder(URL url) {
+        try {
+            initialize(url);
+        } catch (IOException e) {
+            LogHelper.warn(this, e);
+        }
     }
 
-    public Configuration configuration(){
+    public Configuration configuration() {
         return configuration;
     }
 
-    private void initialize(URL url) throws IOException{
-        try(Reader in = new InputStreamReader(url.openStream())){
+    private void initialize(URL url) throws IOException {
+        try (Reader in = new InputStreamReader(url.openStream())) {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
             configuration = mapper.readValue(in, Configuration.class);
         }
+    }
+
+    private static URL defaultResource() {
+        return ConfigurationBuilder.class
+                .getResource("/resources/config.json");
     }
 }

@@ -24,8 +24,7 @@ public abstract class AbstractBirthmarkComparator implements BirthmarkComparator
 
     @Override
     public Comparisons compare(Birthmarks results, PairMaker maker, Configuration config){
-        Comparisons comparisons = new Comparisons(compareWith(results, maker, config));
-        return comparisons;
+        return new Comparisons(compareWith(results, maker, config));
     }
 
     private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMaker maker, Configuration config){

@@ -13,7 +13,7 @@ public class RulesTest {
     private Rules rules = new Rules();
 
     @Before
-    public void setUp(){
+    public void addDefaultRules(){
         rules.add(new Rule("prefix", "java.util."));
         rules.add(new Rule("prefix", "java.lang."));
     }

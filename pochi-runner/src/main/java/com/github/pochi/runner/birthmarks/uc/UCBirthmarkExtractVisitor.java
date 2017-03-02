@@ -61,7 +61,8 @@ public class UCBirthmarkExtractVisitor extends PochiClassVisitor{
     }
 
     void addSignatureClass(String signature){
-        if(signature == null) return;
+        if(signature == null)
+            return;
         SignatureReader reader = new SignatureReader(signature);
         reader.accept(new UCBirthmarkSignatureWriter(helper));
     }
@@ -70,7 +71,7 @@ public class UCBirthmarkExtractVisitor extends PochiClassVisitor{
         helper.add(Type.getReturnType(desc));
         Type[] args = Type.getArgumentTypes(desc);
         Arrays.stream(args)
-        .forEach(arg -> helper.add(arg));
+        .forEach(helper::add);
     }
 
     void addDescriptor(String desc){

@@ -8,26 +8,26 @@ import com.github.pochi.runner.util.TimeredList;
 import com.github.pochi.runner.util.Unit;
 
 public class Comparisons{
-    private TimeredList<Comparison> comparisons;
+    private TimeredList<Comparison> list;
 
     public Comparisons(Stream<Comparison> stream){
-        comparisons = new TimeredList<>(stream);
+        list = new TimeredList<>(stream);
     }
 
     public Comparisons filter(Predicate<Comparison> predicate){
-        return new Comparisons(comparisons.stream()
+        return new Comparisons(list.stream()
                 .filter(predicate));
     }
 
     public void forEach(Consumer<Comparison> consumer){
-        comparisons.forEach(consumer);
+        list.forEach(consumer);
     }
 
     public long time(){
-        return comparisons.time();
+        return list.time();
     }
 
     public double time(Unit unit){
-        return comparisons.time(unit);
+        return list.time(unit);
     }
 }

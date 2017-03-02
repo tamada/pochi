@@ -9,17 +9,18 @@ import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Pair;
 import com.github.pochi.runner.config.Configuration;
 
-public interface BirthmarkComparator extends Service<ComparatorType>{
+public interface BirthmarkComparator extends Service<ComparatorType> {
+    @Override
     ComparatorType type();
 
     Comparisons compare(Birthmarks results, PairMaker maker, Configuration config);
 
-    default Comparison compare(Pair<Birthmark> pair, Configuration config){
+    default Comparison compare(Pair<Birthmark> pair, Configuration config) {
         Similarity similarity = similarity(pair.left(), pair.right(), config);
         return new Comparison(pair, similarity);
     }
 
-    default Comparison compare(Birthmark left, Birthmark right, Configuration config){
+    default Comparison compare(Birthmark left, Birthmark right, Configuration config) {
         return compare(new Pair<>(left, right), config);
     }
 

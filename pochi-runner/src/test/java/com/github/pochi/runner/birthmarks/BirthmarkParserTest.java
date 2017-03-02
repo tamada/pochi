@@ -16,6 +16,7 @@ import com.github.pochi.kunai.source.factories.DefaultDataSourceFactory;
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Element;
+import com.github.pochi.runner.birthmarks.parsers.DefaultBirthmarkParser;
 import com.github.pochi.runner.config.ConfigurationBuilder;
 
 public class BirthmarkParserTest {

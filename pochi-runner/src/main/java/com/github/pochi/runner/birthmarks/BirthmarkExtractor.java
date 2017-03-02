@@ -14,6 +14,7 @@ import com.github.pochi.runner.birthmarks.entities.Metadata;
 import com.github.pochi.runner.config.Configuration;
 
 public interface BirthmarkExtractor extends Service<BirthmarkType>{
+    @Override
     BirthmarkType type();
 
     default Stream<Birthmark> extractForStream(DataSource source, Configuration context){

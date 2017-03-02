@@ -16,7 +16,7 @@ public class Names {
     public Elements build(){
         return new Elements(set.stream()
                 .sorted()
-                .map(name -> new Element(name)));
+                .map(Element::new));
     }
 
     public boolean contains(String name){
