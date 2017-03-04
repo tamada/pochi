@@ -15,14 +15,14 @@ public class OpcodeExtractionMethodVisitor extends MethodVisitor{
     private List<Integer> opcodes;
 
     public OpcodeExtractionMethodVisitor(MethodVisitor visitor,
-					 List<Integer> opcodes){
+            List<Integer> opcodes){
         super(Opcodes.ASM5, visitor);
         this.opcodes = opcodes;
     }
 
     @Override
     public void visitFieldInsn(int opcode, String owner,
-			       String name, String desc){
+            String name, String desc){
         opcodes.add(opcode);
         super.visitFieldInsn(opcode, owner, name, desc);
     }
@@ -59,14 +59,14 @@ public class OpcodeExtractionMethodVisitor extends MethodVisitor{
 
     @Override
     public void visitLookupSwitchInsn(Label defaultHandle, int[] keys,
-				      Label[] labels){
+            Label[] labels){
         opcodes.add(Opcodes.LOOKUPSWITCH);
         super.visitLookupSwitchInsn(defaultHandle, keys, labels);
     }
 
     @Override
     public void visitMethodInsn(int opcode, String owner,
-                                String name, String desc, boolean itf){
+            String name, String desc, boolean itf){
         opcodes.add(opcode);
         super.visitMethodInsn(opcode, owner, name, desc, itf);
     }
@@ -79,7 +79,7 @@ public class OpcodeExtractionMethodVisitor extends MethodVisitor{
 
     @Override
     public void visitTableSwitchInsn(int min, int max,
-				     Label defaultLabel, Label... labels){
+            Label defaultLabel, Label... labels){
         opcodes.add(Opcodes.TABLESWITCH);
         super.visitTableSwitchInsn(min, max, defaultLabel, labels);
     }

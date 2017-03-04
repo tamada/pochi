@@ -16,7 +16,9 @@ public class Resource {
     public void print(PrintWriter out){
         try(BufferedReader in = openStream()){
             printAll(out, in);
-        } catch (IOException e) { }
+        } catch (IOException e) {
+            LogHelper.warn(this, e);
+        }
     }
 
     private void printAll(PrintWriter out, BufferedReader in) throws IOException{

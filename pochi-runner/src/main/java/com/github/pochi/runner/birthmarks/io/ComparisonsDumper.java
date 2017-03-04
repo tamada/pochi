@@ -11,7 +11,7 @@ public class ComparisonsDumper extends AbstractDumper<Comparisons>{
     }
 
     public void print(Comparisons target){
-        target.forEach(comparison -> print(comparison));
+        target.forEach(this::print);
         flush();
     }
 

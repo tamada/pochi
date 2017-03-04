@@ -10,41 +10,41 @@ import com.github.pochi.runner.util.TimeredList;
 import com.github.pochi.runner.util.Unit;
 
 public class Birthmarks{
-    private TimeredList<Birthmark> birthmarks;
+    private TimeredList<Birthmark> list;
 
     public Birthmarks(TimeredList<Birthmark> list){
-        this.birthmarks = list;
+        this.list = list;
     }
 
     public Birthmarks(Stream<Birthmark> stream){
-        this.birthmarks = new TimeredList<>(stream);
+        this.list = new TimeredList<>(stream);
     }
 
     public Birthmarks filter(Predicate<Birthmark> predicate){
-        return new Birthmarks(birthmarks.stream()
+        return new Birthmarks(list.stream()
                 .filter(predicate));
     }
 
     public Optional<Birthmark> find(ClassName name){
-        return birthmarks.stream()
+        return list.stream()
                 .filter(birthmark -> birthmark.isSame(name))
                 .reduce((first, second) -> first);
     }
 
     public long time(){
-        return birthmarks.time();
+        return list.time();
     }
 
     public double time(Unit unit){
-        return birthmarks.time(unit);
+        return list.time(unit);
     }
 
     public Stream<Birthmark> stream(){
-        return birthmarks.stream();
+        return list.stream();
     }
 
     public int count(){
-        return birthmarks.size();
+        return list.size();
     }
 
     public void forEach(Consumer<Birthmark> consumer){
@@ -52,17 +52,21 @@ public class Birthmarks{
     }
 
     public void forEach(Predicate<Birthmark> predicate, Consumer<Birthmark> consumer){
-        birthmarks.stream()
+        list.stream()
         .filter(predicate).forEach(consumer);
     }
 
+    public Birthmarks merge(Birthmarks other){
+        return Birthmarks.merge(this, other);
+    }
+
     public static Birthmarks merge(Birthmarks b1, Birthmarks b2){
-        TimeredList<Birthmark> list = new TimeredList<>(b1.birthmarks);
-        return new Birthmarks(list.merge(b2.birthmarks));
+        TimeredList<Birthmark> list = new TimeredList<>(b1.list);
+        return new Birthmarks(list.merge(b2.list));
     }
 
     public static Birthmarks merge(Birthmarks b1, Birthmark birthmark){
         TimeredList<Birthmark> list = new TimeredList<>(Stream.of(birthmark));
-        return new Birthmarks(list.mergeBefore(b1.birthmarks));
+        return new Birthmarks(list.mergeBefore(b1.list));
     }
 }

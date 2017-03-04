@@ -18,7 +18,7 @@ public class VectorMap<K, V>{
 
     public Stream<Entry<K, V>> flatStream(){
         return map.entrySet().stream()
-                .flatMap(entry -> createStream(entry));
+                .flatMap(this::createStream);
     }
 
     private Stream<Entry<K, V>> createStream(Map.Entry<K, List<V>> entry){
@@ -38,7 +38,7 @@ public class VectorMap<K, V>{
 
     public V get(K key, int index){
         Optional<List<V>> list = getOf(key);
-        return list.orElseThrow(() -> new NoSuchElementException())
+        return list.orElseThrow(NoSuchElementException::new)
                 .get(index);
     }
 
@@ -60,7 +60,7 @@ public class VectorMap<K, V>{
 
     public int size(K key){
         Optional<List<V>> list = getOf(key);
-        return list.map(value -> value.size())
+        return list.map(List::size)
                 .orElse(-1);
     }
 

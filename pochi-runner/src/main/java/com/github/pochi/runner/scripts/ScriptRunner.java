@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.util.Optional;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
@@ -18,6 +19,7 @@ import com.github.pochi.runner.config.Configuration;
 import com.github.pochi.runner.scripts.helper.BirthmarkSystemHelper;
 import com.github.pochi.runner.scripts.helper.IOHelper;
 import com.github.pochi.runner.scripts.helper.SystemInfoHelper;
+import com.github.pochi.runner.util.LogHelper;
 
 public class ScriptRunner {
     public static final String DEFAULT_SCRIPT_ENGINE_NAME = "JavaScript";
@@ -46,14 +48,14 @@ public class ScriptRunner {
         try{
             engine.eval(in);
         } catch(ScriptException e){
-            e.printStackTrace();
+            LogHelper.warn(this, e);
         }
     }
 
     public void oneLiner(String script) throws ScriptException{
         PrintWriter out = new PrintWriter(System.out);
-        Object object = engine.eval(script);
-        out.println(object);
+        Optional<Object> object = Optional.of(engine.eval(script));
+        object.ifPresent(out::println);
     }
 
     public void runsScript(String[] arguments) throws IOException, ScriptException{
@@ -69,8 +71,12 @@ public class ScriptRunner {
     }
 
     public void startInteraction() throws IOException{
-        try{ runInteractiveMode(buildLineReader(buildTerminal())); }
-        catch(EndOfFileException e){ }
+        try{
+            runInteractiveMode(buildLineReader(buildTerminal()));
+        }
+        catch(EndOfFileException e){
+            LogHelper.warn(this, e);
+        }
     }
 
     private Terminal buildTerminal() throws IOException{
@@ -83,12 +89,12 @@ public class ScriptRunner {
         return LineReaderBuilder.builder()
                 .terminal(terminal)
                 .appName("pochi")
-                .completer(new EbisCompleter())
+                .completer(new JavaScriptKeywordsCompleter())
                 .build();
     }
 
     private void runInteractiveMode(LineReader reader){
-        PrintWriter out = new PrintWriter(System.out);
+        PrintWriter out = reader.getTerminal().writer();
         out.printf("ScriptRunner start (%s)%n", engine.getFactory().getEngineName());
 
         String line;

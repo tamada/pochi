@@ -29,11 +29,7 @@ public class Snippet implements Serializable{
     @Override
     public boolean equals(Object other){
         return other instanceof Snippet
-                && equals((Snippet)other);
-    }
-
-    private boolean equals(Snippet snippet){
-        return Objects.equals(value(), 
-                snippet.value());
+                && Objects.equals(value(), 
+                        ((Snippet)other).value());
     }
 }

@@ -22,12 +22,8 @@ public final class BirthmarkType implements Serializable{
     @Override
     public boolean equals(Object object){
         return object instanceof BirthmarkType
-                && equals((BirthmarkType)object);
-    }
-
-    public boolean equals(BirthmarkType name){
-        return Objects.equals(
-                type, name.type);
+                && Objects.equals(type, 
+                        ((BirthmarkType)object).type);
     }
 
     @Override

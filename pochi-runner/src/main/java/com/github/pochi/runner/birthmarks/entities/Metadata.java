@@ -11,17 +11,8 @@ import com.github.pochi.kunai.entries.Entry;
 public class Metadata implements Serializable{
     private static final long serialVersionUID = 5188434750286102391L;
 
-    public static Metadata build(Entry entry){
-        return build(entry, BirthmarkType.UNKNOWN);
-    }
-
-    public static Metadata build(Entry entry, BirthmarkType type){
-        return new Metadata(entry.className(), entry.loadFrom(), type);
-    }
-    
     private URI location;
     private ClassName name;
-
     private BirthmarkType type;
 
     public Metadata(ClassName name, URI location, BirthmarkType type){
@@ -60,5 +51,13 @@ public class Metadata implements Serializable{
 
     public BirthmarkType type(){
         return type;
+    }
+
+    public static Metadata build(Entry entry, BirthmarkType type){
+        return new Metadata(entry.className(), entry.loadFrom(), type);
+    }
+
+    public static Metadata build(Entry entry){
+        return build(entry, BirthmarkType.UNKNOWN);
     }
 }

@@ -15,15 +15,15 @@ public abstract class IndexBirthmarkComparator extends AbstractBirthmarkComparat
 
     Set<Element> union(Birthmark left, Birthmark right){
         Set<Element> union = new HashSet<>();
-        left.forEach(item -> union.add(item));
-        right.forEach(item -> union.add(item));
+        left.forEach(union::add);
+        right.forEach(union::add);
         return union;
     }
 
     List<Element> intersect(Birthmark left, Birthmark right){
         List<Element> intersection = new ArrayList<>();
-        right.filter(item -> left.contains(item))
-        .forEach(item -> intersection.add(item));
+        right.filter(left::contains)
+        .forEach(intersection::add);
         return intersection;
     }
 }
