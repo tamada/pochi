@@ -8,6 +8,6 @@ public class BirthmarkExtractors extends Services<BirthmarkType, BirthmarkExtrac
     }
 
     public BirthmarkType[] availableTypes(){
-        return availableServices().toArray(size -> new BirthmarkType[size]);
+        return availableServices().toArray(BirthmarkType[]::new);
     }
 }

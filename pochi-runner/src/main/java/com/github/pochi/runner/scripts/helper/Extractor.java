@@ -4,34 +4,31 @@ import java.util.stream.Stream;
 
 import com.github.pochi.kunai.source.DataSource;
 import com.github.pochi.runner.birthmarks.BirthmarkExtractor;
-import com.github.pochi.runner.birthmarks.DefaultBirthmarkParser;
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Metadata;
-import com.github.pochi.runner.birthmarks.entities.Results;
+import com.github.pochi.runner.birthmarks.parsers.DefaultBirthmarkParser;
 import com.github.pochi.runner.config.Configuration;
 
 public class Extractor {
-    private BirthmarkExtractor extractor;
+    private BirthmarkExtractor target;
     private Configuration context;
 
     public Extractor(BirthmarkExtractor extractor, Configuration context){
-        this.extractor = extractor;
+        this.target = extractor;
         this.context = context;
     }
 
-    public Results<Birthmarks> extract(DataSource source){
-        Stream<Birthmark> stream = parse(source);
-        return new Results<>(extractor.type(), new Birthmarks(stream));
+    public Birthmarks extract(DataSource source){
+        return parse(source);
     }
 
-    private Stream<Birthmark> parse(DataSource source){
-        Stream<Birthmark> extractedStream = extractor.extractForStream(source, context);
-        Stream<Birthmark> readStream = new DefaultBirthmarkParser().parseForStream(source, context);
-        return Stream.concat(extractedStream, readStream);
+    private Birthmarks parse(DataSource source){
+        Birthmarks extractedStream = target.extract(source, context);
+        Birthmarks readStream = new DefaultBirthmarkParser().parse(source, context);
+        return Birthmarks.merge(extractedStream, readStream);
     }
 
     public Stream<Metadata> failedSources(){
-        return extractor.failedSources();
+        return target.failedSources();
     }
 }

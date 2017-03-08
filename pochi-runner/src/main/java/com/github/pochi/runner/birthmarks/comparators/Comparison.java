@@ -7,6 +7,10 @@ public class Comparison {
     private Pair<Birthmark> pair;
     private Similarity similarity;
 
+    public Comparison(Birthmark left, Birthmark right, Similarity similarity){
+        this(new Pair<>(left, right), similarity);
+    }
+
     public Comparison(Pair<Birthmark> pair, Similarity similarity){
         this.pair = pair;
         this.similarity = similarity;
@@ -18,6 +22,10 @@ public class Comparison {
 
     public Birthmark right(){
         return pair.right();
+    }
+
+    public Similarity similarity(){
+        return similarity;
     }
 
     public boolean isInnocent(Threshold threshold){

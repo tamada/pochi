@@ -17,29 +17,29 @@ public class ServiceLoader<T> {
 
     public Stream<T> instantiate(Function<Class<T>, T> instantiateFunction){
         return stream()
-                .map(clazz -> instantiateFunction.apply(clazz));
+                .map(instantiateFunction::apply);
     }
 
     public Stream<T> instantiate(){
         return stream().map(clazz -> map(clazz, c -> c.newInstance()))
-                .filter(item -> item.isPresent())
-                .map(item -> item.get());
+                .filter(Optional::isPresent)
+                .map(Optional::get);
     }
 
     public Stream<Class<T>> stream(){
         return toClassStream()
-                .filter(optional -> optional.isPresent())
-                .map(item -> item.get());
+                .filter(Optional::isPresent)
+                .map(Optional::get);
     }
 
     private Stream<Optional<Class<T>>> toClassStream(){
         return list.stream()
-                .map(name -> toClass(name));
+                .map(this::toClass);
     }
 
     @SuppressWarnings("unchecked")
     private Optional<Class<T>> toClass(String className){
-        return Exceptions.map(className,
-                (item) -> (Class<T>)Class.forName(item));
+        return Exceptions.map(className, 
+                item -> (Class<T>)Class.forName(item));
     }
 }

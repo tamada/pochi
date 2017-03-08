@@ -14,14 +14,13 @@ import com.github.pochi.kunai.entries.ClassName;
 import com.github.pochi.kunai.source.DataSource;
 import com.github.pochi.kunai.source.factories.DefaultDataSourceFactory;
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.birthmarks.entities.Results;
+import com.github.pochi.runner.birthmarks.parsers.DefaultBirthmarkParser;
 import com.github.pochi.runner.config.ConfigurationBuilder;
 
 public class BirthmarkParserTest {
-    public Results<Birthmarks> read(String path) throws Exception{
+    public Birthmarks read(String path) throws Exception{
         BirthmarkParser reader = new DefaultBirthmarkParser();
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(path));
         return reader.parse(source, new ConfigurationBuilder().configuration());
@@ -29,11 +28,8 @@ public class BirthmarkParserTest {
 
     @Test
     public void testBasic() throws Exception{
-        Results<Birthmarks> results = read("target/test-classes/resources/commons-cli-1.1-uc.csv");
-        Birthmarks birthmarks = results.result();
+        Birthmarks birthmarks = read("target/test-classes/resources/commons-cli-1.1-uc.csv");
 
-        assertThat(results.type(), is(new BirthmarkType("uc")));
-        assertThat(results.isSameType(new BirthmarkType("uc")), is(true));
         assertThat(birthmarks.find(new ClassName("org.apache.commons.cli.Options")).isPresent(), is(true));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());

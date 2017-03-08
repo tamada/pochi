@@ -11,6 +11,7 @@ import org.objectweb.asm.signature.SignatureReader;
 import com.github.pochi.kunai.entries.Entry;
 import com.github.pochi.runner.birthmarks.PochiClassVisitor;
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
+import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 import com.github.pochi.runner.birthmarks.entities.Metadata;
 import com.github.pochi.runner.config.Configuration;
 
@@ -21,14 +22,14 @@ import com.github.pochi.runner.config.Configuration;
 public class UCBirthmarkExtractVisitor extends PochiClassVisitor{
     private UCBirthmarkHelper helper;
 
-    public UCBirthmarkExtractVisitor(ClassVisitor visitor, Configuration context){
-        super(visitor, context);
+    public UCBirthmarkExtractVisitor(ClassVisitor visitor, Configuration context, BirthmarkType type){
+        super(visitor, context, type);
         this.helper = new UCBirthmarkHelper(context);
     }
 
     @Override
     public Birthmark build(Entry entry){
-        Metadata source = Metadata.build(entry);
+        Metadata source = Metadata.build(entry, type());
         return new Birthmark(source, helper.build());
     }
 
@@ -60,7 +61,8 @@ public class UCBirthmarkExtractVisitor extends PochiClassVisitor{
     }
 
     void addSignatureClass(String signature){
-        if(signature == null) return;
+        if(signature == null)
+            return;
         SignatureReader reader = new SignatureReader(signature);
         reader.accept(new UCBirthmarkSignatureWriter(helper));
     }
@@ -69,7 +71,7 @@ public class UCBirthmarkExtractVisitor extends PochiClassVisitor{
         helper.add(Type.getReturnType(desc));
         Type[] args = Type.getArgumentTypes(desc);
         Arrays.stream(args)
-        .forEach(arg -> helper.add(arg));
+        .forEach(helper::add);
     }
 
     void addDescriptor(String desc){

@@ -5,11 +5,10 @@ import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.stream.Stream;
+
 import org.junit.Test;
 
-import com.github.pochi.runner.birthmarks.BirthmarkExtractor;
-import com.github.pochi.runner.birthmarks.BirthmarkExtractors;
-import com.github.pochi.runner.birthmarks.BirthmarkSystem;
 import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 
 public class BirthmarkExtractorsTest {
@@ -17,12 +16,17 @@ public class BirthmarkExtractorsTest {
     public void testUC() throws Exception{
         BirthmarkSystem system = new BirthmarkSystem();
         BirthmarkType[] types = system.availableExtractors();
-        assertThat(types.length, is(1));
-        assertThat(types, is(arrayContainingInAnyOrder(new BirthmarkType("uc"))));
+        assertThat(types.length, is(6));
+        assertThat(types, is(arrayContainingInAnyOrder(
+                Stream.of("uc", "2-gram", "3-gram", "4-gram", "5-gram", "6-gram")
+                .map(BirthmarkType::new)
+                .toArray(BirthmarkType[]::new))));
 
+        BirthmarkExtractor extractor1 = system.extractor(new BirthmarkType("uc"));
+        assertThat(extractor1, is(instanceOf(BirthmarkExtractor.class)));
 
-        BirthmarkExtractor extractor = system.extractor(new BirthmarkType("uc"));
-        assertThat(extractor, is(instanceOf(BirthmarkExtractor.class)));
+        BirthmarkExtractor extractor2 = system.extractor(new BirthmarkType("4-gram"));
+        assertThat(extractor2, is(instanceOf(BirthmarkExtractor.class)));
     }
 
     @Test

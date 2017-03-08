@@ -19,14 +19,9 @@ public final class PairMakerType implements Serializable{
 
     @Override
     public boolean equals(Object object){
-        if(object instanceof PairMakerType)
-            return equals((PairMakerType)object);
-        return false;
-    }
-
-    public boolean equals(PairMakerType name){
-        return Objects.equals(
-                type, name.type);
+        return object instanceof PairMakerType
+                && Objects.equals(type,
+                        ((PairMakerType)object).type);
     }
 
     @Override

@@ -7,22 +7,22 @@ public class Threshold implements Serializable{
 
     public static final Threshold DEFAULT = new Threshold(0.25);
 
-    private double threshold;
+    private double value;
 
     public Threshold(double threshold){
-        this.threshold = threshold;
+        this.value = threshold;
     }
 
     public boolean isStolen(Similarity similarity){
-        return similarity.value >= (1 - threshold);
+        return similarity.value >= (1 - value);
     }
 
     public boolean isInconclusive(Similarity similarity){
-        return similarity.value < (1 - threshold)
-                && similarity.value > threshold;
+        return !isStolen(similarity)
+                && !isInnocent(similarity);
     }
 
     public boolean isInnocent(Similarity similarity){
-        return similarity.value <= threshold;
+        return similarity.value <= value;
     }
 }

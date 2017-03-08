@@ -29,7 +29,8 @@ public class RoundRobinPairMaker extends AbstractPairMaker{
     }
 
     private int firstIndex(){
-        if(includeSamePair) return 0;
+        if(includeSamePair)
+            return 0;
         return 1;
     }
 

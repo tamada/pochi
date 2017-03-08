@@ -10,6 +10,7 @@ import com.github.pochi.runner.birthmarks.entities.Birthmarks;
 import com.github.pochi.runner.birthmarks.entities.Pair;
 import com.github.pochi.runner.birthmarks.entities.PairMakerType;
 import com.github.pochi.runner.util.VectorMap;
+import com.github.pochi.runner.util.VectorMap.Entry;
 
 public class SameNamePairMaker extends AbstractPairMaker{
     public SameNamePairMaker(){
@@ -21,14 +22,14 @@ public class SameNamePairMaker extends AbstractPairMaker{
         VectorMap<ClassName, Birthmark> map = new VectorMap<>();
         birthmarks.forEach(birthmark -> putTo(map, birthmark));
 
-        return map.stream().map(entry -> entry.getValue())
+        return map.stream().map(Entry::value)
                 .filter(list -> list.size() > 1)
                 .flatMap(list -> eachPair(list));
     }
 
     private Stream<Pair<Birthmark>> eachPair(List<Birthmark> list){
         Index index = new Index(1);
-        return list.stream().limit(list.size() - 1)
+        return list.stream().limit(list.size() - 1L)
                 .flatMap(birthmark -> list.stream()
                         .skip(index.index())
                         .map(item -> new Pair<>(birthmark, item)));
@@ -47,7 +48,7 @@ public class SameNamePairMaker extends AbstractPairMaker{
 
     private void pickUpPairs(List<Pair<Birthmark>> list, Birthmarks birthmarks1, Birthmarks birthmarks2){
         birthmarks1.forEach(item1 -> birthmarks2.forEach(
-                item2 -> item1.isSameClassName(item2),
+                item2 -> item1.isSame(item2.className()),
                 item2 -> list.add(new Pair<>(item1, item2))));
     }
 }

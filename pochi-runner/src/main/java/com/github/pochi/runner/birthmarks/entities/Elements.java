@@ -10,28 +10,36 @@ import java.util.stream.Stream;
 public class Elements implements Serializable{
     private static final long serialVersionUID = -8713896078315146158L;
 
-    private List<Element> elements = new ArrayList<>();
+    private List<Element> list = new ArrayList<>();
 
     public Elements(Stream<Element> stream){
-        stream.forEach(
-                item -> elements.add(item));
+        stream.forEach(list::add);
     }
 
     public boolean contains(Element element){
-        return elements.contains(element);
+        return list.contains(element);
     }
 
     public void forEach(Consumer<Element> consumer){
-        forEach(item -> true, consumer);
+        list.stream()
+        .forEach(consumer);
     }
 
     public int size(){
-        return elements.size();
+        return list.size();
     }
 
-    public void forEach(Predicate<Element> predicate, Consumer<Element> consumer){
-        elements.stream()
-        .filter(predicate)
-        .forEach(consumer);
+    public Elements filter(Predicate<Element> predicate){
+        return new Elements(list.stream()
+                .filter(predicate));
+    }
+
+    public static Elements empty(){
+        return new Elements(Stream.of());
+    }
+
+    public Elements merge(Elements other){
+        return new Elements(Stream.concat(list.stream(), 
+                other.list.stream()));
     }
 }

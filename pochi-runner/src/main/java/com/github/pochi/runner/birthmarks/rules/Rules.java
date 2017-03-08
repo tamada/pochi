@@ -8,32 +8,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Rules {
     @JsonProperty("rules")
-    private List<Rule> rules;
+    private List<Rule> list;
 
     public Rules(){
         this(Stream.empty());
     }
 
     public Rules(Stream<Rule> stream){
-        rules = stream.collect(
+        list = stream.collect(
                 Collectors.toList());
     }
 
     public void add(Rule rule){
-        rules.add(rule);
+        list.add(rule);
     }
 
     public void removeAll(){
-        rules.clear();
+        list.clear();
     }
 
     public boolean anyMatch(String className){
-        return rules.stream()
+        return list.stream()
                 .anyMatch(rule -> rule.match(className));
     }
 
     @JsonProperty("rules")
     public Rule[] toArray(){
-        return rules.toArray(new Rule[rules.size()]);
+        return list.toArray(new Rule[list.size()]);
     }
 }

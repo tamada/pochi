@@ -9,9 +9,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.birthmarks.entities.Elements;
-
 public class ElementsTest {
     private Elements elements;
 
@@ -41,8 +38,8 @@ public class ElementsTest {
     @Test
     public void testFilter(){
         List<Element> list = new ArrayList<>();
-        elements.forEach(item -> item.equals(new Element("element2")),
-                item -> list.add(item));
+        elements.filter(item -> item.equals(new Element("element2")))
+                .forEach(item -> list.add(item));
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0), is(new Element("element2")));

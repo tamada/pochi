@@ -13,33 +13,51 @@ public class Metadata implements Serializable{
 
     private URI location;
     private ClassName name;
+    private BirthmarkType type;
 
-    public Metadata(URI location, ClassName name){
-        this.location = location;
+    public Metadata(ClassName name, URI location, BirthmarkType type){
         this.name = name;
+        this.location = location;
+        this.type = type;
     }
 
     public ClassName className(){
         return name;
     }
 
+    public boolean isSame(BirthmarkType otherType){
+        return Objects.equals(type(), otherType);
+    }
+
+    public boolean isSame(ClassName otherName){
+        return Objects.equals(className(), otherName);
+    }
+
+    public boolean isSame(URI otherLocation){
+        return Objects.equals(location(), otherLocation);
+    }
+
+    public URI location(){
+        return location;
+    }
+
     @Override
     public String toString(){
         return new StringJoiner(",").add(name.toString())
                 .add(location.toASCIIString())
+                .add(type.toString())
                 .toString();
     }
 
-    public boolean hasSameName(ClassName otherName){
-        return Objects.equals(name, otherName);
+    public BirthmarkType type(){
+        return type;
     }
 
-    public boolean hasSameName(Metadata other){
-        return hasSameName(other.className());
+    public static Metadata build(Entry entry, BirthmarkType type){
+        return new Metadata(entry.className(), entry.loadFrom(), type);
     }
 
     public static Metadata build(Entry entry){
-        return new Metadata(entry.loadFrom(),
-                entry.className());
+        return build(entry, BirthmarkType.UNKNOWN);
     }
 }

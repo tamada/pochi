@@ -10,7 +10,6 @@ import com.github.pochi.kunai.entries.KunaiException;
 import com.github.pochi.kunai.source.DataSource;
 import com.github.pochi.kunai.source.factories.DataSourceFactory;
 import com.github.pochi.kunai.source.factories.DefaultDataSourceFactory;
-import com.github.pochi.runner.birthmarks.entities.Results;
 import com.github.pochi.runner.birthmarks.io.DefaultDumper;
 
 public class IOHelper {
@@ -38,7 +37,7 @@ public class IOHelper {
         return open(Paths.get(path));
     }
 
-    public <T> void print(Results<T> set){
+    public <T> void print(T set){
         DefaultDumper dumper = new DefaultDumper(out);
         dumper.print(set);
     }

@@ -6,34 +6,30 @@ import java.util.Objects;
 public class Element implements Serializable{
     private static final long serialVersionUID = -4912875456020999024L;
 
-    private String element;
+    private String item;
 
     public Element(String element){
-        this.element = element;
+        this.item = element;
     }
 
     public Element(Element element){
-        this.element = element.element;
+        this.item = element.item;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hashCode(element);
+        return Objects.hashCode(item);
     }
 
     @Override
     public boolean equals(Object object){
-        return object instanceof Element &&
-                equals((Element)object);
-    }
-
-    public boolean equals(Element item){
-        return Objects.equals(
-                element, item.element);
+        return object instanceof Element
+                && Objects.equals(item, 
+                        ((Element)object).item);
     }
 
     @Override
     public String toString(){
-        return element;
+        return item;
     }
 }

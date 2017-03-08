@@ -14,7 +14,8 @@ class InformationPrinter {
     }
 
     private boolean printIfRequired(boolean flag, Runnable runnable){
-        if(flag) runnable.run();
+        if(flag)
+            runnable.run();
         return flag;
     }
 

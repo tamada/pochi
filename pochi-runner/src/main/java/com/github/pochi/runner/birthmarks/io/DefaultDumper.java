@@ -5,21 +5,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.pochi.runner.birthmarks.comparators.Comparisons;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
 import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Results;
 
 public class DefaultDumper{
     private Map<String, Dumper<?>> map = new HashMap<>();
 
     public DefaultDumper(PrintWriter out){
-        map.put(Birthmarks.class.getName(), new ExtractionResultsDumper(out));
-        map.put(Comparisons.class.getName(), new ComparisonResultsDumper(out));
+        map.put(Birthmarks.class.getName(), new BirthmarksDumper(out));
+        map.put(Comparisons.class.getName(), new ComparisonsDumper(out));
     }
 
-    public <T> void print(BirthmarkType type, T target){
+    public <T> void print(T target){
         Dumper<T> dumper = obtainDumper(target);
-        dumper.print(type, target);
+        dumper.print(target);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,10 +25,5 @@ public class DefaultDumper{
         String name = target.getClass()
                 .getName();
         return (Dumper<T>)map.get(name);
-    }
-
-    public <T> void print(Results<T> results) {
-        Dumper<T> dumper = obtainDumper(results.result());
-        dumper.print(results);
     }
 }

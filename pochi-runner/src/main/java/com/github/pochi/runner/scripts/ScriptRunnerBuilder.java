@@ -7,21 +7,33 @@ import java.net.URLClassLoader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
 import com.github.pochi.runner.config.Configuration;
+import com.github.pochi.runner.config.ConfigurationBuilder;
+import com.github.pochi.runner.util.LogHelper;
 
 public class ScriptRunnerBuilder {
     public static final String DEFAULT_SCRIPT_ENGINE_NAME = "JavaScript";
 
     private Configuration configuration;
 
+    public ScriptRunnerBuilder(){
+        this(new ConfigurationBuilder().configuration());
+    }
+
     public ScriptRunnerBuilder(Configuration configuration){
         this.configuration = configuration;
+    }
+
+    public ScriptRunner build(){
+        return build(new HashMap<>());
     }
 
     public ScriptRunner build(Map<String, Object> properties){
@@ -32,8 +44,8 @@ public class ScriptRunnerBuilder {
 
     private ScriptEngine buildImpl(Map<String, Object> properties){
         String[] args = (String[])properties.get("args");
-        if(args.length > 0)
-            return buildByFile(new File(args[0]), args);
+        if(args != null && args.length > 0)
+            return buildByFile(new File(args[0]));
         return buildByName((String)properties.getOrDefault("engine", DEFAULT_SCRIPT_ENGINE_NAME));
     }
 
@@ -42,7 +54,7 @@ public class ScriptRunnerBuilder {
         return manager.getEngineByName(engineName);
     }
 
-    public ScriptEngine buildByFile(File scriptFile, String[] args){
+    public ScriptEngine buildByFile(File scriptFile){
         ScriptEngineManager manager = new ScriptEngineManager(configuration.classLoader());
         String ext = parseExtension(scriptFile.getName());
         return manager.getEngineByExtension(ext);
@@ -65,14 +77,15 @@ public class ScriptRunnerBuilder {
     private URL[] convertToUrls(String classpath){
         return Arrays.stream(classpath.split(":"))
                 .map(path -> convertToUrl(Paths.get(path)))
-                .filter(item -> item != null)
-                .toArray(size -> new URL[size]);
+                .filter(Objects::nonNull)
+                .toArray(URL[]::new);
     }
 
     private URL convertToUrl(Path path){
         try {
             return path.toUri().toURL();
         } catch (MalformedURLException e) {
+            LogHelper.warn(this, e);
         }
         return null;
     }

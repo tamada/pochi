@@ -18,15 +18,17 @@ public class BirthmarkTest {
 
     @Before
     public void setUp() throws Exception{
-        Metadata metadata = new Metadata(new URI("hoge"), new ClassName("test"));
+        Metadata metadata = new Metadata(new ClassName("test"), new URI("source1"), new BirthmarkType("type1"));
         Elements elements = new Elements(Arrays.stream(new String[] { "e1", "e2", "e3" })
                 .map(string -> new Element(string)));
         this.birthmark = new Birthmark(metadata, elements);
     }
 
     @Test
-    public void testBasic(){
-        assertThat(birthmark.is(new ClassName("test")), is(true));
+    public void testBasic() throws Exception{
+        assertThat(birthmark.isSame(new ClassName("test")), is(true));
+        assertThat(birthmark.isSame(new BirthmarkType("type1")), is(true));
+        assertThat(birthmark.isSame(new URI("source1")), is(true));
 
         List<Element> list = new ArrayList<>();
         birthmark.forEach(e -> list.add(e));
@@ -38,12 +40,14 @@ public class BirthmarkTest {
 
         list.clear();
 
-        birthmark.forEach(e -> e.equals(new Element("e3")), e -> list.add(e));
+        birthmark.filter(e -> e.equals(new Element("e3"))).forEach(e -> list.add(e));
         assertThat(list.size(), is(1));
         assertThat(list.get(0), is(new Element("e3")));
 
         Metadata metadata = birthmark.metadata();
-        assertThat(metadata.hasSameName(new ClassName("test")), is(true));
-        assertThat(metadata.toString(), is("test,hoge"));
+        assertThat(metadata.isSame(new ClassName("test")), is(true));
+        assertThat(metadata.isSame(new BirthmarkType("type1")), is(true));
+        assertThat(metadata.isSame(new URI("source1")), is(true));
+        assertThat(metadata.toString(), is("test,source1,type1"));
     }
 }
