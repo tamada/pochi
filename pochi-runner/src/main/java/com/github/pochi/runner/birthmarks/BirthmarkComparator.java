@@ -15,6 +15,8 @@ public interface BirthmarkComparator extends Service<ComparatorType> {
 
     Comparisons compare(Birthmarks results, PairMaker maker, Configuration config);
 
+    Comparisons compare(Birthmarks birthmarks1, Birthmarks birthmarks2, PairMaker maker, Configuration config);
+
     default Comparison compare(Pair<Birthmark> pair, Configuration config) {
         Similarity similarity = similarity(pair.left(), pair.right(), config);
         return new Comparison(pair, similarity);

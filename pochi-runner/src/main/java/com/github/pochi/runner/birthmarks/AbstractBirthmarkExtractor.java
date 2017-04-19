@@ -37,7 +37,8 @@ public abstract class AbstractBirthmarkExtractor implements BirthmarkExtractor {
     private Birthmark extractImpl(Entry entry, Configuration configuration) throws IOException {
         try (InputStream in = entry.openStream()) {
             PochiClassVisitor visitor = visitor(new ClassWriter(0), configuration);
-            return accept(in, entry, visitor);
+            Birthmark birthmark = accept(in, entry, visitor);
+            return birthmark;
         }
     }
 

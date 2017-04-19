@@ -27,8 +27,18 @@ public abstract class AbstractBirthmarkComparator implements BirthmarkComparator
         return new Comparisons(compareWith(results, maker, config));
     }
 
+    @Override
+    public Comparisons compare(Birthmarks birthmarks1, Birthmarks birthmarks2, PairMaker maker, Configuration config){
+        return new Comparisons(compareWith(birthmarks1, birthmarks2, maker, config));
+    }
+
     private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMaker maker, Configuration config){
         return maker.pairUpWith(extractedBirthmarks)
+                .map(pair -> compare(pair, config));
+    }
+
+    private Stream<Comparison> compareWith(Birthmarks birthmarks1, Birthmarks birthmarks2, PairMaker maker, Configuration config){
+        return maker.pairUpWith(birthmarks1, birthmarks2)
                 .map(pair -> compare(pair, config));
     }
 
