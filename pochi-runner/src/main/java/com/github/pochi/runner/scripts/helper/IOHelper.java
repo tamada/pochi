@@ -37,6 +37,12 @@ public class IOHelper {
         return open(Paths.get(path));
     }
 
+    public <T> void writer(String path, T set) throws IOException{
+        PrintWriter out = new PrintWriter(new FileWriter(path));
+        DefaultDumper dumper = new DefaultDumper(out);
+        dumper.print(set);
+    }
+
     public <T> void print(T set){
         DefaultDumper dumper = new DefaultDumper(out);
         dumper.print(set);
