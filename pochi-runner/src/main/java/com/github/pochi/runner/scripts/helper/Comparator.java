@@ -18,4 +18,8 @@ public class Comparator {
     public Comparisons compare(Birthmarks birthmarks, PairMaker maker){
         return target.compare(birthmarks, maker, config);
     }
+
+    public Comparisons compare(Birthmarks birthmarks1, Birthmarks birthmarks2, PairMaker maker){
+        return target.compare(birthmarks1, birthmarks2, maker, config);
+    }
 }
