@@ -12,7 +12,7 @@ public class SimpsonIndexBirthmarkComparator extends IndexBirthmarkComparator {
     }
 
     @Override
-    public Similarity similarity(Birthmark left, Birthmark right, Configuration config){
+    protected Similarity calculate(Birthmark left, Birthmark right, Configuration config){
         List<Element> intersection = intersect(left, right);
         int denominator = Math.min(left.elementCount(), right.elementCount());
         return new Similarity(1.0 * intersection.size() / denominator);

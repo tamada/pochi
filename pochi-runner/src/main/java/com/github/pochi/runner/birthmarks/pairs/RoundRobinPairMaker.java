@@ -10,7 +10,7 @@ import com.github.pochi.runner.birthmarks.entities.PairMakerType;
 public class RoundRobinPairMaker extends AbstractPairMaker{
     private boolean includeSamePair = false;
 
-    public RoundRobinPairMaker(PairMakerType type, boolean includeSamePair){
+    protected RoundRobinPairMaker(PairMakerType type, boolean includeSamePair){
         super(type);
         this.includeSamePair = includeSamePair;
     }

@@ -14,7 +14,7 @@ public class EditDistanceBirthmarkComparator extends AbstractBirthmarkComparator
     }
 
     @Override
-    public Similarity similarity(Birthmark left, Birthmark right, Configuration config) {
+    protected Similarity calculate(Birthmark left, Birthmark right, Configuration config) {
         List<Element> leftList = toList(left);
         List<Element> rightList = toList(right);
         return new Similarity(calculate(leftList, rightList));

@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.github.pochi.runner.birthmarks.BirthmarkComparator;
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
+import com.github.pochi.runner.birthmarks.entities.Pair;
 import com.github.pochi.runner.config.Configuration;
 import com.github.pochi.runner.config.ConfigurationBuilder;
 
@@ -29,7 +30,7 @@ public class EditDistanceBirthmarkComparatorTest extends BirthmarkBuilderHelper{
         Birthmark birthmark1 = buildBirthmark("a", Stream.of("a", "b", "c", "d", "e"));
         Birthmark birthmark2 = buildBirthmark("b", Stream.of("a", "b", "c", "d"));
 
-        Similarity similarity = comparator.similarity(birthmark1, birthmark2, config);
+        Similarity similarity = comparator.similarity(new Pair<>(birthmark1, birthmark2), config);
         Threshold threshold = new Threshold(0.25);
         assertThat(similarity.value, is(closeTo(1 - (1d / 5), 1E-6)));
         assertThat(similarity.isCloseTo(new Similarity(1 - (1d / 5)), 1E-6), is(true));
