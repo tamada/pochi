@@ -6,7 +6,7 @@ import com.github.pochi.birthmarks.entities.Birthmarks;
 import com.github.pochi.birthmarks.pairs.Pair;
 import com.github.pochi.birthmarks.pairs.PairMaker;
 
-public interface BirthmarkComparator extends Task<ComparatorType> {
+public interface Comparator extends Task<ComparatorType> {
     @Override
     ComparatorType type();
 

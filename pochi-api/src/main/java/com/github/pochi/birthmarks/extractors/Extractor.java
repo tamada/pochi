@@ -13,7 +13,7 @@ import com.github.pochi.birthmarks.entities.Metadata;
 import com.github.pochi.kunai.entries.Entry;
 import com.github.pochi.kunai.source.DataSource;
 
-public interface BirthmarkExtractor extends Task<BirthmarkType>{
+public interface Extractor extends Task<BirthmarkType>{
     @Override
     BirthmarkType type();
 

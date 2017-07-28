@@ -25,7 +25,7 @@ public class Rules {
     }
 
     @JsonProperty("rules")
-    private Rule[] rules(){
+    Rule[] rules(){
         return list.stream()
                 .toArray(Rule[]::new);
     }
