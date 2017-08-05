@@ -3,10 +3,10 @@ package com.github.pochi.runner.birthmarks;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.BirthmarkType;
 import com.github.pochi.kunai.entries.Entry;
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
-import com.github.pochi.runner.config.Configuration;
 
 public abstract class PochiClassVisitor extends ClassVisitor{
     private Configuration context;

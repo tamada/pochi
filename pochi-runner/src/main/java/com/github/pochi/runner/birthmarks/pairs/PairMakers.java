@@ -1,17 +1,20 @@
 package com.github.pochi.runner.birthmarks.pairs;
 
-import com.github.pochi.runner.birthmarks.PairMaker;
-import com.github.pochi.runner.birthmarks.Services;
-import com.github.pochi.runner.birthmarks.entities.PairMakerType;
+import java.util.stream.Stream;
 
-public class PairMakers extends Services<PairMakerType, PairMaker>{
+import com.github.pochi.birthmarks.Tasks;
+import com.github.pochi.birthmarks.pairs.PairMaker;
+import com.github.pochi.birthmarks.pairs.PairMakerType;
 
-    public PairMakers(){
-        super(PairMaker.class);
+public class PairMakers extends Tasks<PairMakerType>{
+
+    public PairMakers(Stream<PairMaker> stream){
+        super(stream);
     }
 
     public PairMakerType[] availableTypes(){
-        return availableServices()
+        return stream()
+                .map(maker -> maker.type())
                 .toArray(size -> new PairMakerType[size]);
     }
 }

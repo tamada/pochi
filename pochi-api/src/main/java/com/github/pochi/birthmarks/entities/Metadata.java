@@ -8,7 +8,7 @@ import java.util.StringJoiner;
 import com.github.pochi.kunai.entries.ClassName;
 import com.github.pochi.kunai.entries.Entry;
 
-public class Metadata implements Serializable{
+public class Metadata implements Acceptor<Metadata>, Serializable{
     private static final long serialVersionUID = 5188434750286102391L;
 
     private URI location;
@@ -59,5 +59,10 @@ public class Metadata implements Serializable{
 
     public static Metadata build(Entry entry){
         return build(entry, BirthmarkType.UNKNOWN);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitMetadata(type, name, location);
     }
 }

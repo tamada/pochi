@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.github.pochi.runner.birthmarks.entities.Element;
+import com.github.pochi.birthmarks.entities.Element;
 
 public class KGram<T extends Serializable> implements Serializable{
     private static final long serialVersionUID = 171133658354079736L;

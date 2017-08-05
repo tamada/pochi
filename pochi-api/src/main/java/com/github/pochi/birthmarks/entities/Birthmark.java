@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 import com.github.pochi.kunai.entries.ClassName;
 
-public class Birthmark implements Serializable{
+public class Birthmark implements Acceptor<Birthmark>, Serializable{
     private static final long serialVersionUID = -2383836180204233756L;
 
     private Elements elements;
@@ -61,5 +61,11 @@ public class Birthmark implements Serializable{
 
     public BirthmarkType type(){
         return metadata.type();
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        metadata.accept(visitor);
+        elements.accept(visitor);
     }
 }

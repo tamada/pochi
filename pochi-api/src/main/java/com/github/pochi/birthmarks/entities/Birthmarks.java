@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import com.github.pochi.kunai.entries.ClassName;
 
-public class Birthmarks{
+public class Birthmarks implements Acceptor<Birthmarks>{
     private List<Birthmark> list;
 
     public Birthmarks(Stream<Birthmark> stream){
@@ -39,5 +39,10 @@ public class Birthmarks{
 
     public Birthmarks merge(Birthmarks other){
         return merge(other.stream());
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        list.stream().forEach(birthmark -> birthmark.accept(visitor));
     }
 }

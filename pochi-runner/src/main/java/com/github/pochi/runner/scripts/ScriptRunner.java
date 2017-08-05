@@ -15,7 +15,7 @@ import org.jline.reader.LineReaderBuilder;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
-import com.github.pochi.runner.config.Configuration;
+import com.github.pochi.birthmarks.config.Configuration;
 import com.github.pochi.runner.scripts.helper.BirthmarkSystemHelper;
 import com.github.pochi.runner.scripts.helper.IOHelper;
 import com.github.pochi.runner.scripts.helper.SystemInfoHelper;

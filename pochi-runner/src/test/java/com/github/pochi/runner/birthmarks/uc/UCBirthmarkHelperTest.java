@@ -10,10 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.objectweb.asm.Type;
 
-import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.birthmarks.entities.Elements;
-import com.github.pochi.runner.birthmarks.uc.UCBirthmarkHelper;
-import com.github.pochi.runner.config.ConfigurationBuilder;
+import com.github.pochi.birthmarks.config.ConfigurationBuilder;
+import com.github.pochi.birthmarks.entities.Element;
+import com.github.pochi.birthmarks.entities.Elements;
 
 public class UCBirthmarkHelperTest {
     private UCBirthmarkHelper helper;

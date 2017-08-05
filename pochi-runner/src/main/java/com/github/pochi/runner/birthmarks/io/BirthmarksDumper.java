@@ -3,9 +3,9 @@ package com.github.pochi.runner.birthmarks.io;
 import java.io.PrintWriter;
 import java.util.StringJoiner;
 
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Metadata;
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.Birthmarks;
+import com.github.pochi.birthmarks.entities.Metadata;
 
 public class BirthmarksDumper extends AbstractDumper<Birthmarks>{
     public BirthmarksDumper(PrintWriter out) {

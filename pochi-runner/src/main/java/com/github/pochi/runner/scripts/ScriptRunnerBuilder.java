@@ -15,8 +15,8 @@ import java.util.Optional;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import com.github.pochi.runner.config.Configuration;
-import com.github.pochi.runner.config.ConfigurationBuilder;
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.config.ConfigurationBuilder;
 import com.github.pochi.runner.util.LogHelper;
 
 public class ScriptRunnerBuilder {
@@ -50,12 +50,12 @@ public class ScriptRunnerBuilder {
     }
 
     public ScriptEngine buildByName(String engineName){
-        ScriptEngineManager manager = new ScriptEngineManager(configuration.classLoader());
+        ScriptEngineManager manager = new ScriptEngineManager();
         return manager.getEngineByName(engineName);
     }
 
     public ScriptEngine buildByFile(File scriptFile){
-        ScriptEngineManager manager = new ScriptEngineManager(configuration.classLoader());
+        ScriptEngineManager manager = new ScriptEngineManager();
         String ext = parseExtension(scriptFile.getName());
         return manager.getEngineByExtension(ext);
     }

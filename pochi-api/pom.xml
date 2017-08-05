@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.github.pochi.api</groupId>
+  <groupId>com.github.pochi</groupId>
   <artifactId>pochi-api</artifactId>
   <name>pochi-api</name>
   <url>http://maven.apache.org</url>

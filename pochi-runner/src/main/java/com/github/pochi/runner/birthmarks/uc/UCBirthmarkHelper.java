@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 import org.objectweb.asm.Type;
 
-import com.github.pochi.runner.birthmarks.entities.Elements;
-import com.github.pochi.runner.config.Configuration;
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.entities.Elements;
 
 public class UCBirthmarkHelper {
     private Names names = new Names();
@@ -33,7 +33,7 @@ public class UCBirthmarkHelper {
 
     public void add(String name){
         String normalizedName = normalize(name);
-        if(!names.contains(normalizedName) && context.isSystemName(normalizedName))
+        if(!names.contains(normalizedName) && context.match(normalizedName))
             names.add(normalizedName);
     }
 

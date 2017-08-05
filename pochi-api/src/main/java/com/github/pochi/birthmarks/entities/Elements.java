@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class Elements implements Serializable{
+public class Elements implements Acceptor<Elements>, Serializable{
     private static final long serialVersionUID = -8713896078315146158L;
 
     private List<Element> list = new ArrayList<>();
@@ -41,5 +41,10 @@ public class Elements implements Serializable{
     public Elements merge(Elements other){
         return new Elements(Stream.concat(list.stream(), 
                 other.list.stream()));
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        list.stream().forEach(element -> visitor.visitElement(element));
     }
 }

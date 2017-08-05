@@ -4,8 +4,8 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.pochi.runner.birthmarks.comparators.Comparisons;
-import com.github.pochi.runner.birthmarks.entities.Birthmarks;
+import com.github.pochi.birthmarks.comparators.Comparisons;
+import com.github.pochi.birthmarks.entities.Birthmarks;
 
 public class DefaultDumper{
     private Map<String, Dumper<?>> map = new HashMap<>();

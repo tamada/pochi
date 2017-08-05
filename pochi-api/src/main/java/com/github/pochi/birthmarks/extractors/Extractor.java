@@ -3,7 +3,7 @@ package com.github.pochi.birthmarks.extractors;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import javax.security.auth.login.Configuration;
+import org.objectweb.asm.ClassVisitor;
 
 import com.github.pochi.birthmarks.Task;
 import com.github.pochi.birthmarks.entities.Birthmark;
@@ -17,18 +17,20 @@ public interface Extractor extends Task<BirthmarkType>{
     @Override
     BirthmarkType type();
 
-    default Stream<Birthmark> extractForStream(DataSource source, Configuration context){
+    default Stream<Birthmark> extractForStream(DataSource source){
         Stream<Optional<Birthmark>> stream = source.stream()
                 .filter(entry -> entry.endsWith(".class"))
-                .map(entry -> extractEach(entry, context));
+                .map(entry -> extractEach(entry));
         return filter(stream);
     }
 
-    default Birthmarks extract(DataSource source, Configuration context){
-        return new Birthmarks(extractForStream(source, context));
+    default Birthmarks extract(DataSource source){
+        return new Birthmarks(extractForStream(source));
     }
 
-    Optional<Birthmark> extractEach(Entry entry, Configuration context);
+    PochiClassVisitor visitor(ClassVisitor visitor);
+
+    Optional<Birthmark> extractEach(Entry entry);
 
     Stream<Metadata> failedSources();
 }

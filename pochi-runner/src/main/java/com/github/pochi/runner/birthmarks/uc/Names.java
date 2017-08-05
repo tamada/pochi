@@ -3,8 +3,8 @@ package com.github.pochi.runner.birthmarks.uc;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.birthmarks.entities.Elements;
+import com.github.pochi.birthmarks.entities.Element;
+import com.github.pochi.birthmarks.entities.Elements;
 
 public class Names {
     private Set<String> set = new HashSet<>();

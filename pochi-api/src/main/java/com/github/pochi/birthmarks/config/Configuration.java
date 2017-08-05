@@ -10,7 +10,7 @@ import com.github.pochi.birthmarks.rules.Rules;
 
 public class Configuration {
     @JsonProperty("rules")
-    private Rules rules;
+    private Rules rules = new Rules();
 
     @JsonProperty("properties")
     private Map<String, String> properties = new HashMap<>(); 
@@ -23,6 +23,10 @@ public class Configuration {
     public ItemValue property(ItemKey key, ItemValue defaultValue){
         Optional<ItemValue> value = property(key);
         return value.orElse(defaultValue);
+    }
+
+    public boolean match(String targetName) {
+        return rules().match(targetName);
     }
 
     void setProperty(ItemKey key, ItemValue value){

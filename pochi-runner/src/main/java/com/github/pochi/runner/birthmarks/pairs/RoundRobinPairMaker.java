@@ -2,16 +2,18 @@ package com.github.pochi.runner.birthmarks.pairs;
 
 import java.util.stream.Stream;
 
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Pair;
-import com.github.pochi.runner.birthmarks.entities.PairMakerType;
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.Birthmarks;
+import com.github.pochi.birthmarks.pairs.AbstractPairMaker;
+import com.github.pochi.birthmarks.pairs.Pair;
+import com.github.pochi.birthmarks.pairs.PairMakerType;
 
 public class RoundRobinPairMaker extends AbstractPairMaker{
     private boolean includeSamePair = false;
 
-    protected RoundRobinPairMaker(PairMakerType type, boolean includeSamePair){
-        super(type);
+    protected RoundRobinPairMaker(PairMakerType type, boolean includeSamePair, Configuration config){
+        super(type, config);
         this.includeSamePair = includeSamePair;
     }
 

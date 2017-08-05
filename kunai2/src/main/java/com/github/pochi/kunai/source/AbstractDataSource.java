@@ -1,6 +1,6 @@
 package com.github.pochi.kunai.source;
 
-public abstract class AbstractDataSource implements DataSource{
+public abstract class AbstractDataSource implements DataSource {
     int getLastIndex(String name, String extension){
         return name.lastIndexOf(extension);
     }

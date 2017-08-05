@@ -1,13 +1,11 @@
 package com.github.pochi.runner.ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +17,8 @@ import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
-import com.github.pochi.runner.config.Classpath;
-import com.github.pochi.runner.config.Configuration;
-import com.github.pochi.runner.config.ConfigurationBuilder;
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.config.ConfigurationBuilder;
 import com.github.pochi.runner.scripts.ScriptRunner;
 import com.github.pochi.runner.scripts.ScriptRunnerBuilder;
 import com.github.pochi.runner.util.LogHelper;
@@ -74,12 +71,7 @@ public class Arguments {
     public Configuration configuration() {
         ConfigurationBuilder initializer = new ConfigurationBuilder(configFile());
         Configuration config = initializer.configuration();
-        Optional.ofNullable(classpath).ifPresent(path -> updateClasspaths(path, config));
         return config;
-    }
-
-    private void updateClasspaths(String classpath, Configuration config) {
-        Arrays.stream(classpath.split(File.pathSeparator)).forEach(path -> config.add(new Classpath(path)));
     }
 
     private Optional<URL> configFile() {

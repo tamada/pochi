@@ -12,30 +12,32 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 import org.objectweb.asm.Opcodes;
 
+import com.github.pochi.birthmarks.config.ConfigurationBuilder;
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.BirthmarkType;
+import com.github.pochi.birthmarks.entities.Birthmarks;
+import com.github.pochi.birthmarks.entities.Element;
+import com.github.pochi.birthmarks.extractors.Extractor;
+import com.github.pochi.birthmarks.extractors.ExtractorBuilder;
 import com.github.pochi.kunai.entries.ClassName;
 import com.github.pochi.kunai.source.DataSource;
 import com.github.pochi.kunai.source.factories.DefaultDataSourceFactory;
-import com.github.pochi.runner.birthmarks.BirthmarkExtractor;
-import com.github.pochi.runner.birthmarks.BirthmarkExtractors;
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
-import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.config.ConfigurationBuilder;
+import com.github.pochi.runner.birthmarks.extractors.ExtractorBuilders;
 
 public class KGramBasedBirthmarkExtractorTest {
     public Birthmarks extract(String path, String type) throws Exception{
         URL location = getClass().getResource(path);
-        BirthmarkExtractor extractor = new BirthmarkExtractors().service(new BirthmarkType(type));
+        ExtractorBuilder builder = new ExtractorBuilders().builder(new BirthmarkType(type));
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
-        return extractor.extract(source, new ConfigurationBuilder().configuration());
+        Extractor extractor = builder.build(new ConfigurationBuilder().configuration());
+        return extractor.extract(source);
     }
 
     @Test
     public void testBasic() throws Exception{
         Birthmarks birthmarks = extract("/resources/HelloWorld.class", "2-gram");
 
-        assertThat(birthmarks.find(new ClassName("HelloWorld")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("HelloWorld")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
@@ -55,7 +57,7 @@ public class KGramBasedBirthmarkExtractorTest {
     public void testBasic2() throws Exception{
         Birthmarks birthmarks = extract("/resources/Fibonacci.class", "3-gram");
 
-        assertThat(birthmarks.find(new ClassName("Fibonacci")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("Fibonacci")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
@@ -126,7 +128,7 @@ public class KGramBasedBirthmarkExtractorTest {
     public void testBasic3() throws Exception{
         Birthmarks birthmarks = extract("/resources/MazeBuilder.class", "4-gram");
 
-        assertThat(birthmarks.find(new ClassName("MazeBuilder")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("MazeBuilder")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
@@ -141,7 +143,7 @@ public class KGramBasedBirthmarkExtractorTest {
     public void testBasic4() throws Exception{
         Birthmarks birthmarks = extract("/resources/MyServer2.class", "5-gram");
 
-        assertThat(birthmarks.find(new ClassName("MyServer2")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("MyServer2")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));

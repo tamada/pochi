@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.Birthmarks;
+import com.github.pochi.birthmarks.pairs.AbstractPairMaker;
+import com.github.pochi.birthmarks.pairs.Pair;
+import com.github.pochi.birthmarks.pairs.PairMakerType;
 import com.github.pochi.kunai.entries.ClassName;
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Pair;
-import com.github.pochi.runner.birthmarks.entities.PairMakerType;
 import com.github.pochi.runner.util.VectorMap;
 import com.github.pochi.runner.util.VectorMap.Entry;
 
 public class SameNamePairMaker extends AbstractPairMaker{
-    public SameNamePairMaker(){
-        super(new PairMakerType("SameName"));
+    public SameNamePairMaker(Configuration config){
+        super(new PairMakerType("SameName"), config);
     }
     
     @Override
@@ -47,8 +49,8 @@ public class SameNamePairMaker extends AbstractPairMaker{
     }
 
     private void pickUpPairs(List<Pair<Birthmark>> list, Birthmarks birthmarks1, Birthmarks birthmarks2){
-        birthmarks1.forEach(item1 -> birthmarks2.forEach(
-                item2 -> item1.isSame(item2.className()),
-                item2 -> list.add(new Pair<>(item1, item2))));
+        birthmarks1.forEach(item1 -> birthmarks2.stream()
+                .filter(item2 -> item1.isSame(item2.className()))
+                .forEach(item2 -> list.add(new Pair<>(item1, item2))));
     }
 }
