@@ -5,13 +5,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Tasks<T> {
-    private List<? extends Task<T>> list;
+    private List<Task<T>> list;
 
     public Tasks(Stream<? extends Task<T>> stream){
         list = stream.collect(Collectors.toList());
     }
 
-    public Stream<? extends Task<T>> stream(){
+    public Stream<Task<T>> stream(){
         return list.stream();
     }
 }
