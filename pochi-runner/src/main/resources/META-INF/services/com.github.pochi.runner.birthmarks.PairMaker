@@ -1,3 +1,0 @@
-com.github.pochi.runner.birthmarks.pairs.DefaultRoundRobinPairMaker
-com.github.pochi.runner.birthmarks.pairs.RoundRobinWithSamePairPairMaker
-com.github.pochi.runner.birthmarks.pairs.SameNamePairMaker

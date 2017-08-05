@@ -16,6 +16,18 @@ public class Name implements Serializable{
         return name;
     }
 
+    public boolean matches(String pattern) {
+        return name.matches(pattern);
+    }
+
+    public boolean startsWith(String pattern) {
+        return name.startsWith(pattern);
+    }
+
+    public boolean endsWith(String pattern) {
+        return name.endsWith(pattern);
+    }
+
     @Override
     public boolean equals(Object other){
         return other instanceof Name

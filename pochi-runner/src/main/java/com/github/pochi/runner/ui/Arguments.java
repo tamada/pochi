@@ -27,12 +27,6 @@ public class Arguments {
     @Option(name = "-e", usage = "one line of script. -engine option is required in use of this option. ")
     private String expression;
 
-    @Option(name = "-cp", usage = "specify classpaths.")
-    private String classpath;
-
-    @Option(name = "-engine", usage = "specify the script engine name. default value is JavaScript. available values are: JavaScript, Groovy.")
-    private String engineName = ScriptRunner.DEFAULT_SCRIPT_ENGINE_NAME;
-
     @Option(name = "-config", usage = "specify the configuration file.")
     private String configuration = null;
 
@@ -86,7 +80,6 @@ public class Arguments {
 
     private Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("engine", engineName);
         map.put("args", args.toArray(new String[args.size()]));
         return map;
     }

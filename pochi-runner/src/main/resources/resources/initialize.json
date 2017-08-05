@@ -1,6 +1,0 @@
-this.extractor = function(type){  bmsys.extractor(type); }
-this.comparator = function(type){ bmsys.comparator(type); }
-this.parser = function(type){     bmsys.parser(); }
-this.pair_maker = function(type){ bmsys.pairMaker(type); }
-
-

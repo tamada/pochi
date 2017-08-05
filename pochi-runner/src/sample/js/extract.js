@@ -1,9 +1,17 @@
-extractor = bmsys.extractor("uc");
-source = fs.open("target/test-classes/resources/");
-birthmarks = extractor.extract(source);
+extract = function(type, from){
+    extractor = engine.extractor(type);
+    source = engine.source(from)
+    obj = {}
+    obj.time = sys.measure(function(){
+        obj.birthmarks = extractor.extract(source);
+    })
+    return obj;
+}
 
-fs.print(birthmarks);
+result = extract("uc", "target/test-classes/resources");
 
-fs.print("extraction: " + birthmarks.time() + " ns")
+result.birthmarks.forEach(function(birthmark){
+    print(birthmark);
+});
 
-
+print(result.time + " ns");

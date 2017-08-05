@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Elements implements Acceptor<Elements>, Serializable{
@@ -46,5 +47,12 @@ public class Elements implements Acceptor<Elements>, Serializable{
     @Override
     public void accept(Visitor visitor) {
         list.stream().forEach(element -> visitor.visitElement(element));
+    }
+
+    @Override
+    public String toString() {
+        return list.stream()
+                .map(element -> element.toString())
+                .collect(Collectors.joining(","));
     }
 }

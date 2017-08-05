@@ -2,6 +2,7 @@ package com.github.pochi.birthmarks.entities;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -67,5 +68,12 @@ public class Birthmark implements Acceptor<Birthmark>, Serializable{
     public void accept(Visitor visitor) {
         metadata.accept(visitor);
         elements.accept(visitor);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(",").add(metadata.toString())
+                .add(elements.toString())
+                .toString();
     }
 }

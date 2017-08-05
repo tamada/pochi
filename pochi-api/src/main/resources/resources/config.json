@@ -1,13 +1,9 @@
 {
 /*
-    "classpaths": {
-        "classpaths": [
-            "classpath/for/jar/files"
-        ]
-    },
     "properties": {
         "properties": {
-            { "key": "value" },
+            { "key1": "value1" },
+            { "key2": "value2" },
         }
     },
 */

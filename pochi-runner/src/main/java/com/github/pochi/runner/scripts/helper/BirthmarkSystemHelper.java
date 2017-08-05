@@ -10,8 +10,7 @@ import com.github.pochi.birthmarks.comparators.Threshold;
 import com.github.pochi.birthmarks.config.Configuration;
 import com.github.pochi.birthmarks.entities.BirthmarkType;
 import com.github.pochi.birthmarks.extractors.Extractor;
-import com.github.pochi.birthmarks.extractors.ExtractorBuilder;
-import com.github.pochi.birthmarks.pairs.PairMakerBuilder;
+import com.github.pochi.birthmarks.pairs.PairMaker;
 import com.github.pochi.birthmarks.pairs.PairMakerType;
 import com.github.pochi.birthmarks.rules.Position;
 import com.github.pochi.birthmarks.rules.Rule;
@@ -22,28 +21,27 @@ import com.github.pochi.runner.birthmarks.parsers.DefaultParser;
 
 public class BirthmarkSystemHelper {
     private BirthmarkSystem system;
-    private Configuration configuration;
     private PairMakerBuilders pairmakers = new PairMakerBuilders();
 
-    public BirthmarkSystemHelper(Configuration configuration){
-        this(new BirthmarkSystem(), configuration);
+    public BirthmarkSystemHelper(){
+        this(new BirthmarkSystem());
     }
 
-    public BirthmarkSystemHelper(BirthmarkSystem system, Configuration configuration){
+    public BirthmarkSystemHelper(BirthmarkSystem system){
         this.system = system;
-        this.configuration = configuration;
     }
 
-    public BirthmarkParser parser(){
-        return new DefaultParser(configuration);
+    public BirthmarkParser parser(Configuration config){
+        return new DefaultParser(config);
     }
 
     public Threshold threshold(double threshold){
         return new Threshold(threshold);
     }
 
-    public PairMakerBuilder pairMaker(String maker){
-        return pairmakers.builder(new PairMakerType(maker));
+    public PairMaker pairMaker(String maker, Configuration config){
+        return pairmakers.builder(new PairMakerType(maker))
+                .build(config);
     }
 
     public String pairMakers(){
@@ -52,18 +50,18 @@ public class BirthmarkSystemHelper {
                 .collect(Collectors.joining(","));
     }
 
-    public Extractor extractor(String birthmarkName){
-        ExtractorBuilder extractor = system.extractor(new BirthmarkType(birthmarkName));
-        return extractor.build(configuration);
+    public Extractor extractor(String birthmarkName, Configuration config){
+        return system.extractor(new BirthmarkType(birthmarkName))
+                .build(config);
     }
 
     public Rule rule(String type, String pattern){
         return new Rule(Position.valueOf(type), new Snippet(pattern));
     }
 
-    public Comparator comparator(String type){
+    public Comparator comparator(String type, Configuration config){
         return system.comparator(new ComparatorType(type))
-                .build(configuration);
+                .build(config);
     }
 
     public String comparators(){
