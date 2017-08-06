@@ -9,7 +9,7 @@ class InformationPrinter {
         boolean flag = false;
         flag |= printIfRequired(version,   () -> printFile("/resources/ui/version.txt"));
         flag |= printIfRequired(help,      () -> printFile("/resources/ui/help.txt"));
-        flag |= printIfRequired(license,   () -> printFile("/resources/ui/LICENSE"));
+        flag |= printIfRequired(license,   () -> printFile("/resources/ui/licsense.txt"));
         return flag;
     }
 

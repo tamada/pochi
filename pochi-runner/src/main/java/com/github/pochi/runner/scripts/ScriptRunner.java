@@ -4,7 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import javax.script.ScriptEngine;
@@ -17,6 +19,8 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
 import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.config.ItemKey;
+import com.github.pochi.birthmarks.config.ItemValue;
 import com.github.pochi.runner.scripts.helper.BirthmarkSystemHelper;
 import com.github.pochi.runner.scripts.helper.IOHelper;
 import com.github.pochi.runner.scripts.helper.SystemInfoHelper;
@@ -31,6 +35,7 @@ public class ScriptRunner {
         this.engine = engine;
         registerVariables(configuration);
         initialize(getClass().getResource("/js/initializer.js"));
+        initializeUserScript(configuration.property(ItemKey.of("initialize.script")));
     }
 
     private void registerVariables(Configuration configuration){
@@ -45,6 +50,19 @@ public class ScriptRunner {
             engine.eval("load('" + location + "')");
         } catch (ScriptException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void initializeUserScript(Optional<ItemValue> value) {
+        value.map(ItemValue::toString)
+        .flatMap(this::toUrl).ifPresent(v -> initialize(v));
+    }
+
+    private Optional<URL> toUrl(String value) {
+        try {
+            return Optional.of(Paths.get(value).toUri().toURL());
+        } catch (MalformedURLException e) {
+            return Optional.empty();
         }
     }
 

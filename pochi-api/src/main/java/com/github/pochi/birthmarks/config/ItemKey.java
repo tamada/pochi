@@ -6,4 +6,8 @@ public class ItemKey extends Value{
     public ItemKey(String key){
         super(key);
     }
+
+    public static ItemKey of(String key) {
+        return new ItemKey(key);
+    }
 }

@@ -8,10 +8,29 @@
 
 ここ掘れワンワン．
 
-Pochi enabled for extracting, comparing, and filtering birthmarks in the scripts
+Pochi enabled for extracting, comparing, and filtering birthmarks by the JavaScript language.
 there are the sample scripts in the ```src/sample/js``` directory.
 
-Pochi also enabled to implement script in other script language, such as Groovy, Jython.
-Those languages supports ```ScriptEngine``` in the Java platform.
+## config.json
 
+Default configuration json script is as follows.
 
+```JavaScript
+{
+    "properties": {
+//      "key1": "value1",
+//      "initialize.script": "/path/of/initialize_script.js",
+    },
+    "rules": {
+        "rules": [
+            { "type": "PREFIX", "pattern": "java." },
+            { "type": "PREFIX", "pattern": "javax." },
+            { "type": "PREFIX", "pattern": "org.omg." },
+            { "type": "PREFIX", "pattern": "org.ietf." },
+            { "type": "PREFIX", "pattern": "org.w3c." },
+            { "type": "PREFIX", "pattern": "org.xml.sax." },
+            { "type": "PREFIX", "pattern": "org.apache." }
+        ]
+    }
+}
+```

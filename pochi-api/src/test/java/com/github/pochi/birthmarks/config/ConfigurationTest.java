@@ -33,7 +33,7 @@ public class ConfigurationTest {
         assertThat(config.match("java.lang.String"), is(true));
 
         Stream<Item> stream = config.properties();
-        assertThat(stream.count(), is(0L));
+        assertThat(stream.count(), is(1L));
     }
 
     @Test

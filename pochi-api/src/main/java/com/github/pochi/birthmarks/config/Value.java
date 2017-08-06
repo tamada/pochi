@@ -25,6 +25,6 @@ public abstract class Value implements Serializable{
 
     @Override
     public String toString(){
-        return value;
+        return String.valueOf(value);
     }
 }

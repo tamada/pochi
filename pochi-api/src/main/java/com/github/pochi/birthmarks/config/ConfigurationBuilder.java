@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +26,8 @@ public class ConfigurationBuilder {
         try {
             initialize(url);
         } catch (IOException e) {
-            // LogHelper.warn(this, e);
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
     }
 
