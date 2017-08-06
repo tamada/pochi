@@ -21,7 +21,7 @@ compare = function(pair, compare, birthmarks){
 extractResult = extract("uc", "target/test-classes/resources/");
 compareResult = compare("RoundRobinWithSamePair", "JaccardIndex", extractResult.birthmarks);
 
-obj.comparisons.forEach(function(comparison){
+compareResult.comparisons.forEach(function(comparison){
     print(comparison);
 });
 
