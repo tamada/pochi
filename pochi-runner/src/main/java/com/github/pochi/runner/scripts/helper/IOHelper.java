@@ -2,6 +2,7 @@ package com.github.pochi.runner.scripts.helper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,6 +36,12 @@ public class IOHelper {
 
     public DataSource open(String path) throws IOException, KunaiException{
         return open(Paths.get(path));
+    }
+
+    public <T> void writer(String path, T set) throws IOException{
+        PrintWriter out = new PrintWriter(new FileWriter(path));
+        DefaultDumper dumper = new DefaultDumper(out);
+        dumper.print(set);
     }
 
     public <T> void print(T set){
