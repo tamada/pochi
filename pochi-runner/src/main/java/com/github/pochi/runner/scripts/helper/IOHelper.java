@@ -47,6 +47,7 @@ public class IOHelper {
     public <T> void print(T set){
         DefaultDumper dumper = new DefaultDumper(out);
         dumper.print(set);
+        out.flush();
     }
 
     public void print(String string){
