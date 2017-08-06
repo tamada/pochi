@@ -121,15 +121,19 @@ public class ScriptRunner {
 
         String line;
         while((line = reader.readLine("pochi> ")) != null){
-            try{
-                Optional<Object> object = Optional.ofNullable(engine.eval(line));
-                object.ifPresent(out::println);
-            } catch(EndOfFileException e){
-                throw e;
-            } catch(Exception e){
-                out.printf("%s: %s%n", e.getClass().getName(), e.getMessage());
-            }
-            out.flush();
+            interactEachLine(line, out);
         }
+    }
+
+    private void interactEachLine(String line, PrintWriter out) {
+        try{
+            Optional<Object> object = Optional.ofNullable(engine.eval(line));
+            object.ifPresent(out::println);
+        } catch(EndOfFileException e){
+            throw e;
+        } catch(Exception e){
+            out.printf("%s: %s%n", e.getClass().getName(), e.getMessage());
+        }
+        out.flush();
     }
 }
