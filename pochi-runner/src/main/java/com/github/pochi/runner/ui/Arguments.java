@@ -24,7 +24,7 @@ import com.github.pochi.runner.scripts.ScriptRunnerBuilder;
 import com.github.pochi.runner.util.LogHelper;
 
 public class Arguments {
-    @Option(name = "-e", usage = "one line of script. -engine option is required in use of this option. ")
+    @Option(name = "-e", usage = "one line of script.")
     private String expression;
 
     @Option(name = "-config", usage = "specify the configuration file.")
