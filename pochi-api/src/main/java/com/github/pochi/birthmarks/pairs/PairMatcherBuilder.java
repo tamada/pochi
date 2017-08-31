@@ -3,11 +3,11 @@ package com.github.pochi.birthmarks.pairs;
 import com.github.pochi.birthmarks.TaskBuilder;
 import com.github.pochi.birthmarks.config.Configuration;
 
-public interface PairMakerBuilder extends TaskBuilder<PairMakerType>{
+public interface PairMatcherBuilder extends TaskBuilder<PairMatcherType>{
 
     @Override
-    public PairMakerType type();
+    public PairMatcherType type();
 
     @Override
-    public PairMaker build(Configuration config);
+    public PairMatcher build(Configuration config);
 }

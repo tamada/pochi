@@ -7,11 +7,11 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 public class PairMakerTypeTest {
-    private PairMakerType type = new PairMakerType("round");
+    private PairMatcherType type = new PairMatcherType("round");
 
     @Test
     public void testBasic(){
-        assertThat(type, is(new PairMakerType("round")));
+        assertThat(type, is(new PairMatcherType("round")));
         assertThat(type.toString(), is("round"));
 
         assertThat(type, is(not(new Object())));

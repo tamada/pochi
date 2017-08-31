@@ -9,7 +9,7 @@ extract = function(type, from){
 }
 
 compare = function(pair, compare, birthmarks){
-    pair = engine.pairMaker("RoundRobinWithSamePair")
+    pair = engine.pairMatcher("RoundRobinWithSamePair")
     comparator = engine.comparator("JaccardIndex")
     obj = {};
     obj.time = sys.measure(function(){

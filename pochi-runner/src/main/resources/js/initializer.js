@@ -4,9 +4,8 @@ engine.source = function(location){
     return fs.open(location);
 }
 engine.version = function(){ 
-    print(sys.version());
+    return sys.version();
 }
-
 engine.extractor = function(type){
     return bmsys.extractor(type, config);
 }
@@ -16,8 +15,8 @@ engine.comparator = function(type){
 engine.parser = function(type){
     return bmsys.parser(config);
 }
-engine.pairMaker = function(type){
-    return bmsys.pairMaker(type, config);
+engine.pairMatcher = function(type){
+    return bmsys.pairMatcher(type, config);
 }
 engine.extractors = function(){
     return bmsys.extractors();
@@ -25,7 +24,10 @@ engine.extractors = function(){
 engine.comparators = function(){
     return bmsys.comparators();
 }
-engine.pairMakers = function(){
-    return bmsys.pairMakers();
+engine.pairMatchers = function(){
+    return bmsys.pairMatchers();
+}
+engine.rules = function(){
+    return bmsys.rules();
 }
 

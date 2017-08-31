@@ -4,13 +4,13 @@ import com.github.pochi.birthmarks.Task;
 import com.github.pochi.birthmarks.entities.Birthmark;
 import com.github.pochi.birthmarks.entities.Birthmarks;
 import com.github.pochi.birthmarks.pairs.Pair;
-import com.github.pochi.birthmarks.pairs.PairMaker;
+import com.github.pochi.birthmarks.pairs.PairMatcher;
 
 public interface Comparator extends Task<ComparatorType> {
     @Override
     ComparatorType type();
 
-    Comparisons compare(Birthmarks results, PairMaker maker);
+    Comparisons compare(Birthmarks results, PairMatcher maker);
 
     default Comparison compare(Pair<Birthmark> pair) {
         Similarity similarity = similarity(pair);

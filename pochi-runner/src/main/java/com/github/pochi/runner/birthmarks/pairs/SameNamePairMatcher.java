@@ -7,20 +7,20 @@ import java.util.stream.Stream;
 import com.github.pochi.birthmarks.config.Configuration;
 import com.github.pochi.birthmarks.entities.Birthmark;
 import com.github.pochi.birthmarks.entities.Birthmarks;
-import com.github.pochi.birthmarks.pairs.AbstractPairMaker;
+import com.github.pochi.birthmarks.pairs.AbstractPairMatcher;
 import com.github.pochi.birthmarks.pairs.Pair;
-import com.github.pochi.birthmarks.pairs.PairMakerType;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
 import com.github.pochi.kunai.entries.ClassName;
 import com.github.pochi.runner.util.VectorMap;
 import com.github.pochi.runner.util.VectorMap.Entry;
 
-public class SameNamePairMaker extends AbstractPairMaker{
-    public SameNamePairMaker(Configuration config){
-        super(new PairMakerType("SameName"), config);
+public class SameNamePairMatcher extends AbstractPairMatcher{
+    public SameNamePairMatcher(Configuration config){
+        super(new PairMatcherType("SameName"), config);
     }
     
     @Override
-    public Stream<Pair<Birthmark>> pairUpWith(Birthmarks birthmarks){
+    public Stream<Pair<Birthmark>> match(Birthmarks birthmarks){
         VectorMap<ClassName, Birthmark> map = new VectorMap<>();
         birthmarks.forEach(birthmark -> putTo(map, birthmark));
 
@@ -42,7 +42,7 @@ public class SameNamePairMaker extends AbstractPairMaker{
     }
 
     @Override
-    public Stream<Pair<Birthmark>> pairUpWith(Birthmarks birthmarks1, Birthmarks birthmarks2){
+    public Stream<Pair<Birthmark>> match(Birthmarks birthmarks1, Birthmarks birthmarks2){
         List<Pair<Birthmark>> list = new ArrayList<>();
         pickUpPairs(list, birthmarks1, birthmarks2);
         return list.stream();

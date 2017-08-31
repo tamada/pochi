@@ -10,18 +10,18 @@ import com.github.pochi.birthmarks.comparators.Threshold;
 import com.github.pochi.birthmarks.config.Configuration;
 import com.github.pochi.birthmarks.entities.BirthmarkType;
 import com.github.pochi.birthmarks.extractors.Extractor;
-import com.github.pochi.birthmarks.pairs.PairMaker;
-import com.github.pochi.birthmarks.pairs.PairMakerType;
+import com.github.pochi.birthmarks.pairs.PairMatcher;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
 import com.github.pochi.birthmarks.rules.Position;
 import com.github.pochi.birthmarks.rules.Rule;
 import com.github.pochi.birthmarks.rules.Snippet;
 import com.github.pochi.runner.birthmarks.BirthmarkSystem;
-import com.github.pochi.runner.birthmarks.pairs.PairMakerBuilders;
+import com.github.pochi.runner.birthmarks.pairs.PairMatcherBuilders;
 import com.github.pochi.runner.birthmarks.parsers.DefaultParser;
 
 public class BirthmarkSystemHelper {
     private BirthmarkSystem system;
-    private PairMakerBuilders pairmakers = new PairMakerBuilders();
+    private PairMatcherBuilders pairMatchers = new PairMatcherBuilders();
 
     public BirthmarkSystemHelper(){
         this(new BirthmarkSystem());
@@ -39,14 +39,14 @@ public class BirthmarkSystemHelper {
         return new Threshold(threshold);
     }
 
-    public PairMaker pairMaker(String maker, Configuration config){
-        return pairmakers.builder(new PairMakerType(maker))
+    public PairMatcher pairMatcher(String maker, Configuration config){
+        return pairMatchers.builder(new PairMatcherType(maker))
                 .build(config);
     }
 
-    public String pairMakers(){
-        return pairmakers.availableServices()
-                .map(PairMakerType::toString)
+    public String pairMatchers(){
+        return pairMatchers.availableServices()
+                .map(PairMatcherType::toString)
                 .collect(Collectors.joining(","));
     }
 

@@ -7,7 +7,7 @@ import com.github.pochi.birthmarks.config.Configuration;
 import com.github.pochi.birthmarks.entities.Birthmark;
 import com.github.pochi.birthmarks.entities.Birthmarks;
 import com.github.pochi.birthmarks.pairs.Pair;
-import com.github.pochi.birthmarks.pairs.PairMaker;
+import com.github.pochi.birthmarks.pairs.PairMatcher;
 
 public abstract class AbstractComparator extends AbstractTask<ComparatorType> implements Comparator {
     public AbstractComparator(ComparatorType type, Configuration config){
@@ -21,14 +21,14 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     }
 
     @Override
-    public Comparisons compare(Birthmarks results, PairMaker maker){
+    public Comparisons compare(Birthmarks results, PairMatcher maker){
         return new Comparisons(compareWith(results, maker));
     }
 
     protected abstract Similarity calculate(Birthmark left, Birthmark right);
 
-    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMaker maker){
-        return maker.pairUpWith(extractedBirthmarks)
+    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMatcher maker){
+        return maker.match(extractedBirthmarks)
                 .map(pair -> compare(pair));
     }
 }
