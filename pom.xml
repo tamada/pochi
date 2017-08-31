@@ -13,6 +13,7 @@
     <module>pochi-runner</module>
     <module>millstone</module>
     <module>pochi-api</module>
+    <module>distribution</module>
   </modules>
 
   <name>pochi: extensible birhtmark toolkit</name>
