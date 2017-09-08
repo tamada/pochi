@@ -3,6 +3,7 @@
 [![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.github:pochi)](https://sonarqube.com/dashboard/index/com.github:pochi)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
+[![Gitter](http://badges.gitter.im/owner/repo.png)](https://gitter.im/pochi-birthmark/)
 
 # pochi
 
