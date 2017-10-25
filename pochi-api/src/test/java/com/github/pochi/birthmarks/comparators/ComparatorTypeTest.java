@@ -18,4 +18,13 @@ public class ComparatorTypeTest {
 
         assertThat(type.toString(), is("type1"));
     }
+
+    @Test
+    public void testHashCode() {
+        ComparatorType type = new ComparatorType("type");
+        
+        assertThat(type.hashCode(), is(new ComparatorType("type").hashCode()));
+        assertThat(type.hashCode(), is(not(new ComparatorType("type1").hashCode())));
+        assertThat(type.hashCode(), is(not("type".hashCode())));
+    }
 }

@@ -28,7 +28,6 @@ public abstract class AbstractExtractor extends AbstractTask<BirthmarkType> impl
         try {
             return Optional.of(extractImpl(entry));
         } catch (IOException e) {
-            
         }
         failedSources.add(Metadata.build(entry));
         return Optional.empty();

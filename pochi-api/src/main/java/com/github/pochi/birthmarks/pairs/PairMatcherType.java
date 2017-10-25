@@ -14,7 +14,7 @@ public final class PairMatcherType implements Serializable{
 
     @Override
     public int hashCode(){
-        return Objects.hashCode(type);
+        return Objects.hash(type, "matcher");
     }
 
     @Override

@@ -18,7 +18,9 @@ public class Configuration {
     private Map<String, String> properties = new HashMap<>();
 
     public Optional<ItemValue> property(ItemKey key) {
-        return Optional.ofNullable(properties.get(key.toString())).map(ItemValue::new);
+        return Optional.ofNullable(
+                properties.get(key.toString()))
+                .map(ItemValue::new);
     }
 
     public ItemValue property(ItemKey key, ItemValue defaultValue) {

@@ -6,25 +6,27 @@ import java.util.Objects;
 public abstract class Value implements Serializable{
     private static final long serialVersionUID = 8681917006679908602L;
 
-    private String value;
+    private String string;
 
     public Value(String value){
-        this.value = value;
+        this.string = value;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(value);
+        return Objects.hash(string, 
+                getClass().getName());
     }
 
     @Override
     public boolean equals(Object other){
-        return Objects.equals(getClass(), other.getClass())
-                && Objects.equals(value, ((Value)other).value);
+        return other != null
+                && Objects.equals(getClass(), other.getClass())
+                && Objects.equals(string, ((Value)other).string);
     }
 
     @Override
     public String toString(){
-        return String.valueOf(value);
+        return String.valueOf(string);
     }
 }

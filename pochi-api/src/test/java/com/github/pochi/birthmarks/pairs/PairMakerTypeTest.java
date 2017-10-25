@@ -15,5 +15,10 @@ public class PairMakerTypeTest {
         assertThat(type.toString(), is("round"));
 
         assertThat(type, is(not(new Object())));
+        assertThat(type, is(not(new PairMatcherType("different"))));
+
+        assertThat(type.hashCode(), is(new PairMatcherType("round").hashCode()));
+        assertThat(type.hashCode(), is(not(new PairMatcherType("different").hashCode())));
+        assertThat(type.hashCode(), is(not("round".hashCode())));
     }
 }
