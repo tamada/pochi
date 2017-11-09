@@ -1,5 +1,6 @@
-### https://raw.github.com/github/gitignore/3ddb2f297fe8107c6c45a1afed1ff82204ae4227/Global/osx.gitignore
+### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/macOS.gitignore
 
+# General
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -17,6 +18,7 @@ Icon
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -26,9 +28,16 @@ Temporary Items
 .apdisk
 
 
-### https://raw.github.com/github/gitignore/3ddb2f297fe8107c6c45a1afed1ff82204ae4227/java.gitignore
+### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Java.gitignore
 
+# Compiled class file
 *.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -37,12 +46,15 @@ Temporary Items
 *.jar
 *.war
 *.ear
+*.zip
+*.tar.gz
+*.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
 
-### https://raw.github.com/github/gitignore/3ddb2f297fe8107c6c45a1afed1ff82204ae4227/Global/emacs.gitignore
+### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/Emacs.gitignore
 
 # -*- mode: gitignore; -*-
 *~
@@ -76,8 +88,24 @@ tramp
 
 # cask packages
 .cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+# directory configuration
+.dir-locals.el
 
 
+### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/Eclipse.gitignore
+
+<<<<<<< HEAD
 ### https://raw.github.com/github/gitignore/3ddb2f297fe8107c6c45a1afed1ff82204ae4227/maven.gitignore
 
 target/
@@ -146,6 +174,8 @@ fabric.properties
 
 ### https://raw.github.com/github/gitignore/7af8eea00b37b330af2b9de94170f1d6aeafb1f0/Global/eclipse.gitignore
 
+=======
+>>>>>>> 7ef957e5ad505e36d5007f2e583d6664ce6e553a
 
 .metadata
 bin/
@@ -188,6 +218,11 @@ local.properties
 
 # STS (Spring Tool Suite)
 .springBeans
+<<<<<<< HEAD
+
+# Code Recommenders
+.recommenders/
+=======
 
 # Code Recommenders
 .recommenders/
@@ -198,7 +233,28 @@ local.properties
 .worksheet
 
 
+### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Maven.gitignore
+>>>>>>> 7ef957e5ad505e36d5007f2e583d6664ce6e553a
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+
 ### https://raw.github.com/github/gitignore/7792e50daeaa6c07460484704671d1dc9f0045a7/Global/jenv.gitignore
+
+# JEnv local Java version configuration file
+.java-version
+
+# Used by previous versions of JEnv
+.jenv-version
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+
+### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/JEnv.gitignore
 
 # JEnv local Java version configuration file
 .java-version
