@@ -1,6 +1,5 @@
 package com.github.pochi.runner.birthmarks.comparators;
 
-import java.util.List;
 import java.util.Set;
 
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
@@ -14,7 +13,7 @@ public class JaccardIndexBirthmarkComparator extends IndexBirthmarkComparator {
 
     @Override
     public Similarity similarity(Birthmark left, Birthmark right, Configuration config){
-        List<Element> intersection = intersect(left, right);
+        Set<Element> intersection = intersect(left, right);
         Set<Element> union = union(left, right);
         return new Similarity(1.0 * intersection.size() / union.size());
     }

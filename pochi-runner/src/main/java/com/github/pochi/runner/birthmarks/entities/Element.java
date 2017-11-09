@@ -18,7 +18,7 @@ public class Element implements Serializable{
 
     @Override
     public int hashCode(){
-        return Objects.hashCode(item);
+        return Objects.hash(item, getClass().getName());
     }
 
     @Override
