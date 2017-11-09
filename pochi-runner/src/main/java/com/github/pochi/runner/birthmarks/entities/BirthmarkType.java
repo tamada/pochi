@@ -16,7 +16,7 @@ public final class BirthmarkType implements Serializable{
 
     @Override
     public int hashCode(){
-        return Objects.hashCode(type);
+        return Objects.hash(type, getClass().getName());
     }
 
     @Override

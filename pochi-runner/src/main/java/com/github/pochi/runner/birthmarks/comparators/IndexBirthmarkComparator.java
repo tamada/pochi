@@ -1,8 +1,6 @@
 package com.github.pochi.runner.birthmarks.comparators;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.github.pochi.runner.birthmarks.entities.Birthmark;
@@ -20,10 +18,10 @@ public abstract class IndexBirthmarkComparator extends AbstractBirthmarkComparat
         return union;
     }
 
-    List<Element> intersect(Birthmark left, Birthmark right){
-        List<Element> intersection = new ArrayList<>();
+    Set<Element> intersect(Birthmark left, Birthmark right){
+        Set<Element> intersection = new HashSet<>();
         right.filter(left::contains)
-        .forEach(intersection::add);
+            .forEach(intersection::add);
         return intersection;
     }
 }
