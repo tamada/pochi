@@ -18,7 +18,7 @@ compare = function(pair, compare, birthmarks){
     return obj;
 }
 
-extractResult = extract("uc", "target/test-classes/resources/");
+extractResult = extract("2-gram", "target/test-classes/resources/");
 compareResult = compare("RoundRobinWithSamePair", "JaccardIndex", extractResult.birthmarks);
 
 compareResult.comparisons.forEach(function(comparison){

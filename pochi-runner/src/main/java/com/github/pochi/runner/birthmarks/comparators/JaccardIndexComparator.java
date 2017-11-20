@@ -18,6 +18,6 @@ public class JaccardIndexComparator extends IndexComparator {
     protected Similarity calculate(Birthmark left, Birthmark right){
         List<Element> intersection = intersect(left, right);
         Set<Element> union = union(left, right);
-        return new Similarity(1.0 * intersection.size() / union.size());
+        return new Similarity((1.0 * intersection.size()) / union.size());
     }
 }
