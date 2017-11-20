@@ -15,7 +15,6 @@ import com.github.pochi.runner.birthmarks.io.DefaultDumper;
 
 public class IOHelper {
     private PrintWriter out;
-    private String a;
 
     public IOHelper(){
         this(new PrintWriter(System.out));
@@ -44,22 +43,15 @@ public class IOHelper {
         DefaultDumper dumper = new DefaultDumper(out);
         dumper.print(set);
     }
-    public void writer(String path, String string) throws IOException{
-        PrintWriter out = new PrintWriter(new FileWriter(path,true));
-        out.print(a);
-        out.close();
-        a=null;
-    }
+
     public <T> void print(T set){
         DefaultDumper dumper = new DefaultDumper(out);
         dumper.print(set);
         out.flush();
     }
-   public void print(String string){
-       out.println(string);
-       out.flush();
-   }
-    public void add(String string){
-        a=a+string;
+
+    public void print(String string){
+        out.println(string);
+        out.flush();
     }
 }
