@@ -1,6 +1,5 @@
 package com.github.pochi.runner.birthmarks.comparators;
 
-import java.util.List;
 import java.util.Set;
 
 import com.github.pochi.birthmarks.comparators.ComparatorType;
