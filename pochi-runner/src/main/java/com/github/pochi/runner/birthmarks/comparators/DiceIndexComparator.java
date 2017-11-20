@@ -1,6 +1,6 @@
 package com.github.pochi.runner.birthmarks.comparators;
 
-import java.util.List;
+import java.util.Set;
 
 import com.github.pochi.birthmarks.comparators.ComparatorType;
 import com.github.pochi.birthmarks.comparators.Similarity;
@@ -15,7 +15,7 @@ public class DiceIndexComparator extends IndexComparator {
 
     @Override
     protected Similarity calculate(Birthmark left, Birthmark right) {
-        List<Element> intersection = intersect(left, right);
+        Set<Element> intersection = intersect(left, right);
         int denominator = left.elementCount() + right.elementCount();
         return new Similarity(2.0 * intersection.size() / denominator);
     }
