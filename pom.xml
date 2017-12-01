@@ -10,6 +10,7 @@
   <modules>
     <module>nasubi</module>
     <module>kunai2</module>
+    <module>izumo</module>
     <module>pochi-runner</module>
     <module>millstone</module>
     <module>pochi-api</module>
