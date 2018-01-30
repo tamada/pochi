@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.github.pochi.runner.birthmarks.entities.Metadata;
+import com.github.pochi.birthmarks.entities.Metadata;
 
 public class FailedSources {
     private List<Metadata> list = new ArrayList<>();

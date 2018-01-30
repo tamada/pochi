@@ -2,8 +2,8 @@ package com.github.pochi.runner.birthmarks.io;
 
 import java.io.PrintWriter;
 
-import com.github.pochi.runner.birthmarks.comparators.Comparison;
-import com.github.pochi.runner.birthmarks.comparators.Comparisons;
+import com.github.pochi.birthmarks.comparators.Comparison;
+import com.github.pochi.birthmarks.comparators.Comparisons;
 
 public class ComparisonsDumper extends AbstractDumper<Comparisons>{
     public ComparisonsDumper(PrintWriter out){

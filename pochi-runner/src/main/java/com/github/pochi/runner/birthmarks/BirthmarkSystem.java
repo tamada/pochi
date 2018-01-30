@@ -1,25 +1,31 @@
 package com.github.pochi.runner.birthmarks;
 
-import com.github.pochi.runner.birthmarks.comparators.ComparatorType;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
+import com.github.pochi.birthmarks.comparators.ComparatorBuilder;
+import com.github.pochi.birthmarks.comparators.ComparatorType;
+import com.github.pochi.birthmarks.entities.BirthmarkType;
+import com.github.pochi.birthmarks.extractors.ExtractorBuilder;
+import com.github.pochi.runner.birthmarks.comparators.ComparatorBuilders;
+import com.github.pochi.runner.birthmarks.extractors.ExtractorBuilders;
 
 public class BirthmarkSystem {
-    private BirthmarkExtractors extractors = new BirthmarkExtractors();
-    private BirthmarkComparators comparators = new BirthmarkComparators();
+    private ExtractorBuilders extractors = new ExtractorBuilders();
+    private ComparatorBuilders comparators = new ComparatorBuilders();
 
-    public BirthmarkExtractor extractor(BirthmarkType type){
-        return extractors.service(type);
+    public ExtractorBuilder extractor(BirthmarkType type){
+        return extractors.builder(type);
     }
 
     public BirthmarkType[] availableExtractors(){
-        return extractors.availableTypes();
+        return extractors.availableServices()
+                .toArray(BirthmarkType[]::new);
     }
 
-    public BirthmarkComparator comparator(ComparatorType type){
-        return comparators.service(type);
+    public ComparatorBuilder comparator(ComparatorType type){
+        return comparators.builder(type);
     }
 
     public ComparatorType[] availableComparators(){
-        return comparators.availableTypes();
+        return comparators.availableServices()
+                .toArray(ComparatorType[]::new);
     }
 }

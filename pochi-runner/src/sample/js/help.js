@@ -1,13 +1,10 @@
 fs.print("extractors: ")
-fs.print(bmsys.extractors())
+fs.print(engine.extractors())
 
-fs.print("pairMakers: ")
-fs.print(bmsys.pairMakers())
+fs.print("pairMathers: ")
+fs.print(engine.pairMatchers())
 
 fs.print("comparators: ")
-fs.print(bmsys.comparators())
-
-fs.print("Rules")
-fs.print(bmsys.rules())
+fs.print(engine.comparators())
 
 

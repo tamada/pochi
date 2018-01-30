@@ -1,14 +1,22 @@
-extractor = bmsys.extractor("uc");
-source = fs.open("target/test-classes/resources/");
-birthmarks = extractor.extract(source);
+extract = function(type, from){
+    extractor = engine.extractor(type);
+    source = engine.source(from)
+    obj = {}
+    obj.time = sys.measure(function(){
+        obj.birthmarks = extractor.extract(source);
+    })
+    return obj;
+}
 
-birthmarks2 = birthmarks.filter(function(birthmark){
-    return birthmark.className().toString().startsWith("org.apache")
+result = extract("uc", "target/test-classes/resources");
+
+result.birthmarks.forEach(function(birthmark){
+    if(birthmark.className().matches(".*\\$.*")){
+        print(birthmark);
+    }
 });
 
-fs.print(birthmarks2);
+print(result.time + " ns");
 
-fs.print("extraction: " + birthmarks.time() + " ns")
-fs.print("filtering: " + birthmarks2.time() + " ns")
 
 

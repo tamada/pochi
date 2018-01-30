@@ -1,8 +1,17 @@
-parser = bmsys.parser()
-source = fs.open("target/test-classes/resources/commons-cli-1.1-uc.csv");
-birthmarks = parser.parse(source);
+parse = function(from){
+    parser = engine.parser()
+    source = engine.source(from);
+    obj = {};
+    obj.time = sys.measure(function(){
+        obj.birthmarks = parser.parse(source);
+    });
+    return obj;
+}
 
-fs.print(birthmarks);
+parseResult = parse("target/test-classes/resources/commons-cli-1.1-uc.csv")
 
-MILLI_SECONDS = com.github.pochi.runner.util.Unit.MILLI_SECONDS;
-fs.print("time: " + birthmarks.time(MILLI_SECONDS) + " ms")
+parseResult.birthmarks.forEach(function(birthmark){
+    print(birthmark);
+});
+
+print("read: " + parseResult.time + " ns")

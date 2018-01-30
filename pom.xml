@@ -1,6 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github</groupId>
@@ -12,6 +11,9 @@
     <module>nasubi</module>
     <module>kunai2</module>
     <module>pochi-runner</module>
+    <module>millstone</module>
+    <module>pochi-api</module>
+    <module>distribution</module>
   </modules>
 
   <name>pochi: extensible birhtmark toolkit</name>
@@ -231,7 +233,7 @@
               <!-- Checks for Size Violations.                    -->
               <!-- See http://checkstyle.sf.net/config_sizes.html -->
               <module name="FileLength">
-                <property name="max" value="3500" />
+                <property name="max" value="3500"/>
                 <property name="fileExtensions" value="java"/>
               </module>
  

@@ -3,12 +3,12 @@ package com.github.pochi.runner.birthmarks.comparators;
 import java.net.URI;
 import java.util.stream.Stream;
 
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.BirthmarkType;
+import com.github.pochi.birthmarks.entities.Element;
+import com.github.pochi.birthmarks.entities.Elements;
+import com.github.pochi.birthmarks.entities.Metadata;
 import com.github.pochi.kunai.entries.ClassName;
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
-import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.birthmarks.entities.Elements;
-import com.github.pochi.runner.birthmarks.entities.Metadata;
 
 public class BirthmarkBuilderHelper {
 

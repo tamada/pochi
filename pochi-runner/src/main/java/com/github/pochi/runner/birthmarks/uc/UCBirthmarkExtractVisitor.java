@@ -8,12 +8,12 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.signature.SignatureReader;
 
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.BirthmarkType;
+import com.github.pochi.birthmarks.entities.Metadata;
+import com.github.pochi.birthmarks.extractors.PochiClassVisitor;
 import com.github.pochi.kunai.entries.Entry;
-import com.github.pochi.runner.birthmarks.PochiClassVisitor;
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
-import com.github.pochi.runner.birthmarks.entities.Metadata;
-import com.github.pochi.runner.config.Configuration;
 
 /**
  *

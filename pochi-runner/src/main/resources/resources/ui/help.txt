@@ -3,11 +3,6 @@ java -jar ${project.name}-${project.version}.jar [OPTIONS] [SCRIPT [ARGV...]]
 OPTIONS:
     -e <EXPRESSION>:     one line of script.
                          -engine option is required for this option.
-    -cp <CLASSPATHS...>: specify classpaths.
-                         each classpath is separated by separator char of the OS.
-    -engine <NAME>:      specify the script engine name.
-                         default value is JavaScript.
-                         available values are: JavaScript, and Groovy.
     -config <CONFIG>:    specify the configuration file.
 
     -help:               print this message and exit.

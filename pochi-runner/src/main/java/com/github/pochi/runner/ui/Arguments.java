@@ -1,13 +1,11 @@
 package com.github.pochi.runner.ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,22 +17,15 @@ import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
-import com.github.pochi.runner.config.Classpath;
-import com.github.pochi.runner.config.Configuration;
-import com.github.pochi.runner.config.ConfigurationBuilder;
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.config.ConfigurationBuilder;
 import com.github.pochi.runner.scripts.ScriptRunner;
 import com.github.pochi.runner.scripts.ScriptRunnerBuilder;
 import com.github.pochi.runner.util.LogHelper;
 
 public class Arguments {
-    @Option(name = "-e", usage = "one line of script. -engine option is required in use of this option. ")
+    @Option(name = "-e", usage = "one line of script.")
     private String expression;
-
-    @Option(name = "-cp", usage = "specify classpaths.")
-    private String classpath;
-
-    @Option(name = "-engine", usage = "specify the script engine name. default value is JavaScript. available values are: JavaScript, Groovy.")
-    private String engineName = ScriptRunner.DEFAULT_SCRIPT_ENGINE_NAME;
 
     @Option(name = "-config", usage = "specify the configuration file.")
     private String configuration = null;
@@ -74,12 +65,7 @@ public class Arguments {
     public Configuration configuration() {
         ConfigurationBuilder initializer = new ConfigurationBuilder(configFile());
         Configuration config = initializer.configuration();
-        Optional.ofNullable(classpath).ifPresent(path -> updateClasspaths(path, config));
         return config;
-    }
-
-    private void updateClasspaths(String classpath, Configuration config) {
-        Arrays.stream(classpath.split(File.pathSeparator)).forEach(path -> config.add(new Classpath(path)));
     }
 
     private Optional<URL> configFile() {
@@ -94,7 +80,6 @@ public class Arguments {
 
     private Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("engine", engineName);
         map.put("args", args.toArray(new String[args.size()]));
         return map;
     }

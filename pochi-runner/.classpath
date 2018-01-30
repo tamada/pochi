@@ -29,16 +29,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="/kunai2"/>
 	<classpathentry kind="src" path="/nasubi"/>
-	<classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm/5.1/asm-5.1.jar" sourcepath="M2_REPO/org/ow2/asm/asm/5.1/asm-5.1-sources.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/jline/jline/3.1.2/jline-3.1.2.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/codehaus/groovy/groovy-all/2.4.7/groovy-all-2.4.7.jar"/>
-	<classpathentry kind="var" path="M2_REPO/args4j/args4j/2.33/args4j-2.33.jar"/>
-	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.8.6/jackson-core-2.8.6.jar"/>
-	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.8.6/jackson-databind-2.8.6.jar"/>
-	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.8.6/jackson-annotations-2.8.6.jar"/>
-	<classpathentry kind="var" path="M2_REPO/junit/junit/4.12/junit-4.12.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.jar"/>
+	<classpathentry kind="src" path="/pochi-api"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>

@@ -5,6 +5,7 @@
 	<projects>
 		<project>kunai2</project>
 		<project>nasubi</project>
+		<project>pochi-api</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

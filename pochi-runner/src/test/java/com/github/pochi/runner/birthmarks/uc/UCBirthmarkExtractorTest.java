@@ -11,30 +11,30 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.config.ConfigurationBuilder;
+import com.github.pochi.birthmarks.entities.Birthmark;
+import com.github.pochi.birthmarks.entities.Birthmarks;
+import com.github.pochi.birthmarks.entities.Element;
+import com.github.pochi.birthmarks.extractors.Extractor;
 import com.github.pochi.kunai.entries.ClassName;
 import com.github.pochi.kunai.source.DataSource;
 import com.github.pochi.kunai.source.factories.DefaultDataSourceFactory;
-import com.github.pochi.runner.birthmarks.BirthmarkExtractor;
-import com.github.pochi.runner.birthmarks.BirthmarkExtractors;
-import com.github.pochi.runner.birthmarks.entities.Birthmark;
-import com.github.pochi.runner.birthmarks.entities.BirthmarkType;
-import com.github.pochi.runner.birthmarks.entities.Birthmarks;
-import com.github.pochi.runner.birthmarks.entities.Element;
-import com.github.pochi.runner.config.ConfigurationBuilder;
 
 public class UCBirthmarkExtractorTest {
     public Birthmarks extract(String path) throws Exception{
         URL location = getClass().getResource(path);
-        BirthmarkExtractor extractor = new BirthmarkExtractors().service(new BirthmarkType("uc"));
+        Configuration config = new ConfigurationBuilder().configuration();
+        Extractor extractor = new UsedClassesExtractorBuilder().build(config);
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
-        return extractor.extract(source, new ConfigurationBuilder().configuration());
+        return extractor.extract(source);
     }
 
     @Test
     public void testBasic() throws Exception{
         Birthmarks birthmarks = extract("/resources/HelloWorld.class");
 
-        assertThat(birthmarks.find(new ClassName("HelloWorld")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("HelloWorld")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
@@ -53,7 +53,7 @@ public class UCBirthmarkExtractorTest {
     public void testBasic2() throws Exception{
         Birthmarks birthmarks = extract("/resources/Fibonacci.class");
 
-        assertThat(birthmarks.find(new ClassName("Fibonacci")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("Fibonacci")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
@@ -81,7 +81,7 @@ public class UCBirthmarkExtractorTest {
     public void testBasic3() throws Exception{
         Birthmarks birthmarks = extract("/resources/MazeBuilder.class");
 
-        assertThat(birthmarks.find(new ClassName("MazeBuilder")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("MazeBuilder")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
@@ -102,7 +102,7 @@ public class UCBirthmarkExtractorTest {
     public void testBasic4() throws Exception{
         Birthmarks birthmarks = extract("/resources/MyServer2.class");
 
-        assertThat(birthmarks.find(new ClassName("MyServer2")).isPresent(), is(true));
+        assertThat(birthmarks.find(new ClassName("MyServer2")).count(), is(1L));
 
         List<Birthmark> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));

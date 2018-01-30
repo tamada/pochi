@@ -4,6 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import javax.script.ScriptEngine;
@@ -15,7 +18,9 @@ import org.jline.reader.LineReaderBuilder;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
-import com.github.pochi.runner.config.Configuration;
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.config.ItemKey;
+import com.github.pochi.birthmarks.config.ItemValue;
 import com.github.pochi.runner.scripts.helper.BirthmarkSystemHelper;
 import com.github.pochi.runner.scripts.helper.IOHelper;
 import com.github.pochi.runner.scripts.helper.SystemInfoHelper;
@@ -25,23 +30,40 @@ public class ScriptRunner {
     public static final String DEFAULT_SCRIPT_ENGINE_NAME = "JavaScript";
 
     private ScriptEngine engine;
-    private Configuration configuration;
 
     public ScriptRunner(ScriptEngine engine, Configuration configuration){
         this.engine = engine;
-        this.configuration = configuration;
-        registerVariables();
+        registerVariables(configuration);
+        initialize(getClass().getResource("/js/initializer.js"));
+        initializeUserScript(configuration.property(ItemKey.of("initialize.script")));
     }
 
-    private void registerVariables(){
+    private void registerVariables(Configuration configuration){
         engine.put("config", configuration);
-        registerHelpers(configuration);
+        engine.put("fs",     new IOHelper());
+        engine.put("sys",    new SystemInfoHelper());
+        engine.put("bmsys",  new BirthmarkSystemHelper());
     }
 
-    private void registerHelpers(Configuration configuration){
-        engine.put("fs", new IOHelper());
-        engine.put("sys", new SystemInfoHelper());
-        engine.put("bmsys", new BirthmarkSystemHelper(configuration));
+    private void initialize(URL location) {
+        try {
+            engine.eval("load('" + location + "')");
+        } catch (ScriptException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initializeUserScript(Optional<ItemValue> value) {
+        value.map(ItemValue::toString)
+        .flatMap(this::toUrl).ifPresent(v -> initialize(v));
+    }
+
+    private Optional<URL> toUrl(String value) {
+        try {
+            return Optional.of(Paths.get(value).toUri().toURL());
+        } catch (MalformedURLException e) {
+            return Optional.empty();
+        }
     }
 
     public void perform(Reader in) throws IOException{
@@ -54,7 +76,7 @@ public class ScriptRunner {
 
     public void oneLiner(String script) throws ScriptException{
         PrintWriter out = new PrintWriter(System.out);
-        Optional<Object> object = Optional.of(engine.eval(script));
+        Optional<Object> object = Optional.ofNullable(engine.eval(script));
         object.ifPresent(out::println);
     }
 
@@ -75,7 +97,7 @@ public class ScriptRunner {
             runInteractiveMode(buildLineReader(buildTerminal()));
         }
         catch(EndOfFileException e){
-            LogHelper.warn(this, e);
+            // ignore exception, because it is finish of this application.
         }
     }
 
@@ -99,15 +121,19 @@ public class ScriptRunner {
 
         String line;
         while((line = reader.readLine("pochi> ")) != null){
-            try{
-                Object object = engine.eval(line);
-                out.println(object);
-            } catch(EndOfFileException e){
-                throw e;
-            } catch(Exception e){
-                out.printf("%s: %s%n", e.getClass().getName(), e.getMessage());
-            }
-            out.flush();
+            interactEachLine(line, out);
         }
+    }
+
+    private void interactEachLine(String line, PrintWriter out) {
+        try{
+            Optional<Object> object = Optional.ofNullable(engine.eval(line));
+            object.ifPresent(out::println);
+        } catch(EndOfFileException e){
+            throw e;
+        } catch(Exception e){
+            out.printf("%s: %s%n", e.getClass().getName(), e.getMessage());
+        }
+        out.flush();
     }
 }

@@ -1,19 +1,34 @@
-extractor = bmsys.extractor("uc");
-source = fs.open("target/test-classes/resources/");
-birthmarks = extractor.extract(source);
+extract = function(type, from){
+    extractor = engine.extractor(type);
+    source = engine.source(from)
+    obj = {}
+    obj.time = sys.measure(function(){
+        obj.birthmarks = extractor.extract(source);
+    })
+    return obj;
+}
 
-pair2 = bmsys.pairMaker("RoundRobinWithSamePair")
-comparator = bmsys.comparator("JaccardIndex")
-comparisons = comparator.compare(birthmarks, pair2);
+compare = function(pair, compare, birthmarks){
+    pair = engine.pairMatcher("RoundRobinWithSamePair")
+    comparator = engine.comparator("JaccardIndex")
+    obj = {};
+    obj.time = sys.measure(function(){
+        obj.comparisons = comparator.compare(birthmarks, pair);
+    });
+    return obj;
+}
+
+extractResult = extract("uc", "target/test-classes/resources/");
+compareResult = compare("RoundRobinWithSamePair", "JaccardIndex", extractResult.birthmarks);
 
 threshold = bmsys.threshold(0.25);
-comparisons2 = comparisons.filter(function(comparison){
-    return comparison.isInconclusive(threshold)
+obj.comparisons.forEach(function(comparison){
+    if(comparison.isInconclusive(threshold)){
+        print(comparison);
+    }
 });
-fs.print(comparisons2);
 
-fs.print("extraction: " + birthmarks.time() + " ns")
-fs.print("comparison: " + comparisons.time() + " ns")
-fs.print("filter: " + comparisons2.time() + " ns")
+fs.print("extraction: " + extractResult.time + " ns")
+fs.print("comparison: " + compareResult.time + " ns")
 
 
