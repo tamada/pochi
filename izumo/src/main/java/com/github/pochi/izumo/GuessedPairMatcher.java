@@ -1,6 +1,5 @@
 package com.github.pochi.izumo;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -13,10 +12,6 @@ public class GuessedPairMatcher<T> extends AbstractPairMatcher<T> {
     public static final PairMatcherType TYPE = new PairMatcherType("Guessed");
 
     private CorrespondenceChecker<T> checker;
-
-    public GuessedPairMatcher(PairMatcherType type, Configuration config) {
-        this(type, config, (item1, item2) -> Objects.equals(item1, item2));
-    }
 
     public GuessedPairMatcher(PairMatcherType type, Configuration config, CorrespondenceChecker<T> checker) {
         super(type, config);
