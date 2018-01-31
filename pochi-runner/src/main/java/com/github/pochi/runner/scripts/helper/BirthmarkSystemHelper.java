@@ -8,6 +8,7 @@ import com.github.pochi.birthmarks.comparators.Comparator;
 import com.github.pochi.birthmarks.comparators.ComparatorType;
 import com.github.pochi.birthmarks.comparators.Threshold;
 import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.entities.Birthmark;
 import com.github.pochi.birthmarks.entities.BirthmarkType;
 import com.github.pochi.birthmarks.extractors.Extractor;
 import com.github.pochi.birthmarks.pairs.PairMatcher;
@@ -39,13 +40,13 @@ public class BirthmarkSystemHelper {
         return new Threshold(threshold);
     }
 
-    public PairMatcher pairMatcher(String maker, Configuration config){
+    public PairMatcher<Birthmark> pairMatcher(String maker, Configuration config){
         return pairMatchers.builder(new PairMatcherType(maker))
                 .build(config);
     }
 
     public String pairMatchers(){
-        return pairMatchers.availableServices()
+        return pairMatchers.availableTypes()
                 .map(PairMatcherType::toString)
                 .collect(Collectors.joining(","));
     }

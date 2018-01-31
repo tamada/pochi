@@ -3,12 +3,13 @@ package com.github.pochi.runner.birthmarks.pairs;
 import java.util.stream.Stream;
 
 import com.github.pochi.birthmarks.Tasks;
+import com.github.pochi.birthmarks.entities.Birthmark;
 import com.github.pochi.birthmarks.pairs.PairMatcher;
 import com.github.pochi.birthmarks.pairs.PairMatcherType;
 
 public class PairMatchers extends Tasks<PairMatcherType>{
 
-    public PairMatchers(Stream<PairMatcher> stream){
+    public PairMatchers(Stream<PairMatcher<Birthmark>> stream){
         super(stream);
     }
 
