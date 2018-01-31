@@ -18,7 +18,7 @@
   <dependencies>
     <dependency>
       <groupId>com.github.pochi</groupId>
-      <artifactId>pochi-runner</artifactId>
+      <artifactId>pochi-api</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>

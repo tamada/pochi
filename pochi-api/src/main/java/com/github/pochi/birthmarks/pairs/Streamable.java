@@ -1,4 +1,4 @@
-package com.github.pochi.izumo;
+package com.github.pochi.birthmarks.pairs;
 
 import java.util.Collection;
 import java.util.stream.Stream;

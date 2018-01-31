@@ -1,8 +1,10 @@
 package com.github.pochi.izumo.builders;
 
+import java.util.Objects;
+
 import com.github.pochi.birthmarks.config.Configuration;
-import com.github.pochi.izumo.PairMatcher;
-import com.github.pochi.izumo.PairMatcherType;
+import com.github.pochi.birthmarks.pairs.PairMatcher;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
 import com.github.pochi.izumo.RoundRobinPairMatcher;
 
 public class RoundRobinPairMatcherBuilder<T> extends AbstractPairMatcherBuilder<T>{
@@ -16,14 +18,14 @@ public class RoundRobinPairMatcherBuilder<T> extends AbstractPairMatcherBuilder<
 
     @Override
     public PairMatcher<T> build(Configuration config) {
-        if(type().is("RoundRobin"))
+        if(Objects.equals(type(), RoundRobinPairMatcher.TYPE))
             return new RoundRobinPairMatcher<>(type(), false, config);
         return new RoundRobinPairMatcher<>(type(), true, config);
     }
 
     private static PairMatcherType createType(boolean withSamePair) {
         if(withSamePair)
-            return new PairMatcherType("RoundRobinWithSamePair");
-        return new PairMatcherType("RoundRobin");
+            return RoundRobinPairMatcher.SAME_PAIR_TYPE;
+        return RoundRobinPairMatcher.TYPE;
     }
 }

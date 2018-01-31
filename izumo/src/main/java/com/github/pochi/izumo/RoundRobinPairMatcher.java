@@ -3,8 +3,14 @@ package com.github.pochi.izumo;
 import java.util.stream.Stream;
 
 import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.pairs.Pair;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
+import com.github.pochi.birthmarks.pairs.Streamable;
 
 public class RoundRobinPairMatcher<T> extends AbstractPairMatcher<T> {
+    public static final PairMatcherType TYPE = new PairMatcherType("RoundRobin");
+    public static final PairMatcherType SAME_PAIR_TYPE = new PairMatcherType("RoundRobinWithSamePair");
+
     private boolean includeSamePair = false;
 
     public RoundRobinPairMatcher(PairMatcherType type, boolean includeSamePair,

@@ -1,8 +1,9 @@
 package com.github.pochi.izumo.builders;
 
 import com.github.pochi.birthmarks.config.Configuration;
-import com.github.pochi.izumo.PairMatcher;
-import com.github.pochi.izumo.PairMatcherType;
+import com.github.pochi.birthmarks.pairs.PairMatcher;
+import com.github.pochi.birthmarks.pairs.PairMatcherBuilder;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
 
 public abstract class AbstractPairMatcherBuilder<T> implements PairMatcherBuilder<T> {
     private PairMatcherType type;

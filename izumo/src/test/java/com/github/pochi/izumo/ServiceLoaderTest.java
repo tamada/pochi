@@ -10,7 +10,8 @@ import java.util.stream.StreamSupport;
 
 import org.junit.Test;
 
-import com.github.pochi.izumo.builders.PairMatcherBuilder;
+import com.github.pochi.birthmarks.pairs.PairMatcherBuilder;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
 
 public class ServiceLoaderTest {
     @SuppressWarnings("rawtypes")

@@ -5,8 +5,13 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.pairs.Pair;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
+import com.github.pochi.birthmarks.pairs.Streamable;
 
 public class GuessedPairMatcher<T> extends AbstractPairMatcher<T> {
+    public static final PairMatcherType TYPE = new PairMatcherType("Guessed");
+
     private CorrespondenceChecker<T> checker;
 
     public GuessedPairMatcher(PairMatcherType type, Configuration config) {

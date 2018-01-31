@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.birthmarks.pairs.Pair;
+import com.github.pochi.birthmarks.pairs.PairMatcher;
+import com.github.pochi.birthmarks.pairs.PairMatcherType;
+import com.github.pochi.birthmarks.pairs.Streamable;
 import com.github.pochi.izumo.builders.GuessedPairMatcherBuilder;
 
 public class GuessedPairMatcherTest {

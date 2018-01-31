@@ -21,13 +21,13 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     }
 
     @Override
-    public Comparisons compare(Birthmarks results, PairMatcher maker){
+    public Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker){
         return new Comparisons(compareWith(results, maker));
     }
 
     protected abstract Similarity calculate(Birthmark left, Birthmark right);
 
-    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMatcher maker){
+    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMatcher<Birthmark> maker){
         return maker.match(extractedBirthmarks)
                 .map(pair -> compare(pair));
     }

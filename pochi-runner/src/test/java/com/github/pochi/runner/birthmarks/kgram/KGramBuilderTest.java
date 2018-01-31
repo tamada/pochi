@@ -1,7 +1,7 @@
 package com.github.pochi.runner.birthmarks.kgram;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import java.util.stream.Collectors;

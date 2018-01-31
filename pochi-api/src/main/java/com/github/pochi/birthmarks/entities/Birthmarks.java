@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.github.pochi.birthmarks.pairs.Streamable;
 import com.github.pochi.kunai.entries.ClassName;
 
-public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark> {
+public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark>, Streamable<Birthmark> {
     private List<Birthmark> list;
 
     public Birthmarks(Stream<Birthmark> stream) {
