@@ -20,8 +20,9 @@ public class ServiceLoaderTest {
         List<PairMatcherBuilder> list = StreamSupport.stream(loader.spliterator(), false)
                 .collect(Collectors.toList());
 
-        assertThat(list.size(), is(2));
+        assertThat(list.size(), is(3));
         assertThat(list.get(0).type(), is(new PairMatcherType("RoundRobin")));
         assertThat(list.get(1).type(), is(new PairMatcherType("RoundRobinWithSamePair")));
+        assertThat(list.get(2).type(), is(new PairMatcherType("Guessed")));
     }
 }
