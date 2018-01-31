@@ -1,7 +1,7 @@
 package com.github.pochi.izumo;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import java.util.ServiceLoader;
@@ -10,12 +10,14 @@ import java.util.stream.StreamSupport;
 
 import org.junit.Test;
 
+import com.github.pochi.izumo.builders.PairMatcherBuilder;
+
 public class ServiceLoaderTest {
-    @Test
     @SuppressWarnings("rawtypes")
+    @Test
     public void testBasic() {
-        ServiceLoader<PairMatcher> loader = ServiceLoader.load(PairMatcher.class);
-        List<PairMatcher> list = StreamSupport.stream(loader.spliterator(), false)
+        ServiceLoader<PairMatcherBuilder> loader = ServiceLoader.load(PairMatcherBuilder.class);
+        List<PairMatcherBuilder> list = StreamSupport.stream(loader.spliterator(), false)
                 .collect(Collectors.toList());
 
         assertThat(list.size(), is(2));

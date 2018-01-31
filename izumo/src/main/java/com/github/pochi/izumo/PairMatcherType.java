@@ -12,6 +12,10 @@ public class PairMatcherType implements Serializable {
         this.name = name;
     }
 
+    public boolean is(String typeName) {
+        return Objects.equals(typeName, name);
+    }
+
     public boolean equals(Object other) {
         return other instanceof PairMatcherType
                 && Objects.equals(name, ((PairMatcherType)other).name);

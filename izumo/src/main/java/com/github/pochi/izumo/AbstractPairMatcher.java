@@ -1,14 +1,10 @@
 package com.github.pochi.izumo;
 
-public abstract class AbstractPairMatcher<T> implements PairMatcher<T> {
-    private PairMatcherType type;
+import com.github.pochi.birthmarks.AbstractTask;
+import com.github.pochi.birthmarks.config.Configuration;
 
-    public AbstractPairMatcher(PairMatcherType type) {
-        this.type = type;
-    }
-
-    @Override
-    public PairMatcherType type() {
-        return type;
+public abstract class AbstractPairMatcher<T> extends AbstractTask<PairMatcherType> implements PairMatcher<T>{
+    public AbstractPairMatcher(PairMatcherType type, Configuration config) {
+        super(type, config);
     }
 }

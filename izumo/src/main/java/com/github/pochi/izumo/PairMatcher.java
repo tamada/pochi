@@ -2,9 +2,9 @@ package com.github.pochi.izumo;
 
 import java.util.stream.Stream;
 
-import com.github.pochi.runner.birthmarks.Service;
+import com.github.pochi.birthmarks.Task;
 
-public interface PairMatcher<T> extends Service<PairMatcherType> {
+public interface PairMatcher<T> extends Task<PairMatcherType> {
     @Override
     PairMatcherType type();
 

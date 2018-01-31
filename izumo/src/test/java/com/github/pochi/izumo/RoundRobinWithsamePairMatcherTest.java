@@ -9,8 +9,12 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
+import com.github.pochi.birthmarks.config.Configuration;
+import com.github.pochi.izumo.builders.RoundRobinWithSamePairMatcherBuilder;
+
 public class RoundRobinWithsamePairMatcherTest {
-    private PairMatcher<String> matcher = new RoundRobinWithSamePairMatcher<>();
+    private PairMatcher<String> matcher = new RoundRobinWithSamePairMatcherBuilder<String>()
+            .build(new Configuration());
 
     @Test
     public void testMatcheOneList() {

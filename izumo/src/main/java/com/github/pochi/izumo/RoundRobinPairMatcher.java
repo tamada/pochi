@@ -2,11 +2,14 @@ package com.github.pochi.izumo;
 
 import java.util.stream.Stream;
 
-class RoundRobinPairMatcher<T> extends AbstractPairMatcher<T> {
+import com.github.pochi.birthmarks.config.Configuration;
+
+public class RoundRobinPairMatcher<T> extends AbstractPairMatcher<T> {
     private boolean includeSamePair = false;
 
-    RoundRobinPairMatcher(PairMatcherType type, boolean includeSamePair) {
-        super(type);
+    public RoundRobinPairMatcher(PairMatcherType type, boolean includeSamePair,
+            Configuration config) {
+        super(type, config);
         this.includeSamePair = includeSamePair;
     }
 
