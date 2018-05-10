@@ -3,6 +3,7 @@ package com.github.pochi.birthmarks.extractors;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import org.objectweb.asm.ClassReader;
@@ -24,18 +25,19 @@ public abstract class AbstractExtractor extends AbstractTask<BirthmarkType> impl
     }
 
     @Override
-    public final Optional<Birthmark> extractEach(Entry entry) {
+    public final Optional<Birthmark> extractEach(Entry entry, Consumer<Entry> action) {
         try {
-            return Optional.of(extractImpl(entry));
+            return Optional.of(extractImpl(entry, action));
         } catch (IOException e) {
         }
         failedSources.add(Metadata.build(entry));
         return Optional.empty();
     }
 
-    private Birthmark extractImpl(Entry entry) throws IOException {
+    private Birthmark extractImpl(Entry entry, Consumer<Entry> action) throws IOException {
         try (InputStream in = entry.openStream()) {
             PochiClassVisitor visitor = visitor(new ClassWriter(0));
+            action.accept(entry);
             return accept(in, entry, visitor);
         }
     }

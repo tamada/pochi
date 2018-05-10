@@ -1,6 +1,7 @@
 package com.github.pochi.birthmarks.extractors;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import org.objectweb.asm.ClassVisitor;
@@ -18,19 +19,26 @@ public interface Extractor extends Task<BirthmarkType>{
     BirthmarkType type();
 
     default Stream<Birthmark> extractForStream(DataSource source){
+        return extractForStream(source, entry -> {});
+    }
+    default Stream<Birthmark> extractForStream(DataSource source, Consumer<Entry> action){
         Stream<Optional<Birthmark>> stream = source.stream()
                 .filter(entry -> entry.endsWith(".class"))
-                .map(entry -> extractEach(entry));
+                .map(entry -> extractEach(entry, action));
         return filter(stream);
     }
 
     default Birthmarks extract(DataSource source){
-        return new Birthmarks(extractForStream(source));
+        return extract(source, entry -> {});
+    }
+
+    default Birthmarks extract(DataSource source, Consumer<Entry> action){
+        return new Birthmarks(extractForStream(source, action));
     }
 
     PochiClassVisitor visitor(ClassVisitor visitor);
 
-    Optional<Birthmark> extractEach(Entry entry);
+    Optional<Birthmark> extractEach(Entry entry, Consumer<Entry> action);
 
     Stream<Metadata> failedSources();
 }

@@ -1,5 +1,6 @@
 package com.github.pochi.birthmarks.comparators;
 
+import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 import com.github.pochi.birthmarks.AbstractTask;
@@ -21,14 +22,14 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     }
 
     @Override
-    public Comparisons compare(Birthmarks results, PairMatcher maker){
-        return new Comparisons(compareWith(results, maker));
+    public Comparisons compare(Birthmarks results, PairMatcher maker, BiConsumer<Birthmark, Birthmark> action){
+        return new Comparisons(compareWith(results, maker, action));
     }
 
     protected abstract Similarity calculate(Birthmark left, Birthmark right);
 
-    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMatcher maker){
+    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMatcher maker, BiConsumer<Birthmark, Birthmark> action){
         return maker.match(extractedBirthmarks)
-                .map(pair -> compare(pair));
+                .map(pair -> compare(pair, action));
     }
 }
