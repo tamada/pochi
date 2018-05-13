@@ -38,7 +38,7 @@ public class ScriptRunnerBuilder {
 
     public ScriptRunner build(Map<String, Object> properties){
         ScriptEngine engine = buildImpl(properties);
-        
+
         return new ScriptRunner(engine, configuration);
     }
 
