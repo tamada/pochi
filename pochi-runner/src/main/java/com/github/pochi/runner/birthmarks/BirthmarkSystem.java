@@ -16,7 +16,7 @@ public class BirthmarkSystem {
     }
 
     public BirthmarkType[] availableExtractors(){
-        return extractors.availableServices()
+        return extractors.availableTypes()
                 .toArray(BirthmarkType[]::new);
     }
 
@@ -25,7 +25,7 @@ public class BirthmarkSystem {
     }
 
     public ComparatorType[] availableComparators(){
-        return comparators.availableServices()
+        return comparators.availableTypes()
                 .toArray(ComparatorType[]::new);
     }
 }

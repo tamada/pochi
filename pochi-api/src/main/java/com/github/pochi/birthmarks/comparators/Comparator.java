@@ -10,7 +10,7 @@ public interface Comparator extends Task<ComparatorType> {
     @Override
     ComparatorType type();
 
-    Comparisons compare(Birthmarks results, PairMatcher maker);
+    Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker);
 
     default Comparison compare(Pair<Birthmark> pair) {
         Similarity similarity = similarity(pair);
