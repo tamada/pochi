@@ -27,8 +27,8 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
 
     protected abstract Similarity calculate(Birthmark left, Birthmark right);
 
-    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMatcher maker){
-        return maker.match(extractedBirthmarks)
+    private Stream<Comparison> compareWith(Birthmarks extractedBirthmarks, PairMatcher matcher){
+        return matcher.match(extractedBirthmarks)
                 .map(pair -> compare(pair));
     }
 }
