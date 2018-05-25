@@ -14,7 +14,7 @@ description = "The birthmarking platform."
     footer = "&copy; Haruaki Tamada 2016--2017. <a href=\"http://tamada.github.com/\"><img src=\"/pochi/images/github.svg\" width=\"24\" /></a>  <a href=\"https://twitter.com/tama5\"><img src=\"/pochi/images/twitter.svg\" width=\"24\"></a>"
 
 [params.banner]
-    src = "/images/banner.png"
+    src = "/images/banner.svg"
     alt = "Pochi banner"
 
 [params.text]
