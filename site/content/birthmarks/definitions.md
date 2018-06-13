@@ -2,6 +2,7 @@
 title: "Definitions（諸定義）"
 date: 2017-08-29T13:00:00+09:00
 draft: false
+weight: 100
 slug: definitions
 categories: [ "Birthmarks", "Document" ]
 ---
@@ -31,6 +32,8 @@ Two properties known as resilience and credibility should also ideally be satisf
 Resilience property indicates a resistance of birthmark to various types of attacks.
 Credibility property indicates that programs created completely independently can be differentiated even if their specifications are the same.
 Because birthmarks that completely satisfy both these properties are difficult to create, in practice, birthmark strength must be set appropriately at the discretion of the user.
+
+
 
 ## Types of Birthmarks
 
