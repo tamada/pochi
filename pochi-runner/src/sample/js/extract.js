@@ -12,7 +12,7 @@ extract = function(type, from){
     return obj;
 }
 
-result = extract("uc", "target/test-classes/resources");
+result = extract("uc", argv[1]);
 
 result.birthmarks.forEach(function(birthmark){
     print(birthmark);

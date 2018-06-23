@@ -8,9 +8,9 @@ extract = function(type, from){
     return obj;
 }
 
-compare = function(pair, compare, birthmarks){
-    pair = engine.pairMatcher("RoundRobinWithSamePair")
-    comparator = engine.comparator("JaccardIndex")
+compare = function(pairingAlgorithm, comparingAlgorithm, birthmarks){
+    pair = engine.pairMatcher(pairingAlgorithm)
+    comparator = engine.comparator(comparingAlgorithm)
     obj = {};
     obj.time = sys.measure(function(){
         obj.comparisons = comparator.compare(birthmarks, pair);
@@ -18,7 +18,7 @@ compare = function(pair, compare, birthmarks){
     return obj;
 }
 
-extractResult = extract("2-gram", "target/test-classes/resources/");
+extractResult = extract("2-gram", argv[1]);
 compareResult = compare("RoundRobinWithSamePair", "JaccardIndex", extractResult.birthmarks);
 
 compareResult.comparisons.forEach(function(comparison){
