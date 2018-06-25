@@ -8,6 +8,7 @@ import com.github.pochi.birthmarks.AbstractTask;
 import com.github.pochi.birthmarks.config.Configuration;
 import com.github.pochi.birthmarks.entities.Birthmark;
 import com.github.pochi.birthmarks.entities.Birthmarks;
+import com.github.pochi.birthmarks.entities.Progress;
 import com.github.pochi.birthmarks.pairs.Pair;
 import com.github.pochi.birthmarks.pairs.PairMatcher;
 
@@ -29,22 +30,23 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     @Override
     public Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker,
             BiConsumer<Pair<Birthmark>, Exception> callback){
-        return new Comparisons(buildStream(maker.match(results), callback));
+        return new Comparisons(buildStream(maker.match(results),
+                new Progress(maker.count(results)), callback));
     }
 
     @Override
     public Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker,
             BiConsumer<Pair<Birthmark>, Exception> callback){
-        return new Comparisons(buildStream(maker.match(left, right), callback));
+        return new Comparisons(buildStream(maker.match(left, right),
+                new Progress(maker.count(left, right)),
+                callback));
     }
 
     protected abstract Similarity calculate(Birthmark left, Birthmark right);
 
     private Stream<Comparison> buildStream(Stream<Pair<Birthmark>> pairs,
-            BiConsumer<Pair<Birthmark>, Exception> callback){
-        return pairs.map(pair -> compare(pair, callback))
-                .filter(optional -> optional.isPresent())
-                .map(optional -> optional.get());
-        
+            Progress progress, BiConsumer<Pair<Birthmark>, Exception> callback){
+        return filter(pairs.peek(item -> progress.update())
+                .map(pair -> compare(pair, callback)));
     }
 }

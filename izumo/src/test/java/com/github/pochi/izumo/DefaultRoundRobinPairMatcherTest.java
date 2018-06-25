@@ -29,6 +29,7 @@ public class DefaultRoundRobinPairMatcherTest {
 
         assertThat(matcher.type(), is(new PairMatcherType("RoundRobin")));
 
+        assertThat(matcher.count(Streamable.wrap(source)), is(15L));
         assertThat(list.size(), is(15));
         assertThat(list.get( 0), is(new Pair<>("a", "b")));
         assertThat(list.get( 1), is(new Pair<>("a", "c")));
@@ -54,6 +55,10 @@ public class DefaultRoundRobinPairMatcherTest {
 
         List<Pair<String>> list = matcher.match(Streamable.wrap(source1), Streamable.wrap(source2))
                 .collect(Collectors.toList());
+
+        assertThat(matcher.count(Streamable.wrap(source1)), is(1L));
+        assertThat(matcher.count(Streamable.wrap(source2)), is(3L));
+        assertThat(matcher.count(Streamable.wrap(source1), Streamable.wrap(source2)), is(6L));
 
         assertThat(list.size(), is(6));
         assertThat(list.get( 0), is(new Pair<>("a", "1")));

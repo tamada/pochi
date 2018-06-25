@@ -25,6 +25,16 @@ public class RoundRobinPairMatcher<T> extends AbstractPairMatcher<T> {
         return 1;
     }
 
+    public long count(Streamable<T> target1, Streamable<T> target2) {
+        return target1.count() * target2.count();
+    }
+
+    public long count(Streamable<T> target) {
+        long size = target.count();
+        size = includeSamePair? size: size - 1;
+        return (size + 1) * size / 2;
+    }
+
     @Override
     public Stream<Pair<T>> match(Streamable<T> target) {
         Index index = new Index(firstIndex());

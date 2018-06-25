@@ -23,7 +23,7 @@ public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark>, St
         return list.stream();
     }
 
-    public int count() {
+    public long count() {
         return list.size();
     }
 

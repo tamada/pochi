@@ -13,6 +13,12 @@ public interface Comparator extends Task<ComparatorType> {
     @Override
     ComparatorType type();
 
+    Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker, BiConsumer<Pair<Birthmark>, Exception> callback);
+
+    Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker, BiConsumer<Pair<Birthmark>, Exception> callback);
+
+    Optional<Similarity> similarity(Pair<Birthmark> pair, BiConsumer<Pair<Birthmark>, Exception> callback);
+
     default Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker) {
         return compare(results, maker, (pair, exception) -> {});
     }
@@ -20,10 +26,6 @@ public interface Comparator extends Task<ComparatorType> {
     default Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker) {
         return compare(left, right, maker, (pair, exception) -> {});
     }
-
-    Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker, BiConsumer<Pair<Birthmark>, Exception> callback);
-
-    Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker, BiConsumer<Pair<Birthmark>, Exception> callback);
 
     default Optional<Comparison> compare(Pair<Birthmark> pair, BiConsumer<Pair<Birthmark>, Exception> callback) {
         Optional<Similarity> similarity = similarity(pair, callback);
@@ -37,6 +39,4 @@ public interface Comparator extends Task<ComparatorType> {
     default Optional<Comparison> compare(Birthmark left, Birthmark right, BiConsumer<Pair<Birthmark>, Exception> callback) {
         return compare(new Pair<>(left, right), callback);
     }
-
-    Optional<Similarity> similarity(Pair<Birthmark> pair, BiConsumer<Pair<Birthmark>, Exception> callback);
 }

@@ -9,4 +9,8 @@ public interface Streamable<T> {
     public static <T> Streamable<T> wrap(Collection<T> collection) {
         return () -> collection.stream();
     }
+
+    default long count() {
+        return stream().count();
+    }
 }
