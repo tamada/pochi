@@ -45,7 +45,7 @@ public class JarFileDataSink extends AbstractDataSink {
 
     private Path createPath(Entry entry){
         if(entry.isClass())
-            return system.getPath(entry.className().toString().replace('.', '/') + ".class");
+            return system.getPath(toJVMClassName(entry) + ".class");
         return system.getPath(entry.path().toString());
     }
 }

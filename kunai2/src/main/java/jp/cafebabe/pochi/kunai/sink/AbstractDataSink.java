@@ -2,11 +2,22 @@ package jp.cafebabe.pochi.kunai.sink;
 
 import java.io.IOException;
 
-public abstract class AbstractDataSink implements DataSink {
-    public AbstractDataSink() {
-    }
+import jp.cafebabe.pochi.kunai.entries.Entry;
 
+public abstract class AbstractDataSink implements DataSink {
     @Override
     public void close() throws IOException {
+    }
+
+    String toJVMClassName(Entry entry){
+        if(!entry.isClass())
+            throw new IllegalArgumentException();
+        return convertToJVMClassName(entry);
+    }
+
+    private String convertToJVMClassName(Entry entry){
+        return entry.className()
+            .toString()
+            .replace('.', '/');
     }
 }

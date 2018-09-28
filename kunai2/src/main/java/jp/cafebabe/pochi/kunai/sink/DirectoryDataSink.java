@@ -33,7 +33,7 @@ public class DirectoryDataSink extends ClassFileDataSink {
 
     private Path createPath(Entry entry){
         if(entry.isClass())
-            return Paths.get(entry.className().toString().replace('.', '/') + ".class");
+            return Paths.get(toJVMClassName(entry) + ".class");
         return Paths.get(entry.path().toString());
     }
 }

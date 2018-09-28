@@ -12,12 +12,12 @@ public abstract class AbstractTask<T> implements Task<T>{
     }
 
     @Override
-    public T type(){
+    public final T type(){
         return type;
     }
 
     @Override
-    public Configuration configuration() {
+    public final Configuration configuration() {
         return config;
     }
 }
