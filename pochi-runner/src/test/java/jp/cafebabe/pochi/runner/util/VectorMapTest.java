@@ -67,11 +67,11 @@ public class VectorMapTest {
     public void testRemoveVector(){
         map.remove("odd");
         assertThat(map.get("odd"), is(nullValue()));
-        assertThat(map.get("primes"),
-                is(contains(new Integer(2), new Integer(3), new Integer(5), new Integer(7))));
+        assertThat(map.get("primes"), is(contains(Integer.valueOf(2), Integer.valueOf(3), 
+                                                  Integer.valueOf(5), Integer.valueOf(7))));
 
-        assertThat(map.get("even"),
-                is(contains(new Integer(2), new Integer(4), new Integer(6), new Integer(8))));
+        assertThat(map.get("even"), is(contains(Integer.valueOf(2), Integer.valueOf(4), 
+                                                Integer.valueOf(6), Integer.valueOf(8))));
     }
 
     @Test
@@ -80,11 +80,15 @@ public class VectorMapTest {
         List<VectorMap.Entry<String, List<Integer>>> list = stream.collect(Collectors.toList());
         assertThat(list.size(), is(3));
         assertThat(list.get(0).key(), is("primes"));
-        assertThat(list.get(0).value(), is(contains(new Integer(2), new Integer(3), new Integer(5), new Integer(7))));
+        assertThat(list.get(0).value(), is(contains(Integer.valueOf(2), Integer.valueOf(3),
+                                                    Integer.valueOf(5), Integer.valueOf(7))));
         assertThat(list.get(1).key(), is("even"));
-        assertThat(list.get(1).value(), is(contains(new Integer(2), new Integer(4), new Integer(6), new Integer(8))));
+        assertThat(list.get(1).value(), is(contains(Integer.valueOf(2), Integer.valueOf(4),
+                                                    Integer.valueOf(6), Integer.valueOf(8))));
         assertThat(list.get(2).key(), is("odd"));
-        assertThat(list.get(2).value(), is(contains(new Integer(1), new Integer(3), new Integer(5), new Integer(7), new Integer(9))));
+        assertThat(list.get(2).value(), is(contains(Integer.valueOf(1), Integer.valueOf(3),
+                                                    Integer.valueOf(5), Integer.valueOf(7),
+                                                    Integer.valueOf(9))));
     }
 
     @Test
@@ -126,25 +130,27 @@ public class VectorMapTest {
     public void testRemoveElement(){
         map.remove("primes", 1);
 
-        assertThat(map.get("primes"),
-                is(contains(new Integer(2), new Integer(5), new Integer(7))));
+        assertThat(map.get("primes"), is(contains(Integer.valueOf(2), Integer.valueOf(5),
+                                                  Integer.valueOf(7))));
 
-        assertThat(map.get("even"),
-                is(contains(new Integer(2), new Integer(4), new Integer(6), new Integer(8))));
+        assertThat(map.get("even"), is(contains(Integer.valueOf(2), Integer.valueOf(4),
+                                                Integer.valueOf(6), Integer.valueOf(8))));
 
-        assertThat(map.get("odd"),
-                is(contains(new Integer(1), new Integer(3), new Integer(5), new Integer(7), new Integer(9))));
+        assertThat(map.get("odd"), is(contains(Integer.valueOf(1), Integer.valueOf(3),
+                                               Integer.valueOf(5), Integer.valueOf(7),
+                                               Integer.valueOf(9))));
     }
 
     @Test
     public void testEachElement(){
-        assertThat(map.get("primes"),
-                is(contains(new Integer(2), new Integer(3), new Integer(5), new Integer(7))));
+        assertThat(map.get("primes"), is(contains(Integer.valueOf(2), Integer.valueOf(3), 
+                                                  Integer.valueOf(5), Integer.valueOf(7))));
 
-        assertThat(map.get("even"),
-                is(contains(new Integer(2), new Integer(4), new Integer(6), new Integer(8))));
+        assertThat(map.get("even"), is(contains(Integer.valueOf(2), Integer.valueOf(4), 
+                                                Integer.valueOf(6), Integer.valueOf(8))));
 
-        assertThat(map.get("odd"),
-                is(contains(new Integer(1), new Integer(3), new Integer(5), new Integer(7), new Integer(9))));
+        assertThat(map.get("odd"), is(contains(Integer.valueOf(1), Integer.valueOf(3), 
+                                               Integer.valueOf(5), Integer.valueOf(7), 
+                                               Integer.valueOf(9))));
     }
 }

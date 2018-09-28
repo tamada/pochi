@@ -21,7 +21,7 @@ public class ServiceLoader<T> {
     }
 
     public Stream<T> instantiate(){
-        return stream().map(clazz -> map(clazz, c -> c.newInstance()))
+        return stream().map(clazz -> map(clazz, c -> instantiate(c)))
                 .filter(Optional::isPresent)
                 .map(Optional::get);
     }
@@ -41,5 +41,10 @@ public class ServiceLoader<T> {
     private Optional<Class<T>> toClass(String className){
         return Exceptions.map(className, 
                 item -> (Class<T>)Class.forName(item));
+    }
+
+    private T instantiate(Class<T> clazz) throws Exception{
+        return clazz.getDeclaredConstructor()
+            .newInstance();
     }
 }

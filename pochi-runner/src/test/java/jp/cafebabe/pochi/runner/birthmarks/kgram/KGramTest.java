@@ -16,7 +16,7 @@ public class KGramTest {
     @Before
     public void buildKGram(){
         integerKgram = new KGram<>(IntStream.of(1, 2, 3)
-                .mapToObj(Integer::new)
+                .mapToObj(Integer::valueOf)
                 .toArray(Integer[]::new));
         stringKgram = new KGram<>(Stream.of("a", "ab", "abc", "abcd")
                 .toArray(String[]::new));
