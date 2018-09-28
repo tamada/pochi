@@ -1,4 +1,0 @@
-com.github.pochi.runner.birthmarks.comparators.DiceIndexComparatorBuilder
-com.github.pochi.runner.birthmarks.comparators.JaccardIndexComparatorBuilder
-com.github.pochi.runner.birthmarks.comparators.SimpsonIndexComparatorBuilder
-com.github.pochi.runner.birthmarks.comparators.EditDistanceComparatorBuilder
