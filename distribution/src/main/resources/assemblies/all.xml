@@ -9,10 +9,10 @@
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>com.github.pochi:pochi-api</include>
-        <include>com.github.pochi:pochi-runner</include>
-        <include>com.github.pochi:nasubi</include>
-        <include>com.github.pochi:kunai2</include>
+        <include>jp.cafebabe.pochi:pochi-api</include>
+        <include>jp.cafebabe.pochi:pochi-runner</include>
+        <include>jp.cafebabe.pochi:nasubi</include>
+        <include>jp.cafebabe.pochi:kunai2</include>
       </includes>
       <outputDirectory>.</outputDirectory>
       <unpack>true</unpack>
