@@ -14,7 +14,7 @@ public class SimpsonIndexComparator extends IndexComparator {
     }
 
     @Override
-    protected Similarity calculate(Birthmark left, Birthmark right){
+    protected Similarity calculate(Birthmark left, Birthmark right) {
         Set<Element> intersection = intersect(left, right);
         int denominator = Math.min(left.elementCount(), right.elementCount());
         return new Similarity(1.0 * intersection.size() / denominator);

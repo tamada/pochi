@@ -20,11 +20,11 @@ public interface Extractor extends Task<BirthmarkType>{
     default Stream<Birthmark> extractForStream(DataSource source){
         return extractForStream(source, (entry, exception) -> {});
     }
+
     default Stream<Birthmark> extractForStream(DataSource source, BiConsumer<Entry, Exception> callbackOnError){
-        Stream<Optional<Birthmark>> stream = source.stream()
+        return filter(source.stream()
                 .filter(entry -> entry.endsWith(".class"))
-                .map(entry -> extractEach(entry, callbackOnError));
-        return filter(stream);
+                .map(entry -> extractEach(entry, callbackOnError)));
     }
 
     default Birthmarks extract(DataSource source){

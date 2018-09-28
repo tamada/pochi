@@ -14,7 +14,7 @@ public class JaccardIndexComparator extends IndexComparator {
     }
 
     @Override
-    protected Similarity calculate(Birthmark left, Birthmark right){
+    protected Similarity calculate(Birthmark left, Birthmark right) {
         Set<Element> intersection = intersect(left, right);
         Set<Element> union = union(left, right);
         return new Similarity((1.0 * intersection.size()) / union.size());

@@ -23,6 +23,14 @@ public class GuessedPairMatcher<T> extends AbstractPairMatcher<T> {
         return match(target, target);
     }
 
+    public long count(Streamable<T> target1, Streamable<T> target2) {
+        return match(target1, target2).count();
+    }
+
+    public long count(Streamable<T> target) {
+        return match(target).count();
+    }
+
     @Override
     public Stream<Pair<T>> match(Streamable<T> target1, Streamable<T> target2) {
         return target1.stream()

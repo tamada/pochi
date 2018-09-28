@@ -32,7 +32,7 @@ public class SimpsonIndexBirthmarkComparatorTest extends BirthmarkBuilderHelper{
         Birthmark birthmark1 = buildBirthmark("a", Stream.of("a", "b", "c", "d", "e"));
         Birthmark birthmark2 = buildBirthmark("b", Stream.of("a", "b", "c", "d"));
 
-        Similarity similarity = comparator.similarity(new Pair<>(birthmark1, birthmark2));
+        Similarity similarity = comparator.similarity(new Pair<>(birthmark1, birthmark2), (pair, exception) -> {}).get();
         Threshold threshold = new Threshold(0.25);
         assertThat(similarity.isCloseTo(new Similarity(4d / 4), 1E-6), is(true));
         assertThat(similarity.isStolen(threshold), is(true));
@@ -45,7 +45,7 @@ public class SimpsonIndexBirthmarkComparatorTest extends BirthmarkBuilderHelper{
         Birthmark birthmark1 = buildBirthmark("a", Stream.of("a", "b", "c", "d", "e"));
         Birthmark birthmark2 = buildBirthmark("b", Stream.of("a", "b", "c", "d"));
 
-        Comparison comparison = comparator.compare(birthmark1, birthmark2);
+        Comparison comparison = comparator.compare(birthmark1, birthmark2).get();
         assertThat(comparison.left(), is(birthmark1));
         assertThat(comparison.right(), is(birthmark2));
 

@@ -36,7 +36,7 @@ public class BirthmarksTest {
         List<Birthmark> list = new ArrayList<>();
         birthmarks.forEach(item -> list.add(item));
 
-        assertThat(birthmarks.count(), is(3));
+        assertThat(birthmarks.count(), is(3L));
         assertThat(list.size(), is(3));
         assertThat(list.get(0).metadata().toString(), is("c1,source1,hoge1"));
         assertThat(list.get(1).metadata().toString(), is("c2,source2,hoge1"));

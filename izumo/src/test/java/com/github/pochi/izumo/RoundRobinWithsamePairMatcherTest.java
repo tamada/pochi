@@ -29,6 +29,7 @@ public class RoundRobinWithsamePairMatcherTest {
 
         assertThat(matcher.type(), is(new PairMatcherType("RoundRobinWithSamePair")));
 
+        assertThat(matcher.count(Streamable.wrap(source)), is(21L));
         assertThat(list.size(), is(21));
         assertThat(list.get( 0), is(new Pair<>("a", "a")));
         assertThat(list.get( 1), is(new Pair<>("a", "b")));
@@ -60,6 +61,10 @@ public class RoundRobinWithsamePairMatcherTest {
 
         List<Pair<String>> list = matcher.match(Streamable.wrap(source1), Streamable.wrap(source2))
                 .collect(Collectors.toList());
+
+        assertThat(matcher.count(Streamable.wrap(source1)), is(3L));
+        assertThat(matcher.count(Streamable.wrap(source2)), is(6L));
+        assertThat(matcher.count(Streamable.wrap(source1), Streamable.wrap(source2)), is(6L));
 
         assertThat(list.size(), is(6));
         assertThat(list.get( 0), is(new Pair<>("a", "1")));
