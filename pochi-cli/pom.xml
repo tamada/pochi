@@ -64,7 +64,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>jp.cafebabe.pochi.runner.ui.Main</mainClass>
+              <mainClass>jp.cafebabe.pochi.cli.ui.Main</mainClass>
               <addClasspath>true</addClasspath>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>

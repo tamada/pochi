@@ -20,7 +20,7 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     @Override
     public final Optional<Similarity> similarity(Pair<Birthmark> pair, BiConsumer<Pair<Birthmark>, Exception> callback){
         try{
-            return Optional.of(calculate(pair.left(), pair.right()));
+            return Optional.of(pair.map((left, right) -> calculate(left, right)));
         } catch(Exception e) {
             callback.accept(pair, e);
         }
