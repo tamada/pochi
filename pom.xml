@@ -11,9 +11,10 @@
     <module>nasubi</module>
     <module>kunai2</module>
     <module>izumo</module>
-    <module>pochi-runner</module>
     <module>millstone</module>
     <module>pochi-api</module>
+    <module>pochi-core</module>
+    <module>pochi-cli</module>
     <module>distribution</module>
   </modules>
 
@@ -294,6 +295,7 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
+
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>

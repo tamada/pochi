@@ -10,7 +10,8 @@
     <dependencySet>
       <includes>
         <include>jp.cafebabe.pochi:pochi-api</include>
-        <include>jp.cafebabe.pochi:pochi-runner</include>
+        <include>jp.cafebabe.pochi:pochi-cli</include>
+        <include>jp.cafebabe.pochi:pochi-core</include>
         <include>jp.cafebabe.pochi:nasubi</include>
         <include>jp.cafebabe.pochi:kunai2</include>
       </includes>

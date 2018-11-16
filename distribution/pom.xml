@@ -34,7 +34,13 @@
     </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
-      <artifactId>pochi-runner</artifactId>
+      <artifactId>pochi-core</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jp.cafebabe.pochi</groupId>
+      <artifactId>pochi-cli</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
@@ -53,7 +59,7 @@
 -->
           <archive>
             <manifest>
-              <mainClass>jp.cafebabe.pochi.runner.ui.Main</mainClass>
+              <mainClass>jp.cafebabe.pochi.cli.ui.Main</mainClass>
               <addClasspath>true</addClasspath>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>

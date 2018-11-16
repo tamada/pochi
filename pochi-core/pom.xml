@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <groupId>jp.cafebabe</groupId>
+    <artifactId>pochi</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>jp.cafebabe.pochi</groupId>
+  <artifactId>pochi-core</artifactId>
+  <packaging>jar</packaging>
+
+  <name>pochi-core</name>
+  <url>https://tamada.github.io/pochi/core</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>jp.cafebabe.pochi</groupId>
+      <artifactId>kunai2</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jp.cafebabe.pochi</groupId>
+      <artifactId>pochi-api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jp.cafebabe.pochi</groupId>
+      <artifactId>izumo</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>  
+  
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+</project>
