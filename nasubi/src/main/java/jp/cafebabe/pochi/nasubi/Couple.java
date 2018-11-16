@@ -6,11 +6,11 @@ import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 
-public class Couplet<L, R> {
+public class Couple<L, R> {
     private L left;
     private R right;
 
-    public Couplet(L left, R right) {
+    public Couple(L left, R right) {
         this.left = Objects.requireNonNull(left);
         this.right = Objects.requireNonNull(right);
     }
@@ -27,14 +27,15 @@ public class Couplet<L, R> {
         return mapper.apply(left, right);
     }
 
-    public <R1, R2> Couplet<R1, R2> map(Function<L, R1> leftMapper, Function<R, R2> rightMapper) {
-        return new Couplet<>(leftMapper.apply(left), rightMapper.apply(right));
+    public <R1, R2> Couple<R1, R2> map(Function<L, R1> leftMapper, Function<R, R2> rightMapper) {
+        return new Couple<>(leftMapper.apply(left), rightMapper.apply(right));
     }
 
     @SuppressWarnings("rawtypes")
     public boolean equals(Object other) {
-        return getClass().isAssignableFrom(other.getClass()) && Objects.equals(left, ((Couplet) other).left)
-                && Objects.equals(right, ((Couplet) other).right);
+        return getClass().isAssignableFrom(other.getClass())
+                && Objects.equals(left, ((Couple) other).left)
+                && Objects.equals(right, ((Couple) other).right);
     }
 
     public int hashCode() {
