@@ -2,8 +2,8 @@ package jp.cafebabe.pochi.runner.scripts.helper;
 
 public class SystemInfoHelper {
     public String version(){
-        Package p = Package.getPackage("jp.cafebabe.pochi.runner.scripts.helper");
-        return p.getImplementationVersion();
+        Package helperPackage = findPackage();
+        return helperPackage.getImplementationVersion();
     }
 
     public double measure(Runnable action) {
@@ -12,5 +12,10 @@ public class SystemInfoHelper {
         long endTime = System.nanoTime();
 
         return endTime - startTime;
+    }
+
+    private Package findPackage(){
+        return getClass().getClassLoader()
+            .getDefinedPackage("jp.cafebabe.pochi.runner.scripts.helper");
     }
 }

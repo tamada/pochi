@@ -24,6 +24,6 @@ public class KGramBuilder<T extends Serializable> {
 
     public static KGram<Integer> from(int... values){
         return new KGram<>(IntStream.of(values)
-                .mapToObj(Integer::new));
+                .mapToObj(Integer::valueOf));
     }
 }

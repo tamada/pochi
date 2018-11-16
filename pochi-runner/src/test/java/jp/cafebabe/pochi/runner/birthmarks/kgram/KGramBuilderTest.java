@@ -16,7 +16,7 @@ public class KGramBuilderTest {
 
         List<KGram<Integer>> list = builder.build(IntStream
                 .of(1, 2, 3, 4, 5, 6, 7)
-                .mapToObj(Integer::new)
+                .mapToObj(Integer::valueOf)
                 .collect(Collectors.toList()))
                 .collect(Collectors.toList());
 
@@ -42,7 +42,7 @@ public class KGramBuilderTest {
 
         List<KGram<Integer>> list = builder.build(IntStream
                 .of(1, 2, 3, 4, 5, 6, 7)
-                .mapToObj(Integer::new)
+                .mapToObj(Integer::valueOf)
                 .collect(Collectors.toList()))
                 .collect(Collectors.toList());
 
