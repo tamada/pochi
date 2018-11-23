@@ -15,7 +15,8 @@ public class SystemInfoHelper {
     }
 
     private Package findPackage(){
-        return getClass().getClassLoader()
-            .getDefinedPackage("jp.cafebabe.pochi.cli.scripts.helper");
+        return getClass().getPackage();
+        // return getClass().getClassLoader()
+        //         .getDefinedPackage("jp.cafebabe.pochi.cli.scripts.helper");
     }
 }
