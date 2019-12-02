@@ -1,0 +1,43 @@
+.avatar {
+    background-color: white;
+    border-radius: 50%;
+    border: 3px solid gray;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    height: 96px;
+    width: 96px;
+}
+
+.project-name {
+    display: inline-block;
+}
+
+.badge > .label {
+    color: #fff;
+    text-align: center;
+    text-decration: none;
+    padding: 4px 4px 4px 4px;
+    background-color: #5c5c5c;
+    border-radius: 5px 0 0 5px;
+}
+
+.badge > .number, .badge > .value {
+    color: #fff;
+    text-align: center;
+    padding: 4px 8px 4px 8px;
+    border-radius: 0 5px 5px 0;
+}
+
+.badge {
+    font-size: 0.7rem;
+    color: #fff;
+    margin: 0 0 0 0;
+    display: inline-block;
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+}
+
+.doi > .value {
+    background-color: #2384c2;
+}

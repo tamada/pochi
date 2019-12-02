@@ -4,37 +4,43 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.github</groupId>
+    <groupId>jp.cafebabe</groupId>
     <artifactId>pochi</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.github.pochi</groupId>
+  <groupId>jp.cafebabe.pochi</groupId>
   <artifactId>distribusion</artifactId>
   <url>http://maven.apache.org</url>
 
   <dependencies>
     <dependency>
-      <groupId>com.github.pochi</groupId>
+      <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>kunai2</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.pochi</groupId>
+      <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>nasubi</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.pochi</groupId>
+      <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-api</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.pochi</groupId>
-      <artifactId>pochi-runner</artifactId>
+      <groupId>jp.cafebabe.pochi</groupId>
+      <artifactId>pochi-core</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jp.cafebabe.pochi</groupId>
+      <artifactId>pochi-cli</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
@@ -53,7 +59,7 @@
 -->
           <archive>
             <manifest>
-              <mainClass>com.github.pochi.runner.ui.Main</mainClass>
+              <mainClass>jp.cafebabe.pochi.cli.ui.Main</mainClass>
               <addClasspath>true</addClasspath>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>

@@ -7,8 +7,6 @@ categories: [ "Pochi", "Document" ]
 draft: false
 ---
 
-# Key Idea
-
 Almost traditional birthmark systems are usually simple input and output.
 For example, an user specifies the type of target birthmark, $p$ and $q$ as input, and obtains result as output.
 The process of such system is hard to use.

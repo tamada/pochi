@@ -1,0 +1,3 @@
+jp.cafebabe.pochi.izumo.builders.RoundRobinPairMatcherBuilder
+jp.cafebabe.pochi.izumo.builders.RoundRobinWithSamePairMatcherBuilder
+jp.cafebabe.pochi.izumo.builders.GuessedPairMatcherBuilder

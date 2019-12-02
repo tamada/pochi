@@ -4,6 +4,41 @@ title = "Pochi"
 enableEmoji = "true"
 paginate = 10
 
-theme = "bare-hugo-theme"
-description = "The birthmarking platform."
+hasCJKLanguage = "false"
+enableEmoji = "true"
+paginate = 6
+theme = "cayman-hugo-theme"
 
+[params]
+    project_name = "pochi"
+    project_tagline = "Detecting the software theft, the birthmark toolkit for the JVM platform."
+    project_logo = "images/pochi.png"
+    dateFormat = "Jan 02, 2006"
+    footer = "[![GitHub](https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github)](https://github.com/tamada/pochi) Made with [Hugo](https://gohugo.io/). Theme by [Cayman](https://github.com/zwbetz-gh/cayman-hugo-theme). Deployed to [GitHub Pages](https://pages.github.com/)."
+    katex = true
+
+[menu]
+    [[menu.nav]]
+        name = "Home"
+        url = "/"
+        weight = 1
+    [[menu.nav]]
+        name = "Description"
+        url = "/description/"
+        weight = 2
+    [[menu.nav]]
+        name = "Birthmarks"
+        url = "/birthmarks/"
+        weight = 3
+    [[menu.nav]]
+        name = "Usage"
+        url = "/usage/"
+        weight = 4
+    [[menu.nav]]
+        name = "Install"
+        url = "/install/"
+        weight = 5
+    [[menu.nav]]
+        name = "About"
+        url = "/about/"
+        weight = 6

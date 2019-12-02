@@ -1,4 +1,4 @@
-### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/Eclipse.gitignore
+### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/Eclipse.gitignore
 
 
 .metadata
@@ -25,6 +25,9 @@ local.properties
 # CDT-specific (C/C++ Development Tooling)
 .cproject
 
+# CDT- autotools
+.autotools
+
 # Java annotation processor (APT)
 .factorypath
 
@@ -46,13 +49,16 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+# Annotation Processing
+.apt_generated/
+
 # Scala IDE specific (Scala & Java development for Eclipse)
 .cache-main
 .scala_dependencies
 .worksheet
 
 
-### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/macOS.gitignore
+### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/macOS.gitignore
 
 # General
 .DS_Store
@@ -82,7 +88,7 @@ Temporary Items
 .apdisk
 
 
-### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Maven.gitignore
+### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Maven.gitignore
 
 target/
 pom.xml.tag
@@ -93,12 +99,10 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-
-# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
-!/.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
 
 
-### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/Emacs.gitignore
+### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/Emacs.gitignore
 
 # -*- mode: gitignore; -*-
 *~
@@ -147,7 +151,7 @@ flycheck_*.el
 .dir-locals.el
 
 
-### https://raw.github.com/github/gitignore/9da1b5d8ce4e009ff627c4fe49a4488b2a3f60d4/Global/JEnv.gitignore
+### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/JEnv.gitignore
 
 # JEnv local Java version configuration file
 .java-version
