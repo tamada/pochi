@@ -11,10 +11,29 @@ The resultant similarities shows the copy relation possibilities between two pro
 
 ## Table of Contents
 
-* [Description](description)
 * [Birthmarks](birthmarks)
+    * [Definition of Birthmarks](birthmarks#definition-of-birthmarks)
+    * [Types of Birthmarks](birthmarks#types-of-birthmarks)
+    * [Similarities](birthmarks#similarities)
+    * [Theft detection process by birthmarks](birthmarks#theft-detection-process-by-birthmarks)
+* [Description](description)
+    * [Key idea](description#key-idea)
+    * [Examples of script files](description#examples-of-script-files)
+        * [Extracting birthmarks](description#extracting-birthmarks)
 * [Usage](usage)
+    * [CLI Interface](usage#cli-interface)
+    * [Docker](usage#docker)
 * [Install](install)
+    * [Homebrew](install#homebrew)
+    * [Compiling pochi yourself](install#compiling-pochi-yourself)
+    * [Requirements](install#requirements)
+        * [Modules](install#modules)
 * [About](about)
-
+    * [License](about#license)
+    * [Developers](about#developers)
+    * [Icon of pochi](about#icon-of-pochi)
+    * [References](about#references)
+        * [Surveys](about#surveys)
+        * [Articles of supported birthmark types](about#articles-of-supported-birthmark-types)
+        * [Articles by H. Tamada](about#articles-by-h-tamada)
 

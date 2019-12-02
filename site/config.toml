@@ -3,10 +3,7 @@ languageCode = "en-US"
 title = "Pochi"
 enableEmoji = "true"
 paginate = 10
-
 hasCJKLanguage = "false"
-enableEmoji = "true"
-paginate = 6
 theme = "cayman-hugo-theme"
 
 [params]
@@ -23,12 +20,12 @@ theme = "cayman-hugo-theme"
         url = "/"
         weight = 1
     [[menu.nav]]
-        name = "Description"
-        url = "/description/"
-        weight = 2
-    [[menu.nav]]
         name = "Birthmarks"
         url = "/birthmarks/"
+        weight = 2
+    [[menu.nav]]
+        name = "Description"
+        url = "/description/"
         weight = 3
     [[menu.nav]]
         name = "Usage"

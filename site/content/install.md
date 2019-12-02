@@ -6,14 +6,14 @@ draft: false
 
 ## Homebrew
 
-For macOS user, pochi supports homebrew installation.
+For macOS user, **pochi** supports homebrew installation.
 
 ```sh
 $ brew tap tamada/brew
 $ brew install pochi
 ```
 
-## Compiling pochi yourself
+## Compiling **pochi** yourself
 
 For building yourself, clone the source code from GitHub, and build it with [Maven](https://maven.apache.org/).
 
