@@ -57,4 +57,28 @@ Note that, the typical value of $\varepsilon$ is 0.75.
 
 ## Theft detection process by birthmarks
 
+The goal of software birthmarks is detecting the suspects of copies, not prove the theft.
+Therefore, the birthmark methods require to examine a huge amount of programs and to detect the suspects.
+After detecting the suspects by the birthmark methods, we must inspect the details of pairs to prove the theft.
+Because the birthmark methods bury no information.
+
+{{< mermaid >}}
+graph LR
+    id1(Collection);
+    id2(Extraction);
+    id3(Comparison);
+    id4(Examination);
+    id5(Post-process);
+    subgraph "Birthmark System"
+        id1 --> id2;
+        id2 --> id3;
+        id3 --> id4;
+    end
+    id4 --> id5;
+    click id1 openDetails "collection"
+    click id2 openDetails "extraction"
+    click id3 openDetails "comparison"
+    click id4 openDetails "examination"
+    click id5 openDetails "postprocess"
+{{</ mermaid >}}
 
