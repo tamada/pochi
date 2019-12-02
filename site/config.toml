@@ -1,35 +1,41 @@
 baseURL = "https://tamada.github.io/pochi"
-languageCode = "ja"
+languageCode = "en-US"
 title = "Pochi"
-hasCJKLanguage = "true"
+hasCJKLanguage = "false"
 enableEmoji = "true"
 paginate = 6
-
-theme = "hyde-hyde"
+theme = "cayman-hugo-theme"
 
 [params]
-    themeColor = "theme-base-0e"
-    authorimage = "/pochi/images/pochi.png"
-    summary_length = 300
-    highlightjs = true
-    mathjax = true
-    keywords = "birthmarks, Java, detecting the theft, plagiarism detection"
-    description = "The software birthmarking platform for detecting the software theft."
-    copyright = "(C) 2016 Haruaki Tamada."
+    project_name = "pochi"
+    project_tagline = "Detecting the software theft, the birthmark toolkit for the JVM platform."
+    project_logo = "images/pochi.png"
+    dateFormat = "Jan 02, 2006"
+    footer = "[![GitHub](https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github)](https://github.com/tamada/pochi) Made with [Hugo](https://gohugo.io/). Theme by [Cayman](https://github.com/zwbetz-gh/cayman-hugo-theme). Deployed to [GitHub Pages](https://pages.github.com/)."
+    katex = true
 
-[params.social]
-    twitter = "tama5"
-    github = "tamada"
-    email = "tamada__at__cafebabe.jp"
-
-[[menu.main]]
-    name = "How to Use Pochi"
-    identifier = "pochi"
-    url = "/pochi/"
-    weight = 200
-
-[[menu.main]]
-    weight = 100
-    name = "What is Birthmarks?"
-    identifier = "birthmarks"
-    url = "/birthmarks/"
+[menu]
+    [[menu.nav]]
+        name = "Home"
+        url = "/"
+        weight = 1
+    [[menu.nav]]
+        name = "Description"
+        url = "/description/"
+        weight = 2
+    [[menu.nav]]
+        name = "Birthmarks"
+        url = "/birthmarks/"
+        weight = 3
+    [[menu.nav]]
+        name = "Usage"
+        url = "/usage/"
+        weight = 4
+    [[menu.nav]]
+        name = "Install"
+        url = "/install/"
+        weight = 5
+    [[menu.nav]]
+        name = "About"
+        url = "/about/"
+        weight = 6

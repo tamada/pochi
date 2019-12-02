@@ -1,6 +1,3 @@
-[submodule "site/themes/hugo-xmag"]
-	path = site/themes/hugo-xmag
-	url = https://github.com/yihui/hugo-xmag.git
-[submodule "site/themes/hyde-hyde"]
-	path = site/themes/hyde-hyde
-	url = https://github.com/htr3n/hyde-hyde.git
+[submodule "site/themes/cayman-hugo-theme"]
+	path = site/themes/cayman-hugo-theme
+	url = https://github.com/zwbetz-gh/cayman-hugo-theme.git
