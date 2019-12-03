@@ -1,9 +1,9 @@
 ---
 title: "Overview（概要）"
-date: 2017-08-29T11:00:00+09:00
+date: 2017-08-29
 draft: false
 slug: overview
-categories: [ "Document" ]
+categories: [ "Pochi" ]
 ---
 
 # Overview
@@ -18,6 +18,10 @@ Typical scenario of the birthmarking is:
 3. to detect similar programs from the computed similarities.
 
 Note that birthmarks do not prove the theft, just detect suspected theft.
+
+For more details, please visit the following links.
+
+* [The definition of software birthmarks](../birthmarks/definitions/)
 
 # 概要
 

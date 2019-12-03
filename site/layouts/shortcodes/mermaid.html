@@ -1,0 +1,6 @@
+<figure>
+  <div class="mermaid" align="{{ if .Get "align" }}{{ .Get "align" }}{{ else }}center{{ end }}">{{ safeHTML .Inner }}</div>
+  {{ if .Get "caption" }}
+  <figcaption>{{ .Get "caption" }}</figcaption>
+  {{ end }}
+</figure>

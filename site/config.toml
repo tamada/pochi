@@ -1,49 +1,41 @@
 baseURL = "https://tamada.github.io/pochi"
-languageCode = "ja"
+languageCode = "en-US"
 title = "Pochi"
-hasCJKLanguage = "true"
 enableEmoji = "true"
-paginate = 6
-
-theme = "hugo-xmag"
-description = "The birthmarking platform."
+paginate = 10
+hasCJKLanguage = "false"
+theme = "cayman-hugo-theme"
 
 [params]
-    summary_length = 300
-    description = "The birthmarking platform."
-    footer = "&copy; Haruaki Tamada 2016--2017. <a href=\"http://tamada.github.com/\"><img src=\"/pochi/images/github.svg\" width=\"24\" /></a>  <a href=\"https://twitter.com/tama5\"><img src=\"/pochi/images/twitter.svg\" width=\"24\"></a>"
+    project_name = "pochi"
+    project_tagline = "Detecting the software theft, the birthmark toolkit for the JVM platform."
+    project_logo = "images/pochi.png"
+    dateFormat = "Jan 02, 2006"
+    footer = "[![GitHub](https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github)](https://github.com/tamada/pochi) Made with [Hugo](https://gohugo.io/). Theme by [Cayman](https://github.com/zwbetz-gh/cayman-hugo-theme). Deployed to [GitHub Pages](https://pages.github.com/)."
+    katex = true
 
-[params.banner]
-    src = "/images/banner.png"
-    alt = "Pochi banner"
-
-[params.text]
-    about_author = "About the Author"
-    author_delimiter = ", "
-    back = "Back to Home"
-    edit = "Edit this page"
-    tags = "Tags: "
-    truncated = " &hellip;"
-    uncategorized = "Uncategorized"
-
-[[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-[[menu.main]]
-    name = "Birthmarks"
-    url = "/birthmarks"
-    weight = 2
-[[menu.main]]
-    name = "Pochi"
-    url = "/pochi"
-    weight = 3
-[[menu.main]]
-    name = "Categories"
-    url = "/categories/"
-    weight = 4
-[[menu.main]]
-    name = "Subscribe"
-    url = "/index.xml"
-    weight = 5
-
+[menu]
+    [[menu.nav]]
+        name = "Home"
+        url = "/"
+        weight = 1
+    [[menu.nav]]
+        name = "Birthmarks"
+        url = "/birthmarks/"
+        weight = 2
+    [[menu.nav]]
+        name = "Description"
+        url = "/description/"
+        weight = 3
+    [[menu.nav]]
+        name = "Usage"
+        url = "/usage/"
+        weight = 4
+    [[menu.nav]]
+        name = "Install"
+        url = "/install/"
+        weight = 5
+    [[menu.nav]]
+        name = "About"
+        url = "/about/"
+        weight = 6
