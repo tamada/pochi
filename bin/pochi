@@ -1,0 +1,6 @@
+#! /bin/sh
+
+VERSION=1.0-SNAPSHOT
+POCHI_HOME=/home/pochi
+
+java -jar $POCHI_HOME/lib/pochi-${VERSION}-all.jar $@
