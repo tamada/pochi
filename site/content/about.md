@@ -1,10 +1,10 @@
 ---
 title: "About"
-date: 2019-11-29"
+date: 2019-11-29
 draft: false
 ---
 
-## License
+## License 
 
 [Apache License version 2.0](https://github.com/tamada/pochi/blob/master/LICENSE)
 
@@ -18,6 +18,14 @@ draft: false
 
 This dog logo is the craft by folding the paper (ORIGAMI).
 Folding procedure is shown in [Genuine Origami](https://www.amazon.com/dp/4889962514).
+
+In Japan, **pochi** is a familiar name for dogs. :dog:
+The project name is based on the famous phrase in the tale of "[The Man who made flowers bloom](http://hukumusume.com/douwa/English/jap/05/01_j&E.html)." :cherry_blossom:
+The phrase is "dig here, bow-wow" by the pet dog of the man to detect the treasure. :gift:
+The birthmark toolkit will find objects from a lot of programs.
+Hence, I associate the project and the dog name; then, the project name becomes **pochi**.
+
+However, the correct name of the dog in the tale was SHIRO. :stuck_out_tongue_closed_eyes:
 
 ## References
 

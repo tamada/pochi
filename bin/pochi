@@ -1,8 +1,0 @@
-#! /bin/sh
-
-VERSION=1.0.0
-if [ -z "$POCHI_HOME" ]; then
-  POCHI_HOME=/usr/local/Cellar/pochi/${VERSION}
-fi
-
-java -jar $POCHI_HOME/lib/pochi-${VERSION}-all.jar $@
