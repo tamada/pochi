@@ -36,7 +36,8 @@ COPY --from=base  /opt/openjdk-11-minimal                 /opt/openjdk-11-minima
 COPY --from=maven /usr/src/mymaven/pochi-${pochi_version} /opt/pochi-${pochi_version}
 
 RUN    adduser -D pochi \
-    && chmod 755 /opt/pochi-${pochi_version}/bin/pochi
+    && ln -s /opt/pochi-${pochi_version} pochi \
+    && chmod 755 /opt/pochi/bin/pochi.sh
 
 ENV POCHI_HOME="/opt/pochi-${pochi_version}"
 ENV JAVA_HOME="/opt/openjdk-11-minimal"
@@ -46,4 +47,4 @@ ENV HOME="/home/pochi"
 WORKDIR /home/pochi
 USER    pochi
 
-ENTRYPOINT [ "pochi" ]
+ENTRYPOINT [ "pochi.sh" ]
