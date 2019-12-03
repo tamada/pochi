@@ -9,6 +9,11 @@
     width: 96px;
 }
 
+.avatar_caption {
+    display: inline;
+    width: 50%;
+}
+
 .project-name {
     display: inline-block;
 }

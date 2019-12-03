@@ -1,5 +1,4 @@
-### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/Eclipse.gitignore
-
+### https://raw.github.com/github/gitignore/e2e54ce6be90a3ca9c1da57031dc70bf62ed7921/Global/Eclipse.gitignore
 
 .metadata
 bin/
@@ -51,6 +50,7 @@ local.properties
 
 # Annotation Processing
 .apt_generated/
+.apt_generated_test/
 
 # Scala IDE specific (Scala & Java development for Eclipse)
 .cache-main
@@ -58,7 +58,7 @@ local.properties
 .worksheet
 
 
-### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/macOS.gitignore
+### https://raw.github.com/github/gitignore/e2e54ce6be90a3ca9c1da57031dc70bf62ed7921/Global/macOS.gitignore
 
 # General
 .DS_Store
@@ -88,7 +88,7 @@ Temporary Items
 .apdisk
 
 
-### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Maven.gitignore
+### https://raw.github.com/github/gitignore/e2e54ce6be90a3ca9c1da57031dc70bf62ed7921/Maven.gitignore
 
 target/
 pom.xml.tag
@@ -99,10 +99,11 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
 
-### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/Emacs.gitignore
+### https://raw.github.com/github/gitignore/e2e54ce6be90a3ca9c1da57031dc70bf62ed7921/Global/Emacs.gitignore
 
 # -*- mode: gitignore; -*-
 *~
@@ -150,13 +151,29 @@ flycheck_*.el
 # directory configuration
 .dir-locals.el
 
+# network security
+/network-security.data
 
-### https://raw.github.com/github/gitignore/72190ee30bd1e2ccc233222341435adacb7a6500/Global/JEnv.gitignore
+
+
+### https://raw.github.com/github/gitignore/e2e54ce6be90a3ca9c1da57031dc70bf62ed7921/Global/JEnv.gitignore
 
 # JEnv local Java version configuration file
 .java-version
 
 # Used by previous versions of JEnv
 .jenv-version
+
+
+### https://raw.github.com/github/gitignore/e2e54ce6be90a3ca9c1da57031dc70bf62ed7921/community/Golang/Hugo.gitignore
+
+# Generated files by hugo
+/public/
+/resources/_gen/
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
 
 

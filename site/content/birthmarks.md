@@ -59,10 +59,8 @@ Note that, the typical value of $\varepsilon$ is 0.75.
 
 The goal of software birthmarks is detecting the suspects of copies, not prove the theft.
 Therefore, the birthmark methods require to examine a huge amount of programs and to detect the suspects.
-After detecting the suspects by the birthmark methods, we must inspect the details of pairs to prove the theft.
-Because the birthmark methods bury no information.
 
-{{< mermaid >}}
+{{< mermaid caption="Figure 1: theft detection process by the birthmarks" >}}
 graph LR
     id1(Collection);
     id2(Extraction);
@@ -75,10 +73,35 @@ graph LR
         id3 --> id4;
     end
     id4 --> id5;
-    click id1 openDetails "collection"
-    click id2 openDetails "extraction"
-    click id3 openDetails "comparison"
-    click id4 openDetails "examination"
-    click id5 openDetails "postprocess"
 {{</ mermaid >}}
+
+Figure 1 shows the process of the theft detection with the birthmarks.
+The following descriptions shows above phases.
+
+{{< label id="id1_phase" >}}
+Note that, the users to execute the theft detection have the original (plaintiff) programs.
+The user must collect the examine targets as defendant programs.
+We cannot know when and where does software theft do.
+Therefore, to improve the theft detection rate, we should collect programs as more as possible.
+{{< /label >}}
+
+{{< label id="id2_phase" >}}
+  The next phase is the extraction phase for extracting birthmarks from the plaintiff and defendant programs with a given extraction method $f$.
+  This phase generally requires a lot of time, because of extracting birthmarks from many programs.
+{{< /label >}}
+
+{{< label id="id3_phase" >}}
+  In the comparison phase, we compare the plaintiff and defendant birthmarks by a round-robin, and obtain similarity list.
+  The comparison count is the $m \times n$, $m$, and $n$ means the count of plaintiff and defendant birthmarks.
+{{< /label >}}
+
+{{< label id="id4_phase" >}}
+  In the final phase in the birthmark system, we examine the pair of programs is theft or not from the similarity and both elements of birthmarks.
+  Generally, this phase filters similarities by higher than EPSILON, then resultant pairs are the copy suspected programs.
+{{< /label >}}
+
+{{< label id="id5_phase" >}}
+  After detecting the suspects by the birthmark systems, we must inspect the details of pairs to prove the theft.
+  Because the birthmark methods bury no information, therefore, accidental matches may occur.
+{{< /label >}}
 

@@ -50,5 +50,5 @@ $ docker run --rm -v "$PWD":/home/pochi tamada/pochi [OPTIONS] [SCRIPT [ARGV...]
 * `[SCRIPT [ARGV...]]`: script file for **pochi**.
 * `--rm`: remove the container after running.
 * `-v "$PWD":/home/pochi`: share volume `$PWD` in host OS to `/home/pochi` in the container OS.
-
+    * `$PWD` must be the absolute path.
 

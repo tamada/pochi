@@ -15,4 +15,9 @@
     </figcaption>
     {{ end }}
 </figure>
+{{ if .Inner }}
+<p class="avatar_caption">
+  {{ .Inner | markdownify}}
+</p>
+{{ end }}
 <!-- image -->
