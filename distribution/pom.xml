@@ -67,6 +67,7 @@
           <descriptors>
             <descriptor>src/main/resources/assemblies/all.xml</descriptor>
             <descriptor>src/main/resources/assemblies/fatjar.xml</descriptor>
+            <descriptor>src/main/resources/assemblies/dist.xml</descriptor>
           </descriptors>
         </configuration>
         <executions>
