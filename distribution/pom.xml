@@ -6,7 +6,7 @@
   <parent>
     <groupId>jp.cafebabe</groupId>
     <artifactId>pochi</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <groupId>jp.cafebabe.pochi</groupId>
@@ -17,31 +17,31 @@
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>kunai2</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>nasubi</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-api</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-core</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-cli</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
