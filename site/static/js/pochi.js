@@ -41,4 +41,3 @@ const initialize = () => {
 }
 
 initialize()
-console.log(`pochi.js load done`)

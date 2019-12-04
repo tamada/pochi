@@ -31,6 +31,8 @@ NO SCRIPT FILE, and NO ONE LINER
 The script files are parsed by the Nashorn (JavaScript engine for Java).
 In the future version of **pochi**, other script languages will be supported, because [Nashorn was deprecated on Java SE 11](http://openjdk.java.net/jeps/335).
 
+{{< gototop >}}
+
 ## Docker
 
 Container images of **pochi** for Docker are:
@@ -52,3 +54,4 @@ $ docker run --rm -v "$PWD":/home/pochi tamada/pochi [OPTIONS] [SCRIPT [ARGV...]
 * `-v "$PWD":/home/pochi`: share volume `$PWD` in host OS to `/home/pochi` in the container OS.
     * `$PWD` must be the absolute path.
 
+{{< gototop >}}

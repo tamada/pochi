@@ -18,6 +18,8 @@ Also, the both phases are performed to huge amount of programs.
 Therefore, the birthmark system accept the script file as input, and the user describes extraction and comparison of birthmarks in the script file.
 If the user would perform filtering process, it is easy to perform the process.
 
+{{< gototop >}}
+
 ## Examples of script files
 
 ### Extracting birthmarks
@@ -44,3 +46,4 @@ birthmarks.forEach(function(b){
 //   print(result.time + " ns");
 ```
 
+{{< gototop >}}

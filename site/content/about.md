@@ -8,6 +8,25 @@ draft: false
 
 [Apache License version 2.0](https://github.com/tamada/pochi/blob/master/LICENSE)
 
+Apache License, version 2.0.
+
+Copyright 2017, Haruaki Tamada.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+{{< gototop >}}
+
 ## Developers
 
 * Haruaki Tamada
@@ -26,6 +45,8 @@ The birthmark toolkit will find objects from a lot of programs.
 Hence, I associate the project and the dog name; then, the project name becomes **pochi**.
 
 However, the correct name of the dog in the tale was SHIRO. :stuck_out_tongue_closed_eyes:
+
+{{< gototop >}}
 
 ## References
 
@@ -61,4 +82,6 @@ However, the correct name of the dog in the tale was SHIRO. :stuck_out_tongue_cl
 * <a name="#2004isfst_tamada"></a> Haruaki Tamada, Keiji Okamoto, Masahide Nakamura, Akito Monden, and Kenichi Matsumoto, "Dynamic Software Birthmarks to Detect the Theft of Windows Applications," In Proc. International Symposium on Future Software Technology 2004 (ISFST 2004), CD-ROM, 20-22 October 2004. (Xi’an, China)
 * <a name="#2004iasted_tamada"></a> Haruaki Tamada, Masahide Nakamura, Akito Monden, and Kenichi Matsumoto, "Design and Evaluation of Birthmarks for Detecting Theft of Java Programs," In Proc. IASTED International Conference on Software Engineering (IASTED SE 2004), pp. 569-575, 17-19 February 2004. (Innsbruck, Austria)
 * <a name="#2003naist_tamada"></a> Haruaki Tamada, Masahide Nakamura, Akito Monden, and Kenichi Matsumoto, "Detecting the Theft of Programs Using Birthmarks," Information Science Technical Report, number NAIST-IS-TR2003014, Graduate School of Information Science, November 2003.
+
+{{< gototop >}}
 
