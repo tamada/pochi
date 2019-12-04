@@ -195,7 +195,7 @@ graph LR
 <p>Figure 1 shows the process of the theft detection with the birthmarks.
 The following descriptions shows above phases.</p>
 
-<p class="label" id="id1_phase">
+<p class="desc_label" id="id1_phase">
   Note that, the users to execute the theft detection have the original (plaintiff) programs.
 The user must collect the examine targets as defendant programs.
 We cannot know when and where does software theft do.
@@ -204,28 +204,28 @@ Therefore, to improve the theft detection rate, we should collect programs as mo
 
 
 
-<p class="label" id="id2_phase">
+<p class="desc_label" id="id2_phase">
   The next phase is the extraction phase for extracting birthmarks from the plaintiff and defendant programs with a given extraction method $f$.
   This phase generally requires a lot of time, because of extracting birthmarks from many programs.
 </p>
 
 
 
-<p class="label" id="id3_phase">
+<p class="desc_label" id="id3_phase">
   In the comparison phase, we compare the plaintiff and defendant birthmarks by a round-robin, and obtain similarity list.
   The comparison count is the $m \times n$, $m$, and $n$ means the count of plaintiff and defendant birthmarks.
 </p>
 
 
 
-<p class="label" id="id4_phase">
+<p class="desc_label" id="id4_phase">
   In the final phase in the birthmark system, we examine the pair of programs is theft or not from the similarity and both elements of birthmarks.
   Generally, this phase filters similarities by higher than EPSILON, then resultant pairs are the copy suspected programs.
 </p>
 
 
 
-<p class="label" id="id5_phase">
+<p class="desc_label" id="id5_phase">
   After detecting the suspects by the birthmark systems, we must inspect the details of pairs to prove the theft.
   Because the birthmark methods bury no information, therefore, accidental matches may occur.
 </p>
