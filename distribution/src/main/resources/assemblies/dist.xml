@@ -21,7 +21,7 @@
       <directory>..</directory>
       <outputDirectory>.</outputDirectory>
       <includes>
-        <include>bin/pochi</include>
+        <include>bin/pochi.sh</include>
         <include>README.md</include>
         <include>LICENSE</include>
         <include>Dockerfile</include>
