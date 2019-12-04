@@ -6,6 +6,9 @@ paginate = 10
 hasCJKLanguage = "false"
 theme = "cayman-hugo-theme"
 
+[blackfriday]
+    smartypants = false
+
 [params]
     project_name = "pochi"
     project_tagline = "Detecting the software theft, the birthmark toolkit for the JVM platform."

@@ -5,7 +5,7 @@
   <formats>
 	<format>zip</format>
   </formats>
-  <includeBaseDirectory>false</includeBaseDirectory>
+  <includeBaseDirectory>true</includeBaseDirectory>
   <dependencySets>
     <dependencySet>
       <includes>
@@ -18,17 +18,10 @@
   </dependencySets>
   <fileSets>
     <fileSet>
-      <directory>target</directory>
-      <outputDirectory>lib</outputDirectory>
-      <includes>
-        <include>pochi-${pom.version}-all.jar</include>
-      </includes>
-    </fileSet>
-    <fileSet>
       <directory>..</directory>
       <outputDirectory>.</outputDirectory>
       <includes>
-        <include>bin/pochi</include>
+        <include>bin/pochi.sh</include>
         <include>README.md</include>
         <include>LICENSE</include>
         <include>Dockerfile</include>

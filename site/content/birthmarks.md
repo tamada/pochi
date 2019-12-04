@@ -5,6 +5,11 @@ draft: false
 weight: 100
 ---
 
+* [Definition of Birthmarks](#definition-of-birthmarks)
+* [Types of Birthmarks](#types-of-birthmarks)
+* [Similarities](#similarities)
+* [Theft Detection Process by Birthmarks](#theft-detection-process-by-birthmarks)
+
 ## Definition of Birthmarks
 
 Let $p$, and $q$ be a given programs, and $\mathcal{B}_f(p)$ be set of characteristics extracted from $p$ by a given method $f$.
@@ -29,6 +34,8 @@ Resilience property indicates a resistance of birthmark to various types of atta
 Credibility property indicates that programs created completely independently can be differentiated even if their specifications are the same.
 Because birthmarks that completely satisfy both these properties are difficult to create, in practice, birthmark strength must be set appropriately at the discretion of the user.
 
+{{< gototop >}}
+
 ## Types of Birthmarks
 
 By following the definition above, many researchers proposed the different types of birthmarks.
@@ -39,6 +46,8 @@ Structures of birthmarks from extracted information also make different types of
 For example, different types of birthmarks are proposed from opcode sequences by unmodified sequence, frequencies, and k-gram based sequences.
 We categorized the structures of birthmarks into sequences, set (unordered set), vectors, and graphs.
 
+
+{{< gototop >}}
 
 ## Similarities
 
@@ -55,7 +64,9 @@ We categorize resultant similarities into three groups below by $\varepsilon$.
 
 Note that, the typical value of $\varepsilon$ is 0.75.
 
-## Theft detection process by birthmarks
+{{< gototop >}}
+
+## Theft Detection Process by Birthmarks
 
 The goal of software birthmarks is detecting the suspects of copies, not prove the theft.
 Therefore, the birthmark methods require to examine a huge amount of programs and to detect the suspects.
@@ -105,3 +116,4 @@ Therefore, to improve the theft detection rate, we should collect programs as mo
   Because the birthmark methods bury no information, therefore, accidental matches may occur.
 {{< /label >}}
 
+{{< gototop >}}

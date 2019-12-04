@@ -18,6 +18,10 @@
     display: inline-block;
 }
 
+.navigation {
+    text-align: right;
+}
+
 .badge > .label {
     color: #fff;
     text-align: center;
@@ -43,6 +47,12 @@
     text-align: center;
 }
 
+.goto > .value {
+    background-color: #8c008c;
+}
+
 .doi > .value {
+    font-variant-numeric: normal;
+    letter-spacing: 0.02em;
     background-color: #2384c2;
 }
