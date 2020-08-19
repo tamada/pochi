@@ -1,37 +1,39 @@
 ---
-title: "About"
+title: ":smile: About"
 date: 2019-11-29
 draft: false
 ---
 
-## License 
+## :scroll: License 
+
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
 
 [Apache License version 2.0](https://github.com/tamada/pochi/blob/master/LICENSE)
 
-Apache License, version 2.0.
-
-Copyright 2017, Haruaki Tamada.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
+    Apache License, version 2.0.
     
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Copyright 2017, Haruaki Tamada.
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+        http://www.apache.org/licenses/LICENSE-2.0
+        
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 
 {{< gototop >}}
 
-## Developers
+## :man_office_worker: Developers :woman_office_worker: 
 
 * Haruaki Tamada
 
-## Icon of pochi
+## :question: Icon of pochi
 
 {{< image src="images/pochi.png" width="128" class="avatar" >}}
 
@@ -48,14 +50,14 @@ However, the correct name of the dog in the tale was SHIRO. :stuck_out_tongue_cl
 
 {{< gototop >}}
 
-## References
+## :surfer: References
 
-### Surveys
+### :basketball: Surveys
 
 * <a name="#2019ajse_nazir"></a> Shah Nazir, Sara Shahzad and Neelam Mukhtar, "Software Birthmark Design and Estimation: A Systematic Literature Review," Journal of Arabian Journal for Science and Engineering, pp 1–23, Jan 2019.
 * <a name="#2009protection_collberg"></a> Christian Collberg and Jasvir Nagra, "Surreptitious Software: Obfuscation, Watermarking, and Tamperproofing for Software Protection," Addison-Wesley Professional, July 2009.
  
-### Articles of supported birthmark types
+### :soccer: Articles of supported birthmark types
 
 * *k*-gram based birthmarks
     * <a name="#2005sac_myles"></a> Ginger Myles and Christian Collberg, "*k*-gram based software birthmarks," Proc. 2005 ACM symposium on Applied computing (SAC 2005), pp.314--318, March 2005.
@@ -63,7 +65,7 @@ However, the correct name of the dog in the tale was SHIRO. :stuck_out_tongue_cl
     * <a name="#2008ieice_lim"></a> Hyun-il LIM, Heewan PARK, Seokwoo CHOI, Taisook HAN, "Detecting Theft of Java Applications via a Static Birthmark Based on Weighted Stack Patterns", IEICE Transactions on Information and Systems, Vol.E91-D, No.9, pp.2323-2332, September 2008.
 * Not implement yet.
 
-### Articles by H. Tamada
+### :tennis: Articles by H. Tamada
 
 * <a name="#2018snpd_yokoi"></a> Takanori Yokoi, and Haruaki Tamada, "A Beforehand Extraction Method for Dynamic Software Birthmarks using Unit Test Codes," In Proc. 19th ACIS International Conference on Software Engineering, Artificial Intelligence, Networking and Parallel/Distributed Computing (SNPD 2018), July 2018 (Busan, Korea).
 {{< doi id="10.1109/SNPD.2018.8441058" >}}
