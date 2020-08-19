@@ -2,6 +2,7 @@ package jp.cafebabe.pochi.kunai.source;
 
 import java.io.IOException;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import jp.cafebabe.pochi.kunai.entries.Entry;
@@ -13,6 +14,10 @@ import jp.cafebabe.pochi.kunai.entries.Entry;
  */
 public interface DataSource extends AutoCloseable{
     Stream<Entry> stream();
+
+    default DataSource filter(Predicate<Entry> predicate) {
+        return new StreamDataSource(stream().filter(predicate));
+    }
 
     default void forEach(Consumer<Entry> consumer){
         stream().forEach(consumer);
