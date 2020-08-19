@@ -7,7 +7,7 @@
  * DataSourceFactory factory = DefaltDataSourceFactory();
  * try(DataSource source = factory.build(path)){
  *     source.stream()
- *         .forEach(entry -> 
+ *         .forEach(entry -&gt;
  *             // some operation
  *         );
  * }</pre>
