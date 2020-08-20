@@ -12,7 +12,7 @@ import jp.cafebabe.pochi.kunai.entries.Entry;
  * 
  * @author Haruaki Tamada
  */
-public class StreamDataSource implements DataSource {
+class StreamDataSource implements DataSource {
     private List<Entry> list;
 
     public StreamDataSource(Stream<Entry> stream) {
