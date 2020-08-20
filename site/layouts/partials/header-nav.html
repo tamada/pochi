@@ -1,6 +1,6 @@
 <section class="page-header">
   {{ if isset .Site.Params "project_logo" }}
-  <img src="{{ .Site.BaseURL }}{{ .Site.Params.project_logo }}" class="avatar" alt="project_logo">
+  <img src="{{ .Site.Params.project_logo | absURL }}" class="avatar" alt="project_logo">
   {{ end }}
   <h1 class="project-name">
     {{ $.Site.Params.project_name | default "project_name goes here" | markdownify }}
@@ -15,7 +15,7 @@
       {{ $active = or $active (eq .Name $current.Title) }}
       {{ $active = or $active (and (eq .Name "Blog") (eq $current.Section "post")) }}
       {{ $active = or $active (and (eq .Name "Tags") (eq $current.Section "tags")) }}
-      <a href="{{ .URL }}" class="btn">{{ .Name }}</a>
+      <a href="{{ .URL }}" class="btn">{{ .Name | emojify }}</a>
     {{ end }}
   </nav>
 </section>

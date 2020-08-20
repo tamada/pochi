@@ -1,16 +1,16 @@
 ---
-title: "Birthmarks"
+title: ":books: Birthmarks"
 date: 2018-06-13
 draft: false
 weight: 100
 ---
 
-* [Definition of Birthmarks](#definition-of-birthmarks)
-* [Types of Birthmarks](#types-of-birthmarks)
-* [Similarities](#similarities)
-* [Theft Detection Process by Birthmarks](#theft-detection-process-by-birthmarks)
+* [:green_book: Definition of Birthmarks](#definition-of-birthmarks)
+* [:blue_book: Types of Birthmarks](#types-of-birthmarks)
+* [:orange_book: Similarities](#similarities)
+* [:closed_book: Theft Detection Process by Birthmarks](#theft-detection-process-by-birthmarks)
 
-## Definition of Birthmarks
+## :green_book: Definition of Birthmarks
 
 Let $p$, and $q$ be a given programs, and $\mathcal{B}_f(p)$ be set of characteristics extracted from $p$ by a given method $f$.
 If the conditions below are met, $\mathcal{B}_f(p)$ is said to be a birthmark of $p$.
@@ -36,7 +36,7 @@ Because birthmarks that completely satisfy both these properties are difficult t
 
 {{< gototop >}}
 
-## Types of Birthmarks
+## :blue_book: Types of Birthmarks
 
 By following the definition above, many researchers proposed the different types of birthmarks.
 Differences in birthmark types are caused by focusing on different parts of programs.
@@ -49,7 +49,7 @@ We categorized the structures of birthmarks into sequences, set (unordered set),
 
 {{< gototop >}}
 
-## Similarities
+## :orange_book: Similarities
 
 Each birthmark has own similarity calculation algorithm.
 In other words, to compare $\mathcal{B}_f(p)$ and $\mathcal{B}_f(q)$ extracted from $f$ should use a certain method $\mathrm{sim}(\mathcal{B}_f(p), \mathcal{B}_f(q))$.
@@ -66,7 +66,7 @@ Note that, the typical value of $\varepsilon$ is 0.75.
 
 {{< gototop >}}
 
-## Theft Detection Process by Birthmarks
+## :closed_book: Theft Detection Process by Birthmarks
 
 The goal of software birthmarks is detecting the suspects of copies, not prove the theft.
 Therefore, the birthmark methods require to examine a huge amount of programs and to detect the suspects.

@@ -19,26 +19,26 @@ theme = "cayman-hugo-theme"
 
 [menu]
     [[menu.nav]]
-        name = "Home"
+        name = ":house: Home"
         url = "/"
         weight = 1
     [[menu.nav]]
-        name = "Birthmarks"
+        name = ":books: Birthmarks"
         url = "/birthmarks/"
         weight = 2
     [[menu.nav]]
-        name = "Description"
+        name = ":newspaper: What is pochi"
         url = "/description/"
         weight = 3
     [[menu.nav]]
-        name = "Usage"
-        url = "/usage/"
+        name = ":anchor: Install"
+        url = "/install/"
         weight = 4
     [[menu.nav]]
-        name = "Install"
-        url = "/install/"
+        name = ":smile: About"
+        url = "/about/"
         weight = 5
     [[menu.nav]]
-        name = "About"
-        url = "/about/"
+        name = ":smile_cat: API docs"
+        url = "/apidocs/"
         weight = 6

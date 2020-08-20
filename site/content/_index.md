@@ -1,39 +1,44 @@
 ---
-title: "Pochi"
-date: 2017-08-29T11:19:09+09:00
+title: ":house: Home"
+date: 2017-08-29
 draft: false
 ---
+
+[![Build Status](https://travis-ci.org/tamada/pochi.svg?branch=master)](https://travis-ci.org/tamada/pochi)
+[![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=master)](https://coveralls.io/github/tamada/pochi?branch=master)
+[![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
+[![Gitter](http://badges.gitter.im/owner/repo.png)](https://gitter.im/pochi-birthmark/)
 
 **pochi** is the birthmarking toolkit for the JVM platform.
 The birthmarks are the native characteristics extracted from executable programs.
 Then, **pochi** compares them and computes the similarities.
 The resultant similarities shows the copy relation possibilities between two program.
 
-## Table of Contents
+## :bookmark: Table of Contents
 
-* [Birthmarks](birthmarks)
-    * [Definition of Birthmarks](birthmarks#definition-of-birthmarks)
-    * [Types of Birthmarks](birthmarks#types-of-birthmarks)
-    * [Similarities](birthmarks#similarities)
-    * [Theft detection process by birthmarks](birthmarks#theft-detection-process-by-birthmarks)
-* [Description](description)
-    * [Key idea](description#key-idea)
+* [:books: Birthmarks](birthmarks)
+    * [:green_book: Definition of Birthmarks](birthmarks#-definition-of-birthmarks)
+    * [:blue_book: Types of Birthmarks](birthmarks#-types-of-birthmarks)
+    * [:orange_book: Similarities](birthmarks#-similarities)
+    * [:closed_book: Theft detection process by birthmarks](birthmarks#-theft-detection-process-by-birthmarks)
+* [:newspaper: What is **pochi**](description)
+    * [:key: Key idea](description#-key-idea)
+    * [:fork_and_knife: Usage](description#-usage)
+        * [:runner: CLI Interface](description#-cli-interface)
+        * [:whale: Docker](description#-docker)
     * [Examples of script files](description#examples-of-script-files)
         * [Extracting birthmarks](description#extracting-birthmarks)
-* [Usage](usage)
-    * [CLI Interface](usage#cli-interface)
-    * [Docker](usage#docker)
-* [Install](install)
-    * [Homebrew](install#homebrew)
-    * [Compiling pochi yourself](install#compiling-pochi-yourself)
-    * [Requirements](install#requirements)
-        * [Modules](install#modules)
-* [About](about)
-    * [License](about#license)
-    * [Developers](about#developers)
-    * [Icon of pochi](about#icon-of-pochi)
-    * [References](about#references)
-        * [Surveys](about#surveys)
-        * [Articles of supported birthmark types](about#articles-of-supported-birthmark-types)
-        * [Articles by H. Tamada](about#articles-by-h-tamada)
-
+* [:anchor: Install](install)
+    * [:beer: Homebrew](install#-homebrew)
+    * [:muscle: Compiling pochi yourself](install#-compiling-pochi-yourself)
+    * [:briefcase: Requirements](install#-requirements)
+        * [:pouch: Modules](install#-modules)
+* [:smile: About](about)
+    * [:scroll: License](about#-license)
+    * [:man_office_worker: Developers :woman_office_worker:](about#-developers-)
+    * [:question: Icon of pochi](about#-icon-of-pochi)
+    * [:surfer: References](about#-references)
+        * [:basketball: Surveys](about#-surveys)
+        * [:soccer: Articles of supported birthmark types](about#-articles-of-supported-birthmark-types)
+        * [:tennis: Articles by H. Tamada](about#-articles-by-h-tamada)
+* [:smile_cat: API document](apidocs)
