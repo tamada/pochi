@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
+import jp.cafebabe.pochi.birthmarks.pairs.Pair;
+import jp.cafebabe.pochi.nasubi.Either;
 import org.objectweb.asm.ClassVisitor;
 
 import jp.cafebabe.pochi.birthmarks.Task;
@@ -17,25 +19,18 @@ public interface Extractor extends Task<BirthmarkType>{
     @Override
     BirthmarkType type();
 
-    default Stream<Birthmark> extractForStream(DataSource source){
-        return extractForStream(source, (entry, exception) -> {});
-    }
-
-    default Stream<Birthmark> extractForStream(DataSource source, BiConsumer<Entry, Exception> callbackOnError){
-        return filter(source.stream()
+    default Stream<Either<Exception, Birthmark>> extractForStream(DataSource source){
+        return source.stream()
                 .filter(entry -> entry.endsWith(".class"))
-                .map(entry -> extractEach(entry, callbackOnError)));
+                .map(entry -> extractEach(entry));
     }
 
     default Birthmarks extract(DataSource source){
-        return extract(source, (entry, exception) -> {});
-    }
-
-    default Birthmarks extract(DataSource source, BiConsumer<Entry, Exception> action){
-        return new Birthmarks(extractForStream(source, action));
+        return new Birthmarks(extractForStream(source)
+                .flatMap(either -> either.rightStream()));
     }
 
     PochiClassVisitor visitor(ClassVisitor visitor);
 
-    Optional<Birthmark> extractEach(Entry entry, BiConsumer<Entry, Exception> action);
+    Either<Exception, Birthmark> extractEach(Entry entry);
 }
