@@ -20,6 +20,10 @@ public class Name implements Serializable{
         return name.matches(pattern);
     }
 
+    public boolean contains(String partialString) {
+        return name.contains(partialString);
+    }
+
     public boolean startsWith(String pattern) {
         return name.startsWith(pattern);
     }

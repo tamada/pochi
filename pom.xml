@@ -14,11 +14,10 @@
     <module>millstone</module>
     <module>pochi-api</module>
     <module>pochi-core</module>
-    <module>pochi-cli</module>
     <module>distribution</module>
   </modules>
 
-  <name>pochi: extensible birhtmark toolkit</name>
+  <name>pochi: extensible birthmark toolkit</name>
   <url>http://github.com/tamada/pochi</url>
 
   <developers>
@@ -53,6 +52,13 @@
   </scm>
 
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/io.vavr/vavr -->
+    <dependency>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+      <version>0.10.3</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -119,7 +125,7 @@
               <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}</outputDirectory>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
               <includeScope>runtime</includeScope>
             </configuration>
           </execution>
@@ -230,13 +236,6 @@
               </module>
             </module>
           </checkstyleRules>
-          <reportSets>
-            <reportSet>
-              <reports>
-                <report>checkstyle</report>
-              </reports>
-            </reportSet>
-          </reportSets>
         </configuration>
       </plugin>
 
@@ -288,7 +287,6 @@
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <configuration>
-          <locale>en</locale>
           <sourceEncoding>utf-8</sourceEncoding>
           <outputEncoding>utf-8</outputEncoding>
         </configuration>
@@ -305,7 +303,6 @@
         <configuration>
           <inputEncoding>utf-8</inputEncoding>
           <outputEncoding>utf-8</outputEncoding>
-          <aggregate>true</aggregate>
         </configuration>
       </plugin>
       <plugin>
@@ -318,7 +315,6 @@
           <encoding>utf-8</encoding>
           <docencoding>utf-8</docencoding>
           <detectLinks>true</detectLinks>
-          <aggregate>true</aggregate>
         </configuration>
         <reportSets>
           <reportSet>

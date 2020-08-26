@@ -14,7 +14,7 @@ import jp.cafebabe.pochi.kunai.entries.Entry;
 import jp.cafebabe.pochi.kunai.source.factories.DataSourceFactory;
 import jp.cafebabe.pochi.kunai.source.factories.DefaultDataSourceFactory;
 
-public class StreamDataSourceTest {
+public class FilteredDataSourceTest {
     private Path path;
 
     @Before

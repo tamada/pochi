@@ -36,7 +36,13 @@ public class Configuration {
         properties.put(key.toString(), value.toString());
     }
 
-    Stream<Item> properties() {
+    public String getProperty(String key, String defaultValue) {
+        return property(ItemKey.of(key))
+                .map(value -> value.toString())
+                .orElse(defaultValue);
+    }
+
+    Stream<Item> propertyStream() {
         return properties.entrySet().stream().map(Item::new);
     }
 

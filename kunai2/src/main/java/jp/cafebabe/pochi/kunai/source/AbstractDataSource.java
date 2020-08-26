@@ -1,6 +1,19 @@
 package jp.cafebabe.pochi.kunai.source;
 
+import java.nio.file.Path;
+
 public abstract class AbstractDataSource implements DataSource {
+    private Path basePath;
+
+    public AbstractDataSource(Path base) {
+        this.basePath = base;
+    }
+
+    @Override
+    public Path base() {
+        return basePath;
+    }
+
     int getLastIndex(String name, String extension){
         return name.lastIndexOf(extension);
     }

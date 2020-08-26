@@ -1,12 +1,13 @@
 package jp.cafebabe.pochi.kunai.source;
 
 import java.nio.file.FileSystem;
+import java.nio.file.Path;
 
 public class WarFileDataSource extends JarFileDataSource{
     private static final String WAR_CLASSES_PREFIX = "/WEB-INF/classes/";
 
-    public WarFileDataSource(FileSystem system){
-        super(system);
+    public WarFileDataSource(Path base, FileSystem system){
+        super(base, system);
     }
 
     @Override

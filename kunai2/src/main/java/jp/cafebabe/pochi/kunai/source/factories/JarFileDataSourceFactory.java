@@ -32,16 +32,16 @@ class JarFileDataSourceFactory implements DataSourceFactory{
     private DataSource buildImpl(Path path, FileSystem system) throws KunaiException, IOException{
         if(!isTarget(path, system))
             throw new UnsupportedDataSourceException(path + ": not supported");
-        return buildDataSource(path, system);
+        return buildDataSourceImpl(path, system);
     }
 
-    private DataSource buildDataSource(Path path, FileSystem system) throws IOException{
+    private DataSource buildDataSourceImpl(Path path, FileSystem system) throws IOException{
         ClassLoader loader = getClass().getClassLoader();
         FileSystem jarSystem = FileSystems.newFileSystem(path, loader);
-        return buildDataSource(jarSystem);
+        return buildDataSource(path, jarSystem);
     }
 
-    DataSource buildDataSource(FileSystem system){
-        return new JarFileDataSource(system);
+    DataSource buildDataSource(Path base, FileSystem system){
+        return new JarFileDataSource(base, system);
     }
 }

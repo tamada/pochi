@@ -19,7 +19,7 @@ class WarFileDataSourceFactory extends JarFileDataSourceFactory{
     }
 
     @Override
-    DataSource buildDataSource(FileSystem system){
-        return new WarFileDataSource(system);
+    DataSource buildDataSource(Path path, FileSystem system){
+        return new WarFileDataSource(path, system);
     }
 }

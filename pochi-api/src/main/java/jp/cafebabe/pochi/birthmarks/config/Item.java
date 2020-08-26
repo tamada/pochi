@@ -41,4 +41,9 @@ public class Item {
                 && Objects.equals(key(), ((Item)other).key())
                 && Objects.equals(value(), ((Item)other).value());
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s: %s", key(), value());
+    }
 }

@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>jp.cafebabe.pochi</groupId>
-  <artifactId>distribusion</artifactId>
+  <artifactId>distribution</artifactId>
   <url>http://maven.apache.org</url>
 
   <dependencies>
@@ -35,12 +35,6 @@
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-core</artifactId>
-      <version>1.0.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>jp.cafebabe.pochi</groupId>
-      <artifactId>pochi-cli</artifactId>
       <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>

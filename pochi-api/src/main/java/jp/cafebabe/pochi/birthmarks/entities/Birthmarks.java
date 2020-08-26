@@ -11,6 +11,10 @@ import jp.cafebabe.pochi.kunai.entries.ClassName;
 public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark>, Streamable<Birthmark> {
     private List<Birthmark> list;
 
+    public Birthmarks(){
+        this(Stream.empty());
+    }
+
     public Birthmarks(Stream<Birthmark> stream) {
         this.list = stream.collect(Collectors.toList());
     }

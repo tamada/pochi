@@ -28,7 +28,7 @@ public class JaccardIndexBirthmarkComparatorTest extends BirthmarkBuilderHelper{
         Birthmark birthmark1 = buildBirthmark("a", Stream.of("a", "b", "c", "d", "e"));
         Birthmark birthmark2 = buildBirthmark("b", Stream.of("a", "b", "c", "d"));
 
-        Similarity similarity = comparator.similarity(new Pair<>(birthmark1, birthmark2)).right().get();
+        Similarity similarity = comparator.similarity(new Pair<>(birthmark1, birthmark2)).get();
         Threshold threshold = new Threshold(0.25);
         assertThat(similarity.isCloseTo(new Similarity(4d / 5), 1E-6), is(true));
         assertThat(similarity.isStolen(threshold), is(true));

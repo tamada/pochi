@@ -27,7 +27,7 @@ public class DefaultParser extends AbstractParser{
     private FailedSources failedSources = new FailedSources();
 
     public DefaultParser(Configuration config) {
-        super(new ParserType("Default"), config);
+        super(new ParserType("default"), config);
     }
 
     @Override

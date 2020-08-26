@@ -26,6 +26,10 @@ public class PairMatcherBuilders implements TaskBuilders<PairMatcherType, PairMa
         map.put(RoundRobinPairMatcher.TYPE, new RoundRobinPairMatcherBuilder<Birthmark>(false));
     }
 
+    public void register(PairMatcherBuilder<Birthmark> builder) {
+        map.put(builder.type(), builder);
+    }
+
     @Override
     public PairMatcherBuilder<Birthmark> builder(PairMatcherType type) {
         return map.get(type);

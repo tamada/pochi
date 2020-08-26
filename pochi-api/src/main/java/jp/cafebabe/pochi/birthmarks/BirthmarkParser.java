@@ -20,10 +20,8 @@ public interface BirthmarkParser extends Task<ParserType> {
     default List<Birthmark> parseForStream(DataSource source) {
         return source.stream()
                 .filter(entry -> entry.endsWith(".csv"))
-                .map(entry -> parseEntry(entry).stream())
-                .reduce((first, second) -> Stream.concat(first, second))
-                .map(stream -> stream.collect(Collectors.toList()))
-                .orElse(new ArrayList<>());
+                .flatMap(entry -> parseEntry(entry).stream())
+                .collect(Collectors.toList());
     }
     
     default Birthmarks parse(DataSource source){
