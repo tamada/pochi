@@ -15,6 +15,10 @@ public class Couple<L, R> {
         this.right = Objects.requireNonNull(right);
     }
 
+    public static <L, R> Couple<L, R> of(L left, R right) {
+        return new Couple<>(left, right);
+    }
+
     public void apply(BiConsumer<L, R> action) {
         action.accept(left, right);
     }
@@ -23,15 +27,18 @@ public class Couple<L, R> {
         return predicate.test(left, right);
     }
 
+    public Couple<R, L> swap() {
+        return Couple.of(right, left);
+    }
+
     public <F> F map(BiFunction<L, R, F> mapper) {
         return mapper.apply(left, right);
     }
 
-    public <R1, R2> Couple<R1, R2> map(Function<L, R1> leftMapper, Function<R, R2> rightMapper) {
+    public <L2, R2> Couple<L2, R2> map(Function<L, L2> leftMapper, Function<R, R2> rightMapper) {
         return new Couple<>(leftMapper.apply(left), rightMapper.apply(right));
     }
 
-    @SuppressWarnings("rawtypes")
     public boolean equals(Object other) {
         return getClass().isAssignableFrom(other.getClass())
                 && Objects.equals(left, ((Couple) other).left)

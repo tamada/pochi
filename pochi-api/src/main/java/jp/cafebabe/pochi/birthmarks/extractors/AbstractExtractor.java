@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
+import jp.cafebabe.pochi.nasubi.Either;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 
@@ -20,13 +21,12 @@ public abstract class AbstractExtractor extends AbstractTask<BirthmarkType> impl
     }
 
     @Override
-    public final Optional<Birthmark> extractEach(Entry entry, BiConsumer<Entry, Exception> callbackOnError) {
+    public final Either<Exception, Birthmark> extractEach(Entry entry) {
         try {
-            return Optional.of(extractImpl(entry));
+            return Either.right(extractImpl(entry));
         } catch (Exception e) {
-            callbackOnError.accept(entry, e);
+            return Either.left(e);
         }
-        return Optional.empty();
     }
 
     private Birthmark extractImpl(Entry entry) throws IOException {

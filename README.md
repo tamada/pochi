@@ -16,3 +16,22 @@ Detecting the software theft, the birthmark toolkit for the JVM platform.
 [![Gitter](http://badges.gitter.im/owner/repo.png)](https://gitter.im/pochi-birthmark/)
 
 Join [our Gitter channel](https://gitter.im/pochi-birthmark/) if you have any problems or suggestions on pochi.
+
+## Modules
+
+Module system will be introduced by pochi-2.0.0.
+
+```mermaid
+graph LR;
+kunai
+api[pochi-api]
+cli[pochi-cli]
+izumo
+core[pochi-core]
+cli-->core
+core-->izumo
+core-->api
+izumo-->api
+api-->kunai
+core-->kunai
+```

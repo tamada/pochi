@@ -8,35 +8,23 @@ import jp.cafebabe.pochi.birthmarks.entities.Birthmark;
 import jp.cafebabe.pochi.birthmarks.entities.Birthmarks;
 import jp.cafebabe.pochi.birthmarks.pairs.Pair;
 import jp.cafebabe.pochi.birthmarks.pairs.PairMatcher;
+import jp.cafebabe.pochi.nasubi.Either;
 
 public interface Comparator extends Task<ComparatorType> {
     @Override
     ComparatorType type();
 
-    Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker, BiConsumer<Pair<Birthmark>, Exception> callback);
+    Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker);
 
-    Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker, BiConsumer<Pair<Birthmark>, Exception> callback);
+    Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker);
 
-    Optional<Similarity> similarity(Pair<Birthmark> pair, BiConsumer<Pair<Birthmark>, Exception> callback);
+    Either<Exception, Similarity> similarity(Pair<Birthmark> pair);
 
-    default Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker) {
-        return compare(results, maker, (pair, exception) -> {});
+    default Either<Exception, Comparison> compare(Pair<Birthmark> pair){
+        return similarity(pair).map(e -> e, sim -> new Comparison(pair, sim));
     }
 
-    default Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker) {
-        return compare(left, right, maker, (pair, exception) -> {});
-    }
-
-    default Optional<Comparison> compare(Pair<Birthmark> pair, BiConsumer<Pair<Birthmark>, Exception> callback) {
-        Optional<Similarity> similarity = similarity(pair, callback);
-        return similarity.map(sim -> new Comparison(pair, sim));
-    }
-
-    default Optional<Comparison> compare(Birthmark left, Birthmark right) {
-        return compare(left, right, (pair, exception) -> {});
-    }
-
-    default Optional<Comparison> compare(Birthmark left, Birthmark right, BiConsumer<Pair<Birthmark>, Exception> callback) {
-        return compare(new Pair<>(left, right), callback);
+    default Either<Exception, Comparison> compare(Birthmark left, Birthmark right) {
+        return compare(new Pair<>(left, right));
     }
 }
