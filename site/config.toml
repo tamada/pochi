@@ -35,10 +35,14 @@ theme = "cayman-hugo-theme"
         url = "/install/"
         weight = 4
     [[menu.nav]]
+        name = ":ant: Samples"
+        url = "/samples/"
+        weight = 5
+    [[menu.nav]]
         name = ":smile: About"
         url = "/about/"
-        weight = 5
+        weight = 6
     [[menu.nav]]
         name = ":smile_cat: API docs"
         url = "/apidocs/"
-        weight = 6
+        weight = 7
