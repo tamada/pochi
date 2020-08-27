@@ -16,27 +16,66 @@ const (
 	BREW_PATH   = "/usr/local/opt/pochi"
 	PROG_NAME   = "pochi"
 	CONFIG_PATH = "POCHI_CONFIG_PATH"
-	LIB_DIR     = "distribution/target/lib"
+	LIB_DIR     = "lib"
 )
 
+type pochiRunner struct {
+	prog string
+	opts *options
+}
+
+type pochiCompiler struct {
+	prog string
+	opts *options
+}
+
+type pochi interface {
+	execute() int
+	validate() error
+	isHelp() bool
+}
+
 type options struct {
-	classpath  string
-	config     string
-	expression string
-	helpFlag   bool
-	args       []string
+	classpath   string
+	config      string
+	dest        string
+	expression  string
+	helpFlag    bool
+	verboseMode bool
+	args        []string
+}
+
+func (opts *options) printIfVerbose(message string) {
+	if opts.verboseMode {
+		fmt.Println(message)
+	}
+}
+
+func helpMessageOfCompiler(prog string) string {
+	return fmt.Sprintf(`%s [OPTIONS] <SCRIPT_FILEs...>
+OPTIONS
+    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
+    -d, --dest <DIR>                 specifies the destination directory.
+
+    -h, --help                       prints this message.
+SCRIPT_FILE
+    Groovy script file name for compiling.`, prog)
 }
 
 func helpMessage(prog string) string {
+	if prog == "pochic" {
+		return helpMessageOfCompiler(prog)
+	}
 	return fmt.Sprintf(`%s [OPTIONS] [SCRIPT_FILE [ARGV...]]
 OPTIONS
-    -c, --classpath <CLASSPATH>      specifies classpath for Groovy (JVM)
+    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
     -C, --config <CONFIG_FILE>       specifies configuration file.
     -e, --expression <EXPRESSION>    specifies command line script.
 
-    -h, --help                       print this message.
-SCRIPT_FILE ARGV
-    Groovy script file name and its arguments.`, prog)
+    -h, --help                       prints this message.
+SCRIPT_FILE [ARGV...]
+    Groovy script file name and its arguments.
+    If no script files and no expression were given, pochi runs on interactive mode.`, prog)
 }
 
 func ExistsDir(path string) bool {
@@ -47,8 +86,9 @@ func ExistsDir(path string) bool {
 func pochiHome() string {
 	generators := []func() string{
 		func() string { return os.Getenv(HOME_NAME) },
-		func() string { return "../pochi" },
+		func() string { return "/opt/pochi" },
 		func() string { return BREW_PATH },
+		func() string { return "distribution/target" },
 	}
 	for _, generator := range generators {
 		path := generator()
@@ -64,20 +104,27 @@ func buildFlagSet() (*flag.FlagSet, *options) {
 	var opts = new(options)
 	var flags = flag.NewFlagSet(PROG_NAME, flag.ContinueOnError)
 	flags.Usage = func() { fmt.Println(helpMessage(PROG_NAME)) }
-	flags.BoolVarP(&opts.helpFlag, "help", "h", false, "print this message")
-	flags.StringVarP(&opts.classpath, "classpath", "c", "", "specifies classpath for Groovy (JVM)")
+	flags.BoolVarP(&opts.helpFlag, "help", "h", false, "prints this message")
+	flags.StringVarP(&opts.classpath, "classpath", "c", "", "specifies classpaths for Groovy (JVM) separated with colon (:)")
 	flags.StringVarP(&opts.config, "config", "C", "", "specifies command line script")
+	flags.StringVarP(&opts.dest, "dest", "d", "", "specifies the destination directory")
+	flags.BoolVarP(&opts.verboseMode, "verbose", "v", false, "verbose mode")
 	flags.StringVarP(&opts.expression, "expression", "e", "", "specifies configuration file")
 	return flags, opts
 }
 
-func parseArguments(args []string) (*options, error) {
+func parseArguments(args []string) (pochi, error) {
 	flags, opts := buildFlagSet()
 	if err := flags.Parse(args); err != nil {
 		return nil, err
 	}
-	opts.args = flags.Args()[1:]
-	return opts, nil
+	newArgs := flags.Args()
+	opts.args = newArgs[1:]
+	progName := filepath.Base(args[0])
+	if progName == "pochic" {
+		return &pochiCompiler{prog: progName, opts: opts}, nil
+	}
+	return &pochiRunner{prog: progName, opts: opts}, nil
 }
 
 func printError(status int, err error) int {
@@ -93,54 +140,26 @@ func appendSpecifiedClasspath(classpaths []string, opts *options) []string {
 }
 
 func classpathExpression(opts *options) string {
-	infos, err := ioutil.ReadDir(LIB_DIR)
+	libDir := filepath.Join(pochiHome(), LIB_DIR)
+	infos, err := ioutil.ReadDir(libDir)
 	if err != nil {
 		panic(err)
 	}
 	classpath := []string{}
 	for _, info := range infos {
 		if info.Mode().IsRegular() {
-			classpath = append(classpath, filepath.Join(LIB_DIR, info.Name()))
+			classpath = append(classpath, filepath.Join(libDir, info.Name()))
 		}
 	}
 	classpath = appendSpecifiedClasspath(classpath, opts)
 	return strings.Join(classpath, ":")
 }
 
-func oneLiner(opts *options) *exec.Cmd {
-	return exec.Command("groovy", "-classpath", classpathExpression(opts), "--basescript", "PochiBase", "-e", opts.expression)
-}
-
-func interactiveMode(opts *options) *exec.Cmd {
-	return exec.Command("groovysh", "-classpath", classpathExpression(opts), "-e", "pochi = new jp.cafebabe.pochi.birthmarks.BirthmarkSystemHelper()")
-}
-
-func execScript(opts *options) *exec.Cmd {
-	argv := []string{"-classpath", classpathExpression(opts), "--basescript", "PochiBase"}
-	argv = append(argv, opts.args...)
-	return exec.Command("groovy", argv...)
-}
-
-func constructCmdBuilder(opts *options) func(opts *options) *exec.Cmd {
-	if opts.expression != "" {
-		return oneLiner
-	}
-	if len(opts.args) == 0 {
-		return interactiveMode
-	}
-	return execScript
-}
-
-func setConfigPath(configPath string) {
-	os.Setenv(CONFIG_PATH, configPath)
-}
-
-func execute(builder func(opts *options) *exec.Cmd, opts *options) int {
-	command := builder(opts)
+func execCommand(command *exec.Cmd, opts *options) int {
 	command.Stdin = os.Stdin
 	command.Stdout = os.Stdout
 	command.Stderr = os.Stderr
-	// fmt.Printf("command: %s\n", strings.Join(command.Args, " "))
+	opts.printIfVerbose(fmt.Sprintf("command: %s", strings.Join(command.Args, " ")))
 	if err := command.Start(); err != nil {
 		fmt.Println(err.Error())
 		return 3
@@ -152,23 +171,18 @@ func execute(builder func(opts *options) *exec.Cmd, opts *options) int {
 	return 0
 }
 
-func perform(opts *options) int {
-	if opts.helpFlag {
-		return printError(0, fmt.Errorf(helpMessage(PROG_NAME)))
-	}
-	builder := constructCmdBuilder(opts)
-	if opts.config != "" {
-		setConfigPath(opts.config)
-	}
-	return execute(builder, opts)
-}
-
 func goMain(args []string) int {
-	opts, err := parseArguments(args)
+	pochi, err := parseArguments(args)
 	if err != nil {
 		return printError(1, err)
 	}
-	return perform(opts)
+	if err := pochi.validate(); err != nil {
+		return printError(2, err)
+	}
+	if pochi.isHelp() {
+		return printError(0, fmt.Errorf(helpMessage(filepath.Base(args[0]))))
+	}
+	return pochi.execute()
 }
 
 func main() {

@@ -23,9 +23,7 @@ public interface Extractor extends Task<BirthmarkType>{
     }
 
     default Birthmarks extract(DataSource source){
-        return new Birthmarks(extractStream(source)
-                .filter(either -> either.isRight())
-                .map(either -> either.get()));
+        return new Birthmarks(stripEither(extractStream(source)));
     }
 
     PochiClassVisitor visitor(ClassVisitor visitor);

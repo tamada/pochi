@@ -21,7 +21,8 @@ public interface Comparator extends Task<ComparatorType> {
     Either<Exception, Similarity> similarity(Pair<Birthmark> pair);
 
     default Either<Exception, Comparison> compare(Pair<Birthmark> pair){
-        return similarity(pair).map(sim -> new Comparison(pair, sim));
+        return similarity(pair)
+                .map(sim -> new Comparison(pair, sim));
     }
 
     default Either<Exception, Comparison> compare(Birthmark left, Birthmark right) {

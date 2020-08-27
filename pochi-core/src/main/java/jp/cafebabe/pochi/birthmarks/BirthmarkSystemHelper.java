@@ -63,7 +63,7 @@ public class BirthmarkSystemHelper {
                 .build(config);
     }
 
-    public BirthmarkParser parser(String name) {
+    public BirthmarkParser parser() {
         return new DefaultParser(config);
     }
 
