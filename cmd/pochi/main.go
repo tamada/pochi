@@ -18,6 +18,7 @@ const (
 	CONFIG_PATH = "POCHI_CONFIG_PATH"
 	LIB_DIR     = "lib"
 )
+const VERSION = "2.0.0"
 
 type pochiRunner struct {
 	prog string
@@ -51,21 +52,23 @@ func (opts *options) printIfVerbose(message string) {
 }
 
 func helpMessageOfCompiler(prog string) string {
-	return fmt.Sprintf(`%s [OPTIONS] <SCRIPT_FILEs...>
+	return fmt.Sprintf(`pochi version %s
+%s [OPTIONS] <SCRIPT_FILEs...>
 OPTIONS
     -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
     -d, --dest <DIR>                 specifies the destination directory.
 
     -h, --help                       prints this message.
 SCRIPT_FILE
-    Groovy script file name for compiling.`, prog)
+    Groovy script file name for compiling.`, VERSION, prog)
 }
 
 func helpMessage(prog string) string {
 	if prog == "pochic" {
 		return helpMessageOfCompiler(prog)
 	}
-	return fmt.Sprintf(`%s [OPTIONS] [SCRIPT_FILE [ARGV...]]
+	return fmt.Sprintf(`pochi version %s
+%s [OPTIONS] [SCRIPT_FILE [ARGV...]]
 OPTIONS
     -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
     -C, --config <CONFIG_FILE>       specifies configuration file.
@@ -74,7 +77,7 @@ OPTIONS
     -h, --help                       prints this message.
 SCRIPT_FILE [ARGV...]
     Groovy script file name and its arguments.
-    If no script files and no expression were given, pochi runs on interactive mode.`, prog)
+    If no script files and no expression were given, pochi runs on interactive mode.`, VERSION, prog)
 }
 
 func ExistsDir(path string) bool {

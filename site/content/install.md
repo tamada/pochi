@@ -21,11 +21,10 @@ For building yourself, clone the source code from GitHub, and build it with [Mav
 ```sh
 $ git clone https://github.com/tamada/pochi.git
 $ cd pochi
-$ mvn package # <-- build fatjar in the distribution/target
-$ make # <-- build entry point program pochi on the top of pochi directory.
+$ make
 ```
 
-Then, maven packages **pochi** and generates `pochi-2.0.0-fat.jar`, and `pochi-2.0.0-all.jar` onto `distribution/target` directory.
+Then, maven packages **pochi** and generates `pochi-${VERSION}-fat.jar`, and `pochi-${VERSION}-all.jar` onto `distribution/target` directory.
 
 {{< gototop >}}
 
@@ -40,6 +39,8 @@ Then, maven packages **pochi** and generates `pochi-2.0.0-fat.jar`, and `pochi-2
 * [java.base](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/module-summary.html)
 * [java.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/module-summary.html)
 * [java.scripting](https://docs.oracle.com/en/java/javase/11/docs/api/java.scripting/module-summary.html)
+* [java.desktop](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/module-summary.html)
+* [java.sql](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html)
 * [java.xml](https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html)
 * [jdk.zipfs](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.zipfs/module-summary.html)
 

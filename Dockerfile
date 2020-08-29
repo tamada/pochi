@@ -3,48 +3,49 @@ FROM alpine:3.10.1 AS base
 
 RUN    apk --no-cache add openjdk11=11.0.4_p4-r1 \
     && rm -rf /var/cache/apk/* \
+# create minimal jdk
     && /usr/lib/jvm/java-11-openjdk/bin/jlink \
        --module-path /usr/lib/jvm/java-11-openjdk/jmods \
        --compress=2 \
-      --add-modules java.base,java.scripting,java.logging,java.xml,jdk.zipfs,jdk.scripting.nashorn,jdk.scripting.nashorn.shell \
+      --add-modules java.base,java.scripting,java.logging,java.desktop,java.sql,java.xml,jdk.zipfs \
       --no-header-files \
       --no-man-pages \
       --output /opt/openjdk-11-minimal
 
 # building pochi
-FROM maven:3.6.3-jdk-11 AS maven
-
-ARG pochi_version="1.0.0"
-
-RUN    git clone https://github.com/tamada/pochi.git /usr/src/mymaven/pochi \
-    && cd /usr/src/mymaven/pochi \
-    && git checkout -b v${pochi_version} refs/tags/v${pochi_version} \
-    && mvn package \
-    && unzip distribution/target/pochi-${pochi_version}-dist.zip -d /usr/src/mymaven
-
-# building distributed docker image.
 FROM alpine:3.10.1
 
-## Is ARG binded to FROM?
-ARG pochi_version="1.0.0"
+ARG pochi_version="2.0.0"
 
 LABEL maintainer="Haruaki Tamada" \
       pochi-version="${pochi_version}" \
       description="Java birthmarking toolkit."
 
-COPY --from=base  /opt/openjdk-11-minimal                 /opt/openjdk-11-minimal
-COPY --from=maven /usr/src/mymaven/pochi-${pochi_version} /opt/pochi-${pochi_version}
+COPY --from=base  /opt/openjdk-11-minimal /opt/openjdk-11-minimal
 
-RUN    adduser -D pochi \
+RUN    apk --no-cache add --update curl unzip bash libstdc++ tar \
+    && cd /opt \
+# install pochi from release file in the GitHub.
+    && ln -s /opt/openjdk-11-minimal /opt/java \
+#    && curl -L https://www.dropbox.com/s/3ingvw3e3vyftwe/pochi-2.0.0_linux_amd64.tar.gz?dl=0 -o /tmp/pochi.tar.gz \
+    && curl -L https://github.com/tamada/pochi/releases/download/v2.0.0/pochi-2.0.0-dist.zip -o /tmp/pochi.tar.gz \
+    && tar xvfz /tmp/pochi.tar.gz \
     && ln -s /opt/pochi-${pochi_version} /opt/pochi \
-    && chmod 755 /opt/pochi/bin/pochi.sh
+    && rm /tmp/pochi.tar.gz \
+# install groovy (ref. http://konstructcomputers.blogspot.com/2017/02/install-groovy-in-alpine-based-docker.html)
+    && curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-3.0.5.zip -o /tmp/groovy.zip \
+    && unzip /tmp/groovy.zip \
+    && ln -s /opt/groovy-3.0.5 /opt/groovy \
+# add user
+    && adduser -D pochi
 
-ENV POCHI_HOME="/opt/pochi-${pochi_version}"
-ENV JAVA_HOME="/opt/openjdk-11-minimal"
-ENV PATH="$PATH:$JAVA_HOME/bin:/opt/pochi-${pochi_version}/bin"
+ENV POCHI_HOME="/opt/pochi"
+ENV JAVA_HOME="/opt/java"
+ENV GROOVY_HOME="/opt/groovy"
+ENV PATH="$PATH:$JAVA_HOME/bin:$POCHI_HOME/bin:$GROOVY_HOME/bin"
 ENV HOME="/home/pochi"
 
 WORKDIR /home/pochi
 USER    pochi
 
-ENTRYPOINT [ "pochi.sh" ]
+ENTRYPOINT [ "pochi" ]

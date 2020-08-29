@@ -3,7 +3,7 @@
 <assembly>
   <id>dist</id>
   <formats>
-	<format>zip</format>
+	<format>dir</format>
   </formats>
   <includeBaseDirectory>true</includeBaseDirectory>
   <dependencySets>
@@ -21,7 +21,6 @@
       <directory>..</directory>
       <outputDirectory>.</outputDirectory>
       <includes>
-        <include>bin/pochi.sh</include>
         <include>README.md</include>
         <include>LICENSE</include>
         <include>Dockerfile</include>

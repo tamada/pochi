@@ -1,12 +1,13 @@
 GO := go
 NAME := pochi
 POCHIC := $(NAME)c
-VERSION := 1.0.0
+VERSION := 2.0.0
 DIST := $(NAME)-$(VERSION)
+DESTINATION := target
 
 all: test build
 
-setup: update_version
+setup:
 	git submodule update --init
 
 update_version:
@@ -16,26 +17,42 @@ update_version:
 	@sed 's/const VERSION = .*/const VERSION = "${VERSION}"/g' cmd/pochi/main.go > a; mv a cmd/pochi/main.go
 	@echo "Replace version to \"${VERSION}\""
 
+	mvn versions:set -DnewVersion=$(VERSION)
+	mvn versions:commit
+
 test: setup
 	$(GO) test -covermode=count -coverprofile=coverage.out ./cmd/pochi
 
 # refer from https://pod.hatenablog.com/entry/2017/06/13/150342
 define _createDist
-	mkdir -p dist/$(1)_$(2)/$(DIST)
-	cp -r completions Dockerfile README.md LICENSE dist/$(1)_$(2)/$(DIST)
-	GOOS=$1 GOARCH=$2 go build -o dist/$(1)_$(2)/$(DIST)/bin/$(NAME)$(3) cmd/$(NAME)/main.go
-	tar cfz dist/$(DIST)_$(1)_$(2).tar.gz -C dist/$(1)_$(2) $(DIST)
+	mkdir $(DESTINATION)/dist_$(1)_$(2)
+	cp -r distribution/target/$(DIST)-dist/$(DIST) $(DESTINATION)/dist_$(1)_$(2)
+	cp -r samples completions Dockerfile README.md LICENSE $(DESTINATION)/dist_$(1)_$(2)/$(DIST)
+	rm $(DESTINATION)/dist_$(1)_$(2)/$(DIST)/lib/distribution-$(VERSION).jar
+	GOOS=$1 GOARCH=$2 go build -o $(DESTINATION)/dist_$(1)_$(2)/$(DIST)/bin/$(NAME)$(3) cmd/$(NAME)/*.go
+	tar cfz $(DESTINATION)/$(DIST)_$(1)_$(2).tar.gz -C $(DESTINATION)/dist_$(1)_$(2) $(DIST)
 endef
 
-dist: build
+package: distribution/target/pochi-${VERSION}-dist
+
+distribution/target/pochi-${VERSION}-dist:
+	mvn package
+
+dist: build package
 	@$(call _createDist,darwin,amd64,)
 	@$(call _createDist,windows,amd64,.exe)
 	@$(call _createDist,windows,386,.exe)
 	@$(call _createDist,linux,amd64,)
 	@$(call _createDist,linux,386,)
 
+site:
+	cd site && make
+
 build: setup
 	$(GO) build -o $(NAME) -v cmd/$(NAME)/*.go
+
+distclean:
+	mvn clean
 
 clean:
 	@rm -rf $(NAME)

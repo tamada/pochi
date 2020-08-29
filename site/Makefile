@@ -14,7 +14,7 @@ stop:
 	docker stop ${DOCKER_IMAGE_NAME}
 
 static/apidocs:
-	(cd ..; mvn javadoc:aggregate)
+	mvn -f ../pom.xml javadoc:aggregate
 	cp -r ../target/site/apidocs static
 
 javadoc: static/apidocs

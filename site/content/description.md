@@ -1,6 +1,6 @@
 ---
 title: ":newspaper: What is pochi"
-date: 2019-12-02
+date: 2020-08-28
 draft: false
 weight: 50
 ---
@@ -48,21 +48,29 @@ Container images of **pochi** for Docker are:
 
 * `tamada/pochi`
     * `2.0.0`, `latest`
+        * accept only `.groovy` script files.
     * `1.0.0`
+        * accept only `.js` script files.
 
-
-To run **pochi** on Docker container OS'
+To run **pochi** on Docker container OS
 
 ```sh
-$ docker run --rm -v "$PWD":/home/pochi tamada/pochi [OPTIONS] [SCRIPT [ARGV...]]
+$ docker run --rm -v "$PWD":/home/pochi tamada/pochi:2.0.0 [OPTIONS] [SCRIPT [ARGV...]]
 ```
-
 
 * `OPTIONS`: the options for **pochi**.
 * `[SCRIPT [ARGV...]]`: script file for **pochi**.
 * `--rm`: remove the container after running.
 * `-v "$PWD":/home/pochi`: share volume `$PWD` in host OS to `/home/pochi` in the container OS.
     * `$PWD` must be the absolute path.
+
+#### Environments in the docker container
+
+* `USER`: `pochi`
+* `WORKDIR`: `/home/pochi`
+* `JAVA_HOME`: `/opt/java` (symbolic link from `/opt/openjdk-11-minimal`)
+* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-3.0.5`)
+* `POCHI_HOME`: `/opt/pochi` (symbolic link from `/opt/pochi-2.0.0`)
 
 {{< gototop >}}
 
@@ -91,7 +99,7 @@ The followings are the description of the nodes and edges in the flowchart.
 * `Birthmarks`
     * shows the extracted characteristics from Java class files by certain method.
       In the **pochi**, [`Birthmarks`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmarks.html) and [`Birthmark`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmark.html) show the extracted birthmarks.
-      The string representation of `Birthmark` (the return value of `toString` method) is CSV format, therefore, we can store them into some csv file.
+      The string representation of [`Birthmark`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmark.html) (the return value of `toString` method) is CSV format, therefore, we can store them into some csv file.
 * `Pairs`
     * shows the pair list of extracted birthmarks.
       **pochi** shows these objects as [`Pair<Birthmark>`](../apidocs/jp/cafebabe/pochi/birthmarks/pairs/Pair.html).
@@ -102,7 +110,7 @@ The followings are the description of the nodes and edges in the flowchart.
     * extracts birthmarks from given class files by the certain algorithm.
       In the script file, `pochi.extractor("ALGORITHM_NAME")` obtains the instance of [`Extractor`](../apidocs/jp/cafebabe/pochi/birthmarks/extractors/Extractor.html).
 * `Parser`
-    * parses the given csv file and build `Birthmarks` object.
+    * parses the given csv file and build [`Birthmarks`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmarks.html) object.
       To get the instance of [`BirthmarkParser`](../apidocs/jp/cafebabe/pochi/birthmarks/BirthmarkParser.html), call `pochi.parser()` method in the script file.
 * `PairMatcher`
     * matches the pair of birthmarks by some algorithm.
