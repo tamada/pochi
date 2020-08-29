@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 func oneLiner(opts *options) *exec.Cmd {
@@ -45,15 +46,18 @@ func setConfigPath(configPath string) {
 	os.Setenv(CONFIG_PATH, configPath)
 }
 
-func (runner *pochiRunner) validate() error {
+func (runner *pochiRunner) validate() (int, error) {
 	if runner.opts.dest != "" {
-		return fmt.Errorf("%s: wrong option -- -d, --dest", runner.prog)
+		return 2, fmt.Errorf("%s: wrong option -- -d, --dest", runner.prog)
 	}
-	return nil
+	return 0, runner.errorHelp()
 }
 
-func (runner *pochiRunner) isHelp() bool {
-	return runner.opts.helpFlag
+func (runner *pochiRunner) errorHelp() error {
+	if runner.opts.helpFlag {
+		return fmt.Errorf(helpMessage(filepath.Base(runner.prog)))
+	}
+	return nil
 }
 
 func (runner *pochiRunner) execute() int {

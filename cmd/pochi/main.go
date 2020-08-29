@@ -31,8 +31,7 @@ type pochiCompiler struct {
 
 type pochi interface {
 	execute() int
-	validate() error
-	isHelp() bool
+	validate() (int, error)
 }
 
 type options struct {
@@ -139,34 +138,43 @@ func appendSpecifiedClasspath(classpaths []string, opts *options) []string {
 	return append(classpaths, opts.classpath)
 }
 
-func classpathExpression(opts *options) string {
-	libDir := filepath.Join(pochiHome(), LIB_DIR)
-	infos, err := ioutil.ReadDir(libDir)
-	if err != nil {
-		panic(err)
-	}
+func joinClasspaths(infos []os.FileInfo, libDir string) []string {
 	classpath := []string{}
 	for _, info := range infos {
 		if info.Mode().IsRegular() {
 			classpath = append(classpath, filepath.Join(libDir, info.Name()))
 		}
 	}
+	return classpath
+}
+
+func classpathExpression(opts *options) string {
+	libDir := filepath.Join(pochiHome(), LIB_DIR)
+	infos, err := ioutil.ReadDir(libDir)
+	if err != nil {
+		panic(err)
+	}
+	classpath := joinClasspaths(infos, libDir)
 	classpath = appendSpecifiedClasspath(classpath, opts)
 	return strings.Join(classpath, ":")
 }
 
-func execCommand(command *exec.Cmd, opts *options) int {
+func prepareExec(command *exec.Cmd, opts *options) {
 	command.Stdin = os.Stdin
 	command.Stdout = os.Stdout
 	command.Stderr = os.Stderr
 	opts.printIfVerbose(fmt.Sprintf("command: %s", strings.Join(command.Args, " ")))
+}
+
+func execCommand(command *exec.Cmd, opts *options) int {
+	prepareExec(command, opts)
 	if err := command.Start(); err != nil {
 		fmt.Println(err.Error())
-		return 3
+		return 16
 	}
 	if err := command.Wait(); err != nil {
 		fmt.Println(err.Error())
-		return 4
+		return 32
 	}
 	return 0
 }
@@ -176,11 +184,8 @@ func goMain(args []string) int {
 	if err != nil {
 		return printError(1, err)
 	}
-	if err := pochi.validate(); err != nil {
-		return printError(2, err)
-	}
-	if pochi.isHelp() {
-		return printError(0, fmt.Errorf(helpMessage(filepath.Base(args[0]))))
+	if status, err := pochi.validate(); err != nil {
+		return printError(status, err)
 	}
 	return pochi.execute()
 }
