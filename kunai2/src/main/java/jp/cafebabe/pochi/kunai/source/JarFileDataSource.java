@@ -16,7 +16,8 @@ import jp.cafebabe.pochi.kunai.util.StreamHelper;
 public class JarFileDataSource extends AbstractDataSource implements PathResolver{
     private FileSystem system;
 
-    public JarFileDataSource(FileSystem system){
+    public JarFileDataSource(Path path, FileSystem system) {
+        super(path);
         this.system = system;
     }
 

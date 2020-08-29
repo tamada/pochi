@@ -5,7 +5,8 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
-import jp.cafebabe.pochi.nasubi.Either;
+import io.vavr.control.Either;
+import io.vavr.control.Try;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 

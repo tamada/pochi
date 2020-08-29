@@ -29,4 +29,11 @@ public class Rules {
         return list.stream()
                 .toArray(Rule[]::new);
     }
+
+    @Override
+    public String toString() {
+        return list.stream()
+                .map(rule -> rule.toString())
+                .collect(Collectors.joining(",", "{", "}"));
+    }
 }

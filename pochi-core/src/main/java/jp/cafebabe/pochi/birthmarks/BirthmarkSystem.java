@@ -20,6 +20,14 @@ public class BirthmarkSystem {
                 .toArray(BirthmarkType[]::new);
     }
 
+    public void register(ExtractorBuilder builder) {
+        extractors.register(builder);
+    }
+
+    public void register(ComparatorBuilder builder) {
+        comparators.register(builder);
+    }
+
     public ComparatorBuilder comparator(ComparatorType type){
         return comparators.builder(type);
     }

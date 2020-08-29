@@ -59,7 +59,7 @@ public class ConfigurationTest {
 
         assertThat(config.match("java.lang.String"), is(true));
 
-        Stream<Item> stream = config.properties();
+        Stream<Item> stream = config.propertyStream();
         assertThat(stream.count(), is(0L));
     }
 
@@ -69,7 +69,7 @@ public class ConfigurationTest {
         config.setProperty(new ItemKey("k"), new ItemValue("3"));
         config.setProperty(new ItemKey("test-key"), new ItemValue("test-value"));
 
-        Item[] items = config.properties().toArray(Item[]::new);
+        Item[] items = config.propertyStream().toArray(Item[]::new);
         assertThat(items[0], is(Item.of("test-key", "test-value")));
         assertThat(items[1], is(Item.of("k", "3")));
     }

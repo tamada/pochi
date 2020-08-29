@@ -12,22 +12,20 @@ import jp.cafebabe.pochi.kunai.entries.Entry;
 import jp.cafebabe.pochi.kunai.entries.PathEntry;
 
 public class DirectoryDataSource extends AbstractDataSource implements PathResolver{
-    private Path basePath;
-
     public DirectoryDataSource(Path path){
-        this.basePath = path;
+        super(path);
     }
 
     @Override
     public Stream<Entry> stream() {
-        List<Path> list = new DirectoryTraverser().traverse(basePath);
+        List<Path> list = new DirectoryTraverser().traverse(base());
         return list.stream()
                 .map(path -> new PathEntry(path, this));
     }
 
     @Override
     public ClassName parseClassName(Path targetPath){
-        Path path = basePath.relativize(targetPath);
+        Path path = base().relativize(targetPath);
         String name = path.toString();
         return new ClassName(super.parseClassName(name));
     }

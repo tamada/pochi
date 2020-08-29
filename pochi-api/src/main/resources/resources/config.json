@@ -1,7 +1,6 @@
 {
   "properties": {
 //    "key1": "value1",
-//    "initialize.script": "/path/to/initialize_script.js"
   },
   "rules": {
     "rules": [

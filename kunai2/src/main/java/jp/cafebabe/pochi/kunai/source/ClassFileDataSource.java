@@ -11,16 +11,15 @@ import jp.cafebabe.pochi.kunai.entries.Entry;
 import jp.cafebabe.pochi.kunai.entries.PathEntry;
 
 public class ClassFileDataSource extends AbstractDataSource implements PathResolver{
-    private Path path;
     private ClassName name = null;
 
     public ClassFileDataSource(Path path){
-        this.path = path;
+        super(path);
     }
 
     @Override
     public Stream<Entry> stream() {
-        return Stream.of(new PathEntry(path, this));
+        return Stream.of(new PathEntry(base(), this));
     }
 
     @Override
