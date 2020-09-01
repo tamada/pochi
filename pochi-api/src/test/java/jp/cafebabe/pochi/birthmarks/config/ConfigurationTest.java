@@ -20,7 +20,7 @@ public class ConfigurationTest {
     @Test
     public void testEmptyConfiguration() {
         Configuration config = new ConfigurationBuilder().configuration();
-        Rule[] rules = config.rules().rules();
+        Rule[] rules = config.rules().toArray(size -> new Rule[size]);
 
         assertThat(rules.length, is(7));
         assertThat(rules[0].toString(), is("PREFIX,java."));
@@ -32,14 +32,14 @@ public class ConfigurationTest {
         assertThat(rules[6].toString(), is("PREFIX,org.apache."));
 
         assertThat(config.toJson().replace(" \n\r\t", ""), is(
-                "{\"rules\":{\"rules\":[" + 
+                "{\"rules\":[" +
                 "{\"type\":\"PREFIX\",\"pattern\":\"java.\"}," + 
                 "{\"type\":\"PREFIX\",\"pattern\":\"javax.\"}," + 
                 "{\"type\":\"PREFIX\",\"pattern\":\"org.omg.\"}," + 
                 "{\"type\":\"PREFIX\",\"pattern\":\"org.ietf.\"}," + 
                 "{\"type\":\"PREFIX\",\"pattern\":\"org.w3c.\"}," + 
                 "{\"type\":\"PREFIX\",\"pattern\":\"org.xml.sax.\"}," + 
-                "{\"type\":\"PREFIX\",\"pattern\":\"org.apache.\"}]}," +
+                "{\"type\":\"PREFIX\",\"pattern\":\"org.apache.\"}]," +
                 "\"properties\":{}}")); 
     }
 
@@ -47,7 +47,7 @@ public class ConfigurationTest {
     public void testDefaultConfig() throws Exception{
         Configuration config = build(Optional.empty());
 
-        Rule[] rules = config.rules().rules();
+        Rule[] rules = config.rules().toArray(size -> new Rule[size]);
         assertThat(rules.length, is(7));
         assertThat(rules[0].toString(), is("PREFIX,java."));
         assertThat(rules[1].toString(), is("PREFIX,javax."));

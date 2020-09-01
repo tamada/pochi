@@ -2,8 +2,6 @@ package jp.cafebabe.pochi.birthmarks.rules;
 
 import java.util.StringJoiner;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Rule {
     private Position position;
     private Snippet snippet;
@@ -13,25 +11,25 @@ public class Rule {
         this.snippet = snippet;
     }
 
-    public Rule(@JsonProperty("type") String position,
-            @JsonProperty("pattern") String snippet){
-        this(Position.valueOf(
-                position.toUpperCase()),
+    public Rule(String position, String snippet){
+        this(Position.valueOf(position.toUpperCase()),
                 new Snippet(snippet));
     }
 
-    @JsonProperty("type")
     private String position(){
         return position.name();
     }
 
-    @JsonProperty("pattern")
     private String snippet(){
         return snippet.toString();
     }
 
     public boolean match(String string){
         return position.match(snippet, string);
+    }
+
+    public String toJson() {
+        return String.format("{\"type\":\"%s\",\"pattern\":\"%s\"}", position(), snippet());
     }
 
     @Override

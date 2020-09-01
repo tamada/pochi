@@ -51,7 +51,7 @@ public class RulesTest {
     }
     @Test
     public void testRuleArray() {
-        Rule[] ruleArray = rules.rules();
+        Rule[] ruleArray = rules.stream().toArray(size -> new Rule[size]);
 
         assertThat(ruleArray.length, is(4));
     }

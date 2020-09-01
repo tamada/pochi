@@ -4,10 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Rules {
-    @JsonProperty("rules")
     private List<Rule> list;
 
     public Rules(){
@@ -24,10 +21,13 @@ public class Rules {
                 .anyMatch(rule -> rule.match(className));
     }
 
-    @JsonProperty("rules")
-    public Rule[] rules(){
-        return list.stream()
-                .toArray(Rule[]::new);
+    public Stream<Rule> stream(){
+        return list.stream();
+    }
+
+    public String toJson() {
+        return stream().map(item -> item.toJson())
+                .collect(Collectors.joining(",", "[", "]"));
     }
 
     @Override
