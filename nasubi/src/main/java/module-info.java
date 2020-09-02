@@ -1,3 +1,3 @@
-module jp.cafebabe.pochi.nasubi {
-    exports jp.cafebabe.pochi.nasubi;
+module jp.cafebabe.nasubi {
+    exports jp.cafebabe.nasubi;
 }

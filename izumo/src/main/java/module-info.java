@@ -1,8 +1,17 @@
-module jp.cafebabe.pochi.izumo{
-    requires jp.cafebabe.pochi.api;
+import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
+import jp.cafebabe.izumo.builders.GuessedPairMatcherBuilder;
+import jp.cafebabe.izumo.builders.RoundRobinPairMatcherBuilder;
+import jp.cafebabe.izumo.builders.RoundRobinWithSamePairMatcherBuilder;
 
-    uses jp.cafebabe.pochi.birthmarks.pairs.PairMatcherBuilder;
-    provides jp.cafebabe.pochi.birthmarks.pairs.PairMatcherBuilder with jp.cafebabe.pochi.izumo.builders.GuessedPairMatcherBuilder,
-            jp.cafebabe.pochi.izumo.builders.RoundRobinPairMatcherBuilder,
-            jp.cafebabe.pochi.izumo.builders.RoundRobinWithSamePairMatcherBuilder;
+module jp.cafebabe.izumo{
+    requires jp.cafebabe.birthmarks;
+
+    uses PairMatcherBuilder;
+    provides PairMatcherBuilder with
+            GuessedPairMatcherBuilder,
+            RoundRobinPairMatcherBuilder,
+            RoundRobinWithSamePairMatcherBuilder;
+
+    exports jp.cafebabe.izumo;
+    exports jp.cafebabe.izumo.builders;
 }

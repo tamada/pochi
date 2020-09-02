@@ -14,7 +14,7 @@
   <packaging>jar</packaging>
 
   <name>pochi-core</name>
-  <url>https://tamada.github.io/pochi/core</url>
+  <url>https://tamada.github.io/pochi</url>
 
   <dependencies>
     <dependency>

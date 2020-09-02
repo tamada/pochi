@@ -1,7 +1,8 @@
-module jp.cafebabe.pochi.kunai {
-    exports jp.cafebabe.pochi.kunai.entries;
-    exports jp.cafebabe.pochi.kunai.sink;
-    exports jp.cafebabe.pochi.kunai.source;
-    requires jp.cafebabe.pochi.nasubi;
+module jp.cafebabe.kunai {
+    exports jp.cafebabe.kunai.entries;
+    exports jp.cafebabe.kunai.sink;
+    exports jp.cafebabe.kunai.source;
+    exports jp.cafebabe.kunai.source.factories;
+    requires jp.cafebabe.nasubi;
     requires transitive org.objectweb.asm;
 }
