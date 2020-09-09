@@ -6,7 +6,6 @@ import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
 module jp.cafebabe.pochi {
     requires jp.cafebabe.birthmarks;
     requires jp.cafebabe.izumo;
-    requires jp.cafebabe.nasubi;
     requires java.logging;
 
     uses PairMatcherBuilder;
