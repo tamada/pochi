@@ -14,7 +14,6 @@
     <module>pochi-api</module>
     <module>pochi-core</module>
     <module>distribution</module>
-    <module>millstone</module>
   </modules>
 
   <name>pochi: extensible birthmark toolkit</name>
@@ -26,7 +25,7 @@
       <name>Haruaki TAMADA</name>
       <email>tamada@users.noreply.github.com</email>
       <organization>Kyoto Sangyo University</organization>
-      <organizationUrl>http://tamada.github.io/</organizationUrl>
+      <organizationUrl>https://tamada.github.io/</organizationUrl>
       <timezone>-9</timezone>
     </developer>
   </developers>

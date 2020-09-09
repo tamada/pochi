@@ -29,4 +29,5 @@ module jp.cafebabe.pochi {
     exports jp.cafebabe.pochi.extractors;
     exports jp.cafebabe.pochi.parsers;
     exports jp.cafebabe.pochi.kgram;
+    exports jp.cafebabe.pochi.uc;
 }
