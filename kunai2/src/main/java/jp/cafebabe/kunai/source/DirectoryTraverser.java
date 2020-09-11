@@ -1,5 +1,7 @@
 package jp.cafebabe.kunai.source;
 
+import jp.cafebabe.kunai.util.PathHelper;
+
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -11,8 +13,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import jp.cafebabe.nasubi.Exceptions;
 
 class DirectoryTraverser {
     private static final DirectoryStream.Filter<Path> FILTER = new EveryFileAcceptFilter();
@@ -40,7 +40,7 @@ class DirectoryTraverser {
     }
 
     private void traverseDirectory(FileSystemProvider provider, List<Path> list, Path path){
-        Optional<BasicFileAttributes> optional = getAttributes(provider, path);
+        Optional<BasicFileAttributes> optional = PathHelper.readAttributes(path, provider);
         optional.ifPresent(attr -> doTraverse(provider, list, path, attr));
     }
 
@@ -50,10 +50,5 @@ class DirectoryTraverser {
             return;
         }
         list.add(path);
-    }
-
-    private Optional<BasicFileAttributes> getAttributes(FileSystemProvider provider, Path path){
-        return Exceptions.map(provider, path, (p2, path2) -> 
-            provider.readAttributes(path, BasicFileAttributes.class));
     }
 }

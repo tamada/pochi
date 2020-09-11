@@ -11,20 +11,25 @@ import java.nio.file.spi.FileSystemProvider;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-import jp.cafebabe.nasubi.Exceptions;
+import io.vavr.control.Try;
 
-public class DataSinkHelper {
+class DataSinkHelper {
     public static FileSystem buildFileSystem(Path path){
         Map<String, String> environment = new HashMap<>();
         environment.put("create", "true");
         return buildFileSystem(path, environment).get();
     }
 
-    private static Optional<FileSystem> buildFileSystem(Path path, Map<String, String> environment){
-        return Exceptions.map(path, environment,
-                (p, map) -> FileSystems.newFileSystem(
-                        URI.create("jar:file:" + p.toAbsolutePath()), map));
+    private static Optional<FileSystem> buildFileSystem(Path path, Map<String, String> environment) {
+        return Try.of(() -> newFileSystem(path, environment))
+                .toJavaOptional();
+    }
+
+    private static FileSystem newFileSystem(Path path, Map<String, String> environment) throws IOException {
+        URI uri = URI.create("jar:file:" + path.toAbsolutePath());
+        return FileSystems.newFileSystem(uri, environment);
     }
 
     public static OutputStream newOutputStream(FileSystem system, Path path) throws IOException{

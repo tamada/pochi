@@ -62,7 +62,6 @@ logging(java.logging)
 jackson(com.fasterxml.jackson.databind)
 zipfs(jdk.zipfs)
 
-kunai -- transitive --> nasubi
 api -- transitive --> kunai
 kunai -- transitive --> asm
 kunai --> zipfs
