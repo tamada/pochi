@@ -1,4 +1,4 @@
-package jp.cafebabe.nasubi;
+package jp.cafebabe.birthmarks.entities;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;

@@ -19,19 +19,5 @@ Join [our Gitter channel](https://gitter.im/pochi-birthmark/) if you have any pr
 
 ## Modules
 
-Module system will be introduced by pochi-2.0.0.
+pochi-2.0.0 introduces the module system.
 
-```mermaid
-graph LR;
-kunai
-api[pochi-api]
-cli[pochi-cli]
-izumo
-core[pochi-core]
-cli-->core
-core-->izumo
-core-->api
-izumo-->api
-api-->kunai
-core-->kunai
-```

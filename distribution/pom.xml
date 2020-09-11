@@ -22,12 +22,6 @@
     </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
-      <artifactId>nasubi</artifactId>
-      <version>1.0.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-api</artifactId>
       <version>1.0.0</version>
       <scope>compile</scope>
@@ -60,7 +54,6 @@
           </archive>
           <descriptors>
             <descriptor>src/main/resources/assemblies/all.xml</descriptor>
-            <descriptor>src/main/resources/assemblies/fatjar.xml</descriptor>
             <descriptor>src/main/resources/assemblies/dist.xml</descriptor>
           </descriptors>
         </configuration>

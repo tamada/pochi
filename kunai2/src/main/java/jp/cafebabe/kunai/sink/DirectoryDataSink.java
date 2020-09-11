@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import io.vavr.control.Try;
 import jp.cafebabe.kunai.entries.Entry;
 import jp.cafebabe.kunai.entries.KunaiException;
 
@@ -24,11 +25,9 @@ public class DirectoryDataSink extends ClassFileDataSink {
     }
 
     private void consume(InputStream in, Path path) throws KunaiException{
-        try(OutputStream out = Files.newOutputStream(path)){
-            DataSinkHelper.copy(in, out);
-        } catch(IOException e){
-            throw new KunaiException(e.getMessage());
-        }
+        Try.withResources(() -> Files.newOutputStream(path))
+                .of(out -> { DataSinkHelper.copy(in, out); return Void.TYPE; })
+                .getOrElseThrow(e -> new KunaiException(e.getMessage()));
     }
 
     private Path createPath(Entry entry){

@@ -1,4 +1,4 @@
-package jp.cafebabe.nasubi;
+package jp.cafebabe.birthmarks.entities;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;

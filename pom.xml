@@ -8,9 +8,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>nasubi</module>
     <module>kunai2</module>
-    <module>izumo</module>
     <module>pochi-api</module>
     <module>pochi-core</module>
     <module>distribution</module>

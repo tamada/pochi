@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.nio.file.Path;
 
+import io.vavr.control.Try;
 import jp.cafebabe.kunai.util.PathHelper;
-import jp.cafebabe.nasubi.Exceptions;
 
 public class DirectoryMaker {
-    public static void mkdirs(Path givenPath, FileSystem givenSystem){
-        Exceptions.isThrowed(givenPath, givenSystem, 
-                (path, system) -> mkdirsImpl(path, system));
+    public static Try<Void> mkdirs(Path givenPath, FileSystem givenSystem){
+        return Try.run(() -> mkdirsImpl(givenPath, givenSystem));
     }
 
     private static void mkdirsImpl(Path path, FileSystem system) throws IOException{

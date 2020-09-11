@@ -1,13 +1,14 @@
 package jp.cafebabe.kunai.util;
 
+import io.vavr.control.Try;
+
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.spi.FileSystemProvider;
 import java.util.Optional;
-
-import jp.cafebabe.nasubi.Exceptions;
 
 public class PathHelper {
     public static boolean endsWith(Path path, String suffix){
@@ -19,14 +20,19 @@ public class PathHelper {
         return readAttributes(path, FileSystems.getDefault());
     }
 
+    public static Optional<BasicFileAttributes> readAttributes(Path givenPath, FileSystemProvider provider) {
+        return Try.of(() -> provider.readAttributes(givenPath, BasicFileAttributes.class))
+                .toJavaOptional();
+
+    }
+
     public static Optional<BasicFileAttributes> readAttributes(Path givenPath, FileSystem system){
-        return Exceptions.map(givenPath, system.provider(), 
-                (path, provider) -> provider.readAttributes(path, BasicFileAttributes.class));
+        return readAttributes(givenPath, system.provider());
     }
 
     public static boolean deleteAll(Path path){
-        return Exceptions.isThrowed(path, 
-                dir -> Files.walkFileTree(dir, new DirectoryRemover()));
+        return Try.of(() -> Files.walkFileTree(path, new DirectoryRemover()))
+                .isSuccess();
     }
 
     public static boolean exists(Path path){

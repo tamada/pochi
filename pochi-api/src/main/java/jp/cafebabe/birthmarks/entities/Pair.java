@@ -1,6 +1,4 @@
-package jp.cafebabe.birthmarks.pairs;
-
-import jp.cafebabe.nasubi.Couple;
+package jp.cafebabe.birthmarks.entities;
 
 public class Pair<T> extends Couple<T, T>{
     public Pair(T item1, T item2){

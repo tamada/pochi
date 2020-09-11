@@ -4,7 +4,7 @@ import io.vavr.control.Either;
 import jp.cafebabe.birthmarks.Task;
 import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Birthmarks;
-import jp.cafebabe.birthmarks.pairs.Pair;
+import jp.cafebabe.birthmarks.entities.Pair;
 import jp.cafebabe.birthmarks.pairs.PairMatcher;
 
 public interface Comparator extends Task<ComparatorType> {

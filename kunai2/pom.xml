@@ -17,15 +17,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>jp.cafebabe.pochi</groupId>
-      <artifactId>nasubi</artifactId>
-      <version>1.0.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
-      <version>7.2</version>
+      <version>8.0.1</version>
     </dependency>
   </dependencies>
 
