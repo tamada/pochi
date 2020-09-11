@@ -16,7 +16,7 @@ func oneLiner(opts *options) *exec.Cmd {
 }
 
 func interactiveMode(opts *options) *exec.Cmd {
-	argv := []string{"-classpath", classpathExpression(opts), "-e", "pochi = new jp.cafebabe.pochi.birthmarks.BirthmarkSystemHelper()"}
+	argv := []string{"-classpath", classpathExpression(opts), "-e", "pochi = new jp.cafebabe.pochi.BirthmarkSystemHelper()"}
 	if opts.verboseMode {
 		argv = append(argv, "--debug")
 	}

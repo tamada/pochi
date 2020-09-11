@@ -35,7 +35,7 @@ endef
 
 package: distribution/target/pochi-${VERSION}-dist
 
-distribution/target/pochi-${VERSION}-dist:
+distribution/target/pochi-${VERSION}-dist: build
 	mvn package
 
 dist: build package
@@ -50,6 +50,12 @@ site:
 
 build: setup
 	$(GO) build -o $(NAME) -v cmd/$(NAME)/*.go
+
+build-all: build package
+	@echo "creating distribution package at $(DIST)"
+	@mkdir -p $(DIST)/bin
+	@cp $(NAME) $(DIST)/bin
+	@cp -r completions samples distribution/target/lib README.md Dockerfile LICENSE $(DIST)
 
 distclean:
 	mvn clean

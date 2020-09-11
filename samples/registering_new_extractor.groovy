@@ -1,7 +1,7 @@
 // create new birthmark extractor.
 // This sample registers 7-gram birthmark extractor.
 
-import jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder
+import jp.cafebabe.pochi.kgram.KGramBasedExtractorBuilder
 
 println("========= extractor ==========")
 println(pochi.extractorNames())

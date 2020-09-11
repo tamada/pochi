@@ -1,7 +1,7 @@
 // compare extracted birthmarks from given jar files.
 
-import jp.cafebabe.pochi.birthmarks.comparators.Threshold;
-import jp.cafebabe.pochi.birthmarks.entities.Birthmarks;
+import jp.cafebabe.birthmarks.comparators.Threshold;
+import jp.cafebabe.birthmarks.entities.Birthmarks;
 
 // extract birthmarks by given extractor from given file path.
 def extract(path, extractor) {
