@@ -10,7 +10,7 @@ import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Birthmarks;
 import jp.cafebabe.birthmarks.entities.Percentage;
 import jp.cafebabe.birthmarks.entities.Progress;
-import jp.cafebabe.birthmarks.pairs.Pair;
+import jp.cafebabe.birthmarks.entities.Pair;
 import jp.cafebabe.birthmarks.pairs.PairMatcher;
 
 public abstract class AbstractComparator extends AbstractTask<ComparatorType> implements Comparator {

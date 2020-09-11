@@ -29,13 +29,7 @@
       <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>jp.cafebabe.pochi</groupId>
-      <artifactId>izumo</artifactId>
-      <version>1.0.0</version>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>  
+  </dependencies>
   
   <build>
     <resources>

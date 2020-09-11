@@ -51,8 +51,6 @@ Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin
 
 {{< mermaid >}}
 graph TB;
-nasubi(jp.cafebabe.nasubi)
-izumo(jp.cafebabe.izumo)
 kunai(jp.cafebabe.kunai)
 api(jp.cafebabe.birthmarks)
 pochi(jp.cafebabe.pochi)
@@ -66,9 +64,7 @@ api -- transitive --> kunai
 kunai -- transitive --> asm
 kunai --> zipfs
 api -- transitive --> vavr
-izumo --> api
 api --> jackson
-pochi --> izumo
 pochi --> api
 api --> logging
 pochi --> logging

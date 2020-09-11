@@ -3,6 +3,7 @@ package jp.cafebabe.birthmarks.pairs;
 import java.util.stream.Stream;
 
 import jp.cafebabe.birthmarks.Task;
+import jp.cafebabe.birthmarks.entities.Pair;
 
 public interface PairMatcher<T> extends Task<PairMatcherType>{
     @Override

@@ -1,7 +1,7 @@
 package jp.cafebabe.birthmarks.comparators;
 
 import jp.cafebabe.birthmarks.entities.Birthmark;
-import jp.cafebabe.birthmarks.pairs.Pair;
+import jp.cafebabe.birthmarks.entities.Pair;
 
 public class Comparison {
     private Pair<Birthmark> pair;
