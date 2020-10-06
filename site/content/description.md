@@ -27,7 +27,7 @@ If the user would perform filtering process, it is easy to perform the process.
 ```sh
 pochi [OPTIONS] [SCRIPT_FILE [ARGV...]]
 OPTIONS
-    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
+    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) separated with colon (:).
     -C, --config <CONFIG_FILE>       specifies configuration file.
     -e, --expression <EXPRESSION>    specifies command line script.
 
@@ -40,7 +40,7 @@ SCRIPT_FILE [ARGV...]
 #### Script file
 
 The script files are parsed by the Groovy.
-For more detail, see [:ant: Samples](../samples).
+For more detail, see [:ant: Examples](../examples).
 
 ### :whale: Docker
 

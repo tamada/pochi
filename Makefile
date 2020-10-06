@@ -27,7 +27,7 @@ test: setup
 define _createDist
 	mkdir $(DESTINATION)/dist_$(1)_$(2)
 	cp -r distribution/target/$(DIST)-dist/$(DIST) $(DESTINATION)/dist_$(1)_$(2)
-	cp -r samples completions Dockerfile README.md LICENSE $(DESTINATION)/dist_$(1)_$(2)/$(DIST)
+	cp -r examples completions Dockerfile README.md LICENSE $(DESTINATION)/dist_$(1)_$(2)/$(DIST)
 	rm $(DESTINATION)/dist_$(1)_$(2)/$(DIST)/lib/distribution-$(VERSION).jar
 	GOOS=$1 GOARCH=$2 go build -o $(DESTINATION)/dist_$(1)_$(2)/$(DIST)/bin/$(NAME)$(3) cmd/$(NAME)/*.go
 	tar cfz $(DESTINATION)/$(DIST)_$(1)_$(2).tar.gz -C $(DESTINATION)/dist_$(1)_$(2) $(DIST)
@@ -55,7 +55,7 @@ build-all: build package
 	@echo "creating distribution package at $(DIST)"
 	@mkdir -p $(DIST)/bin
 	@cp $(NAME) $(DIST)/bin
-	@cp -r completions samples distribution/target/lib README.md Dockerfile LICENSE $(DIST)
+	@cp -r completions examples distribution/target/lib README.md Dockerfile LICENSE $(DIST)
 
 distclean:
 	mvn clean

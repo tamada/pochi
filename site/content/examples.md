@@ -1,11 +1,11 @@
 ---
-title: ":ant: Samples"
+title: ":ant: Examples"
 date: 2020-08-27
 ---
 
 ## :mega: Overview
 
-Those samples contain `samples` directory in the `pochi` directory.
+The `examples` directory in the `pochi` directory contains the following example programs.
 To write groovy script for the pochi, see the [API document of pochi](../apidocs/),
 especially, [BirthmarkSystemHelper](../apidocs/jp/cafebabe/pochi/birthmarks/BirthmarkSystemHelper.html).
 
@@ -16,7 +16,7 @@ The groovy script of pochi defines the two variables as follows.
 
 Also, we should know [the birthmarking flow](../description#) in the pochi.
 
-### Sample programs
+### Example programs
 
 * [:one: `printing_args.groovy`](#1-printing_argsgroovy)
 * [:two: `printing_pochi_info.groovy`](#2-printing_pochi_infogroovy)
@@ -38,7 +38,7 @@ args.each(arg -> println(arg))
 ### :wine_glass: Output
 
 ```sh
-$ pochi samples/printing_args.groovy a b c d e f
+$ pochi examples/printing_args.groovy a b c d e f
 a
 b
 c
@@ -77,7 +77,7 @@ config.propertyStream()
 ### :wine_glass: Output
 
 ```sh
-$ pochi samples/printing_pochi_info.groovy
+$ pochi examples/printing_pochi_info.groovy
 ========== birthmark extractor names ==========
 [6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 3-gram]
 ========== birthmark comparator names ==========
@@ -87,7 +87,7 @@ $ pochi samples/printing_pochi_info.groovy
 ========== system library rules ==========
 {PREFIX,java.,PREFIX,javax.,PREFIX,org.omg.,PREFIX,org.ietf.,PREFIX,org.w3c.,PREFIX,org.xml.sax.,PREFIX,org.apache.}
 ========== properties ==========
-$ pochi samples/printing_pochi_info.groovy -C samples/sample_config.json
+$ pochi examples/printing_pochi_info.groovy -C examples/sample_config.json
 ========== birthmark extractor names ==========
 [6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 3-gram]
 ========== birthmark comparator names ==========
@@ -131,7 +131,7 @@ Arrays.stream(args)
 ### :wine_glass: Output
 
 ```sh
-$ pochi samples/extracting_birthmarks.groovy lib/vavr-match-0.10.3.jar
+$ pochi examples/extracting_birthmarks.groovy lib/vavr-match-0.10.3.jar
 extract uc birthmark from lib/vavr-match-0.10.3.jar
 io.vavr.match.annotation.Unapply,jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Unapply.class,uc,java.lang.Object,java.lang.annotation.Annotation
 io.vavr.match.annotation.Patterns,jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Patterns.class,uc,java.lang.Object,java.lang.annotation.Annotation
@@ -171,9 +171,9 @@ Arrays.stream(args)
 ### :wine_glass: Output
 
 ```sh
-$ pochi samples/filtering_source.groovy lib/pochi-api-2.0.0.jar
+$ pochi examples/filtering_source.groovy lib/pochi-api-2.0.0.jar
 # no output was given, because, all of classes contains `pochi` keyword in the package name.
-$ pochi samples/filtering_source.groovy lib/vavr-match-0.10.3.jar # prints all classes included in the given jar.
+$ pochi examples/filtering_source.groovy lib/vavr-match-0.10.3.jar # prints all classes included in the given jar.
 jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Unapply.class
 jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Patterns.class
 ```
@@ -222,7 +222,7 @@ matcher.match(birthmarks)
 ### :wine_glass: Output
 
 ```sh
-$ pochi samples/comparing_birthmarks.groovy distribution/target/lib/kunai2-1.0.0.jar
+$ pochi examples/comparing_birthmarks.groovy distribution/target/lib/kunai2-1.0.0.jar
 jp.cafebabe.pochi.kunai.sink.WarFileDataSink,jp.cafebabe.pochi.kunai.source.WarFileDataSource,1.0
 jp.cafebabe.pochi.kunai.sink.WarFileDataSink,jp.cafebabe.pochi.kunai.source.factories.WarFileDataSourceFactory,0.75
 jp.cafebabe.pochi.kunai.source.PlainFileDataSource,jp.cafebabe.pochi.kunai.source.ClassFileDataSource,1.0

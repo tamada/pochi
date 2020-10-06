@@ -24,7 +24,7 @@ $ cd pochi
 $ make build-all
 ```
 
-Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin/pochi`), and dependent jar files (`lib`) and misc files (`README.md`, `LICENSE`, `completions`, `samples`, and `Dockerfile`).
+Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin/pochi`), and dependent jar files (`lib`) and misc files (`README.md`, `LICENSE`, `completions`, `examples`, and `Dockerfile`).
 
 {{< gototop >}}
 
