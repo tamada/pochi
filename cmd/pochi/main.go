@@ -90,7 +90,8 @@ func pochiHome() string {
 		func() string { return os.Getenv(HOME_NAME) },
 		func() string { return "/opt/pochi" },
 		func() string { return BREW_PATH },
-		func() string { return "distribution/target" },
+		func() string { return fmt.Sprintf("pochi-%s", VERSION) },
+		func() string { return "." },
 	}
 	for _, generator := range generators {
 		path := generator()

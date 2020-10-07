@@ -26,39 +26,43 @@ test: setup
 # refer from https://pod.hatenablog.com/entry/2017/06/13/150342
 define _createDist
 	mkdir $(DESTINATION)/dist_$(1)_$(2)
-	cp -r distribution/target/$(DIST)-dist/$(DIST) $(DESTINATION)/dist_$(1)_$(2)
-	cp -r examples completions Dockerfile README.md LICENSE $(DESTINATION)/dist_$(1)_$(2)/$(DIST)
-	rm $(DESTINATION)/dist_$(1)_$(2)/$(DIST)/lib/distribution-$(VERSION).jar
+	cp -r $(DIST) $(DESTINATION)/dist_$(1)_$(2)
 	GOOS=$1 GOARCH=$2 go build -o $(DESTINATION)/dist_$(1)_$(2)/$(DIST)/bin/$(NAME)$(3) cmd/$(NAME)/*.go
 	tar cfz $(DESTINATION)/$(DIST)_$(1)_$(2).tar.gz -C $(DESTINATION)/dist_$(1)_$(2) $(DIST)
 endef
 
-package: distribution/target/pochi-${VERSION}-dist
-
-distribution/target/pochi-${VERSION}-dist: build
+package: pochi-core/target/pochi-core-$(VERSION).jar
 	mvn package
 
-dist: build package
+dist: build-all package
 	@$(call _createDist,darwin,amd64,)
 	@$(call _createDist,windows,amd64,.exe)
 	@$(call _createDist,windows,386,.exe)
 	@$(call _createDist,linux,amd64,)
 	@$(call _createDist,linux,386,)
 
-site:
-	cd site && make
-
-build: setup
+build-pochi: setup
 	$(GO) build -o $(NAME) -v cmd/$(NAME)/*.go
 
-build-all: build package
+build: build-pochi site $(DIST)
+
+$(DIST):
 	@echo "creating distribution package at $(DIST)"
-	@mkdir -p $(DIST)/bin
-	@cp $(NAME) $(DIST)/bin
-	@cp -r completions examples distribution/target/lib README.md Dockerfile LICENSE $(DIST)
+	@mkdir -p $(DIST)/bin $(DIST)/lib
+	@cp       $(NAME) $(DIST)/bin
+	@cp -r    completions examples README.md Dockerfile LICENSE $(DIST)
+	@cp       {pochi-core,pochi-api,kunai2}/target/*-$(VERSION).jar pochi-core/target/lib/{asm-8.0.1,jackson-annotations-2.11.0,jackson-core-2.11.0,jackson-databind-2.11.0,vavr-0.10.3,vavr-match-0.10.3}.jar $(DIST)/lib
+	@cp -r    site/public $(DIST)/docs
+	@rm -rf   $(DIST)/docs/{.git,public}
+
+site: site/public
+
+site/public:
+	make --directory site
 
 distclean:
-	mvn clean
+	@rm -rf $(DIST) target/$(DESTINATION)/dist_*
+	@mvn clean
 
 clean:
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(DIST)
