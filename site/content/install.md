@@ -9,14 +9,15 @@ draft: false
 For macOS user, **pochi** supports homebrew installation.
 
 ```sh
-$ brew install tamada/brew/pochi
+$ brew tap tamada/brew
+$ brew install pochi
 ```
 
 {{< gototop >}}
 
 ## :muscle: Compiling **pochi** yourself
 
-For building yourself, clone the source code from GitHub, and build it with [Maven](https://maven.apache.org/).
+For building yourself, clone the source code from GitHub, and build it with `make` and [Maven](https://maven.apache.org/).
 
 ```sh
 $ git clone https://github.com/tamada/pochi.git
@@ -24,7 +25,7 @@ $ cd pochi
 $ make build-all
 ```
 
-Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin/pochi`), and dependent jar files (`lib`) and misc files (`README.md`, `LICENSE`, `completions`, `examples`, and `Dockerfile`).
+Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin/pochi`), and dependent jar files (`lib`), documents (`docs`) and misc files (`README.md`, `LICENSE`, `completions`, `examples`, and `Dockerfile`).
 
 {{< gototop >}}
 
@@ -38,40 +39,26 @@ Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin
 
 ### :pouch: Modules
 
-* [java.base](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/module-summary.html)
-* [java.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/module-summary.html)
-* [java.scripting](https://docs.oracle.com/en/java/javase/11/docs/api/java.scripting/module-summary.html)
-* [java.desktop](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/module-summary.html)
-* [java.sql](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html)
-* [java.xml](https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html)
-* [jdk.zipfs](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.zipfs/module-summary.html)
+* [`jp.cafebabe.pochi`](https://tamada.github.io/pochi/apidocs/jp.cafebabe.pochi/module-summary.html)
+    * [`jp.cafebabe.birthmarks`](https://tamada.github.io/pochi/apidocs/jp.cafebabe.birthmarks/module-summary.html)
+        * [`com.fasterxml.jackson.databind`](https://github.com/FasterXML/jackson-databind)
+        * [`io.vavr`](https://www.vavr.io/)
+        * [`jp.cafebabe.kunai`](https://tamada.github.io/pochi/apidocs/jp.cafebabe.kunai/module-summary.html)
+            * [`org.objectweb.asm`](https://asm.ow2.io/)
+            * [`jdk.zipfs`](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.zipfs/module-summary.html)
+    * [`java.logging`](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/module-summary.html)
+* [`org.codehaus.groovy`](https://groovy-lang.org/)
+    * [`java.scripting`](https://docs.oracle.com/en/java/javase/11/docs/api/java.scripting/module-summary.html)
+    * [`java.desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/module-summary.html)
+    * [`java.sql`](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html)
+    * [`java.xml`](https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html)
 
 
 ### :steam_locomotive: Module Graph
 
-{{< mermaid >}}
-graph TB;
-kunai(jp.cafebabe.kunai)
-api(jp.cafebabe.birthmarks)
-pochi(jp.cafebabe.pochi)
-vavr(io.vavr)
-asm(org.objectweb.asm)
-logging(java.logging)
-jackson(com.fasterxml.jackson.databind)
-zipfs(jdk.zipfs)
-
-api -- transitive --> kunai
-kunai -- transitive --> asm
-kunai --> zipfs
-api -- transitive --> vavr
-api --> jackson
-pochi --> api
-api --> logging
-pochi --> logging
-{{< /mermaid >}}
+{{< image src="images/module-graph.svg" caption="Figure 1. :steam_locomotive: Module Graph" >}}
 
 Groovy depends on the modules of `java.scripting`, `java.desktop`, `java.sql` and `java.xml`.
 
-[Download module graph](../images/module-graph.svg)
 
 {{< gototop >}}

@@ -4,9 +4,7 @@ CONTAINER_REMOVE_FLAG := "--rm"
 BASE_URL := "https://tamada.github.io/pochi"
 HUGO_THEME := "cayman-hugo-theme"
 
-build: build-impl public/v1.0.0/apidocs static/apidocs
-
-build-impl:
+build: public/v1.0.0/apidocs static/apidocs
 	docker run -it ${CONTAINER_REMOVE_FLAG} -d --name ${DOCKER_IMAGE_NAME}_build -v "${PWD}":/src -v ${PWD}/public:/output -e HUGO_THEME=${HUGO_THEME} -e HUGO_BASEURL=${BASE_URL} jojomi/hugo:latest
 
 start:
@@ -33,5 +31,4 @@ public/v1.0.0/apidocs: resources/apidocs_v1.0.0.zip
 	unzip -d public/v1.0.0 resources/apidocs_v1.0.0.zip
 
 clean:
-	@rm -rf static/apidocs
 	@rm -rf msp resources/javadoc/targets

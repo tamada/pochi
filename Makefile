@@ -7,6 +7,8 @@ DESTINATION := target
 
 all: test build
 
+build-all: $(DIST)
+
 setup:
 	git submodule update --init
 
@@ -34,7 +36,7 @@ endef
 package: pochi-core/target/pochi-core-$(VERSION).jar
 	mvn package
 
-dist: build-all package
+dist: $(DIST) package
 	@$(call _createDist,darwin,amd64,)
 	@$(call _createDist,windows,amd64,.exe)
 	@$(call _createDist,windows,386,.exe)
@@ -46,7 +48,7 @@ build-pochi: setup
 
 build: build-pochi site $(DIST)
 
-$(DIST):
+$(DIST): site
 	@echo "creating distribution package at $(DIST)"
 	@mkdir -p $(DIST)/bin $(DIST)/lib
 	@cp       $(NAME) $(DIST)/bin
@@ -66,3 +68,4 @@ distclean:
 
 clean:
 	@rm -rf $(NAME) $(DIST)
+	@make --directory site clean
