@@ -55,7 +55,7 @@ func helpMessageOfCompiler(prog string) string {
 	return fmt.Sprintf(`pochi version %s
 %s [OPTIONS] <SCRIPT_FILEs...>
 OPTIONS
-    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
+    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) separated with colon (:).
     -d, --dest <DIR>                 specifies the destination directory.
 
     -h, --help                       prints this message.
@@ -70,7 +70,7 @@ func helpMessage(prog string) string {
 	return fmt.Sprintf(`pochi version %s
 %s [OPTIONS] [SCRIPT_FILE [ARGV...]]
 OPTIONS
-    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
+    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) separated with colon (:).
     -C, --config <CONFIG_FILE>       specifies configuration file.
     -e, --expression <EXPRESSION>    specifies command line script.
 
@@ -90,7 +90,8 @@ func pochiHome() string {
 		func() string { return os.Getenv(HOME_NAME) },
 		func() string { return "/opt/pochi" },
 		func() string { return BREW_PATH },
-		func() string { return "distribution/target" },
+		func() string { return fmt.Sprintf("pochi-%s", VERSION) },
+		func() string { return "." },
 	}
 	for _, generator := range generators {
 		path := generator()

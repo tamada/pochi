@@ -35,8 +35,8 @@ theme = "cayman-hugo-theme"
         url = "/install/"
         weight = 4
     [[menu.nav]]
-        name = ":ant: Samples"
-        url = "/samples/"
+        name = ":ant: Examples"
+        url = "/examples/"
         weight = 5
     [[menu.nav]]
         name = ":smile: About"

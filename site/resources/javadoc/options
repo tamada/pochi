@@ -1,0 +1,20 @@
+--module-path
+#{PROJECT_DIR}/kunai2/target/kunai2-2.0.0.jar:#{PROJECT_DIR}/pochi-api/target/pochi-api-2.0.0.jar:#{PROJECT_DIR}/pochi-core/target/pochi-core-2.0.0.jar:#{PROJECT_DIR}/pochi-core/target/lib/vavr-0.10.3.jar:#{PROJECT_DIR}/pochi-core/target/lib/asm-8.0.1.jar:#{PROJECT_DIR}/pochi-core/target/lib/vavr-match-0.10.3.jar:#{PROJECT_DIR}/pochi-core/target/lib/jackson-annotations-2.11.0.jar:#{PROJECT_DIR}/pochi-core/target/lib/jackson-databind-2.11.0.jar:#{PROJECT_DIR}/pochi-core/target/lib/jackson-core-2.11.0.jar
+-encoding
+'UTF-8'
+-protected
+--module-source-path msp
+-author
+-bottom
+'Copyright &#169; 2020. All rights reserved.'
+-charset UTF-8
+-docencoding
+'UTF-8'
+-html5
+-doctitle
+'pochi: extensible Java birthmark toolkit 2.0.0 API'
+-link
+'https://docs.oracle.com/en/java/javase/11/docs/api'
+-version
+-windowtitle
+'pochi: extensible Java birthmark toolkit 2.0.0 API'

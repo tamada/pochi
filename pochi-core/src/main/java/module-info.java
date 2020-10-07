@@ -1,31 +1,22 @@
-import jp.cafebabe.birthmarks.BirthmarkParser;
-import jp.cafebabe.birthmarks.comparators.ComparatorBuilder;
-import jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
-import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
-import jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder;
-import jp.cafebabe.pochi.pairs.builders.GuessedPairMatcherBuilder;
-import jp.cafebabe.pochi.pairs.builders.RoundRobinPairMatcherBuilder;
-import jp.cafebabe.pochi.pairs.builders.RoundRobinWithSamePairMatcherBuilder;
-
 module jp.cafebabe.pochi {
     requires jp.cafebabe.birthmarks;
     requires java.logging;
 
-    uses PairMatcherBuilder;
-    uses BirthmarkParser;
-    uses ExtractorBuilder;
-    uses ComparatorBuilder;
+    uses jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
+    uses jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
+    uses jp.cafebabe.birthmarks.comparators.ComparatorBuilder;
+    uses jp.cafebabe.birthmarks.BirthmarkParser;
 
-    provides PairMatcherBuilder with
-            RoundRobinPairMatcherBuilder,
-            RoundRobinWithSamePairMatcherBuilder,
-            GuessedPairMatcherBuilder;
+    provides jp.cafebabe.birthmarks.pairs.PairMatcherBuilder with
+            jp.cafebabe.pochi.pairs.builders.GuessedPairMatcherBuilder,
+            jp.cafebabe.pochi.pairs.builders.RoundRobinPairMatcherBuilder,
+            jp.cafebabe.pochi.pairs.builders.RoundRobinWithSamePairMatcherBuilder;
 
-    provides ExtractorBuilder with
-            KGramBasedExtractorBuilder,
+    provides jp.cafebabe.birthmarks.extractors.ExtractorBuilder with
+            jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder,
             jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder;
 
-    provides ComparatorBuilder with
+    provides jp.cafebabe.birthmarks.comparators.ComparatorBuilder with
             jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder,
             jp.cafebabe.pochi.comparators.EditDistanceComparatorBuilder,
             jp.cafebabe.pochi.comparators.JaccardIndexComparatorBuilder,

@@ -4,18 +4,17 @@
 
   <groupId>jp.cafebabe</groupId>
   <artifactId>pochi</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>kunai2</module>
     <module>pochi-api</module>
     <module>pochi-core</module>
-    <module>distribution</module>
   </modules>
 
-  <name>pochi: extensible birthmark toolkit</name>
-  <url>http://github.com/tamada/pochi</url>
+  <name>pochi: extensible Java birthmark toolkit</name>
+  <url>https://github.com/tamada/pochi</url>
 
   <developers>
     <developer>

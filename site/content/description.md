@@ -27,7 +27,7 @@ If the user would perform filtering process, it is easy to perform the process.
 ```sh
 pochi [OPTIONS] [SCRIPT_FILE [ARGV...]]
 OPTIONS
-    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) searated with colon (:).
+    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) separated with colon (:).
     -C, --config <CONFIG_FILE>       specifies configuration file.
     -e, --expression <EXPRESSION>    specifies command line script.
 
@@ -40,7 +40,7 @@ SCRIPT_FILE [ARGV...]
 #### Script file
 
 The script files are parsed by the Groovy.
-For more detail, see [:ant: Samples](../samples).
+For more detail, see [:ant: Examples](../examples).
 
 ### :whale: Docker
 
@@ -76,45 +76,34 @@ $ docker run --rm -v "$PWD":/home/pochi tamada/pochi:2.0.0 [OPTIONS] [SCRIPT [AR
 
 ## :swimmer: The birthmarking flow
 
-The birthmarking process in the pochi flows like below.
+The birthmarking process in **pochi** shows in Figure 1.
 
-{{< mermaid >}}
-graph LR;
-CLASSES("Classes")
-BIRTHMARKS(Birthmarks)
-PAIRS(Birthmark pair)
-COMPARISONS(Comparisons)
-CSV(CSV file)
-CLASSES -- Extractor --> BIRTHMARKS
-CSV -- Parser --> BIRTHMARKS
-BIRTHMARKS -- PairMatcher --> PAIRS
-PAIRS -- Comparator --> COMPARISONS
-{{< /mermaid >}}
+{{< image src="images/birthmarking_process.svg" caption="Figure 1: birthmarking process in pochi" >}}
 
 The followings are the description of the nodes and edges in the flowchart.
 
 * `Classes`
     * is the Java class files, almost included in the jar files, and the directory.
-      **pochi** treats them as the object of [`DataSource`](../apidocs/jp/cafebabe/pochi/kunai/source/DataSource.html)
+      **pochi** treats them as the object of [`DataSource`](../apidocs/jp.cafebabe.kunai/jp/cafebabe/kunai/source/DataSource.html)
 * `Birthmarks`
     * shows the extracted characteristics from Java class files by certain method.
-      In the **pochi**, [`Birthmarks`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmarks.html) and [`Birthmark`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmark.html) show the extracted birthmarks.
-      The string representation of [`Birthmark`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmark.html) (the return value of `toString` method) is CSV format, therefore, we can store them into some csv file.
+      In the **pochi**, [`Birthmarks`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmarks.html) and [`Birthmark`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmark.html) show the extracted birthmarks.
+      The string representation of [`Birthmark`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmark.html) (the return value of `toString` method) is CSV format, therefore, we can store them into some csv file.
 * `Pairs`
     * shows the pair list of extracted birthmarks.
-      **pochi** shows these objects as [`Pair<Birthmark>`](../apidocs/jp/cafebabe/pochi/birthmarks/pairs/Pair.html).
+      **pochi** shows these objects as [`Pair<Birthmark>`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Pair.html).
 * `Comparisons`
     * represents the comparison results of birthmarks by the certain similarity calculation algorithm.
-      **pochi** shows these objects as [`Comparisons`](../apidocs/jp/cafebabe/pochi/birthmarks/comparators/Comparisons.html) and [`Comparison`](../apidocs/jp/cafebabe/pochi/birthmarks/comparators/Comparison.html).
+      **pochi** shows these objects as [`Comparisons`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparisons.html) and [`Comparison`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparison.html).
 * `Extractor`
     * extracts birthmarks from given class files by the certain algorithm.
-      In the script file, `pochi.extractor("ALGORITHM_NAME")` obtains the instance of [`Extractor`](../apidocs/jp/cafebabe/pochi/birthmarks/extractors/Extractor.html).
+      In the script file, `pochi.extractor("ALGORITHM_NAME")` obtains the instance of [`Extractor`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/extractors/Extractor.html).
 * `Parser`
-    * parses the given csv file and build [`Birthmarks`](../apidocs/jp/cafebabe/pochi/birthmarks/entities/Birthmarks.html) object.
-      To get the instance of [`BirthmarkParser`](../apidocs/jp/cafebabe/pochi/birthmarks/BirthmarkParser.html), call `pochi.parser()` method in the script file.
+    * parses the given csv file and build [`Birthmarks`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmarks.html) object.
+      To get the instance of [`BirthmarkParser`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/BirthmarkParser.html), call `pochi.parser()` method in the script file.
 * `PairMatcher`
     * matches the pair of birthmarks by some algorithm.
-      `pochi.matcher("ALGORITHM_NAME")` returns the instance of [`PairMatcher`](../apidocs/jp/cafebabe/pochi/birthmarks/pairs/PairMatcher.html)
+      `pochi.matcher("ALGORITHM_NAME")` returns the instance of [`PairMatcher`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/pairs/PairMatcher.html)
 * `Comparator`
     * calculates similarity between two given birthmaks by the certain algorithm.
-      In the script file, `pochi.comparator("ALGORITHM_NAME")` gets the instance of [`Comparator`](../apidocs/jp/cafebabe/pochi/birthmarks/comparators/Comparator.html)
+      In the script file, `pochi.comparator("ALGORITHM_NAME")` gets the instance of [`Comparator`](../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparator.html)

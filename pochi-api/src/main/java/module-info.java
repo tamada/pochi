@@ -1,7 +1,3 @@
-import jp.cafebabe.birthmarks.comparators.ComparatorBuilder;
-import jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
-import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
-
 module jp.cafebabe.birthmarks {
    requires transitive jp.cafebabe.kunai;
    requires transitive io.vavr;
@@ -15,7 +11,7 @@ module jp.cafebabe.birthmarks {
    exports jp.cafebabe.birthmarks.extractors;
    exports jp.cafebabe.birthmarks.pairs;
 
-   uses ComparatorBuilder;
-   uses ExtractorBuilder;
-   uses PairMatcherBuilder;
+   uses jp.cafebabe.birthmarks.comparators.ComparatorBuilder;
+   uses jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
+   uses jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
 }
