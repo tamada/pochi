@@ -32,7 +32,7 @@ Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin
 
 * [Jackson](https://github.com/FasterXML/jackson) 2.10.0
 * [Vavr](https://www.vavr.io/) 0.10.3
-* [ASM](https://asm.ow2.io/) 7.2
+* [ASM](https://asm.ow2.io/) 8.0.1
 * [Groovy](https://groovy-lang.org) 3.0.5
 
 
@@ -71,5 +71,7 @@ pochi --> logging
 {{< /mermaid >}}
 
 Groovy depends on the modules of `java.scripting`, `java.desktop`, `java.sql` and `java.xml`.
+
+[Download module graph](../images/module-graph.svg)
 
 {{< gototop >}}

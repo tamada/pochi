@@ -14,7 +14,7 @@ stop:
 	docker stop ${DOCKER_IMAGE_NAME}
 
 public/v1.0.0/apidocs: resources/apidocs_v1.0.0.zip
-	(cd public/v1.0.0; jar xvf ../../resources/apidocs_v1.0.0.zip)
+	unzip -d public/v1.0.0 resources/apidocs_v1.0.0.zip
 
 clean:
 	@rm -rf static/apidocs

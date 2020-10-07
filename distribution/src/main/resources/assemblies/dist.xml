@@ -3,7 +3,8 @@
 <assembly>
   <id>dist</id>
   <formats>
-	<format>dir</format>
+    <format>dir</format>
+    <format>zip</format>
   </formats>
   <includeBaseDirectory>true</includeBaseDirectory>
   <dependencySets>
@@ -23,7 +24,22 @@
       <includes>
         <include>README.md</include>
         <include>LICENSE</include>
+        <include>examples/**</include>
         <include>Dockerfile</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>..</directory>
+      <outputDirectory>bin</outputDirectory>
+      <includes>
+        <include>pochi</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>../site/public</directory>
+      <outputDirectory>docs</outputDirectory>
+      <includes>
+        <include>**/*</include>
       </includes>
     </fileSet>
   </fileSets>
