@@ -27,8 +27,7 @@ RUN    apk --no-cache add --update --virtual .builddeps curl unzip bash libstdc+
     && cd /opt \
     && ln -s /opt/openjdk-11-minimal /opt/java \
 # install pochi from release file in the GitHub.
-    && curl -L https://www.dropbox.com/s/3ingvw3e3vyftwe/pochi-2.0.0_linux_amd64.tar.gz?dl=0 -o /tmp/pochi.tar.gz \
-#    && curl -L https://github.com/tamada/pochi/releases/download/v2.0.0/pochi-2.0.0_linux_amd64.tar.gz -o /tmp/pochi.tar.gz \
+    && curl -L https://github.com/tamada/pochi/releases/download/v2.0.0/pochi-2.0.0_linux_amd64.tar.gz -o /tmp/pochi.tar.gz \
     && tar xvfz /tmp/pochi.tar.gz \
     && ln -s /opt/pochi-${pochi_version} /opt/pochi \
     && rm /tmp/pochi.tar.gz \
