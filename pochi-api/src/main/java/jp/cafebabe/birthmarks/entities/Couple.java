@@ -15,6 +15,14 @@ public class Couple<L, R> {
         this.right = Objects.requireNonNull(right);
     }
 
+    public L left() {
+        return left;
+    }
+
+    public R right() {
+        return right;
+    }
+
     public static <L, R> Couple<L, R> of(L left, R right) {
         return new Couple<>(left, right);
     }

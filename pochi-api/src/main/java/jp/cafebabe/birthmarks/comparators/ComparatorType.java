@@ -3,7 +3,7 @@ package jp.cafebabe.birthmarks.comparators;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ComparatorType implements Serializable{
+public class ComparatorType implements Serializable, Comparable<ComparatorType> {
     private static final long serialVersionUID = 5510440148918700265L;
 
     private String type;
@@ -26,5 +26,10 @@ public class ComparatorType implements Serializable{
     public boolean equals(Object other){
         return other instanceof ComparatorType
                 && Objects.equals(type, ((ComparatorType)other).type);
+    }
+
+    @Override
+    public int compareTo(ComparatorType other) {
+        return type.compareTo(other.type);
     }
 }

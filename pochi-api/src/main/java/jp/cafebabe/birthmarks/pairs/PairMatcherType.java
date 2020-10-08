@@ -3,7 +3,7 @@ package jp.cafebabe.birthmarks.pairs;
 import java.io.Serializable;
 import java.util.Objects;
 
-public final class PairMatcherType implements Serializable{
+public final class PairMatcherType implements Serializable, Comparable<PairMatcherType> {
     private static final long serialVersionUID = -3169312619260242474L;
 
     private String type;
@@ -27,5 +27,10 @@ public final class PairMatcherType implements Serializable{
     @Override
     public String toString(){
         return type;
+    }
+
+    @Override
+    public int compareTo(PairMatcherType other) {
+        return type.compareTo(other.type);
     }
 }

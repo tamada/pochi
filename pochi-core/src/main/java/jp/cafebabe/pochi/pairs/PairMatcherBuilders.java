@@ -40,6 +40,6 @@ public class PairMatcherBuilders implements TaskBuilders<PairMatcherType, PairMa
 
     @Override
     public Stream<PairMatcherType> availableTypes() {
-        return map.keySet().stream();
+        return map.keySet().stream().sorted();
     }
 }
