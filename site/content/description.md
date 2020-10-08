@@ -1,6 +1,6 @@
 ---
 title: ":newspaper: What is pochi"
-date: 2020-08-28
+date: 2020-10-08
 draft: false
 weight: 50
 ---
