@@ -5,7 +5,8 @@ VERSION := 2.0.0
 DIST := $(NAME)-$(VERSION)
 DESTINATION := target
 
-all: test build
+# test and build
+all: build
 
 build-all: $(DIST)
 
@@ -22,6 +23,7 @@ update_version:
 	mvn versions:set -DnewVersion=$(VERSION)
 	mvn versions:commit
 
+# test pochi cli command.
 test: setup
 	$(GO) test -covermode=count -coverprofile=coverage.out ./cmd/pochi
 
@@ -33,7 +35,7 @@ define _createDist
 	tar cfz $(DESTINATION)/$(DIST)_$(1)_$(2).tar.gz -C $(DESTINATION)/dist_$(1)_$(2) $(DIST)
 endef
 
-package: pochi-core/target/pochi-core-$(VERSION).jar
+package:
 	mvn package
 
 dist: $(DIST) package
@@ -43,10 +45,11 @@ dist: $(DIST) package
 	@$(call _createDist,linux,amd64,)
 	@$(call _createDist,linux,386,)
 
-build-pochi: setup
+build-pochi: setup test
 	$(GO) build -o $(NAME) -v cmd/$(NAME)/*.go
 
-build: build-pochi site $(DIST)
+# creating CLI interface, pochi modules, documents, and distribution package for this platform.
+build: build-pochi package site $(DIST)
 
 $(DIST): site
 	@echo "creating distribution package at $(DIST)"

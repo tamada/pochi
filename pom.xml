@@ -183,13 +183,33 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.5</version>
+        <version>0.8.6</version>
         <executions>
           <execution>
             <id>prepare-agent</id>
             <goals>
               <goal>prepare-agent</goal>
             </goals>
+          </execution>
+          <execution>
+            <id>merge</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>merge</goal>
+            </goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <directory>${project.basedir}</directory>
+                  <includes>
+                    <include>kunai2/target/jacoco.exec</include>
+                    <include>pochi-api/target/jacoco.exec</include>
+                    <include>pochi-core/target/jacoco.exec</include>
+                  </includes>
+                </fileSet>
+              </fileSets>
+              <destFile>${project.build.directory}/pochi_jacoco.exec</destFile>
+            </configuration>
           </execution>
         </executions>
       </plugin>
