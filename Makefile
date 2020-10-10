@@ -36,7 +36,7 @@ define _createDist
 endef
 
 package:
-	mvn package
+	mvn verify
 
 dist: $(DIST) package
 	@$(call _createDist,darwin,amd64,)
