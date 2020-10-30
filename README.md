@@ -46,9 +46,13 @@ Detecting the software theft, the birthmark toolkit for the JVM platform.
 * [:smile_cat: API document](https://tamada.github.io/pochi/apidocs)
 
 
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftamada%2Fpochi.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftamada%2Fpochi?ref=badge_large)
+
 ## Discussion
 
 [![Gitter](http://badges.gitter.im/owner/repo.png)](https://gitter.im/pochi-birthmark/)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftamada%2Fpochi.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftamada%2Fpochi?ref=badge_shield)
 
 Join [our Gitter channel](https://gitter.im/pochi-birthmark/) if you have any problems or suggestions on pochi.
 
