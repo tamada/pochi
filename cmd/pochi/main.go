@@ -18,7 +18,7 @@ const (
 	CONFIG_PATH = "POCHI_CONFIG_PATH"
 	LIB_DIR     = "lib"
 )
-const VERSION = "2.0.0"
+const VERSION = "2.1.0"
 
 type pochiRunner struct {
 	prog string
