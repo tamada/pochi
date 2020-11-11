@@ -1,5 +1,6 @@
 package jp.cafebabe.birthmarks.entities;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import java.util.stream.Stream;
 import jp.cafebabe.birthmarks.pairs.Streamable;
 import jp.cafebabe.kunai.entries.ClassName;
 
-public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark>, Streamable<Birthmark> {
+public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark>, Streamable<Birthmark>, Serializable {
     private List<Birthmark> list;
 
     public Birthmarks(){

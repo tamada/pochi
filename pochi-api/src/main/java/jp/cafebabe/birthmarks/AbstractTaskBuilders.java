@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.stream.Stream;
 
-public class AbstractTaskBuilders<T, V extends TaskBuilder<T>> implements TaskBuilders<T, V>{
+public class AbstractTaskBuilders<T extends Comparable, V extends TaskBuilder<T>> implements TaskBuilders<T, V>{
     private Map<T, V> builders = new HashMap<>();
 
     public AbstractTaskBuilders(Class<? extends V> targetClass){
@@ -25,7 +25,7 @@ public class AbstractTaskBuilders<T, V extends TaskBuilder<T>> implements TaskBu
     @Override
     public Stream<T> availableTypes(){
         return builders.keySet()
-                .stream();
+                .stream().sorted();
     }
 
     private void registerServices(Class<? extends V> clazz){

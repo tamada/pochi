@@ -1,6 +1,8 @@
 package jp.cafebabe.pochi.pairs.builders;
 
-public class RoundRobinWithSamePairMatcherBuilder<T> extends RoundRobinPairMatcherBuilder<T>{
+import java.io.Serializable;
+
+public class RoundRobinWithSamePairMatcherBuilder<T extends Serializable> extends RoundRobinPairMatcherBuilder<T>{
     public RoundRobinWithSamePairMatcherBuilder() {
         super(true);
     }

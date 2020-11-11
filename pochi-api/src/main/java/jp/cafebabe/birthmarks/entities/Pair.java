@@ -1,16 +1,22 @@
 package jp.cafebabe.birthmarks.entities;
 
-public class Pair<T> extends Couple<T, T>{
+import java.io.Serializable;
+import java.util.Objects;
+import java.util.function.Supplier;
+
+public class Pair<T extends Serializable> extends Couple<T, T> implements Serializable {
     public Pair(T item1, T item2){
         super(item1, item2);
     }
 
-    public T left() {
-        return map((left, right) -> left);
+    public <R> R ifEquals(R trueCaseValue, R falseCaseValue) {
+        return ifEquals(() -> trueCaseValue, () -> falseCaseValue);
     }
 
-    public T right() {
-        return map((left, right) -> right);
+    public <R> R ifEquals(Supplier<R> trueCase, Supplier<R> falseCase) {
+        if(Objects.equals(left(), right()))
+            return trueCase.get();
+        return falseCase.get();
     }
 
     @Override

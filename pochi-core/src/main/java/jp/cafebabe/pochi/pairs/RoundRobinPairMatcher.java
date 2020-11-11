@@ -1,13 +1,15 @@
 package jp.cafebabe.pochi.pairs;
 
+import java.io.Serializable;
 import java.util.stream.Stream;
 
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Pair;
+import jp.cafebabe.birthmarks.pairs.AbstractPairMatcher;
 import jp.cafebabe.birthmarks.pairs.PairMatcherType;
 import jp.cafebabe.birthmarks.pairs.Streamable;
 
-public class RoundRobinPairMatcher<T> extends AbstractPairMatcher<T> {
+public class RoundRobinPairMatcher<T extends Serializable> extends AbstractPairMatcher<T> {
     public static final PairMatcherType TYPE = new PairMatcherType("RoundRobin");
     public static final PairMatcherType SAME_PAIR_TYPE = new PairMatcherType("RoundRobinWithSamePair");
 

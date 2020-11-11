@@ -5,7 +5,9 @@ import jp.cafebabe.birthmarks.pairs.PairMatcher;
 import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
 import jp.cafebabe.birthmarks.pairs.PairMatcherType;
 
-public abstract class AbstractPairMatcherBuilder<T> implements PairMatcherBuilder<T> {
+import java.io.Serializable;
+
+public abstract class AbstractPairMatcherBuilder<T extends Serializable> implements PairMatcherBuilder<T> {
     private PairMatcherType type;
 
     public AbstractPairMatcherBuilder(PairMatcherType type) {

@@ -1,5 +1,6 @@
 package jp.cafebabe.pochi.pairs.builders;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jp.cafebabe.birthmarks.config.Configuration;
@@ -7,7 +8,7 @@ import jp.cafebabe.birthmarks.pairs.PairMatcher;
 import jp.cafebabe.birthmarks.pairs.PairMatcherType;
 import jp.cafebabe.pochi.pairs.RoundRobinPairMatcher;
 
-public class RoundRobinPairMatcherBuilder<T> extends AbstractPairMatcherBuilder<T>{
+public class RoundRobinPairMatcherBuilder<T extends Serializable> extends AbstractPairMatcherBuilder<T>{
     public RoundRobinPairMatcherBuilder(boolean withSamePair) {
         super(createType(withSamePair));
     }

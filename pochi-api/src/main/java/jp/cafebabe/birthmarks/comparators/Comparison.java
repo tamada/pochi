@@ -3,7 +3,9 @@ package jp.cafebabe.birthmarks.comparators;
 import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Pair;
 
-public class Comparison {
+import java.io.Serializable;
+
+public class Comparison implements Serializable {
     private Pair<Birthmark> pair;
     private Similarity similarity;
 

@@ -14,7 +14,7 @@ public class Demo {
 
     private void copy(String from, String to) throws Exception{
         try(DataSource source = new DefaultDataSourceFactory().build(Paths.get(from));
-                DataSink sink = new DefaultDataSinkFactory().create(Paths.get(to))){
+            DataSink sink = new DefaultDataSinkFactory().create(Paths.get(to))){
             copy(source, sink);
         }
     }

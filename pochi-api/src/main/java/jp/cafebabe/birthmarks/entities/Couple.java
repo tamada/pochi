@@ -1,12 +1,13 @@
 package jp.cafebabe.birthmarks.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 
-public class Couple<L, R> {
+public class Couple<L extends Serializable, R extends Serializable> implements Serializable {
     private L left;
     private R right;
 
@@ -15,7 +16,15 @@ public class Couple<L, R> {
         this.right = Objects.requireNonNull(right);
     }
 
-    public static <L, R> Couple<L, R> of(L left, R right) {
+    public L left() {
+        return left;
+    }
+
+    public R right() {
+        return right;
+    }
+
+    public static <L extends Serializable, R extends Serializable> Couple<L, R> of(L left, R right) {
         return new Couple<>(left, right);
     }
 
@@ -35,7 +44,7 @@ public class Couple<L, R> {
         return mapper.apply(left, right);
     }
 
-    public <L2, R2> Couple<L2, R2> map(Function<L, L2> leftMapper, Function<R, R2> rightMapper) {
+    public <L2 extends Serializable, R2 extends Serializable> Couple<L2, R2> map(Function<L, L2> leftMapper, Function<R, R2> rightMapper) {
         return new Couple<>(leftMapper.apply(left), rightMapper.apply(right));
     }
 
