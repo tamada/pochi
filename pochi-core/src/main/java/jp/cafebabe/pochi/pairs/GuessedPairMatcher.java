@@ -1,14 +1,16 @@
 package jp.cafebabe.pochi.pairs;
 
+import java.io.Serializable;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Pair;
+import jp.cafebabe.birthmarks.pairs.AbstractPairMatcher;
 import jp.cafebabe.birthmarks.pairs.PairMatcherType;
 import jp.cafebabe.birthmarks.pairs.Streamable;
 
-public class GuessedPairMatcher<T> extends AbstractPairMatcher<T> {
+public class GuessedPairMatcher<T extends Serializable> extends AbstractPairMatcher<T> {
     public static final PairMatcherType TYPE = new PairMatcherType("Guessed");
 
     private CorrespondenceChecker<T> checker;

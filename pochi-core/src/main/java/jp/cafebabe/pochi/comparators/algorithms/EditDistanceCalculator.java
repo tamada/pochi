@@ -2,11 +2,12 @@ package jp.cafebabe.pochi.comparators.algorithms;
 
 import jp.cafebabe.birthmarks.entities.Pair;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-public class EditDistanceCalculator<T> {
+public class EditDistanceCalculator<T extends Serializable> {
     private static final int BIG_NUMBER = 10;
 
     public int compute(List<T> list1, List<T> list2) {
