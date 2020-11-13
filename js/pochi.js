@@ -17,7 +17,7 @@ const updateOpacity = (id) => {
         label = `${id}_phase`
     }
     updateOpacityImpl(id, 'node')
-    updateOpacityImpl(label, 'desc_label')
+    updateOpacityImpl(label, 'label')
 }
 
 const initializeEvent = (id) => {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DiceIndexComparator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">site</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.comparators</a> &gt; <span class="el_source">DiceIndexComparator.java</span></div><h1>DiceIndexComparator.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.comparators;
+
+import java.util.Set;
+
+import jp.cafebabe.birthmarks.comparators.ComparatorType;
+import jp.cafebabe.birthmarks.comparators.Similarity;
+import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.entities.Element;
+
+public class DiceIndexComparator extends IndexComparator {
+    public DiceIndexComparator(Configuration config){
+<span class="fc" id="L13">        super(new ComparatorType(&quot;DiceIndex&quot;), config);</span>
+<span class="fc" id="L14">    }</span>
+
+    @Override
+    protected Similarity calculate(Birthmark left, Birthmark right) {
+<span class="fc" id="L18">        Set&lt;Element&gt; intersection = intersect(left, right);</span>
+<span class="fc" id="L19">        int denominator = left.elementCount() + right.elementCount();</span>
+<span class="fc" id="L20">        return new Similarity(2.0 * intersection.size() / denominator);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

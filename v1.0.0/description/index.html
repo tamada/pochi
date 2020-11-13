@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  
+  
+  
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/cayman.ea0e967413f3851071cc8ace3621bc4205fe8fa79b2abe3d7bf94ff2841f0d47.css">
+  
+  
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/pochi.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+<script src="https://unpkg.com/mermaid@8.4.2/dist/mermaid.min.js"></script>
+<script src="https://tamada.github.io/pochi/js/pochi.js"></script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
+
+  <title>📰 What is pochi | Pochi</title>
+</head>
+
+<body>
+  <section class="page-header">
+  
+  <img src="https://tamada.github.io/pochi/images/pochi.png" class="avatar" alt="project_logo">
+  
+  <h1 class="project-name">
+    pochi
+  </h1>
+  <h2 class="project-tagline">
+    Detecting the software theft, the birthmark toolkit for the JVM platform.
+  </h2>
+  <nav>
+    
+    
+      
+      
+      
+      
+      <a href="/pochi/" class="btn">🏠 Home</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/birthmarks/" class="btn">📚 Birthmarks</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/description/" class="btn">📰 What is pochi</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/install/" class="btn">⚓ Install</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/examples/" class="btn">🐜 Examples</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/about/" class="btn">😄 About</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/apidocs/" class="btn">😸 API docs</a>
+    
+  </nav>
+</section>
+
+  <section class="main-content">
+    
+  <h1>📰 What is pochi</h1>
+  <h2 id="-key-idea">🔑 Key idea</h2>
+<p>Almost traditional birthmark systems are usually simple input and output.
+For example, an user specifies the type of target birthmark, $p$ and $q$ as input, and obtains result as output.
+The process of such system is hard to use.
+Because, when the user would perform some process (ex. filtering results), it requires the update of birthmark system.</p>
+<p>In general, the process of birthmarking is composed of extraction phase, and comparison phase.
+Also, the both phases are performed to huge amount of programs.</p>
+<p>Therefore, the birthmark system accept the script file as input, and the user describes extraction and comparison of birthmarks in the script file.
+If the user would perform filtering process, it is easy to perform the process.</p>
+<p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="-usage">🍴 Usage</h2>
+<h3 id="-cli-interface">🏃 CLI Interface</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pochi <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SCRIPT <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]]</span>
+
+OPTIONS:
+    -e &lt;EXPRESSION&gt;     one line of script.
+    -config &lt;CONFIG&gt;    specify the configuration file.
+
+    -help               print this message and exit.
+    -version            print the version.
+    -license            print the license.
+
+SCRIPT <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]</span>
+    Specify the script file <span style="color:#66d9ef">for</span> executing.
+    Suitable script engine is parsed from extension of the script file.
+    ARGV is arguments list <span style="color:#66d9ef">for</span> the script.
+
+NO SCRIPT FILE, and NO ONE LINER
+    If no script file and no one liner were specified, pochi runs on interactive mode.
+</code></pre></div><h4 id="script-file">Script file</h4>
+<p>The script files are parsed by the Nashorn (JavaScript engine for Java).
+In the future version of <strong>pochi</strong>, other script languages will be supported, because <a href="http://openjdk.java.net/jeps/335">Nashorn was deprecated on Java SE 11</a>.</p>
+<h3 id="-docker">🐋 Docker</h3>
+<p>Container images of <strong>pochi</strong> for Docker are:</p>
+<ul>
+<li><code>tamada/pochi</code>
+<ul>
+<li><code>1.0.0</code>, <code>latest</code></li>
+</ul>
+</li>
+</ul>
+<p>To run <strong>pochi</strong> on Docker container OS&rsquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker run --rm -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>:/home/pochi tamada/pochi <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SCRIPT <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]]</span>
+</code></pre></div><ul>
+<li><code>OPTIONS</code>: the options for <strong>pochi</strong>.</li>
+<li><code>[SCRIPT [ARGV...]]</code>: script file for <strong>pochi</strong>.</li>
+<li><code>--rm</code>: remove the container after running.</li>
+<li><code>-v &quot;$PWD&quot;:/home/pochi</code>: share volume <code>$PWD</code> in host OS to <code>/home/pochi</code> in the container OS.
+<ul>
+<li><code>$PWD</code> must be the absolute path.</li>
+</ul>
+</li>
+</ul>
+<p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="examples-of-script-files">Examples of script files</h2>
+<h3 id="extracting-birthmarks">Extracting birthmarks</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript:extract.js" data-lang="javascript:extract.js"><span style="color:#a6e22e">extractor</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">engine</span>.<span style="color:#a6e22e">extractor</span>(<span style="color:#e6db74">&#34;uc&#34;</span>);
+<span style="color:#a6e22e">source</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">engine</span>.<span style="color:#a6e22e">source</span>(<span style="color:#e6db74">&#34;target-test-classes/resources&#34;</span>);
+<span style="color:#a6e22e">birthmarks</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">extractor</span>.<span style="color:#a6e22e">extract</span>(<span style="color:#a6e22e">source</span>);
+<span style="color:#a6e22e">birthmarks</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">b</span>){
+   <span style="color:#75715e">// If the filtering is required, the filtering routine locates here!
+</span><span style="color:#75715e"></span>   <span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">b</span>);
+});
+
+<span style="color:#75715e">// to compute the execution time, use the commented script.
+</span><span style="color:#75715e">//   extractor = engine.extractor(&#34;uc&#34;);
+</span><span style="color:#75715e">//   source = engine.source(&#34;target/test-classes/resources&#34;);
+</span><span style="color:#75715e">//   result = {}
+</span><span style="color:#75715e">//   result.time = sys.measure(function(){
+</span><span style="color:#75715e">//       result.birthmarks = extractor.extract(source);
+</span><span style="color:#75715e">//   })
+</span><span style="color:#75715e">//   result.birthmarks.forEach(function(birthmark){
+</span><span style="color:#75715e">//       print(birthmark);
+</span><span style="color:#75715e">//   });
+</span><span style="color:#75715e">//   print(result.time + &#34; ns&#34;);
+</span></code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+
+
+    <footer class="site-footer">
+  <span class="site-footer-credits">
+    <a href="https://github.com/tamada/pochi"><img src="https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github" alt="GitHub"></a> Made with <a href="https://gohugo.io/">Hugo</a>. Theme by <a href="https://github.com/zwbetz-gh/cayman-hugo-theme">Cayman</a>. Deployed to <a href="https://pages.github.com/">GitHub Pages</a>.
+  </span>
+</footer>
+
+  </section>
+  
+  
+
+</body>
+</html>

@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Hugo 0.59.1" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="stylesheet" href="https://tamada.github.io/pochi/css/normalize.css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   
   
   
-  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/cayman.87415a4997c8d6c666624ff26c8812f27f42b4cf5dc18c45fc8dcb0cd7d6d2f5.css">
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/cayman.ea0e967413f3851071cc8ace3621bc4205fe8fa79b2abe3d7bf94ff2841f0d47.css">
   
   
   <link rel="stylesheet" href="https://tamada.github.io/pochi/css/pochi.css">
@@ -22,6 +22,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
 </script>
@@ -30,7 +32,7 @@
 </script>
 <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
 
-  <title>Description | Pochi</title>
+  <title>📰 What is pochi | Pochi</title>
 </head>
 
 <body>
@@ -51,94 +53,202 @@
       
       
       
-      <a href="/pochi/" class="btn">Home</a>
+      <a href="/pochi/" class="btn">🏠 Home</a>
     
       
       
       
       
-      <a href="/pochi/birthmarks/" class="btn">Birthmarks</a>
+      <a href="/pochi/birthmarks/" class="btn">📚 Birthmarks</a>
     
       
       
       
       
-      <a href="/pochi/description/" class="btn">Description</a>
+      <a href="/pochi/description/" class="btn">📰 What is pochi</a>
     
       
       
       
       
-      <a href="/pochi/usage/" class="btn">Usage</a>
+      <a href="/pochi/install/" class="btn">⚓ Install</a>
     
       
       
       
       
-      <a href="/pochi/install/" class="btn">Install</a>
+      <a href="/pochi/examples/" class="btn">🐜 Examples</a>
     
       
       
       
       
-      <a href="/pochi/about/" class="btn">About</a>
+      <a href="/pochi/about/" class="btn">😄 About</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/apidocs/" class="btn">😸 API docs</a>
     
   </nav>
 </section>
 
   <section class="main-content">
     
-  <h1>Description</h1>
-  
-
-<h2 id="key-idea">Key idea</h2>
-
+  <h1>📰 What is pochi</h1>
+  <h2 id="-key-idea">🔑 Key idea</h2>
 <p>Almost traditional birthmark systems are usually simple input and output.
 For example, an user specifies the type of target birthmark, $p$ and $q$ as input, and obtains result as output.
 The process of such system is hard to use.
 Because, when the user would perform some process (ex. filtering results), it requires the update of birthmark system.</p>
-
 <p>In general, the process of birthmarking is composed of extraction phase, and comparison phase.
 Also, the both phases are performed to huge amount of programs.</p>
-
 <p>Therefore, the birthmark system accept the script file as input, and the user describes extraction and comparison of birthmarks in the script file.
 If the user would perform filtering process, it is easy to perform the process.</p>
-
 <p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
 
+<h2 id="-usage">🍴 Usage</h2>
+<h3 id="-cli-interface">🏃 CLI Interface</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pochi <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SCRIPT_FILE <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]]</span>
+OPTIONS
+    -c, --classpath &lt;CLASSPATH&gt;      specifies classpaths <span style="color:#66d9ef">for</span> Groovy <span style="color:#f92672">(</span>JVM<span style="color:#f92672">)</span> separated with colon <span style="color:#f92672">(</span>:<span style="color:#f92672">)</span>.
+    -C, --config &lt;CONFIG_FILE&gt;       specifies configuration file.
+    -e, --expression &lt;EXPRESSION&gt;    specifies command line script.
 
-<h2 id="examples-of-script-files">Examples of script files</h2>
-
-<h3 id="extracting-birthmarks">Extracting birthmarks</h3>
-
-<pre><code class="language-javascript:extract.js">extractor = engine.extractor(&quot;uc&quot;);
-source = engine.source(&quot;target-test-classes/resources&quot;);
-birthmarks = extractor.extract(source);
-birthmarks.forEach(function(b){
-   // If the filtering is required, the filtering routine locates here!
-   print(b);
-});
-
-// to compute the execution time, use the commented script.
-//   extractor = engine.extractor(&quot;uc&quot;);
-//   source = engine.source(&quot;target/test-classes/resources&quot;);
-//   result = {}
-//   result.time = sys.measure(function(){
-//       result.birthmarks = extractor.extract(source);
-//   })
-//   result.birthmarks.forEach(function(birthmark){
-//       print(birthmark);
-//   });
-//   print(result.time + &quot; ns&quot;);
-</code></pre>
-
+    -h, --help                       prints this message.
+SCRIPT_FILE <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]</span>
+    Groovy script file name and its arguments.
+    If no script files and no expression were given, pochi runs on interactive mode.
+</code></pre></div><h4 id="script-file">Script file</h4>
+<p>The script files are parsed by the Groovy.
+For more detail, see <a href="../examples">🐜 Examples</a>.</p>
+<h3 id="-docker">🐋 Docker</h3>
+<p>Container images of <strong>pochi</strong> for Docker are:</p>
+<ul>
+<li><a href="https://hub.docker.com/r/tamada/pochi"><code>tamada/pochi</code></a>
+<ul>
+<li><code>2.0.0</code>, <code>latest</code>
+<ul>
+<li>accept only <code>.groovy</code> script files.</li>
+</ul>
+</li>
+<li><code>1.0.0</code>
+<ul>
+<li>accept only <code>.js</code> script files.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://hub.docker.com/r/tamada/pochi"><img src="https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.0.0-blue?logo=docker&amp;style=social" alt="Docker"></a></p>
+<p>To run <strong>pochi</strong> on Docker container OS, type the following commands.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker run --rm -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>:/home/pochi tamada/pochi:2.0.0 <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SCRIPT <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]]</span>
+</code></pre></div><ul>
+<li><code>OPTIONS</code>: the options for <strong>pochi</strong>.</li>
+<li><code>[SCRIPT [ARGV...]]</code>: script file for <strong>pochi</strong>.</li>
+<li><code>--rm</code>: remove the container after running.</li>
+<li><code>-v &quot;$PWD&quot;:/home/pochi</code>: share volume <code>$PWD</code> in host OS to <code>/home/pochi</code> in the container OS.
+<ul>
+<li><code>$PWD</code> must be the absolute path.</li>
+</ul>
+</li>
+</ul>
+<h4 id="environments-in-the-docker-container">Environments in the docker container</h4>
+<ul>
+<li><code>USER</code>: <code>pochi</code></li>
+<li><code>WORKDIR</code>: <code>/home/pochi</code></li>
+<li><code>JAVA_HOME</code>: <code>/opt/java</code> (symbolic link from <code>/opt/openjdk-11-minimal</code>)
+<ul>
+<li>This Java runtime environment do not include unnecessary modules.</li>
+</ul>
+</li>
+<li><code>GROOVY_HOME</code>: <code>/opt/groovy</code> (symbolic link from <code>/opt/groovy-3.0.5</code>)</li>
+<li><code>POCHI_HOME</code>: <code>/opt/pochi</code> (symbolic link from <code>/opt/pochi-2.0.0</code>)</li>
+</ul>
 <p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="-the-birthmarking-flow">🏊 The birthmarking flow</h2>
+<p>The birthmarking process in <strong>pochi</strong> shows in Figure 1.</p>
+
+<figure >
+    
+        <img src="/pochi/images/birthmarking_process.svg" alt="Figure 1: birthmarking process in pochi" />
+    
+    
+    <figcaption>
+        <p>
+        Figure 1: birthmarking process in pochi
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+<p class="avatar_caption">
+  The followings are the description of the nodes and edges in the flowchart.</p>
+<ul>
+<li><code>Classes</code>
+<ul>
+<li>is the Java class files, almost included in the jar files, and the directory.
+<strong>pochi</strong> treats them as the object of <a href="../apidocs/jp.cafebabe.kunai/jp/cafebabe/kunai/source/DataSource.html"><code>DataSource</code></a></li>
+</ul>
+</li>
+<li><a href="(../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmarks.html)"><code>Birthmarks</code></a>
+<ul>
+<li>shows the extracted characteristics from Java class files by certain method.
+In the <strong>pochi</strong>, <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmarks.html"><code>Birthmarks</code></a> and <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmark.html"><code>Birthmark</code></a> show the extracted birthmarks.
+The string representation of <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmark.html"><code>Birthmark</code></a> (the return value of <code>toString</code> method) is CSV format, therefore, we can store them into some csv file.</li>
+</ul>
+</li>
+<li><a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Pair.html"><code>Pair</code></a>
+<ul>
+<li>shows the pair list of extracted birthmarks.
+<strong>pochi</strong> shows these objects as <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Pair.html"><code>Pair&lt;Birthmark&gt;</code></a>.</li>
+</ul>
+</li>
+<li><a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparisons.html"><code>Comparisons</code></a>
+<ul>
+<li>represents the comparison results of birthmarks by the certain similarity calculation algorithm.
+<strong>pochi</strong> shows these objects as <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparisons.html"><code>Comparisons</code></a> and <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparison.html"><code>Comparison</code></a>.</li>
+</ul>
+</li>
+<li><a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/extractors/Extractor.html"><code>Extractor</code></a>
+<ul>
+<li>extracts birthmarks from given class files by the certain algorithm.
+In the script file, <code>pochi.extractor(&quot;ALGORITHM_NAME&quot;)</code> obtains the instance of <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/extractors/Extractor.html"><code>Extractor</code></a>.</li>
+</ul>
+</li>
+<li><a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/BirthmarkParser.html"><code>Parser</code></a>
+<ul>
+<li>parses the given csv file and build <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/entities/Birthmarks.html"><code>Birthmarks</code></a> object.
+To get the instance of <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/BirthmarkParser.html"><code>BirthmarkParser</code></a>, call <code>pochi.parser()</code> method in the script file.</li>
+</ul>
+</li>
+<li><a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/pairs/PairMatcher.html"><code>PairMatcher</code></a>
+<ul>
+<li>matches the pair of birthmarks by some algorithm.
+<code>pochi.matcher(&quot;ALGORITHM_NAME&quot;)</code> returns the instance of <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/pairs/PairMatcher.html"><code>PairMatcher</code></a>.</li>
+</ul>
+</li>
+<li><a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparator.html"><code>Comparator</code></a>
+<ul>
+<li>calculates similarity between two given birthmaks by the certain algorithm.
+In the script file, <code>pochi.comparator(&quot;ALGORITHM_NAME&quot;)</code> gets the instance of <a href="../apidocs/jp.cafebabe.birthmarks/jp/cafebabe/birthmarks/comparators/Comparator.html"><code>Comparator</code></a>.</li>
+</ul>
+</li>
+</ul>
+</p>
+
+
 
 
 
     <footer class="site-footer">
   <span class="site-footer-credits">
-    <a href="https://github.com/tamada/pochi"><img src="https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github" alt="GitHub" /></a> Made with <a href="https://gohugo.io/">Hugo</a>. Theme by <a href="https://github.com/zwbetz-gh/cayman-hugo-theme">Cayman</a>. Deployed to <a href="https://pages.github.com/">GitHub Pages</a>.
+    <a href="https://github.com/tamada/pochi"><img src="https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github" alt="GitHub"></a> Made with <a href="https://gohugo.io/">Hugo</a>. Theme by <a href="https://github.com/zwbetz-gh/cayman-hugo-theme">Cayman</a>. Deployed to <a href="https://pages.github.com/">GitHub Pages</a>.
   </span>
 </footer>
 

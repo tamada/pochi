@@ -1,80 +1,124 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pochi</title>
+    <title>:house: Home on Pochi</title>
     <link>https://tamada.github.io/pochi/</link>
-    <description>Recent content on Pochi</description>
+    <description>Recent content in :house: Home on Pochi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 29 Aug 2017 11:19:09 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tamada.github.io/pochi/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Description</title>
+      <title>:newspaper: What is pochi</title>
       <link>https://tamada.github.io/pochi/description/</link>
-      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://tamada.github.io/pochi/description/</guid>
-      <description>Key idea Almost traditional birthmark systems are usually simple input and output. For example, an user specifies the type of target birthmark, $p$ and $q$ as input, and obtains result as output. The process of such system is hard to use. Because, when the user would perform some process (ex. filtering results), it requires the update of birthmark system.
+      <description>🔑 Key idea Almost traditional birthmark systems are usually simple input and output. For example, an user specifies the type of target birthmark, $p$ and $q$ as input, and obtains result as output. The process of such system is hard to use. Because, when the user would perform some process (ex. filtering results), it requires the update of birthmark system.
 In general, the process of birthmarking is composed of extraction phase, and comparison phase.</description>
     </item>
     
     <item>
-      <title>Birthmarks</title>
+      <title>:newspaper: What is pochi</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/description/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/description/</guid>
+      <description>🔑 Key idea Almost traditional birthmark systems are usually simple input and output. For example, an user specifies the type of target birthmark, $p$ and $q$ as input, and obtains result as output. The process of such system is hard to use. Because, when the user would perform some process (ex. filtering results), it requires the update of birthmark system.
+In general, the process of birthmarking is composed of extraction phase, and comparison phase.</description>
+    </item>
+    
+    <item>
+      <title>:books: Birthmarks</title>
       <link>https://tamada.github.io/pochi/birthmarks/</link>
-      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://tamada.github.io/pochi/birthmarks/</guid>
-      <description>Definition of Birthmarks Types of Birthmarks Similarities Theft Detection Process by Birthmarks  Definition of Birthmarks Let $p$, and $q$ be a given programs, and $\mathcal{B}_f(p)$ be set of characteristics extracted from $p$ by a given method $f$. If the conditions below are met, $\mathcal{B}_f(p)$ is said to be a birthmark of $p$.
+      <description>📗 Definition of Birthmarks 📘 Types of Birthmarks 📙 Similarities 📕 Theft Detection Process by Birthmarks  📗 Definition of Birthmarks Let $p$, and $q$ be a given programs, and $\mathcal{B}_f(p)$ be set of characteristics extracted from $p$ by a given method $f$. If the conditions below are met, $\mathcal{B}_f(p)$ is said to be a birthmark of $p$.
  Condition 1: $\mathcal{B}_f(p)$ is obtained from only program $p$. Condition 2: If $q$ is a copy of $p$, then $\mathcal{B}_f(p) = \mathcal{B}_f(q)$.</description>
     </item>
     
     <item>
-      <title>About</title>
+      <title>:books: Birthmarks</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/birthmarks/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/birthmarks/</guid>
+      <description>📗 Definition of Birthmarks 📘 Types of Birthmarks 📙 Similarities 📕 Theft Detection Process by Birthmarks  📗 Definition of Birthmarks Let $p$, and $q$ be a given programs, and $\mathcal{B}_f(p)$ be set of characteristics extracted from $p$ by a given method $f$. If the conditions below are met, $\mathcal{B}_f(p)$ is said to be a birthmark of $p$.
+ Condition 1: $\mathcal{B}_f(p)$ is obtained from only program $p$. Condition 2: If $q$ is a copy of $p$, then $\mathcal{B}_f(p) = \mathcal{B}_f(q)$.</description>
+    </item>
+    
+    <item>
+      <title>:anchor: Install</title>
+      <link>https://tamada.github.io/pochi/install/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/install/</guid>
+      <description>🍺 Homebrew For macOS user, pochi supports homebrew installation.
+$ brew tap tamada/brew $ brew install pochi  Go totop of the page
+💪 Compiling pochi yourself For building yourself, clone the source code from GitHub, and build it with make and Maven.
+$ git clone https://github.com/tamada/pochi.git $ cd pochi $ make build-all Then, make creates pochi-${VERSION} directory contains the interpreter (bin/pochi), and dependent jar files (lib), documents (docs) and misc files (README.</description>
+    </item>
+    
+    <item>
+      <title>:ant: Examples</title>
+      <link>https://tamada.github.io/pochi/examples/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/examples/</guid>
+      <description>📣 Overview The examples directory in the pochi directory contains the following example programs. To write groovy script for the pochi, see the API document of pochi, especially, BirthmarkSystemHelper.
+The groovy script of pochi defines the two variables as follows.
+ the variable pochi as the type of BirthmarkSystemHelper for the start points of processing, and the variable args as the type of String array for reflecting the command line arguments.</description>
+    </item>
+    
+    <item>
+      <title>:smile: About</title>
       <link>https://tamada.github.io/pochi/about/</link>
-      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://tamada.github.io/pochi/about/</guid>
-      <description>License Apache License version 2.0
-Apache License, version 2.0.
-Copyright 2017, Haruaki Tamada.
-Licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</description>
+      <description>📜 License 
+Apache License version 2.0
+Apache License, version 2.0. Copyright 2017, Haruaki Tamada. Licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</description>
+    </item>
+    
+    <item>
+      <title>:smile: About</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/about/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/about/</guid>
+      <description>📜 License 
+Apache License version 2.0
+Apache License, version 2.0. Copyright 2017, Haruaki Tamada. Licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</description>
     </item>
     
     <item>
       <title>Overview（概要）</title>
-      <link>https://tamada.github.io/pochi/overview/</link>
+      <link>https://tamada.github.io/pochi/v1.0.0/overview/</link>
       <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://tamada.github.io/pochi/overview/</guid>
+      <guid>https://tamada.github.io/pochi/v1.0.0/overview/</guid>
       <description>Overview This product is the software birthmark platform for Java programs. The software birthmark aims to detect the theft of programs from characteristics of the programs.
 Typical scenario of the birthmarking is:
  to extract birthmarks of the specified type from programs, to compare extracted birthmarks, and compute similarities among birthmarks, and to detect similar programs from the computed similarities.  Note that birthmarks do not prove the theft, just detect suspected theft.</description>
     </item>
     
     <item>
-      <title>Install</title>
-      <link>https://tamada.github.io/pochi/install/</link>
+      <title>:anchor: Install</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tamada.github.io/pochi/install/</guid>
-      <description>Homebrew For macOS user, pochi supports homebrew installation.
-$ brew tap tamada/brew $ brew install pochi   Go totop of the page
-Compiling pochi yourself For building yourself, clone the source code from GitHub, and build it with Maven.
-$ git clone https://github.com/tamada/pochi.git $ cd pochi $ mvn package  Then, maven packages pochi and generates pochi-1.0.0-fat.jar, and pochi-1.0.0-all.jar onto distribution/target directory.
- Go totop of the page</description>
-    </item>
-    
-    <item>
-      <title>Usage</title>
-      <link>https://tamada.github.io/pochi/usage/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tamada.github.io/pochi/usage/</guid>
-      <description>CLI Interface $ pochi [OPTIONS] [SCRIPT [ARGV...]] OPTIONS: -e &amp;lt;EXPRESSION&amp;gt; one line of script. -config &amp;lt;CONFIG&amp;gt; specify the configuration file. -help print this message and exit. -version print the version. -license print the license. SCRIPT [ARGV...] Specify the script file for executing. Suitable script engine is parsed from extension of the script file. ARGV is arguments list for the script. NO SCRIPT FILE, and NO ONE LINER If no script file and no one liner were specified, pochi runs on interactive mode.</description>
+      <guid>https://tamada.github.io/pochi/v1.0.0/install/</guid>
+      <description>🍺 Homebrew For macOS user, pochi supports homebrew installation.
+$ brew install tamada/brew/pochi  Go totop of the page
+💪 Compiling pochi yourself For building yourself, clone the source code from GitHub, and build it with Maven.
+$ git clone https://github.com/tamada/pochi.git $ cd pochi $ mvn package Then, maven packages pochi and generates pochi-1.0.0-fat.jar, and pochi-1.0.0-all.jar onto distribution/target directory.
+ Go totop of the page
+💼 Requirements  Jackson 2.10.0 Args4j 2.</description>
     </item>
     
   </channel>

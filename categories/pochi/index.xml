@@ -13,10 +13,10 @@
     
     <item>
       <title>Overview（概要）</title>
-      <link>https://tamada.github.io/pochi/overview/</link>
+      <link>https://tamada.github.io/pochi/v1.0.0/overview/</link>
       <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://tamada.github.io/pochi/overview/</guid>
+      <guid>https://tamada.github.io/pochi/v1.0.0/overview/</guid>
       <description>Overview This product is the software birthmark platform for Java programs. The software birthmark aims to detect the theft of programs from characteristics of the programs.
 Typical scenario of the birthmarking is:
  to extract birthmarks of the specified type from programs, to compare extracted birthmarks, and compute similarities among birthmarks, and to detect similar programs from the computed similarities.  Note that birthmarks do not prove the theft, just detect suspected theft.</description>

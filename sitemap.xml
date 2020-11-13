@@ -4,22 +4,52 @@
   
   <url>
     <loc>https://tamada.github.io/pochi/description/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamada.github.io/pochi/v1.0.0/description/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://tamada.github.io/pochi/birthmarks/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamada.github.io/pochi/v1.0.0/birthmarks/</loc>
     <lastmod>2018-06-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamada.github.io/pochi/about/</loc>
-    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
+    <loc>https://tamada.github.io/pochi/install/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamada.github.io/pochi/examples/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://tamada.github.io/pochi/</loc>
-    <lastmod>2017-08-29T11:19:09+09:00</lastmod>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamada.github.io/pochi/about/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamada.github.io/pochi/v1.0.0/about/</loc>
+    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamada.github.io/pochi/v1.0.0/</loc>
+    <lastmod>2017-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://tamada.github.io/pochi/overview/</loc>
+    <loc>https://tamada.github.io/pochi/v1.0.0/overview/</loc>
     <lastmod>2017-08-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,15 +68,11 @@
   </url>
   
   <url>
-    <loc>https://tamada.github.io/pochi/install/</loc>
+    <loc>https://tamada.github.io/pochi/v1.0.0/install/</loc>
   </url>
   
   <url>
     <loc>https://tamada.github.io/pochi/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tamada.github.io/pochi/usage/</loc>
   </url>
   
 </urlset>

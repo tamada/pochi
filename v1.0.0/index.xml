@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>:house: Home on Pochi</title>
+    <link>https://tamada.github.io/pochi/v1.0.0/</link>
+    <description>Recent content in :house: Home on Pochi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 29 Aug 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamada.github.io/pochi/v1.0.0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>:newspaper: What is pochi</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/description/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/description/</guid>
+      <description>🔑 Key idea Almost traditional birthmark systems are usually simple input and output. For example, an user specifies the type of target birthmark, $p$ and $q$ as input, and obtains result as output. The process of such system is hard to use. Because, when the user would perform some process (ex. filtering results), it requires the update of birthmark system.
+In general, the process of birthmarking is composed of extraction phase, and comparison phase.</description>
+    </item>
+    
+    <item>
+      <title>:books: Birthmarks</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/birthmarks/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/birthmarks/</guid>
+      <description>📗 Definition of Birthmarks 📘 Types of Birthmarks 📙 Similarities 📕 Theft Detection Process by Birthmarks  📗 Definition of Birthmarks Let $p$, and $q$ be a given programs, and $\mathcal{B}_f(p)$ be set of characteristics extracted from $p$ by a given method $f$. If the conditions below are met, $\mathcal{B}_f(p)$ is said to be a birthmark of $p$.
+ Condition 1: $\mathcal{B}_f(p)$ is obtained from only program $p$. Condition 2: If $q$ is a copy of $p$, then $\mathcal{B}_f(p) = \mathcal{B}_f(q)$.</description>
+    </item>
+    
+    <item>
+      <title>:smile: About</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/about/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/about/</guid>
+      <description>📜 License 
+Apache License version 2.0
+Apache License, version 2.0. Copyright 2017, Haruaki Tamada. Licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</description>
+    </item>
+    
+    <item>
+      <title>Overview（概要）</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/overview/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/overview/</guid>
+      <description>Overview This product is the software birthmark platform for Java programs. The software birthmark aims to detect the theft of programs from characteristics of the programs.
+Typical scenario of the birthmarking is:
+ to extract birthmarks of the specified type from programs, to compare extracted birthmarks, and compute similarities among birthmarks, and to detect similar programs from the computed similarities.  Note that birthmarks do not prove the theft, just detect suspected theft.</description>
+    </item>
+    
+    <item>
+      <title>:anchor: Install</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/install/</guid>
+      <description>🍺 Homebrew For macOS user, pochi supports homebrew installation.
+$ brew install tamada/brew/pochi  Go totop of the page
+💪 Compiling pochi yourself For building yourself, clone the source code from GitHub, and build it with Maven.
+$ git clone https://github.com/tamada/pochi.git $ cd pochi $ mvn package Then, maven packages pochi and generates pochi-1.0.0-fat.jar, and pochi-1.0.0-all.jar onto distribution/target directory.
+ Go totop of the page
+💼 Requirements  Jackson 2.10.0 Args4j 2.</description>
+    </item>
+    
+  </channel>
+</rss>

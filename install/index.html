@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Hugo 0.59.1" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="stylesheet" href="https://tamada.github.io/pochi/css/normalize.css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   
   
   
-  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/cayman.87415a4997c8d6c666624ff26c8812f27f42b4cf5dc18c45fc8dcb0cd7d6d2f5.css">
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/cayman.ea0e967413f3851071cc8ace3621bc4205fe8fa79b2abe3d7bf94ff2841f0d47.css">
   
   
   <link rel="stylesheet" href="https://tamada.github.io/pochi/css/pochi.css">
@@ -22,6 +22,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
 </script>
@@ -30,7 +32,7 @@
 </script>
 <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
 
-  <title>Install | Pochi</title>
+  <title>⚓ Install | Pochi</title>
 </head>
 
 <body>
@@ -51,99 +53,129 @@
       
       
       
-      <a href="/pochi/" class="btn">Home</a>
+      <a href="/pochi/" class="btn">🏠 Home</a>
     
       
       
       
       
-      <a href="/pochi/birthmarks/" class="btn">Birthmarks</a>
+      <a href="/pochi/birthmarks/" class="btn">📚 Birthmarks</a>
     
       
       
       
       
-      <a href="/pochi/description/" class="btn">Description</a>
+      <a href="/pochi/description/" class="btn">📰 What is pochi</a>
     
       
       
       
       
-      <a href="/pochi/usage/" class="btn">Usage</a>
+      <a href="/pochi/install/" class="btn">⚓ Install</a>
     
       
       
       
       
-      <a href="/pochi/install/" class="btn">Install</a>
+      <a href="/pochi/examples/" class="btn">🐜 Examples</a>
     
       
       
       
       
-      <a href="/pochi/about/" class="btn">About</a>
+      <a href="/pochi/about/" class="btn">😄 About</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/apidocs/" class="btn">😸 API docs</a>
     
   </nav>
 </section>
 
   <section class="main-content">
     
-  <h1>Install</h1>
-  
-
-<h2 id="homebrew">Homebrew</h2>
-
+  <h1>⚓ Install</h1>
+  <h2 id="-homebrew">🍺 Homebrew</h2>
 <p>For macOS user, <strong>pochi</strong> supports homebrew installation.</p>
-
-<pre><code class="language-sh">$ brew tap tamada/brew
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ brew tap tamada/brew
 $ brew install pochi
-</code></pre>
+</code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
 
-<p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
-
-
-<h2 id="compiling-pochi-yourself">Compiling <strong>pochi</strong> yourself</h2>
-
-<p>For building yourself, clone the source code from GitHub, and build it with <a href="https://maven.apache.org/">Maven</a>.</p>
-
-<pre><code class="language-sh">$ git clone https://github.com/tamada/pochi.git
+<h2 id="-compiling-pochi-yourself">💪 Compiling <strong>pochi</strong> yourself</h2>
+<p>For building yourself, clone the source code from GitHub, and build it with <code>make</code> and <a href="https://maven.apache.org/">Maven</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/tamada/pochi.git
 $ cd pochi
-$ mvn package
-</code></pre>
-
-<p>Then, maven packages <strong>pochi</strong> and generates <code>pochi-1.0.0-fat.jar</code>, and <code>pochi-1.0.0-all.jar</code> onto <code>distribution/target</code> directory.</p>
-
+$ make build-all
+</code></pre></div><p>Then, <code>make</code> creates <code>pochi-${VERSION}</code> directory contains the interpreter (<code>bin/pochi</code>), and dependent jar files (<code>lib</code>), documents (<code>docs</code>) and misc files (<code>README.md</code>, <code>LICENSE</code>, <code>completions</code>, <code>examples</code>, and <code>Dockerfile</code>).</p>
 <p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
 
-
-<h2 id="requirements">Requirements</h2>
-
+<h2 id="-requirements">💼 Requirements</h2>
 <ul>
 <li><a href="https://github.com/FasterXML/jackson">Jackson</a> 2.10.0</li>
-<li><a href="https://github.com/kohsuke/args4j">Args4j</a> 2.33</li>
-<li><a href="https://mvnrepository.com/artifact/org.jline/jline/3.13.2">JLine</a> 3.13.2</li>
-<li><a href="https://asm.ow2.io/">ASM</a> 7.2</li>
+<li><a href="https://www.vavr.io/">Vavr</a> 0.10.3</li>
+<li><a href="https://asm.ow2.io/">ASM</a> 8.0.1</li>
+<li><a href="https://groovy-lang.org">Groovy</a> 3.0.5</li>
 </ul>
-
-<h3 id="modules">Modules</h3>
-
+<h3 id="-modules">👝 Modules</h3>
 <ul>
-<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/module-summary.html">java.base</a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/module-summary.html">java.logging</a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.scripting/module-summary.html">java.scripting</a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html">java.xml</a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/jdk.zipfs/module-summary.html">jdk.zipfs</a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/jdk.scripting.nashorn/module-summary.html">jdk.scripting.nashorn</a></li>
-<li>jdk.scripting.nashorn.shell</li>
+<li><a href="https://tamada.github.io/pochi/apidocs/jp.cafebabe.pochi/module-summary.html"><code>jp.cafebabe.pochi</code></a>
+<ul>
+<li><a href="https://tamada.github.io/pochi/apidocs/jp.cafebabe.birthmarks/module-summary.html"><code>jp.cafebabe.birthmarks</code></a>
+<ul>
+<li><a href="https://github.com/FasterXML/jackson-databind"><code>com.fasterxml.jackson.databind</code></a></li>
+<li><a href="https://www.vavr.io/"><code>io.vavr</code></a></li>
+<li><a href="https://tamada.github.io/pochi/apidocs/jp.cafebabe.kunai/module-summary.html"><code>jp.cafebabe.kunai</code></a>
+<ul>
+<li><a href="https://asm.ow2.io/"><code>org.objectweb.asm</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/jdk.zipfs/module-summary.html"><code>jdk.zipfs</code></a></li>
 </ul>
+</li>
+</ul>
+</li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/module-summary.html"><code>java.logging</code></a></li>
+</ul>
+</li>
+<li><a href="https://groovy-lang.org/"><code>org.codehaus.groovy</code></a>
+<ul>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.scripting/module-summary.html"><code>java.scripting</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/module-summary.html"><code>java.desktop</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html"><code>java.sql</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html"><code>java.xml</code></a></li>
+</ul>
+</li>
+</ul>
+<h3 id="-module-graph">🚂 Module Graph</h3>
 
-<p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+<figure >
+    
+        <img src="/pochi/images/module-graph.svg" alt="Figure 1. 🚂 Module Graph" />
+    
+    
+    <figcaption>
+        <p>
+        Figure 1. 🚂 Module Graph
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+<p class="avatar_caption">
+  Groovy depends on the modules of <code>java.scripting</code>, <code>java.desktop</code>, <code>java.sql</code> and <code>java.xml</code>.</p>
+<!-- raw HTML omitted -->
+</p>
+
+
 
 
 
     <footer class="site-footer">
   <span class="site-footer-credits">
-    <a href="https://github.com/tamada/pochi"><img src="https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github" alt="GitHub" /></a> Made with <a href="https://gohugo.io/">Hugo</a>. Theme by <a href="https://github.com/zwbetz-gh/cayman-hugo-theme">Cayman</a>. Deployed to <a href="https://pages.github.com/">GitHub Pages</a>.
+    <a href="https://github.com/tamada/pochi"><img src="https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github" alt="GitHub"></a> Made with <a href="https://gohugo.io/">Hugo</a>. Theme by <a href="https://github.com/zwbetz-gh/cayman-hugo-theme">Cayman</a>. Deployed to <a href="https://pages.github.com/">GitHub Pages</a>.
   </span>
 </footer>
 

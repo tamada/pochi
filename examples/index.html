@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  
+  
+  
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/cayman.ea0e967413f3851071cc8ace3621bc4205fe8fa79b2abe3d7bf94ff2841f0d47.css">
+  
+  
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/pochi.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+<script src="https://unpkg.com/mermaid@8.4.2/dist/mermaid.min.js"></script>
+<script src="https://tamada.github.io/pochi/js/pochi.js"></script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
+
+  <title>🐜 Examples | Pochi</title>
+</head>
+
+<body>
+  <section class="page-header">
+  
+  <img src="https://tamada.github.io/pochi/images/pochi.png" class="avatar" alt="project_logo">
+  
+  <h1 class="project-name">
+    pochi
+  </h1>
+  <h2 class="project-tagline">
+    Detecting the software theft, the birthmark toolkit for the JVM platform.
+  </h2>
+  <nav>
+    
+    
+      
+      
+      
+      
+      <a href="/pochi/" class="btn">🏠 Home</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/birthmarks/" class="btn">📚 Birthmarks</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/description/" class="btn">📰 What is pochi</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/install/" class="btn">⚓ Install</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/examples/" class="btn">🐜 Examples</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/about/" class="btn">😄 About</a>
+    
+      
+      
+      
+      
+      <a href="/pochi/apidocs/" class="btn">😸 API docs</a>
+    
+  </nav>
+</section>
+
+  <section class="main-content">
+    
+  <h1>🐜 Examples</h1>
+  <h2 id="-overview">📣 Overview</h2>
+<p>The <code>examples</code> directory in the <code>pochi</code> directory contains the following example programs.
+To write groovy script for the pochi, see the <a href="../apidocs/">API document of pochi</a>,
+especially, <a href="../apidocs/jp/cafebabe/pochi/birthmarks/BirthmarkSystemHelper.html">BirthmarkSystemHelper</a>.</p>
+<p>The groovy script of pochi defines the two variables as follows.</p>
+<ul>
+<li>the variable <code>pochi</code> as the type of <code>BirthmarkSystemHelper</code> for the start points of processing, and</li>
+<li>the variable <code>args</code> as the type of <code>String</code> array for reflecting the command line arguments.</li>
+</ul>
+<p>Also, we should know <a href="../description#">the birthmarking flow</a> in the pochi.</p>
+<h3 id="example-programs">Example programs</h3>
+<ul>
+<li><a href="#1-printing_argsgroovy">1️⃣ <code>printing_args.groovy</code></a></li>
+<li><a href="#2-printing_pochi_infogroovy">2️⃣ <code>printing_pochi_info.groovy</code></a></li>
+<li><a href="#3-extracting_birthmarksgroovy">3️⃣ <code>extracting_birthmarks.groovy</code></a></li>
+<li><a href="#4-filtering_sourcegroovy">4️⃣ <code>filtering_source.groovy</code></a></li>
+<li><a href="#5-comparing_birthmarksgroovy">5️⃣ <code>comparing_birthmarks.groovy</code></a></li>
+<li><a href="#6-registering_new_extractorgroovy">6️⃣ <code>registering_new_extractor.groovy</code></a></li>
+</ul>
+<h2 id="1-printing_argsgroovy">1️⃣ <code>printing_args.groovy</code></h2>
+<p>Printing <code>args</code> to the <code>stdout</code>.</p>
+<h3 id="-source-file">🍇 Source file</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">args<span style="color:#f92672">.</span><span style="color:#a6e22e">each</span><span style="color:#f92672">(</span>arg <span style="color:#f92672">-&gt;</span> println<span style="color:#f92672">(</span>arg<span style="color:#f92672">))</span>
+</code></pre></div><h3 id="-output">🍷 Output</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pochi examples/printing_args.groovy a b c d e f
+a
+b
+c
+d
+e
+f
+</code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="2-printing_pochi_infogroovy">2️⃣ <code>printing_pochi_info.groovy</code></h2>
+<p>printing information of <code>pochi</code>.</p>
+<h3 id="-source-file-1">🍇 Source file</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========== birthmark extractor names ==========&#34;</span><span style="color:#f92672">)</span>
+println<span style="color:#f92672">(</span>pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">extractorNames</span><span style="color:#f92672">())</span>
+
+println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========== birthmark comparator names ==========&#34;</span><span style="color:#f92672">)</span>
+println<span style="color:#f92672">(</span>pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">comparatorNames</span><span style="color:#f92672">())</span>
+
+println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========== pair matcher names ==========&#34;</span><span style="color:#f92672">)</span>
+println<span style="color:#f92672">(</span>pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">matcherNames</span><span style="color:#f92672">())</span>
+
+config <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">config</span><span style="color:#f92672">()</span>
+println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========== system library rules ==========&#34;</span><span style="color:#f92672">)</span>
+println<span style="color:#f92672">(</span>config<span style="color:#f92672">.</span><span style="color:#a6e22e">rules</span><span style="color:#f92672">())</span>
+
+println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========== properties ==========&#34;</span><span style="color:#f92672">)</span>
+config<span style="color:#f92672">.</span><span style="color:#a6e22e">propertyStream</span><span style="color:#f92672">()</span>
+     <span style="color:#f92672">.</span><span style="color:#a6e22e">each</span><span style="color:#f92672">(</span>item <span style="color:#f92672">-&gt;</span> println<span style="color:#f92672">(</span>item<span style="color:#f92672">))</span>
+</code></pre></div><h3 id="-output-1">🍷 Output</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pochi examples/printing_pochi_info.groovy
+<span style="color:#f92672">==========</span> birthmark extractor names <span style="color:#f92672">==========</span>
+<span style="color:#f92672">[</span>6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 3-gram<span style="color:#f92672">]</span>
+<span style="color:#f92672">==========</span> birthmark comparator names <span style="color:#f92672">==========</span>
+<span style="color:#f92672">[</span>DiceIndex, EditDistance, SimpsonIndex, JaccardIndex<span style="color:#f92672">]</span>
+<span style="color:#f92672">==========</span> pair matcher names <span style="color:#f92672">==========</span>
+<span style="color:#f92672">[</span>RoundRobin, Guessed, RoundRobinWithSamePair<span style="color:#f92672">]</span>
+<span style="color:#f92672">==========</span> system library rules <span style="color:#f92672">==========</span>
+<span style="color:#f92672">{</span>PREFIX,java.,PREFIX,javax.,PREFIX,org.omg.,PREFIX,org.ietf.,PREFIX,org.w3c.,PREFIX,org.xml.sax.,PREFIX,org.apache.<span style="color:#f92672">}</span>
+<span style="color:#f92672">==========</span> properties <span style="color:#f92672">==========</span>
+$ pochi examples/printing_pochi_info.groovy -C examples/sample_config.json
+<span style="color:#f92672">==========</span> birthmark extractor names <span style="color:#f92672">==========</span>
+<span style="color:#f92672">[</span>6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 3-gram<span style="color:#f92672">]</span>
+<span style="color:#f92672">==========</span> birthmark comparator names <span style="color:#f92672">==========</span>
+<span style="color:#f92672">[</span>DiceIndex, EditDistance, SimpsonIndex, JaccardIndex<span style="color:#f92672">]</span>
+<span style="color:#f92672">==========</span> pair matcher names <span style="color:#f92672">==========</span>
+<span style="color:#f92672">[</span>RoundRobin, Guessed, RoundRobinWithSamePair<span style="color:#f92672">]</span>
+<span style="color:#f92672">==========</span> system library rules <span style="color:#f92672">==========</span>
+<span style="color:#f92672">{</span>PREFIX,java.,PREFIX,javax.,PREFIX,org.omg.,PREFIX,org.ietf.,PREFIX,org.w3c.,PREFIX,org.xml.sax.,PREFIX,org.apache.<span style="color:#f92672">}</span>
+<span style="color:#f92672">==========</span> properties <span style="color:#f92672">==========</span>
+key1: value1 <span style="color:#75715e"># &lt;--- sample_config.json adds this property key, and value pair.</span>
+</code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="3-extracting_birthmarksgroovy">3️⃣ <code>extracting_birthmarks.groovy</code></h2>
+<p>Extracting specified type of birthmarks from given jar files.</p>
+<h3 id="-source-file-2">🍇 Source file</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#75715e">// extract birthmarks by given extractor from given file path.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> extractor<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    source <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">source</span><span style="color:#f92672">(</span>path<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">return</span> extractor<span style="color:#f92672">.</span><span style="color:#a6e22e">extract</span><span style="color:#f92672">(</span>source<span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// prints each Birthmark object.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">printBirthmarks</span><span style="color:#f92672">(</span>birthmarks<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    birthmarks<span style="color:#f92672">.</span><span style="color:#a6e22e">each</span><span style="color:#f92672">(</span>b <span style="color:#f92672">-&gt;</span> println<span style="color:#f92672">(</span>b<span style="color:#f92672">))</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// gets UC birthmark extractor.
+</span><span style="color:#75715e"></span>extractor <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">extractor</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;uc&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// specifies birthmark type.
+</span><span style="color:#75715e"></span>
+Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>args<span style="color:#f92672">)</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>file <span style="color:#f92672">-&gt;</span> extract<span style="color:#f92672">(</span>file<span style="color:#f92672">,</span> extractor<span style="color:#f92672">))</span> <span style="color:#75715e">// converts to Birthmarks
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">each</span><span style="color:#f92672">(</span>birthmarks <span style="color:#f92672">-&gt;</span> printBirthmarks<span style="color:#f92672">(</span>birthmarks<span style="color:#f92672">))</span> <span style="color:#75715e">// print given birthmarks.
+</span></code></pre></div><h3 id="-output-2">🍷 Output</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pochi examples/extracting_birthmarks.groovy lib/vavr-match-0.10.3.jar
+extract uc birthmark from lib/vavr-match-0.10.3.jar
+io.vavr.match.annotation.Unapply,jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Unapply.class,uc,java.lang.Object,java.lang.annotation.Annotation
+io.vavr.match.annotation.Patterns,jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Patterns.class,uc,java.lang.Object,java.lang.annotation.Annotation
+</code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="4-filtering_sourcegroovy">4️⃣ <code>filtering_source.groovy</code></h2>
+<p><code>pochi</code> reads files as <code>DataSource</code> type variable.
+Then, we can apply the filter on <code>DataSource</code> type variable for ignoring the classes with the certain name.</p>
+<h3 id="-source-file-3">🍇 Source file</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>entry<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> entry<span style="color:#f92672">.</span><span style="color:#a6e22e">isClass</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>entry<span style="color:#f92672">.</span><span style="color:#a6e22e">className</span><span style="color:#f92672">().</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;pochi&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>source<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// filtering DataSource entry by contains method.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> source<span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>entry <span style="color:#f92672">-&gt;</span> contains<span style="color:#f92672">(</span>entry<span style="color:#f92672">))</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">printSource</span><span style="color:#f92672">(</span>source<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    source<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">.</span><span style="color:#a6e22e">each</span><span style="color:#f92672">(</span>entry <span style="color:#f92672">-&gt;</span> println<span style="color:#f92672">(</span>entry<span style="color:#f92672">.</span><span style="color:#a6e22e">loadFrom</span><span style="color:#f92672">()))</span>
+<span style="color:#f92672">}</span>
+
+Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>args<span style="color:#f92672">)</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>arg <span style="color:#f92672">-&gt;</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">source</span><span style="color:#f92672">(</span>arg<span style="color:#f92672">))</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>source <span style="color:#f92672">-&gt;</span> filter<span style="color:#f92672">(</span>source<span style="color:#f92672">))</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">each</span><span style="color:#f92672">(</span>source <span style="color:#f92672">-&gt;</span> printSource<span style="color:#f92672">(</span>source<span style="color:#f92672">))</span>
+</code></pre></div><h3 id="-output-3">🍷 Output</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pochi examples/filtering_source.groovy lib/pochi-api-2.0.0.jar
+<span style="color:#75715e"># no output was given, because, all of classes contains `pochi` keyword in the package name.</span>
+$ pochi examples/filtering_source.groovy lib/vavr-match-0.10.3.jar <span style="color:#75715e"># prints all classes included in the given jar.</span>
+jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Unapply.class
+jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Patterns.class
+</code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="5-comparing_birthmarksgroovy">5️⃣ <code>comparing_birthmarks.groovy</code></h2>
+<p>This script calculates similarities among extracted birthmarks.
+Also, the script can filter by the similarity value.</p>
+<h3 id="-source-file-4">🍇 Source file</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#f92672">import</span> jp.cafebabe.pochi.birthmarks.comparators.Threshold<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> jp.cafebabe.pochi.birthmarks.entities.Birthmarks<span style="color:#f92672">;</span>
+
+<span style="color:#75715e">// extract birthmarks by given extractor from given file path.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> extractor<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    source <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">source</span><span style="color:#f92672">(</span>path<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">return</span> extractor<span style="color:#f92672">.</span><span style="color:#a6e22e">extract</span><span style="color:#f92672">(</span>source<span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// gets UC birthmark extractor.
+</span><span style="color:#75715e"></span>extractor <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">extractor</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;uc&#34;</span><span style="color:#f92672">)</span>
+
+birthmarks <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>args<span style="color:#f92672">)</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>file <span style="color:#f92672">-&gt;</span> extract<span style="color:#f92672">(</span>file<span style="color:#f92672">,</span> extractor<span style="color:#f92672">))</span>              <span style="color:#75715e">// converts to Birthmarks
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">reduce</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Birthmarks<span style="color:#f92672">(),</span> <span style="color:#f92672">(</span>b1<span style="color:#f92672">,</span> b2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> b1<span style="color:#f92672">.</span><span style="color:#a6e22e">merge</span><span style="color:#f92672">(</span>b2<span style="color:#f92672">))</span> <span style="color:#75715e">// merges to one Birthmarks object
+</span><span style="color:#75715e">// above script is the same as [3️⃣ extracting_birthmarks.groovy](#3-extracting_birthmarksgroovy).
+</span><span style="color:#75715e"></span>
+comparator <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">comparator</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JaccardIndex&#34;</span><span style="color:#f92672">)</span>
+matcher <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">matcher</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;RoundRobin&#34;</span><span style="color:#f92672">)</span>
+
+<span style="color:#75715e">// default threshold (0.75)
+</span><span style="color:#75715e"></span>threshold <span style="color:#f92672">=</span> Threshold<span style="color:#f92672">.</span><span style="color:#a6e22e">DEFAULT</span>
+
+matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">match</span><span style="color:#f92672">(</span>birthmarks<span style="color:#f92672">)</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>pair <span style="color:#f92672">-&gt;</span> comparator<span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>pair<span style="color:#f92672">))</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>either <span style="color:#f92672">-&gt;</span> either<span style="color:#f92672">.</span><span style="color:#a6e22e">isRight</span><span style="color:#f92672">())</span> <span style="color:#75715e">// ignoring the error.
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>either <span style="color:#f92672">-&gt;</span> either<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">())</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>comparison <span style="color:#f92672">-&gt;</span> comparison<span style="color:#f92672">.</span><span style="color:#a6e22e">isStolen</span><span style="color:#f92672">(</span>threshold<span style="color:#f92672">))</span> <span style="color:#75715e">// similarity &gt; 0.75
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>comparison <span style="color:#f92672">-&gt;</span> println<span style="color:#f92672">(</span>comparison<span style="color:#f92672">))</span>
+</code></pre></div><h3 id="-output-4">🍷 Output</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pochi examples/comparing_birthmarks.groovy distribution/target/lib/kunai2-1.0.0.jar
+jp.cafebabe.pochi.kunai.sink.WarFileDataSink,jp.cafebabe.pochi.kunai.source.WarFileDataSource,1.0
+jp.cafebabe.pochi.kunai.sink.WarFileDataSink,jp.cafebabe.pochi.kunai.source.factories.WarFileDataSourceFactory,0.75
+jp.cafebabe.pochi.kunai.source.PlainFileDataSource,jp.cafebabe.pochi.kunai.source.ClassFileDataSource,1.0
+jp.cafebabe.pochi.kunai.source.WarFileDataSource,jp.cafebabe.pochi.kunai.source.factories.WarFileDataSourceFactory,0.75
+jp.cafebabe.pochi.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.pochi.kunai.source.factories.WarFileDataSourceFactory,0.8
+jp.cafebabe.pochi.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.pochi.kunai.source.factories.PlainFileDataSourceFactory,0.8
+jp.cafebabe.pochi.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.pochi.kunai.source.factories.DirectoryDataSourceFactory,0.8333333333333334
+jp.cafebabe.pochi.kunai.source.factories.UnsupportedDataSourceException,jp.cafebabe.pochi.kunai.entries.ClassName,1.0
+jp.cafebabe.pochi.kunai.entries.Entry,jp.cafebabe.pochi.kunai.entries.PathEntry,1.0
+</code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
+
+<h2 id="6-registering_new_extractorgroovy">6️⃣ <code>registering_new_extractor.groovy</code></h2>
+<p>This sample registers the new birthmark extractor (<code>7-gram</code> based birthmark extractor).</p>
+<h3 id="-source-file-5">🍇 Source file</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#f92672">import</span> jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder
+
+<span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========= extractor ==========&#34;</span><span style="color:#f92672">)</span>
+println<span style="color:#f92672">(</span>pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">extractorNames</span><span style="color:#f92672">())</span>
+
+<span style="color:#75715e">// create 7-gram birthmark extractor.
+</span><span style="color:#75715e"></span>sevenGram <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> KGramBasedExtractorBuilder<span style="color:#f92672">(</span><span style="color:#ae81ff">7</span><span style="color:#f92672">);</span>
+pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">register</span><span style="color:#f92672">(</span>sevenGram<span style="color:#f92672">)</span>
+
+println<span style="color:#f92672">(</span>pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">extractorNames</span><span style="color:#f92672">())</span>
+</code></pre></div><h3 id="-output-5">🍷 Output</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">=========</span> extractor <span style="color:#f92672">==========</span>
+<span style="color:#f92672">[</span>6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 3-gram<span style="color:#f92672">]</span>         <span style="color:#75715e"># &lt;- before registration</span>
+<span style="color:#f92672">[</span>6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 7-gram, 3-gram<span style="color:#f92672">]</span> <span style="color:#75715e"># &lt;- after registration</span>
+</code></pre></div>
+
+    <footer class="site-footer">
+  <span class="site-footer-credits">
+    <a href="https://github.com/tamada/pochi"><img src="https://img.shields.io/badge/GitHub-tamada/pochi-blueviolet.svg?logo=github" alt="GitHub"></a> Made with <a href="https://gohugo.io/">Hugo</a>. Theme by <a href="https://github.com/zwbetz-gh/cayman-hugo-theme">Cayman</a>. Deployed to <a href="https://pages.github.com/">GitHub Pages</a>.
+  </span>
+</footer>
+
+  </section>
+  
+  
+
+</body>
+</html>
