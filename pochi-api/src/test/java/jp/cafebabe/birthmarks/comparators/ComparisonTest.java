@@ -2,7 +2,7 @@ package jp.cafebabe.birthmarks.comparators;
 
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.net.URI;
 import java.net.URISyntaxException;

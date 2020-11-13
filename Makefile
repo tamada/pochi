@@ -1,7 +1,7 @@
 GO := go
 NAME := pochi
 POCHIC := $(NAME)c
-VERSION := 2.0.0
+VERSION := 2.1.0
 DIST := $(NAME)-$(VERSION)
 DESTINATION := target
 

@@ -1,7 +1,7 @@
 package jp.cafebabe.pochi.birthmarks.kgram;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;

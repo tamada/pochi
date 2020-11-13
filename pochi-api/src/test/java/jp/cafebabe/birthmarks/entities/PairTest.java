@@ -3,7 +3,7 @@ package jp.cafebabe.birthmarks.entities;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import jp.cafebabe.birthmarks.entities.Pair;
 import org.junit.Test;
