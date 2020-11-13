@@ -1,7 +1,7 @@
 package jp.cafebabe.pochi.util;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.lang.reflect.Constructor;
 import java.util.List;

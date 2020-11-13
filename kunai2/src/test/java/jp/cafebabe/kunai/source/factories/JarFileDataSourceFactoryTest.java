@@ -2,7 +2,7 @@ package jp.cafebabe.kunai.source.factories;
 
 import static jp.cafebabe.kunai.util.Assert.assertThrows;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.nio.file.Path;

@@ -1,7 +1,7 @@
 package jp.cafebabe.pochi.birthmarks.uc;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.net.URL;
 import java.nio.file.Paths;
