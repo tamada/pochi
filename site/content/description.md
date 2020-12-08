@@ -46,18 +46,20 @@ For more detail, see [:ant: Examples](../examples).
 
 Container images of **pochi** for Docker are:
 
-* [`tamada/pochi`](https://hub.docker.com/r/tamada/pochi)
-    * `2.0.0`, `latest`
+
+* [`tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
+    * `2.1.0`, `latest`
+    * `2.0.0`
         * accept only `.groovy` script files.
     * `1.0.0`
         * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.0.0-blue?logo=docker&style=social)](https://hub.docker.com/r/tamada/pochi)
+[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker&style=social)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 
 ```sh
-$ docker run --rm -v "$PWD":/home/pochi tamada/pochi:2.0.0 [OPTIONS] [SCRIPT [ARGV...]]
+$ docker run --rm -v "$PWD":/home/pochi tamada/pochi:2.1.0 [OPTIONS] [SCRIPT [ARGV...]]
 ```
 
 * `OPTIONS`: the options for **pochi**.

@@ -12,7 +12,7 @@ draft: false
 
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
 [![Javadoc](https://img.shields.io/static/v1?label=javadoc&message=v2.1.0&color=blue&logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.0.0-blue?logo=docker&style=social)](https://hub.docker.com/r/tamada/pochi)
+[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker&style=social)](https://github.com/users/tamada/packages/container/package/pochi)
 
 **pochi** is the birthmarking toolkit for the JVM platform.
 The birthmarks are the native characteristics extracted from executable programs.
