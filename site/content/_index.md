@@ -35,6 +35,7 @@ The resultant similarities shows the copy relation possibilities between two pro
 * [:anchor: Install](install)
     * [:beer: Homebrew](install#-homebrew)
     * [:muscle: Compiling pochi yourself](install#-compiling-pochi-yourself)
+    * [:package: Maven repository](install#-maven-repository)
     * [:briefcase: Requirements](install#-requirements)
         * [:pouch: Modules](install#-modules)
 * [:ant: Examples](examples)

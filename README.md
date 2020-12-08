@@ -30,6 +30,7 @@ Detecting the software theft, the birthmark toolkit for the JVM platform.
 * :anchor: Install
   - [:beer: Homebrew](https://tamada.github.io/pochi/install#-homebrew)
   - [:muscle: Compiling pochi yourself](https://tamada.github.io/pochi/install#-compiling-pochi-yourself)
+  - [:package: Maven repository](https://tamada.github.io/pochi/install#-maven-repository)
   - :briefcase: Requirements
     - [:pouch: Modules](https://tamada.github.io/pochi/install#-modules)
 * :ant: Examples
@@ -49,12 +50,36 @@ Detecting the software theft, the birthmark toolkit for the JVM platform.
     - [:tennis: Articles by H. Tamada](https://tamada.github.io/pochi/about#-articles-by-h-tamada)
 * [:smile_cat: API document](https://tamada.github.io/pochi/apidocs)
 
-
 ## Discussion
 
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
 
 Join [our Gitter channel](https://gitter.im/pochi-birthmark/) if you have any problems or suggestions on pochi.
+
+## Maven repository
+
+Copy and paste the following snippet into your `pom.xml`.
+
+```xml
+  <repositories>
+    <repository>
+      <id>tamada_github</id>
+      <name>Apache Maven Packages of tamada</name>
+      <url>https://maven.pkg.github.com/tamada/mvnrepository</url>
+    </repository>
+  </repositories>
+```
+
+Then, add the dependencies of your `pom.xml`.
+
+| groupId            | artifactId   | version |
+|--------------------|--------------|---------|
+|`jp.cafebabe.pochi` | `nasubi`     | `2.1.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.1.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.1.0` |
+
+Note that accessing GitHub Packages must authenticate with GitHub access token.
+You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).
 
 ## Modules
 

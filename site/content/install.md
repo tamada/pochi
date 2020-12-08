@@ -29,6 +29,32 @@ Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin
 
 {{< gototop >}}
 
+## :package: Maven repository
+
+Copy and paste the following snippet into your `pom.xml`.
+
+```xml
+  <repositories>
+    <repository>
+      <id>tamada_github</id>
+      <name>Apache Maven Packages of tamada</name>
+      <url>https://maven.pkg.github.com/tamada/mvnrepository</url>
+    </repository>
+  </repositories>
+```
+
+Then, add the dependencies of your `pom.xml`.
+
+| groupId            | artifactId   | version |
+|--------------------|--------------|---------|
+|`jp.cafebabe.pochi` | `nasubi`     | `2.1.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.1.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.1.0` |
+
+Note that accessing GitHub Packages must authenticate with GitHub access token.
+You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).
+
+
 ## :briefcase: Requirements
 
 * [Jackson](https://github.com/FasterXML/jackson) 2.10.0
