@@ -4,7 +4,7 @@ date: 2017-08-29
 draft: false
 ---
 
-[![Build Status](https://travis-ci.org/tamada/pochi.svg?branch=master)](https://travis-ci.org/tamada/pochi)
+[![Build Status](https://travis-ci.org/tamada/pochi.svg?tag=v1.0.0)](https://travis-ci.org/tamada/pochi)
 [![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=master)](https://coveralls.io/github/tamada/pochi?branch=master)
 [![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
 [![Gitter](http://badges.gitter.im/owner/repo.png)](https://gitter.im/pochi-birthmark/)
