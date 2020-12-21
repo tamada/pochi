@@ -49,7 +49,7 @@ build-pochi: setup test
 	$(GO) build -o $(NAME) -v cmd/$(NAME)/*.go
 
 # creating CLI interface, pochi modules, documents, and distribution package for this platform.
-build: build-pochi package site $(DIST)
+build: build-pochi package
 
 $(DIST): site
 	@echo "creating distribution package at $(DIST)"
