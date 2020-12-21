@@ -4,8 +4,8 @@ CONTAINER_REMOVE_FLAG := "--rm"
 BASE_URL := "https://tamada.github.io/pochi"
 HUGO_THEME := "cayman-hugo-theme"
 
-build: public/v1.0.0/apidocs static/apidocs
-	docker run -it ${CONTAINER_REMOVE_FLAG} -d --name ${DOCKER_IMAGE_NAME}_build -v "${PWD}":/src -v ${PWD}/public:/output -e HUGO_THEME=${HUGO_THEME} -e HUGO_BASEURL=${BASE_URL} jojomi/hugo:latest
+build: setup public/v1.0.0/apidocs static/apidocs
+	docker run ${CONTAINER_REMOVE_FLAG} --name ${DOCKER_IMAGE_NAME}_build -v "${PWD}":/src -v ${PWD}/public:/output -e HUGO_THEME=${HUGO_THEME} -e HUGO_BASEURL=${BASE_URL} jojomi/hugo:latest
 	rm -f public/favicon-16x16.png public/favicon-32x32.png public/favicon.ico public/apple-touch-icon.png
 
 start:
@@ -14,13 +14,18 @@ start:
 stop:
 	docker stop ${DOCKER_IMAGE_NAME}
 
+setup: public
+
+public:
+	git worktree add public gh-pages
+
 static/apidocs: resources/javadoc/targets
 	sed "s!#{PROJECT_DIR}!$(PWD)/..!g" resources/javadoc/options > resources/javadoc/options_abs
 	javadoc -d static/apidocs @resources/javadoc/options_abs @resources/javadoc/targets
 	@rm -rf resources/javadoc/options_abs
 
 resources/javadoc/targets: msp
-	find -L msp/jp.cafebabe.{kunai,birthmarks,pochi} -name '*.java' | grep -v src/test | grep -v target > resources/javadoc/targets
+	find -L msp/jp.cafebabe.kunai msp/jp.cafebabe.birthmarks msp/jp.cafebabe.pochi -name '*.java' | grep -v src/test | grep -v target > resources/javadoc/targets
 
 msp:
 	mkdir -p msp    # abbrev. of module-source-path
@@ -33,4 +38,3 @@ public/v1.0.0/apidocs: resources/apidocs_v1.0.0.zip
 
 clean:
 	@rm -rf msp resources/javadoc/targets
-

@@ -54,7 +54,7 @@ Container images of **pochi** for Docker are:
     * `1.0.0`
         * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker&style=social)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 

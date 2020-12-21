@@ -4,7 +4,7 @@ date: 2020-10-08
 draft: false
 ---
 
-[![Build Status](https://travis-ci.org/tamada/pochi.svg?branch=master)](https://travis-ci.org/tamada/pochi)
+![build](https://github.com/tamada/pochi/workflows/build/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=master)](https://coveralls.io/github/tamada/pochi?branch=master)
 [![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
@@ -12,7 +12,7 @@ draft: false
 
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
 [![Javadoc](https://img.shields.io/static/v1?label=javadoc&message=v2.1.0&color=blue&logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker&style=social)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 **pochi** is the birthmarking toolkit for the JVM platform.
 The birthmarks are the native characteristics extracted from executable programs.
