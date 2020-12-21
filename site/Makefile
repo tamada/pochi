@@ -5,7 +5,7 @@ BASE_URL := "https://tamada.github.io/pochi"
 HUGO_THEME := "cayman-hugo-theme"
 
 build: setup public/v1.0.0/apidocs static/apidocs
-	docker run -it ${CONTAINER_REMOVE_FLAG} --name ${DOCKER_IMAGE_NAME}_build -v "${PWD}":/src -v ${PWD}/public:/output -e HUGO_THEME=${HUGO_THEME} -e HUGO_BASEURL=${BASE_URL} jojomi/hugo:latest
+	docker run ${CONTAINER_REMOVE_FLAG} --name ${DOCKER_IMAGE_NAME}_build -v "${PWD}":/src -v ${PWD}/public:/output -e HUGO_THEME=${HUGO_THEME} -e HUGO_BASEURL=${BASE_URL} jojomi/hugo:latest
 	rm -f public/favicon-16x16.png public/favicon-32x32.png public/favicon.ico public/apple-touch-icon.png
 
 start:
