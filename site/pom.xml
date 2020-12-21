@@ -36,7 +36,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin>
@@ -74,6 +74,7 @@
               <goal>report-aggregate</goal>
             </goals>
             <configuration>
+              <title>Coverage reports of pochi</title>
               <outputDirectory>static/jacoco</outputDirectory>
             </configuration>
           </execution>

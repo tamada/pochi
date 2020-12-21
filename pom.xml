@@ -201,41 +201,11 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.6</version>
-        <!-- https://stackoverflow.com/questions/41988302/jacoco-merge-goal-cant-find-data-files-for-child-modules#answer-49425413 -->
-        <configuration>
-          <fileSets>
-            <fileSet>
-              <directory>${project.basedir}</directory>
-              <includes>
-                <include>kunai2/target/jacoco.exec</include>
-                <include>pochi-api/target/jacoco.exec</include>
-                <include>pochi-core/target/jacoco.exec</include>
-              </includes>
-            </fileSet>
-          </fileSets>
-        </configuration>
         <executions>
           <execution>
             <id>prepare-agent</id>
             <goals>
               <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>merge</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>merge</goal>
-            </goals>
-            <configuration>
-              <destFile>${project.build.directory}/jacoco_aggregate.exec</destFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>report-aggregate</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>report-aggregate</goal>
             </goals>
           </execution>
         </executions>
