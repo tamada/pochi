@@ -57,6 +57,7 @@ $(DIST): site
 	@cp       $(NAME) $(DIST)/bin
 	@cp -r    completions examples README.md Dockerfile LICENSE $(DIST)
 	@cp       {pochi-core,pochi-api,kunai2}/target/*-$(VERSION).jar pochi-core/target/lib/{asm-8.0.1,jackson-annotations-2.11.0,jackson-core-2.11.0,jackson-databind-2.11.0,vavr-0.10.3,vavr-match-0.10.3}.jar $(DIST)/lib
+	@rm -rf   $(DIST)/docs
 	@cp -r    site/public $(DIST)/docs
 	@rm -rf   $(DIST)/docs/{.git,public}
 
