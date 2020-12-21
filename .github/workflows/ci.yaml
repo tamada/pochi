@@ -40,5 +40,5 @@ jobs:
               run: make build
 
             - name: send coverage to coveralls
-              if: matrix.os == "ubuntu-latest"
+              if: matrix.os == 'ubuntu-latest'
               run:  mvn -DrepoToken=${{ secrets.COVERALLS_REPO_TOKEN }} verify coveralls:report
