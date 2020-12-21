@@ -34,12 +34,32 @@ jobs:
                   hugo-version: '0.79.1'
                   # extended: true
 
+            - name: Set up JDK 11 for pochi core libraries
+              uses: actions/setup-java@v1
+              with:
+                  java-version: 11
+
+            - name: Compile
+              run: mvn package
+
+            - name: Generate Javadoc
+              run: |
+                  mkdir msp public
+                  ln -s ../kunai2/src/main/java     msp/jp.cafebabe.kunai
+                  ln -s ../pochi-api/src/main/java  msp/jp.cafebabe.birthmarks
+                  ln -s ../pochi-core/src/main/java msp/jp.cafebabe.pochi
+                  find -L msp/jp.cafebabe.kunai/ msp/jp.cafebabe.birthmarks/ msp/jp.cafebabe.pochi/ -name '*.java' | grep -v src/test | grep -v target > resources/javadoc/target
+                  sed "s!#{PROJECT_DIR}!$(PWD)/..!g" resources/javadoc/options > resources/javadoc/options_abs
+                  javadoc -d static/apidocs @resources/javadoc/options_abs @resources/javadoc/targets
+                  rm -rf resources/javadoc/options_abs
+              working-directory: site
+
             - name: Build
-                run: |
-                    mkdir public
-                    hugo
-                    rm site/favicon* site/apple-touch-icon.png
-                working-directory: site
+              run: |
+                  mkdir public
+                  hugo
+                  rm site/favicon* site/apple-touch-icon.png
+              working-directory: site
 
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
