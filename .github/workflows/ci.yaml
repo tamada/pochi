@@ -45,7 +45,7 @@ jobs:
                   job-number: ${{ strategy.job-number }}
 
     finish:
-        needs: test
+        needs: build
         runs-on: ubuntu-latest
         steps:
             - uses: shogo82148/actions-goveralls@v1
