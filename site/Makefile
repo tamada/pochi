@@ -25,7 +25,7 @@ static/apidocs: resources/javadoc/targets
 	@rm -rf resources/javadoc/options_abs
 
 resources/javadoc/targets: msp
-	find -L msp/jp.cafebabe.{kunai,birthmarks,pochi} -name '*.java' | grep -v src/test | grep -v target > resources/javadoc/targets
+	find -L msp/jp.cafebabe.kunai msp/jp.cafebabe.birthmarks msp/jp.cafebabe.pochi -name '*.java' | grep -v src/test | grep -v target > resources/javadoc/targets
 
 msp:
 	mkdir -p msp    # abbrev. of module-source-path
