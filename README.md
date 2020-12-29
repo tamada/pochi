@@ -1,12 +1,12 @@
-![build](https://github.com/tamada/pochi/workflows/build/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=master)](https://coveralls.io/github/tamada/pochi?branch=master)
+[![build](https://github.com/tamada/pochi/workflows/build/badge.svg)](https://github.com/tamada/pochi/actions?query=workflow%3Abuild)
+[![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=main)](https://coveralls.io/github/tamada/pochi?branch=main)
 [![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
 [![Version](https://img.shields.io/badge/Version-2.1.0-yellowgreen.svg)](https://github.com/tamada/pochi/releases/tag/v2.1.0)
 
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
 [![Javadoc](https://img.shields.io/static/v1?label=javadoc&message=v2.1.0&color=blue&logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/docker-ghcr.io%2Ftamada%2Fpochi%3A2.1.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 # :dog: pochi
 
@@ -99,6 +99,4 @@ You should update your `~/.m2/settings.xml` by [following this instructions](htt
 
 Also, **pochi** runs on Groovy environment, and the Groovy depends on `java.scripting`, `java.desktop`, `java.sql`, and `java.xml` modules.
 
-
-
-![Module graph](https://github.com/tamada/pochi/raw/master/site/static/images/module-graph.svg)
+![Module graph](https://github.com/tamada/pochi/raw/main/site/static/images/module-graph.svg)

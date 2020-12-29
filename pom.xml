@@ -11,6 +11,7 @@
     <module>kunai2</module>
     <module>pochi-api</module>
     <module>pochi-core</module>
+    <module>pochi-cmd</module>
     <module>site</module>
   </modules>
 
