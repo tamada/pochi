@@ -7,6 +7,7 @@
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
 [![Javadoc](https://img.shields.io/badge/javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
 [![Docker](https://img.shields.io/badge/docker-ghcr.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![DOI](https://zenodo.org/badge/82773287.svg)](https://zenodo.org/badge/latestdoi/82773287)
 
 # :dog: pochi
 
