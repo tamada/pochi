@@ -18,6 +18,6 @@ public class PochiScriptRunner extends AbstractRunner {
 
     @Override
     public Mode mode() {
-        return Mode.Interactive;
+        return Mode.ScriptFile;
     }
 }

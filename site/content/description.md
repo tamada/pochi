@@ -48,8 +48,7 @@ For more detail, see [:ant: Examples](../examples).
 
 Container images of **pochi** for Docker are:
 
-
-* [`tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
+* [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
     * `2.2.0`, `latest`
     * `2.1.0`
     * `2.0.0`

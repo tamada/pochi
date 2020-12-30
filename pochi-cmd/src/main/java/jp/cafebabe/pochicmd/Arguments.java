@@ -5,7 +5,10 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
+import java.io.File;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,12 +48,14 @@ public class Arguments implements Serializable {
         return classpaths.stream();
     }
 
-    public Optional<String> configFile() {
-        return Optional.ofNullable(configFile);
-    }
-
-    public Optional<String> workingDir() {
-        return Optional.ofNullable(directory);
+    public ProcessBuilder setupProcessBuilder(ProcessBuilder builder) {
+        if(configFile != null) {
+            builder.environment().put(Main.CONFIG_NAME, configFile);
+        }
+        if(directory != null && Files.isDirectory(Paths.get(directory))) {
+            builder = builder.directory(new File(directory));
+        }
+        return builder;
     }
 
     public boolean isHelp() {

@@ -14,6 +14,8 @@ draft: false
 [![Javadoc](https://img.shields.io/badge/javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
 [![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
+Detecting the software theft, the birthmark toolkit for the JVM platform.
+
 **pochi** is the birthmarking toolkit for the JVM platform.
 The birthmarks are the native characteristics extracted from executable programs.
 Then, **pochi** compares them and computes the similarities.

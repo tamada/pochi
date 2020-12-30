@@ -16,6 +16,6 @@ public class HelpPrintingRunner extends AbstractRunner {
 
     @Override
     public Mode mode() {
-        return null;
+        return Mode.HelpMode;
     }
 }

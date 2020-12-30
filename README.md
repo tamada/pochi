@@ -12,9 +12,12 @@
 
 Detecting the software theft, the birthmark toolkit for the JVM platform.
 
-**pochi** is the birthmarking toolkit for the JVM platform. The birthmarks are the native characteristics extracted from executable programs. Then, we compare them and computes the similarities. The resultant similarities shows the copy relation possibilities between two programs.
+**pochi** is the birthmarking toolkit for the JVM platform.
+The birthmarks are the native characteristics extracted from executable programs.
+Then, we compare them and computes the similarities.
+The resultant similarities shows the copy relation possibilities between two programs.
 
-## :bookmark: Table of Contents
+## :bookmark: Table of Contents in the Web page of pochi
 
 * [:books: Birthmarks](https://tamada.github.io/pochi/birthmarks)
   - [:green_book: Definition of Birthmarks](https://tamada.github.io/pochi/birthmarks#-definition-of-birthmarks)
@@ -49,6 +52,63 @@ Detecting the software theft, the birthmark toolkit for the JVM platform.
     - [:soccer: Articles of supported birthmark types](https://tamada.github.io/pochi/about#-articles-of-supported-birthmark-types)
     - [:tennis: Articles by H. Tamada](https://tamada.github.io/pochi/about#-articles-by-h-tamada)
 * [:smile_cat: API document](https://tamada.github.io/pochi/apidocs)
+
+### :runner: CLI Interface
+
+```sh
+pochi [OPTIONS] [SCRIPT_FILE [ARGV...]]
+OPTIONS
+    -c, --classpath <CLASSPATH>      specifies the classpaths for Groovy (JVM) separated with colon (:).
+    -C, --config <CONFIG_FILE>       specifies the configuration file.
+    -e, --expression <EXPRESSION>    specifies one line script.
+    -w, --working-dir <DIR>          specifies the working directory.
+    -v, --verbose                    sets as verbose mode.
+
+    -h, --help                       prints this message.
+SCRIPT_FILE [ARGV...]
+    Groovy script file name and its arguments.
+    If no script files and no expression were given, pochi runs on interactive mode.
+```
+
+#### Script file
+
+The script files are parsed by the Groovy.
+For more detail, see [:ant: Examples](https://tamada.github.io/pochi/examples).
+
+### :whale: Docker
+
+Container images of **pochi** for Docker are:
+
+* [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
+  * `2.2.0`, `latest`
+  * `2.1.0`
+  * `2.0.0`
+    * accept only `.groovy` script files.
+  * `1.0.0`
+    * accept only `.js` script files.
+
+[![Docker](https://img.shields.io/badge/docker-ghcir.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+
+To run **pochi** on Docker container OS, type the following commands.
+
+```sh
+$ docker run --rm -v "$PWD":/home/pochi tamada/pochi:latest [OPTIONS] [SCRIPT [ARGV...]]
+```
+
+* `OPTIONS`: the options for **pochi**.
+* `[SCRIPT [ARGV...]]`: script file for **pochi**.
+* `--rm`: remove the container after running.
+* `-v "$PWD":/home/pochi`: share volume `$PWD` in host OS to `/home/pochi` in the container OS.
+  * `$PWD` must be the absolute path.
+
+#### Environments in the docker container
+
+* `USER`: `pochi`
+* `WORKDIR`: `/home/pochi`
+* `JAVA_HOME`: `/opt/java` (symbolic link from `/opt/openjdk-11-minimal`)
+  * This Java runtime environment do not include unnecessary modules.
+* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-3.0.5`)
+* `POCHI_HOME`: `/opt/pochi` (symbolic link from `/opt/pochi-2.0.0`)
 
 ## Discussion
 
@@ -97,7 +157,10 @@ You should update your `~/.m2/settings.xml` by [following this instructions](htt
 * `jp.cafebabe.pochi`
   * `java.logging`
   * `jp.cafebabe.birthmarks`
+* `jp.cafebabe.pochicmd`
+  * `args4j`
 
 Also, **pochi** runs on Groovy environment, and the Groovy depends on `java.scripting`, `java.desktop`, `java.sql`, and `java.xml` modules.
+Note that, `jp.cafebabe.pochicmd` is just wrapper for groovysh. Therefore, no 
 
 ![Module graph](https://github.com/tamada/pochi/raw/main/site/static/images/module-graph.svg)

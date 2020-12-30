@@ -18,12 +18,7 @@ public abstract class AbstractRunner implements Runner {
     public ProcessBuilder buildProcessBuilder(Arguments args) {
         ProcessBuilder builder = new ProcessBuilder()
                 .inheritIO();
-        if(args.configFile().isPresent()) {
-            builder.environment().put(Main.CONFIG_NAME, args.configFile().get());
-        }
-        if(args.workingDir().isPresent()){
-            builder = builder.directory(new File(args.workingDir().get()));
-        }
+        builder = args.setupProcessBuilder(builder);
         return builder;
     }
 
@@ -35,23 +30,5 @@ public abstract class AbstractRunner implements Runner {
             }
         }
         process.destroy();
-    }
-
-    private void pipeInThread(InputStream in, OutputStream out, ExecutorService executor) {
-        executor.submit(() -> {
-            try(in; out) {
-                pipe(in, out);
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("pipe closed");
-        });
-    }
-
-    private void pipe(InputStream in, OutputStream out) throws IOException {
-        int data;
-        while((data = in.read()) != -1) {
-            out.write(data);
-        }
     }
 }
