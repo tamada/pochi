@@ -6,7 +6,7 @@
   <parent>
     <groupId>jp.cafebabe</groupId>
     <artifactId>pochi</artifactId>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
   </parent>
 
   <groupId>jp.cafebabe.pochi</groupId>
@@ -24,7 +24,7 @@
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-core</artifactId>
-      <version>2.1.0</version>
+      <version>2.2.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
@@ -40,7 +40,6 @@
             <manifest>
               <mainClass>jp.cafebabe.pochicmd.Main</mainClass>
               <addClasspath>true</addClasspath>
-              <classpathPrefix>lib</classpathPrefix>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>
           </archive>

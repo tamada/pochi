@@ -47,9 +47,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `nasubi`     | `2.1.0` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.1.0` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.1.0` |
+|`jp.cafebabe.pochi` | `nasubi`     | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.2.0` |
 
 Note that accessing GitHub Packages must authenticate with GitHub access token.
 You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).

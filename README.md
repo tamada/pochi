@@ -2,11 +2,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=main)](https://coveralls.io/github/tamada/pochi?branch=main)
 [![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
-[![Version](https://img.shields.io/badge/Version-2.1.0-yellowgreen.svg)](https://github.com/tamada/pochi/releases/tag/v2.1.0)
+[![Version](https://img.shields.io/badge/Version-2.2.0-yellowgreen.svg)](https://github.com/tamada/pochi/releases/tag/v2.2.0)
 
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
-[![Javadoc](https://img.shields.io/static/v1?label=javadoc&message=v2.1.0&color=blue&logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/docker-ghcr.io%2Ftamada%2Fpochi%3A2.1.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Javadoc](https://img.shields.io/badge/javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
+[![Docker](https://img.shields.io/badge/docker-ghcr.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 # :dog: pochi
 
@@ -74,9 +74,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `nasubi`     | `2.1.0` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.1.0` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.1.0` |
+|`jp.cafebabe.pochi` | `nasubi`     | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.2.0` |
 
 Note that accessing GitHub Packages must authenticate with GitHub access token.
 You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).

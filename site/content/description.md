@@ -27,9 +27,11 @@ If the user would perform filtering process, it is easy to perform the process.
 ```sh
 pochi [OPTIONS] [SCRIPT_FILE [ARGV...]]
 OPTIONS
-    -c, --classpath <CLASSPATH>      specifies classpaths for Groovy (JVM) separated with colon (:).
-    -C, --config <CONFIG_FILE>       specifies configuration file.
-    -e, --expression <EXPRESSION>    specifies command line script.
+    -c, --classpath <CLASSPATH>      specifies the classpaths for Groovy (JVM) separated with colon (:).
+    -C, --config <CONFIG_FILE>       specifies the configuration file.
+    -e, --expression <EXPRESSION>    specifies one line script.
+    -w, --working-dir <DIR>          specifies the working directory.
+    -v, --verbose                    sets as verbose mode.
 
     -h, --help                       prints this message.
 SCRIPT_FILE [ARGV...]
@@ -48,18 +50,19 @@ Container images of **pochi** for Docker are:
 
 
 * [`tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
-    * `2.1.0`, `latest`
+    * `2.2.0`, `latest`
+    * `2.1.0`
     * `2.0.0`
         * accept only `.groovy` script files.
     * `1.0.0`
         * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/docker-ghcir.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 
 ```sh
-$ docker run --rm -v "$PWD":/home/pochi tamada/pochi:2.1.0 [OPTIONS] [SCRIPT [ARGV...]]
+$ docker run --rm -v "$PWD":/home/pochi tamada/pochi:latest [OPTIONS] [SCRIPT [ARGV...]]
 ```
 
 * `OPTIONS`: the options for **pochi**.

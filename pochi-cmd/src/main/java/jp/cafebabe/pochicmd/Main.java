@@ -3,7 +3,7 @@ package jp.cafebabe.pochicmd;
 import java.util.Optional;
 
 public class Main {
-    public static final String VERSION = "2.1.0";
+    public static final String VERSION = "2.2.0";
     public static final String CONFIG_NAME = "POCHI_CONFIG_PATH";
 
     public Main(String[] args) throws Exception {
@@ -29,7 +29,7 @@ public class Main {
         return String.format("pochi version %s%n" +
                 "pochi [OPTIONS] [SCRIPT FILE [ARGV...]]%n" +
                 "OPTIONS%n" +
-                "    -c, --classpath <CLASSPATH>      specifies classpath for Groovy (JVM) separated with colon (:).%n" +
+                "    -c, --classpath <CLASSPATH>      specifies the classpaths for Groovy (JVM) separated with colon (:).%n" +
                 "    -C, --config <CONFIG_FILE>       specifies the configuration file.%n" +
                 "    -e, --expression <EXPRESSION>    specifies one line script.%n" +
                 "    -w, --working-dir <DIR>          specifies the working directory.%n" +
