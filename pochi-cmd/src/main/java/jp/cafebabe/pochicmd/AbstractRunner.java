@@ -31,7 +31,12 @@ public abstract class AbstractRunner implements Runner {
         commands.add(env.classpath(args));
     }
 
-    public abstract void execute(Arguments args, Environment env) throws IOException;
+    public abstract String targetName();
+
+    public void execute(Arguments args, Environment env) throws IOException{
+        List<String> argv = constructCommands(targetName(), args);
+        exec(buildProcessBuilder(args).command(argv).start());
+    }
 
     public ProcessBuilder buildProcessBuilder(Arguments args) {
         ProcessBuilder builder = new ProcessBuilder()

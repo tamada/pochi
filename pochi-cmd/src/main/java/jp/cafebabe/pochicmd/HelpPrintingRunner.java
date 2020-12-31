@@ -10,7 +10,12 @@ public class HelpPrintingRunner extends AbstractRunner {
     }
 
     @Override
-    public void execute(Arguments args, Environment env) throws IOException {
+    public String targetName() {
+        return null;
+    }
+
+    @Override
+    public final void execute(Arguments args, Environment env) throws IOException {
         System.out.println(main.helpMessage());
     }
 

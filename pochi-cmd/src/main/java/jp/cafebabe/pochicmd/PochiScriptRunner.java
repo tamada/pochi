@@ -6,16 +6,21 @@ import java.util.List;
 
 public class PochiScriptRunner extends AbstractRunner {
     @Override
-    public void execute(Arguments args, Environment env) throws IOException {
-        List<String> argv = constructCommands("groovy", args);
-        args.arguments().forEach(argv::add);
-        exec(buildProcessBuilder(args).command(argv).start());
+    public List<String> constructCommands(String prog, Arguments args) {
+        List<String> commands = super.constructCommands(prog, args);
+        args.arguments().forEach(commands::add);
+        return commands;
     }
 
     @Override
     protected void appendBaseScript(List<String> list, Arguments args) {
         list.add("--basescript");
         list.add("PochiBase");
+    }
+
+    @Override
+    public String targetName() {
+        return "groovy";
     }
 
     @Override
