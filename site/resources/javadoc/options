@@ -1,10 +1,10 @@
 -locale en_US
 --module-path
-#{PROJECT_DIR}/pochi-cmd/target/pochi-cmd-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/kunai2-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/pochi-api-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/pochi-core-${pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/vavr-0.10.3.jar:#{PROJECT_DIR}/pochi-cmd/target/asm-8.0.1.jar:#{PROJECT_DIR}/pochi-cmd/target/vavr-match-0.10.3.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-annotations-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-databind-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-core-2.11.0.jar
+#{PROJECT_DIR}/pochi-cmd/target/pochi-cmd-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/kunai2-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/pochi-api-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/pochi-core-${pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/vavr-0.10.3.jar:#{PROJECT_DIR}/pochi-cmd/target/asm-8.0.1.jar:#{PROJECT_DIR}/pochi-cmd/target/vavr-match-0.10.3.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-annotations-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-databind-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-core-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/args4j-2.33.jar
 -encoding
 'UTF-8'
 -protected
---module-source-path msp
+--module-source-path site/msp
 -author
 -bottom
 'Copyright &#169; 2020. All rights reserved.'

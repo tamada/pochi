@@ -9,13 +9,13 @@ function build_apidocs() {
   ln -s ${PWD}/pochi-core/src/main/java site/msp/jp.cafebabe.pochi
   ln -s ${PWD}/pochi-cmd/src/main/java site/msp/jp.cafebabe.pochicmd
 
-  find site/msp/jp.cafebabe.kunai site/msp/jp.cafebabe.birthmarks site/msp/jp.cafebabe.pochi site/msp/jp.cafebabe.pochicmd \
-      -name '*.java' | grep -v src/test | grep -v target > site/resources/javadoc/targets
+  find site/msp/jp.cafebabe.kunai/ site/msp/jp.cafebabe.birthmarks/ site/msp/jp.cafebabe.pochi/ site/msp/jp.cafebabe.pochicmd/ \
+      -name '*.java' | sed 's@//@/@g' | grep -v src/test | grep -v target > site/resources/javadoc/targets
 
   sed -e "s!#{pochi.version}!${VERSION}!g" -e "s!#{PROJECT_DIR}!${PWD}!g" \
       site/resources/javadoc/options > site/resources/javadoc/options_abs
 
-  javadoc -d site/static/apidocs @site/resources/javadoc/options_abs @resources/javadoc/targets
+  javadoc -d site/static/apidocs @site/resources/javadoc/options_abs @site/resources/javadoc/targets
   rm -rf site/resources/javadoc/options_abs site/resources/javadoc/targets site/msp
 }
 

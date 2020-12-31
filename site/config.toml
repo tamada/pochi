@@ -6,6 +6,8 @@ paginate = 10
 hasCJKLanguage = "false"
 theme = "cayman-hugo-theme"
 
+googleAnalytics = "UA-62401730-8"
+
 [blackfriday]
     smartypants = false
 
