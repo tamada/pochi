@@ -104,11 +104,11 @@ $ brew install pochi
 </code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
 
 <h2 id="-compiling-pochi-yourself">💪 Compiling <strong>pochi</strong> yourself</h2>
-<p>For building yourself, clone the source code from GitHub, and build it with <code>make</code> and <a href="https://maven.apache.org/">Maven</a>.</p>
+<p>For building yourself, clone the source code from GitHub, and build it with <a href="https://maven.apache.org/">Maven</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/tamada/pochi.git
 $ cd pochi
-$ make build-all
-</code></pre></div><p>Then, <code>make</code> creates <code>pochi-${VERSION}</code> directory contains the interpreter (<code>bin/pochi</code>), and dependent jar files (<code>lib</code>), documents (<code>docs</code>) and misc files (<code>README.md</code>, <code>LICENSE</code>, <code>completions</code>, <code>examples</code>, and <code>Dockerfile</code>).</p>
+$ mvn package
+</code></pre></div><p>Then, <code>./bin/make_dist.sh</code> creates <code>dist/pochi-${VERSION}</code> directory contains the interpreter (<code>bin/pochi</code>), and dependent jar files (<code>lib</code>), documents (<code>docs</code>) and misc files (<code>README.md</code>, <code>LICENSE</code>, <code>completions</code>, <code>examples</code>, and <code>Dockerfile</code>).</p>
 <p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
 
 <h2 id="-maven-repository">📦 Maven repository</h2>
@@ -133,17 +133,22 @@ $ make build-all
 <tr>
 <td><code>jp.cafebabe.pochi</code></td>
 <td><code>nasubi</code></td>
-<td><code>2.1.0</code></td>
+<td><code>2.2.0</code></td>
 </tr>
 <tr>
 <td><code>jp.cafebabe.pochi</code></td>
 <td><code>pochi-core</code></td>
-<td><code>2.1.0</code></td>
+<td><code>2.2.0</code></td>
 </tr>
 <tr>
 <td><code>jp.cafebabe.pochi</code></td>
 <td><code>pochi-api</code></td>
-<td><code>2.1.0</code></td>
+<td><code>2.2.0</code></td>
+</tr>
+<tr>
+<td><code>jp.cafebabe.pochi</code></td>
+<td><code>pochi-cmd</code></td>
+<td><code>2.2.0</code></td>
 </tr>
 </tbody>
 </table>
@@ -155,6 +160,7 @@ You should update your <code>~/.m2/settings.xml</code> by <a href="https://docs.
 <li><a href="https://www.vavr.io/">Vavr</a> 0.10.3</li>
 <li><a href="https://asm.ow2.io/">ASM</a> 8.0.1</li>
 <li><a href="https://groovy-lang.org">Groovy</a> 3.0.5</li>
+<li><a href="https://github.com/kohsuke/args4j">args4j</a> 2.33</li>
 </ul>
 <h3 id="-modules">👝 Modules</h3>
 <ul>
@@ -181,6 +187,11 @@ You should update your <code>~/.m2/settings.xml</code> by <a href="https://docs.
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/module-summary.html"><code>java.desktop</code></a></li>
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html"><code>java.sql</code></a></li>
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html"><code>java.xml</code></a></li>
+</ul>
+</li>
+<li><a href="https://tamada.github.io/pochi/apidocs/jp.cafebabe.pochicmd/module-summary.html"><code>jp.cafebabe.pochicmd</code></a>
+<ul>
+<li><a href="https://github.com/kohsuke/args4j"><code>args4j</code></a></li>
 </ul>
 </li>
 </ul>
@@ -219,6 +230,13 @@ You should update your <code>~/.m2/settings.xml</code> by <a href="https://docs.
 
   </section>
   
+  
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-62401730-8', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
   
 
 </body>

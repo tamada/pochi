@@ -112,9 +112,11 @@ If the user would perform filtering process, it is easy to perform the process.<
 <h3 id="-cli-interface">🏃‍♂️ CLI Interface</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pochi <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SCRIPT_FILE <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]]</span>
 OPTIONS
-    -c, --classpath &lt;CLASSPATH&gt;      specifies classpaths <span style="color:#66d9ef">for</span> Groovy <span style="color:#f92672">(</span>JVM<span style="color:#f92672">)</span> separated with colon <span style="color:#f92672">(</span>:<span style="color:#f92672">)</span>.
-    -C, --config &lt;CONFIG_FILE&gt;       specifies configuration file.
-    -e, --expression &lt;EXPRESSION&gt;    specifies command line script.
+    -c, --classpath &lt;CLASSPATH&gt;      specifies the classpaths <span style="color:#66d9ef">for</span> Groovy <span style="color:#f92672">(</span>JVM<span style="color:#f92672">)</span> separated with colon <span style="color:#f92672">(</span>:<span style="color:#f92672">)</span>.
+    -C, --config &lt;CONFIG_FILE&gt;       specifies the configuration file.
+    -e, --expression &lt;EXPRESSION&gt;    specifies one line script.
+    -w, --working-dir &lt;DIR&gt;          specifies the working directory.
+    -v, --verbose                    sets as verbose mode.
 
     -h, --help                       prints this message.
 SCRIPT_FILE <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]</span>
@@ -126,9 +128,10 @@ For more detail, see <a href="../examples">🐜 Examples</a>.</p>
 <h3 id="-docker">🐳 Docker</h3>
 <p>Container images of <strong>pochi</strong> for Docker are:</p>
 <ul>
-<li><a href="https://github.com/users/tamada/packages/container/package/pochi"><code>tamada/pochi</code></a>
+<li><a href="https://github.com/users/tamada/packages/container/package/pochi"><code>ghcr.io/tamada/pochi</code></a>
 <ul>
-<li><code>2.1.0</code>, <code>latest</code></li>
+<li><code>2.2.0</code>, <code>latest</code></li>
+<li><code>2.1.0</code></li>
 <li><code>2.0.0</code>
 <ul>
 <li>accept only <code>.groovy</code> script files.</li>
@@ -142,9 +145,9 @@ For more detail, see <a href="../examples">🐜 Examples</a>.</p>
 </ul>
 </li>
 </ul>
-<p><a href="https://github.com/users/tamada/packages/container/package/pochi"><img src="https://img.shields.io/badge/docker-ghcir.io%2Ftamada%2Fpochi%3A2.1.0-blue?logo=docker" alt="Docker"></a></p>
+<p><a href="https://github.com/users/tamada/packages/container/package/pochi"><img src="https://img.shields.io/badge/docker-ghcir.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker" alt="Docker"></a></p>
 <p>To run <strong>pochi</strong> on Docker container OS, type the following commands.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker run --rm -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>:/home/pochi tamada/pochi:2.1.0 <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SCRIPT <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]]</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker run --rm -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>:/home/pochi tamada/pochi:latest <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SCRIPT <span style="color:#f92672">[</span>ARGV...<span style="color:#f92672">]]</span>
 </code></pre></div><ul>
 <li><code>OPTIONS</code>: the options for <strong>pochi</strong>.</li>
 <li><code>[SCRIPT [ARGV...]]</code>: script file for <strong>pochi</strong>.</li>
@@ -256,6 +259,13 @@ In the script file, <code>pochi.comparator(&quot;ALGORITHM_NAME&quot;)</code> ge
 
   </section>
   
+  
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-62401730-8', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
   
 
 </body>

@@ -55,8 +55,8 @@ In general, the process of birthmarking is composed of extraction phase, and com
       <guid>https://tamada.github.io/pochi/install/</guid>
       <description>🍺 Homebrew For macOS user, pochi supports homebrew installation.
 $ brew tap tamada/brew $ brew install pochi  Go totop of the page
-💪 Compiling pochi yourself For building yourself, clone the source code from GitHub, and build it with make and Maven.
-$ git clone https://github.com/tamada/pochi.git $ cd pochi $ make build-all Then, make creates pochi-${VERSION} directory contains the interpreter (bin/pochi), and dependent jar files (lib), documents (docs) and misc files (README.</description>
+💪 Compiling pochi yourself For building yourself, clone the source code from GitHub, and build it with Maven.
+$ git clone https://github.com/tamada/pochi.git $ cd pochi $ mvn package Then, ./bin/make_dist.sh creates dist/pochi-${VERSION} directory contains the interpreter (bin/pochi), and dependent jar files (lib), documents (docs) and misc files (README.</description>
     </item>
     
     <item>

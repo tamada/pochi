@@ -26,3 +26,5 @@ jp.cafebabe.pochi.pairs
 jp.cafebabe.pochi.pairs.builders
 jp.cafebabe.pochi.parsers
 jp.cafebabe.pochi.util
+module:jp.cafebabe.pochicmd
+jp.cafebabe.pochicmd
