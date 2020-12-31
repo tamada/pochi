@@ -24,13 +24,20 @@ public class Environment {
         return pochiHome;
     }
 
+    private List<String> targetPaths() {
+        return Arrays.asList(System.getenv("POCHI_HOME"), "/opt/pochi", "/usr/local/opt/pochi", String.format("pochi-%s", Main.VERSION));
+    }
+
     private Path findPochiHome() {
-        List<String> paths = Arrays.asList(System.getenv("POCHI_HOME"), "/opt/pochi", "/usr/local/opt/pochi", String.format("pochi-%s", Main.VERSION));
-        Optional<Path> path = paths.stream()
-                .filter(p -> p != null)
-                .map(p -> Paths.get(p))
-                .filter(p -> Files.isDirectory(p))
+        List<String> paths = targetPaths();
+        Optional<String> path = paths.stream()
+                .filter(p -> isExistDirectory(p))
                 .findFirst();
-        return path.orElseGet(() -> Paths.get("."));
+        return Paths.get(path.orElse("."));
+    }
+
+    private boolean isExistDirectory(String path) {
+        if(path == null) return false;
+        return Files.isDirectory(Paths.get(path));
     }
 }
