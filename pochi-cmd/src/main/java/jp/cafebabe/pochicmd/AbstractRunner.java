@@ -1,16 +1,34 @@
 package jp.cafebabe.pochicmd;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.concurrent.ExecutorService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AbstractRunner implements Runner {
     private Environment env = new Environment();
 
     public final void run(Arguments args) throws IOException {
         execute(args, env);
+    }
+
+    public List<String> constructCommands(String prog, Arguments args) {
+        List<String> commands = new ArrayList<>();
+        commands.add(prog);
+        appendClasspath(commands, args);
+        appendBaseScript(commands, args);
+        if(args.isVerbose()) {
+            commands.add("--debug");
+        }
+        return commands;
+    }
+
+    protected void appendBaseScript(List<String> list, Arguments args){
+    }
+
+    public void appendClasspath(List<String> commands, Arguments args) {
+        commands.add("-classpath");
+        commands.add(env.classpath(args));
     }
 
     public abstract void execute(Arguments args, Environment env) throws IOException;
@@ -23,11 +41,9 @@ public abstract class AbstractRunner implements Runner {
     }
 
     protected void exec(Process process) {
-        while(process.isAlive()){
-            try {
-                process.waitFor();
-            } catch(InterruptedException e) {
-            }
+        try {
+            process.waitFor();
+        } catch(InterruptedException e) {
         }
         process.destroy();
     }

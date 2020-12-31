@@ -7,13 +7,15 @@ import java.util.List;
 public class PochiScriptRunner extends AbstractRunner {
     @Override
     public void execute(Arguments args, Environment env) throws IOException {
-        List<String> argv = new ArrayList<>();
-        argv.addAll(List.of("groovy", "-classpath", env.classpath(args), "--basescript", "PochiBase"));
-        if(args.isVerbose()) {
-            argv.add("--debug");
-        }
+        List<String> argv = constructCommands("groovy", args);
         args.arguments().forEach(argv::add);
         exec(buildProcessBuilder(args).command(argv).start());
+    }
+
+    @Override
+    protected void appendBaseScript(List<String> list, Arguments args) {
+        list.add("--basescript");
+        list.add("PochiBase");
     }
 
     @Override

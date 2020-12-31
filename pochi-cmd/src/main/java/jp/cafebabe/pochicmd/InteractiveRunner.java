@@ -7,12 +7,14 @@ import java.util.List;
 public class InteractiveRunner extends AbstractRunner {
     @Override
     public void execute(Arguments args, Environment env) throws IOException {
-        List<String> argv = new ArrayList<>();
-        argv.addAll(List.of("groovysh", "-classpath", env.classpath(args), "-e", "pochi = new jp.cafebabe.pochi.BirthmarkSystemHelper();"));
-        if(args.isVerbose()) {
-            argv.add("--debug");
-        }
+        List<String> argv = constructCommands("groovysh", args);
         exec(buildProcessBuilder(args).command(argv).start());
+    }
+
+    @Override
+    protected void appendBaseScript(List<String> list, Arguments args) {
+        list.add("-e");
+        list.add("pochi = new jp.cafebabe.pochi.BirthmarkSystemHelper()");
     }
 
     @Override

@@ -7,12 +7,16 @@ import java.util.List;
 public class ExpressionRunner extends AbstractRunner {
     @Override
     public void execute(Arguments args, Environment env) throws IOException {
-        List<String> argv = new ArrayList<>();
-        argv.addAll(List.of("groovy", "-classpath", env.classpath(args), "-b", "PochiBase", "-e", args.expression()));
-        if(args.isVerbose()) {
-            argv.add("--debug");
-        }
+        List<String> argv = constructCommands("groovy", args);
         exec(buildProcessBuilder(args).command(argv).start());
+    }
+
+    @Override
+    protected void appendBaseScript(List<String> commands, Arguments args) {
+        commands.add("-b");
+        commands.add("PochiBase");
+        commands.add("-e");
+        commands.add(args.expression());
     }
 
     @Override
