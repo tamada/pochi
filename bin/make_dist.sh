@@ -13,6 +13,7 @@ function copyImpl () {
   cp -r README.md LICENSE Dockerfile completions examples $1
   cp -r site/public $1/docs
   cp bin/pochi $1/bin
+  find $1 -name '.git*' | xargs rm -f
 }
 
 function makeWithoutJvm() {
@@ -22,7 +23,7 @@ function makeWithoutJvm() {
   mkdirIfNeeded dist/${NAME}/bin
   copyImpl dist/$NAME
 
-  (cd dist ; zip ${NAME}.zip -r ${NAME})
+  (cd dist ; zip -9 -q ${NAME}.zip -r ${NAME})
 }
 
 function makeWithJvm() {
