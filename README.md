@@ -4,9 +4,9 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
 [![Version](https://img.shields.io/badge/Version-2.2.0-yellowgreen.svg)](https://github.com/tamada/pochi/releases/tag/v2.2.0)
 
-[![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
-[![Javadoc](https://img.shields.io/badge/javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/docker-ghcr.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-green?logo=github)](https://github.com/tamada/pochi/discussions)
+[![Javadoc](https://img.shields.io/badge/Javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
+[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 [![DOI](https://zenodo.org/badge/82773287.svg)](https://zenodo.org/badge/latestdoi/82773287)
 
 # :dog: pochi
@@ -88,7 +88,7 @@ Container images of **pochi** for Docker are:
   * `1.0.0`
     * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/docker-ghcir.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 
@@ -113,9 +113,9 @@ $ docker run --rm -v "$PWD":/home/pochi tamada/pochi:latest [OPTIONS] [SCRIPT [A
 
 ## Discussion
 
-[![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
+[![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-green?logo=github)](https://github.com/tamada/pochi/discussions)
 
-Join [our Gitter channel](https://gitter.im/pochi-birthmark/) if you have any problems or suggestions on pochi.
+If you have any problems or suggestions on pochi, please post the messages to the [GitHub Discussions](https://github.com/tamada/pochi/discussions).
 
 ## Maven repository
 
