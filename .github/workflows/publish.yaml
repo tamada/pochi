@@ -10,8 +10,11 @@ jobs:
         steps:
             - uses: actions/checkout@v2.0.0
               with:
-                  submodules: true  # Fetch Hugo themes (true OR recursive)
                   fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+              run: |
+                  auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+                  git submodule sync --recursive
+                  git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1                  
 
 # create release.
             - name: Set up JDK 11 for pochi core libraries

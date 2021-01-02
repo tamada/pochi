@@ -8,7 +8,7 @@ if [ "$VERSION" == "" ]; then
 fi
 
 for i in README.md site/content/_index.md ; do
-  sed -e "s!Version-[0-9.]*-yellowgreen!Version-${VERSION}-yellowgreen!g" \
+  sed -e "s!Version-[0-9.]*-green!Version-${VERSION}-green!g" \
       -e "s!tag/v[0-9.]*!tag/v${VERSION}!g" \
       -e "s!javadoc-v[0-9.]*!javadoc-v${VERSION}!g" \
       -e "s!pochi%3A[0-9.]*!pochi%3A${VERSION}!g" \
