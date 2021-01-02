@@ -27,7 +27,7 @@ jobs:
             - name: Compile
               run: |
                 mvn package
-                ./bin/make_dist.sh
+                bash ./bin/make_dist.sh
 
             - name: Create release
               id: create_release
@@ -49,7 +49,7 @@ jobs:
 
             - name: Generate Pochi site
               run:
-                  ./bin/build_site.sh
+                  bash ./bin/build_site.sh
 
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
