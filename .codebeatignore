@@ -1,1 +1,2 @@
-site/static/**
+site/static/apidocs/**
+site/static/v1.0.0/**

@@ -9,7 +9,7 @@ public abstract class AbstractRunner implements Runner {
     private Environment env = new Environment();
 
     public final void run(Arguments args) throws IOException {
-        execute(args, env);
+        execute(args);
     }
 
     public List<String> constructCommands(String prog, Arguments args) {
@@ -33,7 +33,7 @@ public abstract class AbstractRunner implements Runner {
 
     public abstract String targetName();
 
-    public void execute(Arguments args, Environment env) throws IOException{
+    public void execute(Arguments args) throws IOException{
         List<String> argv = constructCommands(targetName(), args);
         exec(buildProcessBuilder(args).command(argv).start());
     }

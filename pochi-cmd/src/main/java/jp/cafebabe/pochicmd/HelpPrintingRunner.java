@@ -15,7 +15,7 @@ public class HelpPrintingRunner extends AbstractRunner {
     }
 
     @Override
-    public final void execute(Arguments args, Environment env) throws IOException {
+    public final void execute(Arguments args) throws IOException {
         System.out.println(main.helpMessage());
     }
 
