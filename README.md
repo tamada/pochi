@@ -1,6 +1,6 @@
 [![build](https://github.com/tamada/pochi/workflows/build/badge.svg)](https://github.com/tamada/pochi/actions?query=workflow%3Abuild)
 [![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=main)](https://coveralls.io/github/tamada/pochi?branch=main)
-[![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
+[![codebeat badge](https://codebeat.co/badges/8e8c5e70-cb07-4f58-941c-3ddb64f3c059)](https://codebeat.co/projects/github-com-tamada-pochi-main)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/tamada/pochi/blob/master/LICENSE)
 [![Version](https://img.shields.io/badge/Version-2.2.0-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.2.0)
@@ -114,7 +114,7 @@ $ docker run --rm -v "$PWD":/home/pochi tamada/pochi:latest [OPTIONS] [SCRIPT [A
 
 ## Discussion
 
-[![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-green?logo=github)](https://github.com/tamada/pochi/discussions)
+[![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-blue?logo=github)](https://github.com/tamada/pochi/discussions)
 
 If you have any problems or suggestions on pochi, please post the messages to the [GitHub Discussions](https://github.com/tamada/pochi/discussions).
 
