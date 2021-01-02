@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"jp.cafebabe.birthmarks"},{"l":"jp.cafebabe.kunai"},{"l":"jp.cafebabe.pochi"},{"l":"jp.cafebabe.pochicmd"}]
+moduleSearchIndex = [{"l":"jp.cafebabe.birthmarks","h":"","u":""},{"l":"jp.cafebabe.kunai","h":"","u":""},{"l":"jp.cafebabe.pochi","h":"","u":""},{"l":"jp.cafebabe.pochicmd","h":"","u":""}]

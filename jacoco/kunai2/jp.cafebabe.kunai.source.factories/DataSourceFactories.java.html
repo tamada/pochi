@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DataSourceFactories.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">kunai2</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.kunai.source.factories</a> &gt; <span class="el_source">DataSourceFactories.java</span></div><h1>DataSourceFactories.java</h1><pre class="source lang-java linenums">package jp.cafebabe.kunai.source.factories;
+
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.spi.FileSystemProvider;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class DataSourceFactories{
+<span class="fc" id="L14">    private List&lt;DataSourceFactory&gt; factories = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L16">    public DataSourceFactories(){</span>
+<span class="fc" id="L17">        factories.add(new JarFileDataSourceFactory());</span>
+<span class="fc" id="L18">        factories.add(new WarFileDataSourceFactory());</span>
+<span class="fc" id="L19">        factories.add(new ClassFileDataSourceFactory());</span>
+<span class="fc" id="L20">        factories.add(new DirectoryDataSourceFactory());</span>
+<span class="fc" id="L21">        factories.add(new PlainFileDataSourceFactory());</span>
+<span class="fc" id="L22">    }</span>
+
+    public Optional&lt;DataSourceFactory&gt; find(Path path) throws IOException{
+<span class="fc" id="L25">        return find(path, FileSystems.getDefault());</span>
+    }
+
+    public Optional&lt;DataSourceFactory&gt; find(Path path, FileSystem system) throws IOException{
+<span class="fc" id="L29">        return find(path, system, system.provider());</span>
+    }
+
+    private Optional&lt;DataSourceFactory&gt; find(Path path, FileSystem system,
+            FileSystemProvider provider) throws IOException{
+<span class="fc" id="L34">        Class&lt;BasicFileAttributes&gt; clazz = BasicFileAttributes.class;</span>
+<span class="fc" id="L35">        return find(path, system, provider.readAttributes(path, clazz));</span>
+    }
+
+    private Optional&lt;DataSourceFactory&gt; find(Path path, FileSystem system,
+            BasicFileAttributes attr) throws IOException{
+<span class="fc" id="L40">        return factories.stream()</span>
+<span class="fc" id="L41">                .filter(factory -&gt; factory.isTarget(path, system, attr))</span>
+<span class="fc" id="L42">                .findFirst();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

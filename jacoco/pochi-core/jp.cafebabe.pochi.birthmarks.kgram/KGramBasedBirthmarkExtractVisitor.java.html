@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>KGramBasedBirthmarkExtractVisitor.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.birthmarks.kgram</a> &gt; <span class="el_source">KGramBasedBirthmarkExtractVisitor.java</span></div><h1>KGramBasedBirthmarkExtractVisitor.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.birthmarks.kgram;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.entities.BirthmarkType;
+import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Metadata;
+import jp.cafebabe.birthmarks.extractors.PochiClassVisitor;
+import jp.cafebabe.kunai.entries.Entry;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.MethodVisitor;
+
+public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor {
+<span class="fc" id="L19">    private Map&lt;String, List&lt;Integer&gt;&gt; opcodes = new LinkedHashMap&lt;&gt;();</span>
+    private KGramBuilder&lt;Integer&gt; builder;
+
+    public KGramBasedBirthmarkExtractVisitor(ClassVisitor parent, Configuration context, BirthmarkType type, int kvalue) {
+<span class="fc" id="L23">        super(parent, context, type);</span>
+<span class="fc" id="L24">        builder = new KGramBuilder&lt;&gt;(kvalue);</span>
+<span class="fc" id="L25">    }</span>
+
+    @Override
+    public Birthmark build(Entry entry) {
+<span class="fc" id="L29">        Metadata metadata = Metadata.build(entry, type());</span>
+<span class="fc" id="L30">        return new Birthmark(metadata, buildElements(opcodes));</span>
+    }
+
+    @Override
+    public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+<span class="fc" id="L35">        List&lt;Integer&gt; list = createList(name + desc);</span>
+<span class="fc" id="L36">        return createVisitor(access, name, desc, signature, exceptions, list);</span>
+    }
+
+    private List&lt;Integer&gt; createList(String key){
+<span class="fc" id="L40">        List&lt;Integer&gt; list = opcodes.getOrDefault(key, new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L41">        opcodes.put(key, list);</span>
+<span class="fc" id="L42">        return list;</span>
+    }
+
+    private MethodVisitor createVisitor(int access, String name, String desc, String signature, String[] exceptions, List&lt;Integer&gt; list) {
+<span class="fc" id="L46">        MethodVisitor visitor = super.visitMethod(access, name, desc, signature, exceptions);</span>
+<span class="fc" id="L47">        return new OpcodeExtractionMethodVisitor(visitor, list);</span>
+    }
+
+    private Elements buildElements(Map&lt;String, List&lt;Integer&gt;&gt; map){
+<span class="fc" id="L51">        return map.values()</span>
+<span class="fc" id="L52">                .stream().map(this::toElements)</span>
+<span class="fc" id="L53">                .reduce(Elements.empty(), Elements::merge);</span>
+    }
+
+    private Elements toElements(List&lt;Integer&gt; list){
+<span class="fc" id="L57">        return new Elements(builder.build(list)</span>
+<span class="fc" id="L58">                .map(KGram::toElement));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

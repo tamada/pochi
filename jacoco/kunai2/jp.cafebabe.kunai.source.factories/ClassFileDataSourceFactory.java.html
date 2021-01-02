@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ClassFileDataSourceFactory.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">kunai2</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.kunai.source.factories</a> &gt; <span class="el_source">ClassFileDataSourceFactory.java</span></div><h1>ClassFileDataSourceFactory.java</h1><pre class="source lang-java linenums">package jp.cafebabe.kunai.source.factories;
+
+import java.nio.file.FileSystem;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+
+import jp.cafebabe.kunai.entries.KunaiException;
+import jp.cafebabe.kunai.util.PathHelper;
+import jp.cafebabe.kunai.source.ClassFileDataSource;
+import jp.cafebabe.kunai.source.DataSource;
+
+class ClassFileDataSourceFactory implements DataSourceFactory{
+<span class="fc" id="L13">    public ClassFileDataSourceFactory(){</span>
+<span class="fc" id="L14">    }</span>
+
+    @Override
+    public boolean isTarget(Path path, FileSystem system, BasicFileAttributes attributes){
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        return PathHelper.endsWith(path, &quot;.class&quot;)</span>
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">                &amp;&amp; attributes.isRegularFile();</span>
+    }
+
+    @Override
+    public DataSource build(Path path, FileSystem system) throws KunaiException {
+<span class="fc" id="L24">        return new ClassFileDataSource(path);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

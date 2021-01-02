@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EditDistanceComparatorBuilder.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.comparators</a> &gt; <span class="el_source">EditDistanceComparatorBuilder.java</span></div><h1>EditDistanceComparatorBuilder.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.comparators;
+
+import jp.cafebabe.birthmarks.comparators.Comparator;
+import jp.cafebabe.birthmarks.comparators.ComparatorBuilder;
+import jp.cafebabe.birthmarks.comparators.ComparatorType;
+import jp.cafebabe.birthmarks.config.Configuration;
+
+<span class="fc" id="L8">public class EditDistanceComparatorBuilder implements ComparatorBuilder {</span>
+    @Override
+    public ComparatorType type() {
+<span class="fc" id="L11">        return new ComparatorType(&quot;EditDistance&quot;);</span>
+    }
+
+    @Override
+    public Comparator build(Configuration config) {
+<span class="nc" id="L16">        return new EditDistanceComparator(config);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
