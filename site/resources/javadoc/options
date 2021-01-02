@@ -1,9 +1,10 @@
+-locale en_US
 --module-path
-#{PROJECT_DIR}/kunai2/target/kunai2-2.1.0.jar:#{PROJECT_DIR}/pochi-api/target/pochi-api-2.1.0.jar:#{PROJECT_DIR}/pochi-core/target/pochi-core-2.1.0.jar:#{PROJECT_DIR}/pochi-core/target/lib/vavr-0.10.3.jar:#{PROJECT_DIR}/pochi-core/target/lib/asm-8.0.1.jar:#{PROJECT_DIR}/pochi-core/target/lib/vavr-match-0.10.3.jar:#{PROJECT_DIR}/pochi-core/target/lib/jackson-annotations-2.11.0.jar:#{PROJECT_DIR}/pochi-core/target/lib/jackson-databind-2.11.0.jar:#{PROJECT_DIR}/pochi-core/target/lib/jackson-core-2.11.0.jar
+#{PROJECT_DIR}/pochi-cmd/target/pochi-cmd-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/kunai2-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/pochi-api-#{pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/pochi-core-${pochi.version}.jar:#{PROJECT_DIR}/pochi-cmd/target/vavr-0.10.3.jar:#{PROJECT_DIR}/pochi-cmd/target/asm-8.0.1.jar:#{PROJECT_DIR}/pochi-cmd/target/vavr-match-0.10.3.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-annotations-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-databind-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/jackson-core-2.11.0.jar:#{PROJECT_DIR}/pochi-cmd/target/args4j-2.33.jar
 -encoding
 'UTF-8'
 -protected
---module-source-path msp
+--module-source-path site/msp
 -author
 -bottom
 'Copyright &#169; 2020. All rights reserved.'
@@ -12,9 +13,9 @@
 'UTF-8'
 -html5
 -doctitle
-'pochi: extensible Java birthmark toolkit 2.1.0 API'
+'pochi: extensible Java birthmark toolkit #{pochi.version} API'
 -link
 'https://docs.oracle.com/en/java/javase/11/docs/api'
 -version
 -windowtitle
-'pochi: extensible Java birthmark toolkit 2.1.0 API'
+'pochi: extensible Java birthmark toolkit #{pochi.version} API'

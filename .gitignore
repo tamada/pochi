@@ -3,7 +3,8 @@
 /pochi
 /pochic
 !/pochi/
-/pochi-[0-9].[0-9].[0-9]
+/dist
+/lib
 
 ### https://raw.github.com/github/gitignore/218a941be92679ce67d0484547e3e142b2f5f6f0/Global/Eclipse.gitignore
 

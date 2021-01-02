@@ -4,15 +4,19 @@ date: 2020-10-08
 draft: false
 ---
 
-![build](https://github.com/tamada/pochi/workflows/build/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=master)](https://coveralls.io/github/tamada/pochi?branch=master)
-[![codebeat badge](https://codebeat.co/badges/7d4be5b9-c604-4bf9-b67b-d6d20f703ab9)](https://codebeat.co/projects/github-com-tamada-pochi)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
-[![Version](https://img.shields.io/badge/Version-2.1.0-yellowgreen.svg)](https://github.com/tamada/pochi/releases/tag/v2.1.0)
+[![build](https://github.com/tamada/pochi/workflows/build/badge.svg)](https://github.com/tamada/pochi/actions?query=workflow%3Abuild)
+[![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=main)](https://coveralls.io/github/tamada/pochi?branch=main)
+[![codebeat badge](https://codebeat.co/badges/8e8c5e70-cb07-4f58-941c-3ddb64f3c059)](https://codebeat.co/projects/github-com-tamada-pochi-main)
 
-[![Gitter](https://img.shields.io/badge/chat-on%20gitter-green?logo=gitter)](https://gitter.im/pochi-birthmark/)
-[![Javadoc](https://img.shields.io/static/v1?label=javadoc&message=v2.1.0&color=blue&logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/docker-tamada%2Fpochi%3A2.1.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
+[![Version](https://img.shields.io/badge/Version-2.2.0-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.2.0)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.4271132-green.svg)](https://zenodo.org/badge/latestdoi/82773287)
+
+[![Javadoc](https://img.shields.io/badge/Javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
+[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-blue?logo=github)](https://github.com/tamada/pochi/discussions)
+
+Detecting the software theft, the birthmark toolkit for the JVM platform.
 
 **pochi** is the birthmarking toolkit for the JVM platform.
 The birthmarks are the native characteristics extracted from executable programs.

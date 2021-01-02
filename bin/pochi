@@ -1,0 +1,10 @@
+#! /bin/sh
+
+CURRENT=$(cd $(dirname $0);pwd)
+
+JAVACMD=java
+if [ -f $CURRENT/java ]; then
+  JAVACMD=$CURRENT/java
+fi
+
+exec $JAVACMD --module-path $CURRENT/../lib -m jp.cafebabe.pochicmd/jp.cafebabe.pochicmd.Main "$@"

@@ -17,15 +17,15 @@ $ brew install pochi
 
 ## :muscle: Compiling **pochi** yourself
 
-For building yourself, clone the source code from GitHub, and build it with `make` and [Maven](https://maven.apache.org/).
+For building yourself, clone the source code from GitHub, and build it with [Maven](https://maven.apache.org/).
 
 ```sh
 $ git clone https://github.com/tamada/pochi.git
 $ cd pochi
-$ make build-all
+$ mvn package
 ```
 
-Then, `make` creates `pochi-${VERSION}` directory contains the interpreter (`bin/pochi`), and dependent jar files (`lib`), documents (`docs`) and misc files (`README.md`, `LICENSE`, `completions`, `examples`, and `Dockerfile`).
+Then, `./bin/make_dist.sh` creates `dist/pochi-${VERSION}` directory contains the interpreter (`bin/pochi`), and dependent jar files (`lib`), documents (`docs`) and misc files (`README.md`, `LICENSE`, `completions`, `examples`, and `Dockerfile`).
 
 {{< gototop >}}
 
@@ -47,13 +47,13 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `nasubi`     | `2.1.0` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.1.0` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.1.0` |
+|`jp.cafebabe.pochi` | `nasubi`     | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.2.0` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.2.0` |
 
 Note that accessing GitHub Packages must authenticate with GitHub access token.
 You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).
-
 
 ## :briefcase: Requirements
 
@@ -61,7 +61,7 @@ You should update your `~/.m2/settings.xml` by [following this instructions](htt
 * [Vavr](https://www.vavr.io/) 0.10.3
 * [ASM](https://asm.ow2.io/) 8.0.1
 * [Groovy](https://groovy-lang.org) 3.0.5
-
+* [args4j](https://github.com/kohsuke/args4j) 2.33
 
 ### :pouch: Modules
 
@@ -78,7 +78,8 @@ You should update your `~/.m2/settings.xml` by [following this instructions](htt
     * [`java.desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/module-summary.html)
     * [`java.sql`](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html)
     * [`java.xml`](https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html)
-
+* [`jp.cafebabe.pochicmd`](https://tamada.github.io/pochi/apidocs/jp.cafebabe.pochicmd/module-summary.html)
+    * [`args4j`](https://github.com/kohsuke/args4j)
 
 ### :steam_locomotive: Module Graph
 

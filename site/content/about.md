@@ -6,7 +6,7 @@ draft: false
 
 ## :scroll: License 
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/tamada/pochi/blob/master/LICENSE)
 
 [Apache License version 2.0](https://github.com/tamada/pochi/blob/master/LICENSE)
 

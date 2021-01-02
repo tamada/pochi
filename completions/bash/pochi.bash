@@ -11,13 +11,18 @@ __pochi() {
             COMPREPLY=($(compgen -d -- "$cur"))
             return 0
             ;;
+        --working-dir | -w)
+            compopt -o filenames
+            COMRREPLY=($(compgen -d -- "$cur"))
+            return 0
+            ;;
         --config | -C)
             compopt -o filenames
             COMRREPLY=($(compgen -d -- "$cur"))
             return 0
             ;;
     esac
-    opts=" -C -c -e -h --classpath --config --expression --help"
+    opts=" -C -c -e -v -w -h --classpath --config --expression --help --working-dir --verbose"
     if [[ "$cur" =~ ^\- ]]; then
         COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
         return 0

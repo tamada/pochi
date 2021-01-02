@@ -2,15 +2,13 @@
   "properties": {
       "key1": "value1"
   },
-  "rules": {
-    "rules": [
-      { "type": "PREFIX", "pattern": "java." },
-      { "type": "PREFIX", "pattern": "javax." },
-      { "type": "PREFIX", "pattern": "org.omg." },
-      { "type": "PREFIX", "pattern": "org.ietf." },
-      { "type": "PREFIX", "pattern": "org.w3c." },
-      { "type": "PREFIX", "pattern": "org.xml.sax." },
-      { "type": "PREFIX", "pattern": "org.apache." }
-    ]
-  }
+  "rules": [
+    { "type": "PREFIX", "pattern": "java." },
+    { "type": "PREFIX", "pattern": "javax." },
+    { "type": "PREFIX", "pattern": "org.omg." },
+    { "type": "PREFIX", "pattern": "org.ietf." },
+    { "type": "PREFIX", "pattern": "org.w3c." },
+    { "type": "PREFIX", "pattern": "org.xml.sax." },
+    { "type": "PREFIX", "pattern": "org.apache." }
+  ]
 }

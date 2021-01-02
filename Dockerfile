@@ -15,7 +15,8 @@ RUN    apk --no-cache add openjdk11=11.0.4_p4-r1 \
 # building pochi
 FROM alpine:3.10.1
 
-ARG version="2.1.0"
+ARG PochiVersion="2.2.0"
+ARG GroovyVersion="3.0.7"
 
 LABEL maintainer="Haruaki Tamada" \
       pochi-version="${version}" \
@@ -24,23 +25,23 @@ LABEL maintainer="Haruaki Tamada" \
 COPY --from=base  /opt/openjdk-11-minimal /opt/openjdk-11-minimal
 
 RUN    apk update \
-    && apk --no-cache add --update --virtual .builddeps curl unzip bash libstdc++ tar \
+    && apk --no-cache add --update --virtual .builddeps curl unzip bash libstdc++ \
     && cd /opt    \
     && ln -s /opt/openjdk-11-minimal /opt/java \
 # install pochi from release file in the GitHub.
-    && curl -L https://github.com/tamada/pochi/releases/download/v${version}/pochi-${version}_linux_amd64.tar.gz -o /tmp/pochi.tar.gz \
-    && tar xvfz /tmp/pochi.tar.gz \
-    && ln -s /opt/pochi-${version} /opt/pochi \
+    && curl -L https://github.com/tamada/pochi/releases/download/v${PochiVersion}/pochi-${PochiVersion}.zip -o /tmp/pochi.zip \
+    && unzip -q /tmp/pochi.zip \
+    && ln -s /opt/pochi-${PochiVersion} /opt/pochi \
+    && rm -rf /opt/pochi/docs /opt/pochi/examples /opt/pochi/completions \ 
 # install groovy (ref. http://konstructcomputers.blogspot.com/2017/02/install-groovy-in-alpine-based-docker.html)
-    && curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-3.0.5.zip -o /tmp/groovy.zip \
-    && unzip /tmp/groovy.zip \
-    && ln -s /opt/groovy-3.0.5 /opt/groovy \
+    && curl -sL https://dl.bintray.com/groovy/maven/apache-groovy-binary-${GroovyVersion}.zip -o /tmp/groovy.zip \
+    && unzip -q /tmp/groovy.zip \
+    && ln -s /opt/groovy-${GroovyVersion} /opt/groovy \
 # add user
     && adduser -D pochi \
 # remove installed package
-    && rm /tmp/pochi.tar.gz /tmp/groovy.zip \
+    && rm /tmp/pochi.zip /tmp/groovy.zip \
     && apk del --purge .builddeps
-
 
 ENV POCHI_HOME="/opt/pochi"
 ENV JAVA_HOME="/opt/java"
