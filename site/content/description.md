@@ -61,12 +61,13 @@ Container images of **pochi** for Docker are:
 To run **pochi** on Docker container OS, type the following commands.
 
 ```sh
-$ docker run --rm -v "$PWD":/home/pochi tamada/pochi:latest [OPTIONS] [SCRIPT [ARGV...]]
+$ docker run --rm -it -v "$PWD":/home/pochi ghcr.io/tamada/pochi:latest [OPTIONS] [SCRIPT [ARGV...]]
 ```
 
 * `OPTIONS`: the options for **pochi**.
 * `[SCRIPT [ARGV...]]`: script file for **pochi**.
 * `--rm`: remove the container after running.
+* `-it`: interactive and tty mode.
 * `-v "$PWD":/home/pochi`: share volume `$PWD` in host OS to `/home/pochi` in the container OS.
     * `$PWD` must be the absolute path.
 
