@@ -33,7 +33,7 @@ jobs:
 
             - name: build
               run: |
-                  ls -la
+                  ls -la .
                   mvn package
 
             - name: send coverage to coveralls
