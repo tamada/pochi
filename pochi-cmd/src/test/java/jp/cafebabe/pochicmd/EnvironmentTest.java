@@ -18,7 +18,7 @@ public class EnvironmentTest {
         Path examples = home.resolve(Path.of("examples"));
         Path dockerfile = home.resolve(Path.of("Dockerfile"));
 
-        assertThat(String.format("%s: not exist", examples), Files.isDirectory(examples)), is(true));
-        assertThat(String.format("%s: not exist", dockerfile), Files.exists(dockerfile)), is(true));
+        assertThat(String.format("%s: not exist", examples), Files.isDirectory(examples), is(true));
+        assertThat(String.format("%s: not exist", dockerfile), Files.exists(dockerfile), is(true));
     }
 }
