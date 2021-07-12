@@ -16,6 +16,6 @@ public class EnvironmentTest {
         System.out.printf("home: %s%n", home);
 
         assertThat(Files.exists(home.resolve(Path.of("examples"))), is(true));
-        assertThat(Files.exists(home.resolve(Path.of("lib"))), is(true));
+        assertThat(Files.exists(home.resolve(Path.of("Dockerfile"))), is(true));
     }
 }
