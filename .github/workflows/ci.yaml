@@ -32,7 +32,9 @@ jobs:
                   submodules: true
 
             - name: build
-              run: mvn package
+              run: |
+                  ls -la
+                  mvn package
 
             - name: send coverage to coveralls
               if: matrix.os == 'ubuntu-latest'
