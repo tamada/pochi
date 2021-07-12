@@ -15,7 +15,10 @@ public class EnvironmentTest {
         Path home = env.pochiHome();
         System.out.printf("home: %s%n", home);
 
-        assertThat(Files.isDirectory(home.resolve(Path.of("examples"))), is(true));
-        assertThat(Files.exists(home.resolve(Path.of("Dockerfile"))), is(true));
+        Path examples = home.resolve(Path.of("examples"));
+        Path dockerfile = home.resolve(Path.of("Dockerfile"));
+
+        assertThat(String.format("%s: not exist", examples), Files.isDirectory(examples)), is(true));
+        assertThat(String.format("%s: not exist", dockerfile), Files.exists(dockerfile)), is(true));
     }
 }
