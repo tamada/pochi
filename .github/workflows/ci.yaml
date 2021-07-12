@@ -33,6 +33,7 @@ jobs:
 
             - name: build
               run: |
+                  pwd
                   ls -la .
                   mvn package
 
