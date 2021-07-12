@@ -3,7 +3,7 @@ package jp.cafebabe.pochicmd;
 import java.io.IOException;
 
 public interface Runner {
-    public static enum Mode {
+    enum Mode {
         Interactive,
         OneLineExpression,
         ScriptFile,

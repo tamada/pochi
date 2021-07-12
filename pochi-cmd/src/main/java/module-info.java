@@ -4,6 +4,6 @@
  *  @author Haruaki Tamada
  */
 module jp.cafebabe.pochicmd {
-   requires args4j;
-   opens jp.cafebabe.pochicmd to args4j;
+   requires info.picocli;
+   opens jp.cafebabe.pochicmd to info.picocli;
 }

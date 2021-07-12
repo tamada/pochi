@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Environment {
-    private Path pochiHome = null;
+    private Path pochiHome = findPochiHome();
     private Classpath classpath = new Classpath();
 
     public String classpath(Arguments args) {
@@ -18,14 +18,11 @@ public class Environment {
     }
 
     public Path pochiHome() {
-        if (pochiHome == null) {
-            pochiHome = findPochiHome();
-        }
         return pochiHome;
     }
 
-    private List<String> targetPaths() {
-        return Arrays.asList(System.getenv("POCHI_HOME"), "/opt/pochi", "/usr/local/opt/pochi", String.format("pochi-%s", Main.VERSION));
+    private static List<String> targetPaths() {
+        return Arrays.asList(System.getenv("POCHI_HOME"), "/opt/pochi", "/usr/local/opt/pochi", String.format("pochi-%s", Main.VERSION), ".");
     }
 
     private Path findPochiHome() {

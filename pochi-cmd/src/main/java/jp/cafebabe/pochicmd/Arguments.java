@@ -1,9 +1,8 @@
 package jp.cafebabe.pochicmd;
 
-import org.kohsuke.args4j.Argument;
-import org.kohsuke.args4j.CmdLineException;
-import org.kohsuke.args4j.CmdLineParser;
-import org.kohsuke.args4j.Option;
+import picocli.CommandLine;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 
 import java.io.File;
 import java.io.Serializable;
@@ -11,29 +10,28 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Arguments implements Serializable {
-    @Option(name="-c", aliases="--classpath", usage="specifies the classpath for Groovy (JVM)")
+    @Option(names={"-c", "--classpath"}, description="specifies the classpath for Groovy (JVM)")
     private List<String> classpaths = new ArrayList<>();
 
-    @Option(name="-C", aliases="--config-file", usage="specifies the configuration file.")
+    @Option(names={"-C", "--config-file"}, description="specifies the configuration file.")
     private String configFile;
 
-    @Option(name="-e", aliases="--expression", usage="specifies one line script.")
+    @Option(names={"-e", "--expression"}, description="specifies one line script.")
     private String expression;
 
-    @Option(name="-w", aliases="--working-dir", usage="specifies the working directory.")
+    @Option(names={"-w", "--working-dir"}, description="specifies the working directory.")
     private String directory;
 
-    @Option(name="-v", aliases="--verbose", usage="sets as verbose mode.")
+    @Option(names={"-v", "--verbose"}, description="sets as verbose mode.")
     private boolean verbose;
 
-    @Option(name="-h", aliases="--help", usage="prints this message.")
+    @Option(names={"-h", "--help"}, usageHelp = true, description="prints this message.")
     private boolean helpFlag;
 
-    @Argument(metaVar="SCRIPT_FILE [ARGV...]")
+    @Parameters(paramLabel="SCRIPT_FILE [ARGV...]", description="specifies the script files and their arguments.")
     private List<String> arguments = new ArrayList<>();
 
     public String expression() {
@@ -66,10 +64,9 @@ public class Arguments implements Serializable {
         return verbose;
     }
 
-    public static Arguments parse(String[] args) throws CmdLineException {
+    public static Arguments parse(String[] args) {
         Arguments arguments = new Arguments();
-        CmdLineParser parser = new CmdLineParser(arguments);
-        parser.parseArgument(args);
+        new CommandLine(arguments).parseArgs(args);
         return arguments;
     }
 

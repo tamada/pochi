@@ -18,11 +18,10 @@ import jp.cafebabe.birthmarks.entities.Pair;
 
 public class JaccardIndexBirthmarkComparatorTest extends BirthmarkBuilderHelper{
     private Comparator comparator;
-    private Configuration config;
 
     @Before
     public void buildComparator(){
-        config = new ConfigurationBuilder().configuration();
+        Configuration config = new ConfigurationBuilder().configuration();
         comparator = new JaccardIndexComparator(config);
     }
 
