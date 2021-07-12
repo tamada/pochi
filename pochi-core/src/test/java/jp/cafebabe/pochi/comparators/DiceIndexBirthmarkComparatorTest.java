@@ -17,11 +17,10 @@ import org.junit.Test;
 
 public class DiceIndexBirthmarkComparatorTest extends BirthmarkBuilderHelper{
     private Comparator comparator;
-    private Configuration config;
 
     @Before
     public void buildComparator(){
-        config = new ConfigurationBuilder().configuration();
+        Configuration config = new ConfigurationBuilder().configuration();
         comparator = new DiceIndexComparator(config);
     }
 
