@@ -32,6 +32,7 @@ jobs:
                   submodules: true
 
             - name: build
+              working-directory: .
               run: |
                   pwd
                   ls -la .
