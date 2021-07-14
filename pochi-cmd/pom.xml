@@ -21,6 +21,20 @@
       <version>4.6.1</version>
       <scope>compile</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-jsr223 -->
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-jsr223</artifactId>
+      <version>3.0.8</version>
+      <scope>compile</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy</artifactId>
+      <version>3.0.8</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-core</artifactId>

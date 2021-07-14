@@ -1,21 +1,19 @@
 package jp.cafebabe.pochicmd;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import io.vavr.control.Try;
 
-public class ExpressionRunner extends AbstractRunner {
-    @Override
-    protected void appendBaseScript(List<String> commands, Arguments args) {
-        commands.add("-b");
-        commands.add("PochiBase");
-        commands.add("-e");
-        commands.add(args.expression());
+import java.io.IOException;
+
+public class ExpressionRunner extends ScriptEngineRunner {
+    public ExpressionRunner() {
+        super("groovy");
     }
 
     @Override
-    public String targetName() {
-        return "groovy";
+    public void run(Arguments args) throws IOException {
+        Try.of(() -> load(args))
+                .mapTry(engine -> engine.eval(toReader(args.expression())))
+                .getOrElseThrow(throwable -> new IOException(throwable));
     }
 
     @Override

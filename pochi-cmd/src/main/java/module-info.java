@@ -5,5 +5,8 @@
  */
 module jp.cafebabe.pochicmd {
    requires info.picocli;
+   requires java.scripting;
+   requires io.vavr;
+   requires jp.cafebabe.pochi;
    opens jp.cafebabe.pochicmd to info.picocli;
 }

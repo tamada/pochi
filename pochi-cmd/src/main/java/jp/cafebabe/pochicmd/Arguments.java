@@ -8,22 +8,21 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Arguments implements Serializable {
     @Option(names={"-c", "--classpath"}, description="specifies the classpath for Groovy (JVM)")
     private List<String> classpaths = new ArrayList<>();
 
-    @Option(names={"-C", "--config-file"}, description="specifies the configuration file.")
-    private String configFile;
+    @Option(names={"-C", "--config"}, description="specifies the configuration file.")
+    private Optional<String> configFile;
 
     @Option(names={"-e", "--expression"}, description="specifies one line script.")
     private String expression;
 
     @Option(names={"-w", "--working-dir"}, description="specifies the working directory.")
-    private String directory;
+    private Optional<String> directory;
 
     @Option(names={"-v", "--verbose"}, description="sets as verbose mode.")
     private boolean verbose;
@@ -46,13 +45,16 @@ public class Arguments implements Serializable {
         return classpaths.stream();
     }
 
-    public ProcessBuilder setupProcessBuilder(ProcessBuilder builder) {
-        if(configFile != null) {
-            builder.environment().put(Main.CONFIG_NAME, configFile);
-        }
-        if(directory != null && Files.isDirectory(Paths.get(directory))) {
-            builder = builder.directory(new File(directory));
-        }
+    public Map<String, String> environment() {
+        Map<String, String> map = new HashMap<>();
+        configFile.ifPresent(cf -> map.put(Main.CONFIG_NAME, cf));
+        directory.ifPresent(dir -> map.put("POCHI_WORKING_DIRECTORY", dir));
+        return map;
+    }
+
+    protected ProcessBuilder setupProcessBuilder(final ProcessBuilder builder) {
+        configFile.ifPresent(cf -> builder.environment().put(Main.CONFIG_NAME, cf));
+        directory.ifPresent(dir -> builder.directory(new File(dir)));
         return builder;
     }
 

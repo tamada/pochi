@@ -2,7 +2,7 @@ package jp.cafebabe.pochicmd;
 
 import java.io.IOException;
 
-public class HelpPrintingRunner extends AbstractRunner {
+public class HelpPrintingRunner implements Runner {
     private Main main;
 
     public HelpPrintingRunner(Main main) {
@@ -10,12 +10,7 @@ public class HelpPrintingRunner extends AbstractRunner {
     }
 
     @Override
-    public String targetName() {
-        return null;
-    }
-
-    @Override
-    public final void execute(Arguments args) throws IOException {
+    public final void run(Arguments args) {
         System.out.println(main.helpMessage());
     }
 
