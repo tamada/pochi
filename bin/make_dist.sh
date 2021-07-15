@@ -12,12 +12,12 @@ function copyImpl () {
   cp {pochi-cmd,pochi-api,pochi-core,kunai2}/target/*.jar $1/lib
   cp -r README.md LICENSE Dockerfile examples $1
   mkdir -p $1/docs
-  cp -r site/public/* $1/docs
+  cp -r "site/public/*" $1/docs
   cp bin/pochi $1/bin
   cp pochi-cmd/target/bash-completions-pochi.sh $1/completions/bash/pochi
   cp pochi-cmd/target/bash-completions-pochi.sh $1/completions/zsh/pochi
   find $1 -name '.git*' | xargs rm -f
-  find $1 -name '.DS_Store' | xargs rm -f
+  find $1 -name .DS_Store | xargs rm -f
 }
 
 function makeWithoutJvm() {

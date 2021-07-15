@@ -26,16 +26,15 @@ COPY --from=base  /opt/openjdk-11-minimal /opt/openjdk-11-minimal
 
 RUN    apk update \
     && apk --no-cache add --update --virtual .builddeps curl unzip bash libstdc++ \
-    && cd /opt    \
     && ln -s /opt/openjdk-11-minimal /opt/java \
 # install pochi from release file in the GitHub.
     && curl -L https://github.com/tamada/pochi/releases/download/v${PochiVersion}/pochi-${PochiVersion}.zip -o /tmp/pochi.zip \
-    && unzip -q /tmp/pochi.zip \
+    && unzip -q /tmp/pochi.zip -d /opt \
     && ln -s /opt/pochi-${PochiVersion} /opt/pochi \
     && rm -rf /opt/pochi/docs /opt/pochi/examples /opt/pochi/completions \ 
 # install groovy (ref. http://konstructcomputers.blogspot.com/2017/02/install-groovy-in-alpine-based-docker.html)
     && curl -sL https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-${GroovyVersion}.zip -o /tmp/groovy.zip \
-    && unzip -q /tmp/groovy.zip \
+    && unzip -q /tmp/groovy.zip -d /opt \
     && ln -s /opt/groovy-${GroovyVersion} /opt/groovy \
 # add user
     && adduser -D pochi \
