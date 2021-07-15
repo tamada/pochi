@@ -33,9 +33,10 @@ function makeWithoutJvm() {
 }
 
 function makeWithJvm() {
-  NAME=pochi--withjvm-${VERSION}
-  jlink --module-path ${JAVA_HOME}/jmods --compress=2 --no-header-files --no-man-pages \
+  NAME=pochi-withjvm-${VERSION}
+  jlink --module-path lib --compress=2 --no-header-files --no-man-pages \
         --add-modules java.base,java.scripting,java.logging,java.desktop,java.sql,java.xml,jdk.zipfs \
+        --launcher pochi=jp.cafebabe.pochicmd/jp.cafebabe.pochicmd.Main \
         --output dist/${NAME}
   copyImpl dist/$NAME
 
