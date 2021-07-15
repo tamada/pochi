@@ -23,6 +23,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -32,7 +33,12 @@ public class BirthmarkSystemHelper {
     private PairMatcherBuilders pairMatchers = new PairMatcherBuilders();
 
     public BirthmarkSystemHelper() {
-        this.config = loadConfig();
+        this(Map.of());
+    }
+
+    public BirthmarkSystemHelper(Map<String, String> env) {
+        Environment envs = new Environment(env);
+        this.config = loadConfig(envs);
     }
 
     public void setConfig(Configuration config) {
@@ -89,8 +95,8 @@ public class BirthmarkSystemHelper {
                 .toArray(size -> new String[size]);
     }
 
-    private static Configuration loadConfig() {
-        Optional<String> value = Optional.ofNullable(System.getenv("POCHI_CONFIG_PATH"));
+    private static Configuration loadConfig(Environment envs) {
+        Optional<String> value = Optional.ofNullable(envs.getenv("POCHI_CONFIG_PATH"));
         return value.map(BirthmarkSystemHelper::toURL)
                 .map(url -> new ConfigurationBuilder(url))
                 .orElse(new ConfigurationBuilder())

@@ -47,11 +47,11 @@ public class Configuration {
                 .orElse(defaultValue);
     }
 
-    Stream<Item> propertyStream() {
+    public Stream<Item> propertyStream() {
         return properties.entrySet().stream().map(Item::new);
     }
 
-    Stream<Rule> rules() {
+    public Stream<Rule> rules() {
         return rules.stream();
     }
 

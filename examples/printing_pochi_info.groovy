@@ -11,7 +11,7 @@ println(pochi.matcherNames())
 
 config = pochi.config()
 println("========== system library rules ==========")
-println(config.rules())
+println(config.rules().toArray())
 
 println("========== properties ==========")
 config.propertyStream()
