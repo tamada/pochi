@@ -47,10 +47,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `nasubi`     | `2.2.0` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.2.0` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.2.0` |
-|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.2.0` |
+|`jp.cafebabe.pochi` | `nasubi`     | `2.3.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.3.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.3.0` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.3.0` |
 
 Note that accessing GitHub Packages must authenticate with GitHub access token.
 You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).
@@ -60,7 +60,7 @@ You should update your `~/.m2/settings.xml` by [following this instructions](htt
 * [Jackson](https://github.com/FasterXML/jackson) 2.10.0
 * [Vavr](https://www.vavr.io/) 0.10.3
 * [ASM](https://asm.ow2.io/) 8.0.1
-* [Groovy](https://groovy-lang.org) 3.0.5
+* [Groovy](https://groovy-lang.org) 3.0.8
 * [args4j](https://github.com/kohsuke/args4j) 2.33
 
 ### :pouch: Modules
@@ -79,7 +79,7 @@ You should update your `~/.m2/settings.xml` by [following this instructions](htt
     * [`java.sql`](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html)
     * [`java.xml`](https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html)
 * [`jp.cafebabe.pochicmd`](https://tamada.github.io/pochi/apidocs/jp.cafebabe.pochicmd/module-summary.html)
-    * [`args4j`](https://github.com/kohsuke/args4j)
+    * [`picocli`](https://picocli.info)
 
 ### :steam_locomotive: Module Graph
 

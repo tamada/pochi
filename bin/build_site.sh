@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.2.0"
+VERSION="2.3.0"
 
 function build_apidocs() {
   mkdir -p site/msp
@@ -23,9 +23,12 @@ if [ ! -d site/public ]; then
   git worktree add site/public gh-pages
 fi
 
-if [ ! -d site/static/v1.0.0/apidocs ]; then
-  unzip -d site/static/v1.0.0 site/resources/apidocs_v1.0.0.zip
-fi
+for i in v1.0.0 v2.2.0
+do
+  if [ ! -d site/static/$i/apidocs ]; then
+    unzip -d site/static/$i site/resources/apidocs_$i.zip
+  fi
+done
 
 if [ ! -d site/static/apidocs ] ; then
   build_apidocs

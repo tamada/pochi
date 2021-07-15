@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.2.0"
+VERSION="2.3.0"
 
 function mkdirIfNeeded () {
   if [ ! -d $1 ] ; then
@@ -11,12 +11,13 @@ function mkdirIfNeeded () {
 function copyImpl () {
   cp {pochi-cmd,pochi-api,pochi-core,kunai2}/target/*.jar $1/lib
   cp -r README.md LICENSE Dockerfile examples $1
-  cp -r site/public $1/docs
-  rm -rf $/docs/.git
+  mkdir -p $1/docs
+  cp -r site/public/* $1/docs
   cp bin/pochi $1/bin
   cp pochi-cmd/target/bash-completions-pochi.sh $1/completions/bash/pochi
   cp pochi-cmd/target/bash-completions-pochi.sh $1/completions/zsh/pochi
   find $1 -name '.git*' | xargs rm -f
+  find $1 -name '.DS_Store' | xargs rm -f
 }
 
 function makeWithoutJvm() {
@@ -40,6 +41,9 @@ function makeWithJvm() {
 
   (cd dist ; zip ${NAME}.zip -r ${NAME})
 }
+
+./bin/build_site.sh
+# ./bin/build_dockers.sh
 
 # makeWithJvm
 makeWithoutJvm

@@ -3,6 +3,7 @@ resources/javadoc/targets
 static/apidocs
 static/jacoco
 static/v1.0.0/apidocs
+static/v2.2.0/apidocs
 
 ### https://raw.github.com/github/gitignore/218a941be92679ce67d0484547e3e142b2f5f6f0/community/Golang/Hugo.gitignore
 

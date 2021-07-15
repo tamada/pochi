@@ -12,7 +12,8 @@ especially, [BirthmarkSystemHelper](../apidocs/jp/cafebabe/pochi/birthmarks/Birt
 The groovy script of pochi defines the two variables as follows.
 
 * the variable `pochi` as the type of `BirthmarkSystemHelper` for the start points of processing, and
-* the variable `args` as the type of `String` array for reflecting the command line arguments.
+* the variable `args` as the type of `List<String>` for reflecting the command line arguments to the script.
+* the variable `script` as the type of `Path` for reflecting the script name. 
 
 Also, we should know [the birthmarking flow](../description#) in the pochi.
 
@@ -67,7 +68,7 @@ println(pochi.matcherNames())
 
 config = pochi.config()
 println("========== system library rules ==========")
-println(config.rules())
+println(config.rules().toArray())
 
 println("========== properties ==========")
 config.propertyStream()
