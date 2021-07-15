@@ -30,9 +30,8 @@ public class PochiScriptRunner extends ScriptEngineRunner {
     }
 
     private Path putValues(ScriptEngine engine, Arguments args) {
-        engine.put("args", args.arguments()
-                .skip(1).collect(Collectors.toList()));
-        Path script = Path.of(args.arguments().findFirst().get());
+        engine.put("args", args.args());
+        Path script = Path.of(args.scriptName().get());
         engine.put("script", script);
         return script;
     }

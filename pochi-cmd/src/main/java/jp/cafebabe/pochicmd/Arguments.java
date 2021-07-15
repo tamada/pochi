@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Arguments implements Serializable {
@@ -39,11 +40,20 @@ public class Arguments implements Serializable {
         return expression;
     }
 
-    public Stream<String> arguments() {
+    public Optional<String> scriptName() {
+        return arguments().findFirst();
+    }
+
+    public List<String> args() {
+        return arguments().skip(1)
+                .collect(Collectors.toList());
+    }
+
+    private Stream<String> arguments() {
         return arguments.stream();
     }
 
-    public Stream<String> classpaths() {
+    protected Stream<String> classpaths() {
         return classpaths.stream();
     }
 

@@ -2,6 +2,8 @@ package jp.cafebabe.pochicmd;
 
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
@@ -17,7 +19,8 @@ public class ArgumentsTest{
         assertThat(args.expression(), is(nullValue()));
         assertThat(args.findMode(), is(Runner.Mode.ScriptFile));
         assertThat(args.classpaths().count(), is(0L));
-        assertThat(args.arguments().count(), is(3L));
+        assertThat(args.scriptName(), is(Optional.of("some/script/file")));
+        assertThat(args.args().size(), is(2));
     }
 
     @Test
@@ -30,7 +33,7 @@ public class ArgumentsTest{
         assertThat(args.expression(), is("some expression"));
         assertThat(args.findMode(), is(Runner.Mode.OneLineExpression));
         assertThat(args.classpaths().count(), is(0L));
-        assertThat(args.arguments().count(), is(0L));
+        assertThat(args.args().size(), is(0));
     }
 
     @Test
@@ -43,7 +46,7 @@ public class ArgumentsTest{
         assertThat(args.expression(), is(nullValue()));
         assertThat(args.findMode(), is(Runner.Mode.Interactive));
         assertThat(args.classpaths().count(), is(0L));
-        assertThat(args.arguments().count(), is(0L));
+        assertThat(args.args().size(), is(0));
     }
 
     @Test
@@ -56,6 +59,6 @@ public class ArgumentsTest{
         assertThat(args.expression(), is(nullValue()));
         assertThat(args.findMode(), is(Runner.Mode.HelpMode));
         assertThat(args.classpaths().count(), is(0L));
-        assertThat(args.arguments().count(), is(0L));
+        assertThat(args.args().size(), is(0));
     }
 }
