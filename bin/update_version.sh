@@ -16,18 +16,18 @@ for i in README.md site/content/_index.md site/content/description.md ; do
 done
 
 for i in $(find dockers -name Dockerfile) ; do
-  sed "s/ARG version=\"[0-9.]*\"/ARG version=\"${VERSION}\"/g" $i > a ; mv a $i
+  sed "s/ARG version=\"[0-9.]*\"/ARG version=\"${VERSION}\"/g" "$i" > a ; mv a "$i"
 done
 
 for i in bin/make_dist.sh bin/build_site.sh bin/build_dockers.sh ; do
-    sed "s/VERSION=\"[0-9.]*\"/VERSION=\"${VERSION}\"/g" $i > a ; mv a $i
+    sed "s/VERSION=\"[0-9.]*\"/VERSION=\"${VERSION}\"/g" "$i" > a ; mv a "$i"
     chmod 755 $i
 done
 
 target=pochi-cmd/src/main/java/jp/cafebabe/pochicmd/Main.java
-sed "s/public static final String VERSION = \"[0-9.]*\"/public static final String VERSION = \"${VERSION}\"/g" $target > a ; mv a $target
+sed "s/public static final String VERSION = \"[0-9.]*\"/public static final String VERSION = \"${VERSION}\"/g" "$target" > a ; mv a "$target"
 
-mvn versions:set -DnewVersion=${VERSION}
+mvn versions:set -DnewVersion="${VERSION}"
 mvn versions:commit
 
 mvn clean package
