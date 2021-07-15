@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InteractiveRunner implements Runner {
+    private static final String INTERACTIVE_SHELL_NAME = "groovysh";
     private Environment env = new Environment();
 
     @Override
     public final void run(Arguments args) throws IOException {
-        List<String> argv = constructCommands(targetName(), args);
+        List<String> argv = constructCommands(INTERACTIVE_SHELL_NAME, args);
         perform(buildProcessBuilder(args).command(argv).start());
     }
 
@@ -19,7 +20,7 @@ public class InteractiveRunner implements Runner {
         List<String> commands = new ArrayList<>();
         commands.add(prog);
         appendClasspath(commands, args);
-        appendBaseScript(commands, args);
+        appendBaseScript(commands);
         if(args.isVerbose()) {
             commands.add("--debug");
         }
@@ -44,13 +45,9 @@ public class InteractiveRunner implements Runner {
         groovysh.onFailure(e -> System.out.println("Interactive mode of pochi requires the groovy installation to the local environment."));
     }
 
-    private void appendBaseScript(List<String> list, Arguments args) {
+    private void appendBaseScript(List<String> list) {
         list.add("-e");
         list.add("pochi = new jp.cafebabe.pochi.BirthmarkSystemHelper()");
-    }
-
-    public String targetName() {
-        return "groovysh";
     }
 
     @Override

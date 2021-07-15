@@ -2,16 +2,12 @@ package jp.cafebabe.pochicmd;
 
 import io.vavr.control.Try;
 
-import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class PochiScriptRunner extends ScriptEngineRunner {

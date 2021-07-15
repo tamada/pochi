@@ -7,7 +7,6 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.Map;
 import java.util.Optional;
 
 public abstract class ScriptEngineRunner implements Runner {
