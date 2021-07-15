@@ -49,14 +49,15 @@ For more detail, see [:ant: Examples](../examples).
 Container images of **pochi** for Docker are:
 
 * [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
-    * `2.2.0`, `latest`
+    * `2.3.0`, `latest`
+    * `2.2.0`
     * `2.1.0`
     * `2.0.0`
         * accept only `.groovy` script files.
     * `1.0.0`
         * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.2.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.3.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 
@@ -71,14 +72,17 @@ $ docker run --rm -it -v "$PWD":/home/pochi ghcr.io/tamada/pochi:latest [OPTIONS
 * `-v "$PWD":/home/pochi`: share volume `$PWD` in host OS to `/home/pochi` in the container OS.
     * `$PWD` must be the absolute path.
 
+`ghcr.io/tamada/pochi` does not include groovy, therefore, it does not work on interactive mode.
+If want to run `pochi` on the interactive mode, use `ghcr.io/tamada/pochi-groovysh` image instead.
+
 #### Environments in the docker container
 
 * `USER`: `pochi`
 * `WORKDIR`: `/home/pochi`
 * `JAVA_HOME`: `/opt/java` (symbolic link from `/opt/openjdk-11-minimal`)
     * This Java runtime environment do not include unnecessary modules.
-* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-3.0.5`)
-* `POCHI_HOME`: `/opt/pochi` (symbolic link from `/opt/pochi-2.0.0`)
+* `POCHI_HOME`: `/opt/pochi` (symbolic link from `/opt/pochi-x.x.x`)
+* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-x.x.x`, only exist on `ghcr.io/tamada/pochi-groovysh` image)
 
 {{< gototop >}}
 

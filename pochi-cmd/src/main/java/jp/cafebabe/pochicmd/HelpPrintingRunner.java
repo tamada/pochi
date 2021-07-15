@@ -1,7 +1,5 @@
 package jp.cafebabe.pochicmd;
 
-import java.io.IOException;
-
 public class HelpPrintingRunner implements Runner {
     private Main main;
 
