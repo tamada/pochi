@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Hugo 0.83.1" />
+  <meta name="generator" content="Hugo 0.85.0" />
   <link rel="stylesheet" href="https://tamada.github.io/pochi/css/normalize.css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   
@@ -104,7 +104,8 @@ especially, <a href="../apidocs/jp/cafebabe/pochi/birthmarks/BirthmarkSystemHelp
 <p>The groovy script of pochi defines the two variables as follows.</p>
 <ul>
 <li>the variable <code>pochi</code> as the type of <code>BirthmarkSystemHelper</code> for the start points of processing, and</li>
-<li>the variable <code>args</code> as the type of <code>String</code> array for reflecting the command line arguments.</li>
+<li>the variable <code>args</code> as the type of <code>List&lt;String&gt;</code> for reflecting the command line arguments to the script.</li>
+<li>the variable <code>script</code> as the type of <code>Path</code> for reflecting the script name.</li>
 </ul>
 <p>Also, we should know <a href="../description#">the birthmarking flow</a> in the pochi.</p>
 <h3 id="example-programs">Example programs</h3>
@@ -144,7 +145,7 @@ println<span style="color:#f92672">(</span>pochi<span style="color:#f92672">.</s
 
 config <span style="color:#f92672">=</span> pochi<span style="color:#f92672">.</span><span style="color:#a6e22e">config</span><span style="color:#f92672">()</span>
 println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========== system library rules ==========&#34;</span><span style="color:#f92672">)</span>
-println<span style="color:#f92672">(</span>config<span style="color:#f92672">.</span><span style="color:#a6e22e">rules</span><span style="color:#f92672">())</span>
+println<span style="color:#f92672">(</span>config<span style="color:#f92672">.</span><span style="color:#a6e22e">rules</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toArray</span><span style="color:#f92672">())</span>
 
 println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;========== properties ==========&#34;</span><span style="color:#f92672">)</span>
 config<span style="color:#f92672">.</span><span style="color:#a6e22e">propertyStream</span><span style="color:#f92672">()</span>

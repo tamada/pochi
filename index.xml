@@ -67,7 +67,7 @@ $ git clone https://github.com/tamada/pochi.git $ cd pochi $ mvn package Then, .
       <guid>https://tamada.github.io/pochi/examples/</guid>
       <description>📣 Overview The examples directory in the pochi directory contains the following example programs. To write groovy script for the pochi, see the API document of pochi, especially, BirthmarkSystemHelper.
 The groovy script of pochi defines the two variables as follows.
- the variable pochi as the type of BirthmarkSystemHelper for the start points of processing, and the variable args as the type of String array for reflecting the command line arguments.</description>
+ the variable pochi as the type of BirthmarkSystemHelper for the start points of processing, and the variable args as the type of List&amp;lt;String&amp;gt; for reflecting the command line arguments to the script.</description>
     </item>
     
     <item>
