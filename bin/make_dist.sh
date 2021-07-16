@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.3.0"
+VERSION="2.3.1"
 
 function mkdirIfNeeded () {
   if [ ! -d $1 ] ; then
@@ -43,7 +43,6 @@ function makeWithJvm() {
   (cd dist ; zip "${NAME}.zip" -r "${NAME}")
 }
 
-./bin/build_site.sh
 # ./bin/build_dockers.sh
 
 # makeWithJvm

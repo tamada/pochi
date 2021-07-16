@@ -3,11 +3,11 @@
 [![codebeat badge](https://codebeat.co/badges/8e8c5e70-cb07-4f58-941c-3ddb64f3c059)](https://codebeat.co/projects/github-com-tamada-pochi-main)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/tamada/pochi/blob/master/LICENSE)
-[![Version](https://img.shields.io/badge/Version-2.3.0-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.3.0)
+[![Version](https://img.shields.io/badge/Version-2.3.1-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.3.1)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.4271132-green.svg)](https://zenodo.org/badge/latestdoi/82773287)
 
-[![Javadoc](https://img.shields.io/badge/Javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.3.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Javadoc](https://img.shields.io/badge/Javadoc-v2.3.1-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
+[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.3.1-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 [![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-blue?logo=github)](https://github.com/tamada/pochi/discussions)
 
 # :dog: pochi
@@ -82,14 +82,15 @@ For more detail, see [:ant: Examples](https://tamada.github.io/pochi/examples).
 Container images of **pochi** for Docker are:
 
 * [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
-  * `2.2.0`, `latest`
+  * `2.3.0`, `latest`
+  * `2.2.0`
   * `2.1.0`
   * `2.0.0`
     * accept only `.groovy` script files.
   * `1.0.0`
     * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.3.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.3.1-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 
@@ -110,7 +111,7 @@ $ docker run --rm -it -v "$PWD":/home/pochi ghcr.io/tamada/pochi:latest [OPTIONS
 * `WORKDIR`: `/home/pochi`
 * `JAVA_HOME`: `/opt/java` (symbolic link from `/opt/openjdk-11-minimal`)
   * This Java runtime environment do not include unnecessary modules.
-* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-3.0.5`)
+* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-3.0.8`)
 * `POCHI_HOME`: `/opt/pochi` (symbolic link from `/opt/pochi-2.0.0`)
 
 ## Discussion
@@ -124,46 +125,41 @@ If you have any problems or suggestions on pochi, please post the messages to th
 Copy and paste the following snippet into your `pom.xml`.
 
 ```xml
-  <repositories>
-    <repository>
-      <id>tamada_github</id>
-      <name>Apache Maven Packages of tamada</name>
-      <url>https://maven.pkg.github.com/tamada/mvnrepository</url>
-    </repository>
-  </repositories>
+<repositories>
+  <repository>
+    <id>tamada_github</id>
+    <name>Apache Maven Packages of tamada</name>
+    <url>https://tamada.github.io/maven</url>
+  </repository>
+</repositories>
 ```
 
 Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `nasubi`     | `2.2.0` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.2.0` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.2.0` |
-|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.2.0` |
-
-Note that accessing GitHub Packages must authenticate with GitHub access token.
-You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).
+|`jp.cafebabe.pochi` | `kunai2`     | `2.3.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.3.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.3.0` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.3.0` |
 
 ## Modules
 
-**pochi** provides the following modules, and the depenent modules are shown.
+**pochi** provides the following modules, and the dependant modules are shown below.
 
 * `jp.cafebabe.kunai`
-  * `org.objectweb.asm`
-  * `jdk.zipfs`
+    * `org.objectweb.asm`
+    * `jdk.zipfs`
 * `jp.cafebabe.birthmarks`
-  * `java.logging`
-  * `io.vavr`
-  * `com.fasterxml.jackson.databind`
-  * `jp.cafebabe.kunai`
+    * `java.logging`
+    * `io.vavr`
+    * `com.fasterxml.jackson.databind`
+    * `jp.cafebabe.kunai`
 * `jp.cafebabe.pochi`
-  * `java.logging`
-  * `jp.cafebabe.birthmarks`
+    * `java.logging`
+    * `jp.cafebabe.birthmarks`
 * `jp.cafebabe.pochicmd`
-  * `args4j`
-
-Also, **pochi** runs on Groovy environment, and the Groovy depends on `java.scripting`, `java.desktop`, `java.sql`, and `java.xml` modules.
-Note that, `jp.cafebabe.pochicmd` is just wrapper for groovysh. Therefore, no 
-
+    * `info.picocli`
+    * `java.scripting`
+  
 ![Module graph](https://github.com/tamada/pochi/raw/main/site/static/images/module-graph.svg)
