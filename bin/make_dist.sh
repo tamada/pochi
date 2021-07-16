@@ -43,7 +43,6 @@ function makeWithJvm() {
   (cd dist ; zip "${NAME}.zip" -r "${NAME}")
 }
 
-./bin/build_site.sh
 # ./bin/build_dockers.sh
 
 # makeWithJvm

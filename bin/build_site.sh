@@ -20,7 +20,7 @@ function build_apidocs() {
 }
 
 if [ ! -d site/public ]; then
-  git worktree add site/public gh-pages
+  git worktree add site/public origin/gh-pages
 fi
 
 for i in v1.0.0 v2.2.0
