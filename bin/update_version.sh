@@ -10,7 +10,7 @@ fi
 for i in README.md site/content/_index.md site/content/description.md ; do
   sed -e "s!Version-[0-9.]*-green!Version-${VERSION}-green!g" \
       -e "s!tag/v[0-9.]*!tag/v${VERSION}!g" \
-      -e "s!javadoc-v[0-9.]*!javadoc-v${VERSION}!g" \
+      -e "s!Javadoc-v[0-9.]*-blue!Javadoc-v${VERSION}-blue!g" \
       -e "s!pochi%3A[0-9.]*!pochi%3A${VERSION}!g" \
       $i > a ; mv a $i;
 done
