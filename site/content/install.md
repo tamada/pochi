@@ -38,7 +38,7 @@ Copy and paste the following snippet into your `pom.xml`.
     <repository>
       <id>tamada_github</id>
       <name>Apache Maven Packages of tamada</name>
-      <url>https://maven.pkg.github.com/tamada/mvnrepository</url>
+      <url>https://tamada.github.io/maven</url>
     </repository>
   </repositories>
 ```
@@ -47,13 +47,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `nasubi`     | `2.3.0` |
+|`jp.cafebabe.pochi` | `kunai2`     | `2.3.0` |
 |`jp.cafebabe.pochi` | `pochi-core` | `2.3.0` |
 |`jp.cafebabe.pochi` | `pochi-api`  | `2.3.0` |
 |`jp.cafebabe.pochi` | `pochi-cmd`  | `2.3.0` |
-
-Note that accessing GitHub Packages must authenticate with GitHub access token.
-You should update your `~/.m2/settings.xml` by [following this instructions](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token).
 
 ## :briefcase: Requirements
 
