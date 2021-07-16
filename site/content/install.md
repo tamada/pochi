@@ -58,7 +58,8 @@ Then, add the dependencies of your `pom.xml`.
 * [Vavr](https://www.vavr.io/) 0.10.3
 * [ASM](https://asm.ow2.io/) 8.0.1
 * [Groovy](https://groovy-lang.org) 3.0.8
-* [args4j](https://github.com/kohsuke/args4j) 2.33
+    * [groovy-jsr223](https://groovy-lang.org/integrating.html#jsr223)
+* [picocli](https://picocli.info) 4.6.1
 
 ### :pouch: Modules
 
@@ -76,13 +77,11 @@ Then, add the dependencies of your `pom.xml`.
     * [`java.sql`](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/module-summary.html)
     * [`java.xml`](https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/module-summary.html)
 * [`jp.cafebabe.pochicmd`](https://tamada.github.io/pochi/apidocs/jp.cafebabe.pochicmd/module-summary.html)
-    * [`picocli`](https://picocli.info)
+    * [`info.picocli`](https://picocli.info)
+    * [`java.scripting`](https://docs.oracle.com/en/java/javase/11/docs/api/java.scripting/module-summary.html)
 
 ### :steam_locomotive: Module Graph
 
 {{< image src="images/module-graph.svg" caption="Figure 1. :steam_locomotive: Module Graph" >}}
-
-Groovy depends on the modules of `java.scripting`, `java.desktop`, `java.sql` and `java.xml`.
-
 
 {{< gototop >}}

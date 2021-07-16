@@ -12,7 +12,7 @@ draft: false
 [![Version](https://img.shields.io/badge/Version-2.3.0-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.3.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.4271132-green.svg)](https://zenodo.org/badge/latestdoi/82773287)
 
-[![Javadoc](https://img.shields.io/badge/Javadoc-v2.2.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
+[![Javadoc](https://img.shields.io/badge/Javadoc-v2.3.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
 [![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.3.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 [![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-blue?logo=github)](https://github.com/tamada/pochi/discussions)
 
