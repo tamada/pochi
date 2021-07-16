@@ -117,7 +117,7 @@ $ mvn package
     <span style="color:#f92672">&lt;repository&gt;</span>
       <span style="color:#f92672">&lt;id&gt;</span>tamada_github<span style="color:#f92672">&lt;/id&gt;</span>
       <span style="color:#f92672">&lt;name&gt;</span>Apache Maven Packages of tamada<span style="color:#f92672">&lt;/name&gt;</span>
-      <span style="color:#f92672">&lt;url&gt;</span>https://maven.pkg.github.com/tamada/mvnrepository<span style="color:#f92672">&lt;/url&gt;</span>
+      <span style="color:#f92672">&lt;url&gt;</span>https://tamada.github.io/maven<span style="color:#f92672">&lt;/url&gt;</span>
     <span style="color:#f92672">&lt;/repository&gt;</span>
   <span style="color:#f92672">&lt;/repositories&gt;</span>
 </code></pre></div><p>Then, add the dependencies of your <code>pom.xml</code>.</p>
@@ -132,7 +132,7 @@ $ mvn package
 <tbody>
 <tr>
 <td><code>jp.cafebabe.pochi</code></td>
-<td><code>nasubi</code></td>
+<td><code>kunai2</code></td>
 <td><code>2.3.0</code></td>
 </tr>
 <tr>
@@ -152,15 +152,17 @@ $ mvn package
 </tr>
 </tbody>
 </table>
-<p>Note that accessing GitHub Packages must authenticate with GitHub access token.
-You should update your <code>~/.m2/settings.xml</code> by <a href="https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-with-a-personal-access-token">following this instructions</a>.</p>
 <h2 id="-requirements">💼 Requirements</h2>
 <ul>
 <li><a href="https://github.com/FasterXML/jackson">Jackson</a> 2.10.0</li>
 <li><a href="https://www.vavr.io/">Vavr</a> 0.10.3</li>
 <li><a href="https://asm.ow2.io/">ASM</a> 8.0.1</li>
-<li><a href="https://groovy-lang.org">Groovy</a> 3.0.8</li>
-<li><a href="https://github.com/kohsuke/args4j">args4j</a> 2.33</li>
+<li><a href="https://groovy-lang.org">Groovy</a> 3.0.8
+<ul>
+<li><a href="https://groovy-lang.org/integrating.html#jsr223">groovy-jsr223</a></li>
+</ul>
+</li>
+<li><a href="https://picocli.info">picocli</a> 4.6.1</li>
 </ul>
 <h3 id="-modules">👝 Modules</h3>
 <ul>
@@ -191,7 +193,8 @@ You should update your <code>~/.m2/settings.xml</code> by <a href="https://docs.
 </li>
 <li><a href="https://tamada.github.io/pochi/apidocs/jp.cafebabe.pochicmd/module-summary.html"><code>jp.cafebabe.pochicmd</code></a>
 <ul>
-<li><a href="https://picocli.info"><code>picocli</code></a></li>
+<li><a href="https://picocli.info"><code>info.picocli</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.scripting/module-summary.html"><code>java.scripting</code></a></li>
 </ul>
 </li>
 </ul>
@@ -214,8 +217,7 @@ You should update your <code>~/.m2/settings.xml</code> by <a href="https://docs.
 </figure>
 
 <p class="avatar_caption">
-  Groovy depends on the modules of <code>java.scripting</code>, <code>java.desktop</code>, <code>java.sql</code> and <code>java.xml</code>.</p>
-<!-- raw HTML omitted -->
+  <!-- raw HTML omitted -->
 </p>
 
 

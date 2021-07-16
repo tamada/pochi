@@ -47,11 +47,11 @@ public class Configuration {
 <span class="nc" id="L47">                .orElse(defaultValue);</span>
     }
 
-    Stream&lt;Item&gt; propertyStream() {
+    public Stream&lt;Item&gt; propertyStream() {
 <span class="fc" id="L51">        return properties.entrySet().stream().map(Item::new);</span>
     }
 
-    Stream&lt;Rule&gt; rules() {
+    public Stream&lt;Rule&gt; rules() {
 <span class="fc" id="L55">        return rules.stream();</span>
     }
 

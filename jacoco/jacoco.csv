@@ -113,9 +113,10 @@ Coverage reports of pochi/pochi-core,jp.cafebabe.pochi.pairs.builders,RoundRobin
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi.pairs.builders,GuessedPairMatcherBuilder,0,24,0,0,0,6,0,4,0,4
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi,FailedSources,18,0,0,0,5,0,3,0,3,0
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi,BirthmarkSystem,55,0,0,0,13,0,9,0,9,0
+Coverage reports of pochi/pochi-core,jp.cafebabe.pochi,Environment,39,0,0,0,11,0,6,0,6,0
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi,URLFormatException,4,0,0,0,2,0,1,0,1,0
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi,AbstractParser,5,0,0,0,2,0,1,0,1,0
-Coverage reports of pochi/pochi-core,jp.cafebabe.pochi,BirthmarkSystemHelper,150,0,0,0,39,0,21,0,21,0
+Coverage reports of pochi/pochi-core,jp.cafebabe.pochi,BirthmarkSystemHelper,161,0,0,0,42,0,22,0,22,0
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi.birthmarks.kgram,OpcodeExtractionMethodVisitor,12,147,0,0,3,39,1,13,1,13
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi.birthmarks.kgram,KGramBasedExtractorBuilder,0,24,0,0,0,7,0,4,0,4
 Coverage reports of pochi/pochi-core,jp.cafebabe.pochi.birthmarks.kgram,KGramBasedBirthmarkExtractor,0,24,0,0,0,4,0,2,0,2
