@@ -43,7 +43,7 @@ jobs:
               run: |
                 mvn package
                 mkdir lib
-                cp */target/*.jar lib
+                cp pochi-cmd/target/*.jar lib
                 bash ./bin/build_site.sh
                 bash ./bin/make_dist.sh
 
