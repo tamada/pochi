@@ -20,7 +20,7 @@ for i in README.md site/content/description.md ; do
 done
 
 for i in README.md site/content/install.md ; do
-  sed "s/| \`\([0-9.]*\)\` |/| `${VERSION}` |/g" "$i" > a ; mv a "$i"
+  sed "s/| \`\([0-9.]*\)\` |/| \`${VERSION}\` |/g" "$i" > a ; mv a "$i"
 done
 
 for i in $(find dockers -name Dockerfile) ; do
