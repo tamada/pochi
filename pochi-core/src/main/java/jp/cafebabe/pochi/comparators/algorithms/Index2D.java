@@ -3,7 +3,8 @@ package jp.cafebabe.pochi.comparators.algorithms;
 import java.util.Optional;
 
 class Index2D {
-    private int x, y;
+    private int x;
+    private int y;
 
     public Index2D(int x, int y) {
         this.x = x;

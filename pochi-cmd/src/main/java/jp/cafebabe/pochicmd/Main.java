@@ -19,7 +19,7 @@ public class Main {
             case OneLineExpression:
                 return new ExpressionRunner();
             default:
-                return new HelpPrintingRunner(this);
+                return new HelpPrintingRunner();
         }
     }
 

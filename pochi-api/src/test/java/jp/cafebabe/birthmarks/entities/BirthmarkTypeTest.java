@@ -1,10 +1,9 @@
 package jp.cafebabe.birthmarks.entities;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 public class BirthmarkTypeTest {
@@ -15,7 +14,7 @@ public class BirthmarkTypeTest {
         assertThat(type, is(new BirthmarkType("type")));
         assertThat(type.toString(), is("type"));
 
-        assertThat(type, is(CoreMatchers.not(new BirthmarkType("different type"))));
+        assertThat(type, is(not(new BirthmarkType("different type"))));
         assertThat(type, is(not(new Object())));
     }
 

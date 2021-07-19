@@ -11,7 +11,7 @@ public class WarFileDataSource extends JarFileDataSource{
     }
 
     @Override
-    int getStartIndex(String name){
+    protected int getStartIndex(String name){
         if(name.startsWith(WAR_CLASSES_PREFIX))
             return WAR_CLASSES_PREFIX.length();
         return 0;

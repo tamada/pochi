@@ -14,17 +14,17 @@ public abstract class AbstractDataSource implements DataSource {
         return basePath;
     }
 
-    int getLastIndex(String name, String extension){
+    protected int getLastIndex(String name, String extension){
         return name.lastIndexOf(extension);
     }
 
-    int getStartIndex(String name){
+    protected int getStartIndex(String name){
         if(name.startsWith("/"))
             return 1;
         return 0;
     }
 
-    String parseClassName(String name){
+    protected String parseClassName(String name){
         int start = getStartIndex(name);
         int last = getLastIndex(name, ".class");
         return trimName(name, start, last);

@@ -1,7 +1,5 @@
 package jp.cafebabe.pochi.pairs;
 
-import jp.cafebabe.birthmarks.config.Configuration;
-import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
 import jp.cafebabe.birthmarks.pairs.PairMatcherType;
 import jp.cafebabe.pochi.pairs.builders.GuessedPairMatcherBuilder;
 import org.junit.Before;

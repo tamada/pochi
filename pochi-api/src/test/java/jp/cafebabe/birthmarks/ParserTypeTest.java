@@ -4,7 +4,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class ParserTypeTest {
@@ -21,7 +20,7 @@ public class ParserTypeTest {
         ParserType type2 = new ParserType("type2");
         ParserType type1_2 = new ParserType("type1");
 
-        assertThat(type1, is(Matchers.not(type2)));
+        assertThat(type1, is(not(type2)));
         assertThat(type1, is(not("type1")));
         assertThat(type1, is(type1_2));
 

@@ -5,6 +5,10 @@ import java.io.IOException;
 import jp.cafebabe.kunai.entries.Entry;
 
 public abstract class AbstractDataSink implements DataSink {
+    /**
+     * Close this instance.
+     * @throws IOException I/O error
+     */
     @Override
     public void close() throws IOException {
     }
