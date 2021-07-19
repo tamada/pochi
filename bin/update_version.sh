@@ -15,6 +15,14 @@ for i in README.md site/content/_index.md site/content/description.md ; do
       $i > a ; mv a $i;
 done
 
+for i in README.md site/content/description.md ; do
+  sed "s/  \* \`\([0-9.]*\)\`, \`latest\`/  * \`${VERSION}\`, \`latest\`\n  * \`\1\`/g" $i > a ; mv a "$i"
+done
+
+for i in README.md site/content/install.md ; do
+  sed "s/| \`\([0-9.]*\)\` |/| \`${VERSION}\` |/g" "$i" > a ; mv a "$i"
+done
+
 for i in $(find dockers -name Dockerfile) ; do
   sed "s/ARG version=\"[0-9.]*\"/ARG version=\"${VERSION}\"/g" "$i" > a ; mv a "$i"
 done
