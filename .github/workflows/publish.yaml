@@ -11,13 +11,13 @@ jobs:
     if: startsWith(github.head_ref, 'release/v') && github.event.pull_request.merged == true
     steps:
 # Checkout the project, and get tag name.
-      - uses: actions/checkout@v2.0.0
+      - uses: actions/checkout@v2
+        shell: bash
         with:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
-      - name: Checkout
-        shell: bash
         run: |
+          git config --global user.name "Haruaki Tamada"
+          git config --global user.email "tamada@users.noreply.github.com"
           auth_header="$(git config --local --get http.https://github.com/.extraheader)"
           git submodule sync --recursive
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
