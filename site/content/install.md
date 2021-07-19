@@ -1,6 +1,6 @@
 ---
 title: ":anchor: Install"
-date: 2020-10-08
+date: 2021-07-19
 draft: false
 ---
 
@@ -47,10 +47,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `kunai2`     | `2.3.1` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.3.1` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.3.1` |
-|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.3.1` |
+|`jp.cafebabe.pochi` | `kunai2`     | `2.3.2` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.3.2` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.3.2` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.3.2` |
 
 ## :briefcase: Requirements
 
