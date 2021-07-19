@@ -2,7 +2,7 @@ name: Publish Web Page, and Docker Image, and Release.
 on:
     push:
         tags:
-            - "v[0-9]+.[0-9]+.[0-9]+"
+            - "v[0-9]+.[0-9]+.[0-9]+*"
 
 jobs:
     publish:
@@ -20,8 +20,13 @@ jobs:
                   git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1                  
 
             - name: Get tag name
-              id: get-tag
-              run: echo "::set-output name=tag::${GITHUB_REF##*/v}"
+              id: tagname
+              run: |
+                echo "github.ref ${{ github.ref }}"
+                echo "GITHUB_REF ${GITHUB_REF}"
+                echo "TAG ${GITHUB_REF##*/v}"
+                echo "::set-output name=tag::${GITHUB_REF##*/v}"
+                echo "${{ steps.tagname.outputs.tag }}"
 
 # setup java, hugo, and docker.
             - name: Set up JDK 11 for pochi core libraries
@@ -64,10 +69,10 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  upload_url: ${{ steps.create_release.outputs.upload_urls }}
-                  asset_path: ./dist/pochi-${{ steps.get-tag.tag }}.zip
-                  asset_name: pochi-${{ steps.get-tag.tag }}.zip
+                  asset_path: ./dist/pochi-${{ steps.tagname.outputs.tag }}.zip
+                  asset_name: pochi-${{ steps.tagname.outputs.tag }}.zip
                   asset_content_type: application/zip
+                  upload_url: ${{ steps.create_release.outputs.upload_url }}
 
 # Publish Docker image to ghcr.io
             - name: Deploy GitHub Pages
@@ -94,4 +99,4 @@ jobs:
                   push: true
                   tags: |
                       ghcr.io/tamada/pochi:latest
-                      ghcr.io/tamada/pochi:${{ steps.get-tag.tag }}
+                      ghcr.io/tamada/pochi:${{ steps.tagname.outputs.tag }}
