@@ -1,7 +1,8 @@
 package jp.cafebabe.kunai.entries;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;

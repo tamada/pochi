@@ -4,7 +4,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class ComparatorTypeTest {
@@ -14,7 +13,7 @@ public class ComparatorTypeTest {
         ComparatorType type = new ComparatorType("type1");
 
         assertThat(type, is(new ComparatorType("type1")));
-        assertThat(type, is(Matchers.not(new ComparatorType("type2"))));
+        assertThat(type, is(not(new ComparatorType("type2"))));
         assertThat(type, is(not(new Object())));
 
         assertThat(type.toString(), is("type1"));

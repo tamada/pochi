@@ -29,9 +29,9 @@ public class JarFileDataSource extends AbstractDataSource implements PathResolve
     }
 
     private List<Path> getAllFilesFromPaths(Path[] paths){
-        DirectoryTraverser traverser = new DirectoryTraverser();
         FileSystemProvider provider = system.provider();
-        return traverser.traverse(provider, paths);
+        return new DirectoryTraverser()
+                .traverse(provider, paths);
     }
 
     private Path[] getRootPaths(){

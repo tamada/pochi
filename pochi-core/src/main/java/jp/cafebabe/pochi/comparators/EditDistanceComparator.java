@@ -2,7 +2,6 @@ package jp.cafebabe.pochi.comparators;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import jp.cafebabe.birthmarks.comparators.AbstractComparator;
 import jp.cafebabe.birthmarks.comparators.ComparatorType;

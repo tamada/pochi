@@ -4,7 +4,7 @@ This tool is to read/store class files from/to directories, jar file, and war fi
 [kunai](https://github.com/tamada/kunai) is same tool, however, kunai is for Java 7 or before.
 Kunai2 implemented for Java 8 and used streaming API.
 
-## Simple use case.
+## Simple use case
 
 ```java
 // Reading

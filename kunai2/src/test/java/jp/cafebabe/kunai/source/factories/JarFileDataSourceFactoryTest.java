@@ -1,6 +1,6 @@
 package jp.cafebabe.kunai.source.factories;
 
-import static jp.cafebabe.kunai.util.Assert.assertThrows;
+import static jp.cafebabe.kunai.util.AssertHelper.assertThrows;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
