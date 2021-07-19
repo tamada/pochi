@@ -1,3 +1,5 @@
+# :dog: pochi
+
 [![build](https://github.com/tamada/pochi/workflows/build/badge.svg)](https://github.com/tamada/pochi/actions?query=workflow%3Abuild)
 [![Coverage Status](https://coveralls.io/repos/github/tamada/pochi/badge.svg?branch=main)](https://coveralls.io/github/tamada/pochi?branch=main)
 [![codebeat badge](https://codebeat.co/badges/8e8c5e70-cb07-4f58-941c-3ddb64f3c059)](https://codebeat.co/projects/github-com-tamada-pochi-main)
@@ -9,8 +11,6 @@
 [![Javadoc](https://img.shields.io/badge/Javadoc-v2.3.1-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
 [![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.3.1-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 [![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-blue?logo=github)](https://github.com/tamada/pochi/discussions)
-
-# :dog: pochi
 
 Detecting the software theft, the birthmark toolkit for the JVM platform.
 
