@@ -82,7 +82,8 @@ For more detail, see [:ant: Examples](https://tamada.github.io/pochi/examples).
 Container images of **pochi** for Docker are:
 
 * [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
-  * `2.3.0`, `latest`
+  * `2.3.1`, `latest`
+  * `2.3.0`
   * `2.2.0`
   * `2.1.0`
   * `2.0.0`
@@ -138,10 +139,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `kunai2`     | `2.3.0` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.3.0` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.3.0` |
-|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.3.0` |
+|`jp.cafebabe.pochi` | `kunai2`     | `2.3.1` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.3.1` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.3.1` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.3.1` |
 
 ## Modules
 
