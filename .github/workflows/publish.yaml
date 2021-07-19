@@ -20,13 +20,13 @@ jobs:
                   git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1                  
 
             - name: Get tag name
-              id: get-tag
+              id: tagname
               run: |
-                echo ${{ github.ref }}
-                echo ${GITHUB_REF}
-                echo ${GITHUB_REF##*/v}
+                echo "github.ref ${{ github.ref }}"
+                echo "GITHUB_REF ${GITHUB_REF}"
+                echo "TAG ${GITHUB_REF##*/v}"
                 echo "::set-output name=tag::${GITHUB_REF##*/v}"
-                echo ${{ steps.get-tag.tag }}
+                echo "${{ steps.tagname.outputs.tag }}"
 
 # setup java, hugo, and docker.
             - name: Set up JDK 11 for pochi core libraries
@@ -69,8 +69,8 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  asset_path: ./dist/pochi-${{ steps.get-tag.tag }}.zip
-                  asset_name: pochi-${{ steps.get-tag.tag }}.zip
+                  asset_path: ./dist/pochi-${{ steps.tagname.outputs.tag }}.zip
+                  asset_name: pochi-${{ steps.tagname.outputs.tag }}.zip
                   asset_content_type: application/zip
                   upload_url: ${{ steps.create_release.outputs.upload_url }}
 
@@ -99,4 +99,4 @@ jobs:
                   push: true
                   tags: |
                       ghcr.io/tamada/pochi:latest
-                      ghcr.io/tamada/pochi:${{ steps.get-tag.tag }}
+                      ghcr.io/tamada/pochi:${{ steps.tagname.outputs.tag }}
