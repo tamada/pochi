@@ -28,7 +28,8 @@ jobs:
             - name: Set up JDK 11 for pochi core libraries
               uses: actions/setup-java@v2
               with:
-                java-version: 11
+                distribution: 'zulu'
+                java-version: '11'
 
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
