@@ -111,7 +111,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-            push: true
-            tags: |
-               ghcr.io/tamada/pochi:latest
-               ghcr.io/tamada/pochi:${{ steps.tagname.outputs.tag }}
+          push: true
+          tags: |
+            ghcr.io/tamada/pochi:latest
+            ghcr.io/tamada/pochi:${{ steps.tagname.outputs.tag }}
