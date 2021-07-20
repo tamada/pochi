@@ -13,11 +13,11 @@ jobs:
 # Checkout the project, and get tag name.
       - name: Checkout
         uses: actions/checkout@v2
-        shell: bash
         with:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Initialize git
+        shell: bash
         run: |
           git config --global user.name "Haruaki Tamada"
           git config --global user.email "tamada@users.noreply.github.com"
