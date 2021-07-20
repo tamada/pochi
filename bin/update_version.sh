@@ -40,5 +40,6 @@ mvn versions:commit
 
 mvn clean package
 
+mkdir lib
 rm -f lib/*.jar
 cp pochi-cmd/target/*.jar lib

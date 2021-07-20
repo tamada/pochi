@@ -58,8 +58,6 @@ jobs:
       - name: Build
         run: |
           mvn package
-          mkdir lib
-          cp pochi-cmd/target/*.jar lib
 
       - name: Build Site
         run:
