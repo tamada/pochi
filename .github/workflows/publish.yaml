@@ -37,6 +37,8 @@ jobs:
           bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
           git commit -a -m "Publish v${{ steps.tagname.outputs.tag }}"
           git tag ${{ steps.tagname.outputs.tag }}
+          git push origin main
+          git push origin ${{ steps.tagname.outputs.tag }}
 
 # setup java, hugo, and docker.
       - name: Set up JDK 11 for pochi core libraries
@@ -55,10 +57,6 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
 # Build packages, site
-      - name: Build
-        run: |
-          mvn package
-
       - name: Build Site
         run:
           bash ./bin/build_site.sh
