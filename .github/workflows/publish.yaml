@@ -38,9 +38,15 @@ jobs:
       - name: Version up
         run: |
           bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
+          echo "========== git branch =========="
+          git branch
+          echo "========== git commit v${{ steps.tagname.outputs.tag }}=========="
           git commit -a -m "Publish v${{ steps.tagname.outputs.tag }}"
-          git tag ${{ steps.tagname.outputs.tag }}
+          echo "========== git tag v${{ steps.tagname.outputs.tag }} =========="
+          git tag v${{ steps.tagname.outputs.tag }}
+          echo "========== git push ${REPO} HEAD:main =========="
           git push ${REPO} HEAD:main
+          echo "========== git push ${REPO} v${{ steps.tagname.outputs.tag }} =========="
           git push ${REPO} ${{ steps.tagname.outputs.tag }}
 
 # setup java, hugo, and docker.
