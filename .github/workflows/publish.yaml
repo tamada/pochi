@@ -27,9 +27,6 @@ jobs:
           auth_header="$(git config --local --get http.https://github.com/.extraheader)"
           git submodule sync --recursive
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
-          git remote add ghactions ${REPO}
-          echo "github.actor      ${{ github.actor }}"
-          echo "github.repository ${{ github.actor }}"
 
       - name: Get tag name
         id: tagname
@@ -49,12 +46,21 @@ jobs:
           git commit -a -m "Publish v${{ steps.tagname.outputs.tag }}"
           echo "========== git tag v${{ steps.tagname.outputs.tag }} =========="
           git tag v${{ steps.tagname.outputs.tag }}
-          echo "========== git push ${REPO} HEAD:main =========="
-          git push ghactions HEAD:main
-          echo "========== git push ${REPO} v${{ steps.tagname.outputs.tag }} =========="
-          git push ghactions v${{ steps.tagname.outputs.tag }}
 
-# setup java, hugo, and docker.
+      - name: Push branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      - name: Push Tags
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: v${{ steps.tagname.outputs.tag }}
+          tags: true
+
+      # setup java, hugo, and docker.
       - name: Set up JDK 11 for pochi core libraries
         uses: actions/setup-java@v2
         with:
