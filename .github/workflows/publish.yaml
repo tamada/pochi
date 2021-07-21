@@ -9,18 +9,21 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     if: startsWith(github.head_ref, 'release/v') && github.event.pull_request.merged == true
+    env:
+      REPO: https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git
     steps:
 # Checkout the project, and get tag name.
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          ref: ${{github.event.pull_request.head.ref}}
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Initialize git
         shell: bash
         run: |
-          git config --global user.name "Haruaki Tamada"
-          git config --global user.email "tamada@users.noreply.github.com"
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
           auth_header="$(git config --local --get http.https://github.com/.extraheader)"
           git submodule sync --recursive
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
@@ -37,8 +40,8 @@ jobs:
           bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
           git commit -a -m "Publish v${{ steps.tagname.outputs.tag }}"
           git tag ${{ steps.tagname.outputs.tag }}
-          git push origin main
-          git push origin ${{ steps.tagname.outputs.tag }}
+          git push ${REPO} HEAD:main
+          git push ${REPO} ${{ steps.tagname.outputs.tag }}
 
 # setup java, hugo, and docker.
       - name: Set up JDK 11 for pochi core libraries
