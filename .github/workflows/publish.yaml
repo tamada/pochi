@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{github.event.pull_request.head.ref}}
+          ref: main
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Initialize git
