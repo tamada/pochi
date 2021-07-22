@@ -12,7 +12,7 @@ jobs:
     env:
       REPO: https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git
     steps:
-# Checkout the project, and get tag name.
+      # Checkout the project, and get tag name.
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -33,18 +33,6 @@ jobs:
         run: |
           HEAD_REF=${{ github.head_ref }}
           echo "::set-output name=tag::${HEAD_REF##*/v}"
-
-      # version up
-      - name: Version up
-        run: |
-          bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
-          git commit -a -m "Publish v${{ steps.tagname.outputs.tag }}"
-
-      - name: Push branch
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
 
       # setup java, hugo, and docker.
       - name: Set up JDK 11 for pochi core libraries

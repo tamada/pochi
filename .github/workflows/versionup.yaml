@@ -1,0 +1,50 @@
+name: Version up
+on:
+  push:
+    branches:
+      - 'release/v[0-9]+.[0-9]+.[0-9]*'
+
+jobs:
+  versionup:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the project, and get tag name.
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Initialize git
+        shell: bash
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "action@github.com"
+          auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+          git submodule sync --recursive
+          git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+
+      # setup java
+      - name: Set up JDK 11 for pochi core libraries
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Get tag name
+        id: tagname
+        run: |
+          HEAD_REF=${{ github.head_ref }}
+          echo "::set-output name=tag::${HEAD_REF##*/v}"
+
+      # version up
+      - name: Version up
+        run: |
+          bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
+          git commit -a -m "ready to publish v${{ steps.tagname.outputs.tag }}"
+
+      - name: Push branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
