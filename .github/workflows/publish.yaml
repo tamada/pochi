@@ -12,7 +12,7 @@ jobs:
     env:
       REPO: https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git
     steps:
-# Checkout the project, and get tag name.
+      # Checkout the project, and get tag name.
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -29,22 +29,10 @@ jobs:
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
       - name: Get tag name
-        id: tagname
+        id: vars
         run: |
           HEAD_REF=${{ github.head_ref }}
           echo "::set-output name=tag::${HEAD_REF##*/v}"
-
-      # version up
-      - name: Version up
-        run: |
-          bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
-          git commit -a -m "Publish v${{ steps.tagname.outputs.tag }}"
-
-      - name: Push branch
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
 
       # setup java, hugo, and docker.
       - name: Set up JDK 11 for pochi core libraries
@@ -77,8 +65,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.tagname.outputs.tag }}
-          release_name: Release v${{ steps.tagname.outputs.tag }}
+          tag_name: v${{ steps.vars.outputs.tag }}
+          release_name: Release v${{ steps.vars.outputs.tag }}
           draft: false
           prerelease: false
 
@@ -89,8 +77,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          asset_path: ./dist/pochi-${{ steps.tagname.outputs.tag }}.zip
-          asset_name: pochi-${{ steps.tagname.outputs.tag }}.zip
+          asset_path: ./dist/pochi-${{ steps.vars.outputs.tag }}.zip
+          asset_name: pochi-${{ steps.vars.outputs.tag }}.zip
           asset_content_type: application/zip
           upload_url: ${{ steps.create_release.outputs.upload_url }}
 
@@ -114,7 +102,7 @@ jobs:
           context: dockers/pochi
           push: true
           tags: |
-            ghcr.io/tamada/pochi:${{ steps.tagname.outputs.tag }}
+            ghcr.io/tamada/pochi:${{ steps.vars.outputs.tag }}
             ghcr.io/tamada/pochi:latest
 
       - name: Push Docker Images (with Groovy)
@@ -123,5 +111,5 @@ jobs:
           context: dockers/pochi-groovysh
           push: true
           tags: |
-            ghcr.io/tamada/pochi-groovysh:${{ steps.tagname.outputs.tag }}
+            ghcr.io/tamada/pochi-groovysh:${{ steps.vars.outputs.tag }}
             ghcr.io/tamada/pochi-groovysh:latest

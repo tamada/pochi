@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.3.23"
+VERSION="2.3.24"
 
 function build_apidocs() {
   mkdir -p site/msp
@@ -21,6 +21,10 @@ function build_apidocs() {
 
 if [ ! -d site/public ]; then
   git worktree add site/public origin/gh-pages
+fi
+
+if [ ! -f site/themes/cayman-hugo-theme/theme.toml ]; then
+  git submodule update --init
 fi
 
 for i in v1.0.0 v2.2.0

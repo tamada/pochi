@@ -1,0 +1,50 @@
+name: Version up
+on:
+  push:
+    branches:
+      - 'release/v[0-9]+.[0-9]+.[0-9]*'
+
+jobs:
+  versionup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name
+        id: vars
+        run: |
+          echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+          echo "::set-output name=tag::${GITHUB_REF##**/v}"
+
+      # Checkout the project, and get tag name.
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.vars.outputs.branch }}
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Initialize git
+        shell: bash
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "action@github.com"
+          auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+          git submodule sync --recursive
+          git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+
+      # setup java
+      - name: Set up JDK 11 for pochi core libraries
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      # version up
+      - name: Version up
+        id: updating_version
+        run: |
+          (bash ./bin/update_version.sh ${{ steps.vars.outputs.tag }} && git commit -a -m "ready to publish v${{ steps.vars.outputs.tag }}") || true
+
+      - name: Push branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.vars.outputs.branch }}
