@@ -85,6 +85,7 @@ Container images of **pochi** for Docker are:
   * `2.3.24`, `latest`
   * `2.3.24`
   * `2.3.24`
+  * `2.3.24`
   * `2.3.21`
   * `2.3.21`
   * `2.3.19`
