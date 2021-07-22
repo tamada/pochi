@@ -7,6 +7,13 @@ if [ "$VERSION" == "" ]; then
   exit
 fi
 
+result=0
+output=$("grep $VERSION ./bin/make_dist.sh" 2>&1 > /dev/null) || result=$?
+
+if [ $result == 0 ]; then
+  exit
+fi
+
 for i in README.md site/content/_index.md site/content/description.md ; do
   sed -e "s!Version-[0-9.]*-green!Version-${VERSION}-green!g" \
       -e "s!tag/v[0-9.]*!tag/v${VERSION}!g" \
