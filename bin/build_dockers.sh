@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.3.1"
+VERSION="2.3.16"
 
 for i in $(find dockers -type d -depth 1)
 do
