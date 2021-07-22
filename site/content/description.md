@@ -49,7 +49,8 @@ For more detail, see [:ant: Examples](../examples).
 Container images of **pochi** for Docker are:
 
 * [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
-    * `2.3.21`, `latest`
+    * `2.3.23`, `latest`
+  * `2.3.21`
   * `2.3.21`
   * `2.3.19`
   * `2.3.18`
@@ -65,7 +66,7 @@ Container images of **pochi** for Docker are:
     * `1.0.0`
         * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.3.21-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.3.23-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 
