@@ -38,27 +38,13 @@ jobs:
       - name: Version up
         run: |
           bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
-          echo "========== git branch =========="
-          git branch -a
-          echo "========== git remote -v =========="
-          git remote -v
-          echo "========== git commit v${{ steps.tagname.outputs.tag }}=========="
           git commit -a -m "Publish v${{ steps.tagname.outputs.tag }}"
-          echo "========== git tag v${{ steps.tagname.outputs.tag }} =========="
-          git tag v${{ steps.tagname.outputs.tag }}
 
       - name: Push branch
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-
-      - name: Push Tags
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: v${{ steps.tagname.outputs.tag }}
-          tags: true
 
       # setup java, hugo, and docker.
       - name: Set up JDK 11 for pochi core libraries
@@ -91,8 +77,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: v${{ steps.tagname.outputs.tag }}
+          release_name: Release v${{ steps.tagname.outputs.tag }}
           draft: false
           prerelease: false
 
