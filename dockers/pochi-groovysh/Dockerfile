@@ -19,7 +19,7 @@ ARG PochiVersion="2.3.1"
 ARG GroovyVersion="3.0.8"
 
 LABEL maintainer="Haruaki Tamada" \
-      pochi-version="${version}" \
+      pochi-version="${PochiVersion}" \
       description="Java birthmarking toolkit."
 
 COPY --from=base  /opt/openjdk-11-minimal /opt/openjdk-11-minimal
