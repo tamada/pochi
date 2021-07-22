@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${GITHUB_REF}
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Initialize git
@@ -31,20 +31,22 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Get tag name
-        id: tagname
+      - name: Get branch name
+        id: branch
         run: |
-          HEAD_REF=${{ github.head_ref }}
-          echo "::set-output name=tag::${HEAD_REF##*/v}"
+          echo "::set-output name=branch::${GITHUB_REF##**/v}"
 
       # version up
       - name: Version up
         run: |
-          bash ./bin/update_version.sh ${{ steps.tagname.outputs.tag }}
-          git commit -a -m "ready to publish v${{ steps.tagname.outputs.tag }}"
+          bash ./bin/update_version.sh ${{ steps.branch.outputs.branch }}
+          git commit -a -m "ready to publish v${{ steps.branch.outputs.branch }}"
+          echo "github ref ${GITHUB_REF}"
+          echo "========== branch =========="
+          git branch -a
 
       - name: Push branch
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.head_ref }}
+          branch: ${GITHUB_REF}
