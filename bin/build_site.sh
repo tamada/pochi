@@ -34,5 +34,7 @@ if [ ! -d site/static/apidocs ] ; then
   build_apidocs
 fi
 
+echo "build site of pochi ${VERSION}"
+
 (cd site; hugo)
 rm -f site/public/apple-touch-icon.png site/public/favicon*

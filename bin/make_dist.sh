@@ -45,5 +45,7 @@ function makeWithJvm() {
 
 # ./bin/build_dockers.sh
 
+echo "create distribution file pochi-${VERSION}"
+
 # makeWithJvm
 makeWithoutJvm
