@@ -40,8 +40,7 @@ jobs:
       # version up
       - name: Version up
         run: |
-          if [ $(./bin/update_version.sh ${{ steps.vars.outputs.tag }}) ]
-          then
+          if [ `./bin/update_version.sh ${{ steps.vars.outputs.tag }}` ]; then
             git commit -a -m "ready to publish v${{ steps.vars.outputs.tag }}"
           fi
 
