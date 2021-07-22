@@ -51,13 +51,15 @@ Container images of **pochi** for Docker are:
 * [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
     * `2.3.24`, `latest`
   * `2.3.24`
-  * `2.3.21`
-  * `2.3.21`
-  * `2.3.19`
-  * `2.3.18`
-  * `2.3.17`
-  * `2.3.16`
-  * `2.3.2`
+    * `2.3.24`
+    * `2.3.24`
+    * `2.3.21`
+    * `2.3.21`
+    * `2.3.19`
+    * `2.3.18`
+    * `2.3.17`
+    * `2.3.16`
+    * `2.3.2`
     * `2.3.1`
     * `2.3.0`
     * `2.2.0`
