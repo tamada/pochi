@@ -8,7 +8,7 @@ if [ "$VERSION" == "" ]; then
 fi
 
 result=0
-grep $VERSION ./bin/make_dist.sh 2>&1 > /dev/null || result=$?
+grep "$VERSION" ./bin/make_dist.sh 2>&1 > /dev/null || result=$?
 
 if [ "$result" == "0" ]; then
   echo "already updated"
