@@ -18,7 +18,7 @@ FROM alpine:3.10.1
 ARG PochiVersion="2.3.1"
 
 LABEL maintainer="Haruaki Tamada" \
-      pochi-version="${version}" \
+      pochi-version="${PochiVersion}" \
       description="Java birthmarking toolkit (without interactive mode)."
 
 COPY --from=base  /opt/openjdk-11-minimal /opt/openjdk-11-minimal

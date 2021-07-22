@@ -24,7 +24,7 @@ for i in README.md site/content/install.md ; do
 done
 
 for i in $(find dockers -name Dockerfile) ; do
-  sed "s/ARG version=\"[0-9.]*\"/ARG version=\"${VERSION}\"/g" "$i" > a ; mv a "$i"
+  sed "s/ARG PochiVersion=\"[0-9.]*\"/ARG PochiVersion=\"${VERSION}\"/g" "$i" > a ; mv a "$i"
 done
 
 for i in bin/make_dist.sh bin/build_site.sh bin/build_dockers.sh ; do
