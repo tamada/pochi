@@ -27,7 +27,7 @@ for i in $(find dockers -name Dockerfile) ; do
   sed "s/ARG PochiVersion=\"[0-9.]*\"/ARG PochiVersion=\"${VERSION}\"/g" "$i" > a ; mv a "$i"
 done
 
-for i in bin/make_dist.sh bin/build_site.sh bin/build_dockers.sh ; do
+for i in bin/make_dist.sh bin/build_site.sh ; do
     sed "s/VERSION=\"[0-9.]*\"/VERSION=\"${VERSION}\"/g" "$i" > a ; mv a "$i"
     chmod 755 $i
 done
