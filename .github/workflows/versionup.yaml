@@ -40,8 +40,7 @@ jobs:
       # version up
       - name: Version up
         run: |
-          bash ./bin/update_version.sh ${{ steps.vars.outputs.tag }} && \
-          git commit -a -m "ready to publish v${{ steps.vars.outputs.tag }}"
+          bash ./bin/update_version.sh ${{ steps.vars.outputs.tag }} && git commit -a -m "ready to publish v${{ steps.vars.outputs.tag }}"
 
       - name: Push branch
         uses: ad-m/github-push-action@master
