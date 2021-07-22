@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.3.17"
+VERSION="2.3.18"
 
 echo "build docker image for pochi-${VERSION}"
 
