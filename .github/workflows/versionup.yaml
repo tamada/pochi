@@ -39,7 +39,7 @@ jobs:
 
       # version up
       - name: Version up
-        id: updating version
+        id: updating_version
         run: |
           bash ./bin/update_version.sh ${{ steps.vars.outputs.tag }}
           if [ $? -eq 0 ]; then
