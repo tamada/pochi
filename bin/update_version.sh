@@ -4,14 +4,14 @@ VERSION=$1
 
 if [ "$VERSION" == "" ]; then
   echo "no version specified"
-  exit
+  exit 1
 fi
 
 result=0
-output=$("grep $VERSION ./bin/make_dist.sh" 2>&1 > /dev/null) || result=$?
+grep $VERSION ./bin/make_dist.sh 2>&1 > /dev/null || result=$?
 
 if [ $result == 0 ]; then
-  exit
+  exit 1
 fi
 
 for i in README.md site/content/_index.md site/content/description.md ; do
