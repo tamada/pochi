@@ -8,11 +8,17 @@ jobs:
   versionup:
     runs-on: ubuntu-latest
     steps:
+      - name: Get branch name
+        id: vars
+        run: |
+          echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+          echo "::set-output name=tag::${GITHUB_REF##**/v}"
+
       # Checkout the project, and get tag name.
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${GITHUB_REF#refs/heads/}
+          ref: ${{ steps.vars.outputs.branch }}
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Initialize git
@@ -31,17 +37,11 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Get branch name
-        id: branch
-        run: |
-          echo "::set-output name=branch::${GITHUB_REF##**/v}"
-
       # version up
       - name: Version up
         run: |
-          bash ./bin/update_version.sh ${{ steps.branch.outputs.branch }}
-          git commit -a -m "ready to publish v${{ steps.branch.outputs.branch }}"
-          echo "github ref ${GITHUB_REF}"
+          bash ./bin/update_version.sh ${{ steps.vars.outputs.tag }}
+          git commit -a -m "ready to publish v${{ steps.vars.outputs.tag }}"
           echo "========== branch =========="
           git branch -a
 
@@ -49,4 +49,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${GITHUB_REF}
+          branch: ${{ steps.vars.outputs.branch }}}
