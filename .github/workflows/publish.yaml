@@ -114,8 +114,8 @@ jobs:
           context: dockers/pochi
           push: true
           tags: |
-            ghcr.io/tamada/pochi:latest
             ghcr.io/tamada/pochi:${{ steps.tagname.outputs.tag }}
+            ghcr.io/tamada/pochi:latest
 
       - name: Push Docker Images (with Groovy)
         uses: docker/build-push-action@v2
@@ -123,5 +123,5 @@ jobs:
           context: dockers/pochi-groovysh
           push: true
           tags: |
-            ghcr.io/tamada/pochi-groovysh:latest
             ghcr.io/tamada/pochi-groovysh:${{ steps.tagname.outputs.tag }}
+            ghcr.io/tamada/pochi-groovysh:latest
