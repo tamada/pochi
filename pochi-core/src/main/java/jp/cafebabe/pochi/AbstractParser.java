@@ -11,12 +11,12 @@ import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Metadata;
 import jp.cafebabe.kunai.entries.Entry;
 
-public abstract class AbstractParser extends AbstractTask<ParserType> implements BirthmarkParser {
+public abstract class AbstractParser extends AbstractTask<ParserType> implements BirthmarkParser<String> {
     public AbstractParser(ParserType type, Configuration config) {
         super(type, config);
     }
 
-    public abstract List<Birthmark> parseEntry(Entry entry);
+    public abstract List<Birthmark<String>> parseEntry(Entry entry);
 
     public abstract Stream<Metadata> failedSources();    
 }

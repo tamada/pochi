@@ -31,7 +31,7 @@ public class DefaultParser extends AbstractParser{
     }
 
     @Override
-    public List<Birthmark> parseEntry(Entry entry){
+    public List<Birthmark<String>> parseEntry(Entry entry){
         try(BufferedReader in = new BufferedReader(new InputStreamReader(entry.openStream()))){
             return readLines(in.lines());
         } catch(IOException e){
@@ -41,14 +41,14 @@ public class DefaultParser extends AbstractParser{
         return new ArrayList<>();
     }
 
-    private List<Birthmark> readLines(Stream<String> stream) throws IOException{
+    private List<Birthmark<String>> readLines(Stream<String> stream) throws IOException{
         return stream.map(this::readLine)
                 .collect(Collectors.toList());
     }
 
-    private Birthmark readLine(String line){
+    private Birthmark<String> readLine(String line){
         String[] items = line.split(",");
-        return new Birthmark(buildMetadata(items[0], items[1], items[2]), 
+        return new Birthmark<>(buildMetadata(items[0], items[1], items[2]),
                 buildElements(Arrays.stream(items).skip(3)));
     }
 

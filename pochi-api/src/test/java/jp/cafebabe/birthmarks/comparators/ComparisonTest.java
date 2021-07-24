@@ -1,27 +1,25 @@
 package jp.cafebabe.birthmarks.comparators;
 
-import static org.hamcrest.Matchers.closeTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.entities.BirthmarkType;
+import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Metadata;
+import jp.cafebabe.kunai.entries.ClassName;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import jp.cafebabe.birthmarks.entities.Birthmark;
-import jp.cafebabe.birthmarks.entities.BirthmarkType;
-import jp.cafebabe.birthmarks.entities.Element;
-import jp.cafebabe.birthmarks.entities.Elements;
-import jp.cafebabe.birthmarks.entities.Metadata;
-import jp.cafebabe.kunai.entries.ClassName;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.is;
 
 public class ComparisonTest {
-    private Birthmark birthmark1;
-    private Birthmark birthmark2;
+    private Birthmark<String> birthmark1;
+    private Birthmark<String> birthmark2;
 
     @Before
     public void buildBirthmarks() throws URISyntaxException {
@@ -29,15 +27,15 @@ public class ComparisonTest {
         birthmark2 = buildBirthmark("className2", "url1", "type1", Arrays.asList("e1", "e2", "e3"));
     }
 
-    private Birthmark buildBirthmark(String className, String uri, String type, List<String> list) throws URISyntaxException {
+    private Birthmark<String> buildBirthmark(String className, String uri, String type, List<String> list) throws URISyntaxException {
         Metadata metadata = new Metadata(new ClassName(className), new URI(uri), new BirthmarkType(type));
-        Elements elements = new Elements(list.stream().map(e -> new Element(e)));
-        return new Birthmark(metadata, elements);
+        Elements<String> elements = new Elements<>(list.stream());
+        return new Birthmark<>(metadata, elements);
     }
 
     @Test
     public void testComparisons() {
-        Comparison comparison = new Comparison(birthmark1, birthmark2, new Similarity(0.75));
+        Comparison<String> comparison = new Comparison<>(birthmark1, birthmark2, new Similarity(0.75));
 
         assertThat(comparison.left(), is(birthmark1));
         assertThat(comparison.right(), is(birthmark2));
@@ -46,16 +44,16 @@ public class ComparisonTest {
 
     @Test
     public void testToString() {
-        Comparison comparison = new Comparison(birthmark1, birthmark2, new Similarity(0.75));
+        Comparison<String> comparison = new Comparison<>(birthmark1, birthmark2, new Similarity(0.75));
 
         assertThat(comparison.toString(), is("className1,className2,0.75"));
     }
     
     @Test
     public void testThreshold() {
-        Comparison comparison1 = new Comparison(birthmark1, birthmark2, new Similarity(0.75));
-        Comparison comparison2 = new Comparison(birthmark1, birthmark2, new Similarity(0.5));
-        Comparison comparison3 = new Comparison(birthmark1, birthmark2, new Similarity(0.15));
+        Comparison<String> comparison1 = new Comparison<>(birthmark1, birthmark2, new Similarity(0.75));
+        Comparison<String> comparison2 = new Comparison<>(birthmark1, birthmark2, new Similarity(0.5));
+        Comparison<String> comparison3 = new Comparison<>(birthmark1, birthmark2, new Similarity(0.15));
 
         Threshold threshold1 = new Threshold(0.3);
         assertThat(comparison1.isStolen(threshold1), is(true));

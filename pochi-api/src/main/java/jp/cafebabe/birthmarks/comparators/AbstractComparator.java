@@ -25,7 +25,7 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     }
 
     @Override
-    public final Either<Exception, Similarity> similarity(Pair<Birthmark> pair){
+    public final <T> Either<Exception, Similarity> similarity(Pair<Birthmark<T>> pair){
         try{
             return Either.right(pair.map((left, right) -> calculate(left, right)));
         } catch(Exception e) {
@@ -34,8 +34,8 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     }
 
     @Override
-    public Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker){
-        return new Comparisons(buildStream(maker.match(results),
+    public <T> Comparisons<T> compare(Birthmarks<T> results, PairMatcher<Birthmark<T>> maker){
+        return new Comparisons<>(buildStream(maker.match(results),
                 new Progress(maker.count(results)))
                 .filter(either -> either.isRight())
                 .map(either -> either.get()));
@@ -43,15 +43,15 @@ public abstract class AbstractComparator extends AbstractTask<ComparatorType> im
     }
 
     @Override
-    public Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker){
-        return new Comparisons(buildStream(maker.match(left, right), new Progress(maker.count(left, right), notifier))
+    public <T> Comparisons<T> compare(Birthmarks<T> left, Birthmarks<T> right, PairMatcher<Birthmark<T>> maker){
+        return new Comparisons<>(buildStream(maker.match(left, right), new Progress(maker.count(left, right), notifier))
                 .filter(either -> either.isRight())
                 .map(either -> either.get()));
     }
 
-    protected abstract Similarity calculate(Birthmark left, Birthmark right);
+    protected abstract <T> Similarity calculate(Birthmark<T> left, Birthmark<T> right);
 
-    private Stream<Either<Exception, Comparison>> buildStream(Stream<Pair<Birthmark>> pairs, Progress progress){
+    private <T> Stream<Either<Exception, Comparison<T>>> buildStream(Stream<Pair<Birthmark<T>>> pairs, Progress progress){
         return pairs.peek(item -> progress.update())
                 .map(pair -> compare(pair));
     }
