@@ -2,22 +2,24 @@ package jp.cafebabe.pochi.birthmarks.uc;
 
 import jp.cafebabe.birthmarks.entities.Elements;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiFunction;
 
 public class Names {
-    private Set<String> set = new HashSet<>();
+    private Map<String, Integer> set = new HashMap<>();
 
     public void add(String name){
-        set.add(name);
+        set.put(name, set.getOrDefault(name, 0) + 1);
     }
 
-    public Elements<String> build(){
-        return new Elements<String>(set.stream()
+    public <T> Elements<T> build(BiFunction<String, Integer, T> mapper) {
+        return new Elements<T>(set.entrySet().stream()
+                .map(entry -> mapper.apply(entry.getKey(), entry.getValue()))
                 .sorted());
     }
 
     public boolean contains(String name){
-        return set.contains(name);
+        return set.containsKey(name);
     }
 }

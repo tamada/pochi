@@ -7,18 +7,14 @@ import jp.cafebabe.birthmarks.entities.Metadata;
 import jp.cafebabe.kunai.entries.Entry;
 import org.objectweb.asm.ClassVisitor;
 
-/**
- *
- * @author Haruaki TAMADA
- */
-public class UCBirthmarkExtractVisitor extends UsedClassesBirthmarkExtractVisitor<String> {
-    public UCBirthmarkExtractVisitor(ClassVisitor visitor, Configuration context, BirthmarkType type){
-        super(visitor, context, type);
+public class FUCBirhtmakrExtractVisitor extends UsedClassesBirthmarkExtractVisitor<Frequency> {
+    public FUCBirhtmakrExtractVisitor(ClassVisitor parent, Configuration configuration, BirthmarkType type) {
+        super(parent, configuration, type);
     }
 
     @Override
-    public Birthmark<String> build(Entry entry){
+    public Birthmark<Frequency> build(Entry entry) {
         Metadata source = Metadata.build(entry, type());
-        return new Birthmark<>(source, helper.build((k, v) -> k));
+        return new Birthmark<>(source, helper.build(Frequency::of));
     }
 }

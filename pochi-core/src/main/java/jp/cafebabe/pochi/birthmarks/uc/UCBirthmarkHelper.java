@@ -1,6 +1,7 @@
 package jp.cafebabe.pochi.birthmarks.uc;
 
 import java.util.Arrays;
+import java.util.function.BiFunction;
 
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Elements;
@@ -14,8 +15,12 @@ public class UCBirthmarkHelper {
         this.context = context;
     }
 
-    public Elements<String> build(){
-        return names.build();
+    public <T> Elements<T> build(BiFunction<String, Integer, T> mapper) {
+        return names.build(mapper);
+    }
+
+    public Elements<String> build() {
+        return names.build((k, v) -> k);
     }
 
     public void addAll(String[] names){
@@ -32,7 +37,7 @@ public class UCBirthmarkHelper {
 
     public void add(String name){
         String normalizedName = normalize(name);
-        if(!names.contains(normalizedName) && context.match(normalizedName))
+        if(context.match(normalizedName))
             names.add(normalizedName);
     }
 

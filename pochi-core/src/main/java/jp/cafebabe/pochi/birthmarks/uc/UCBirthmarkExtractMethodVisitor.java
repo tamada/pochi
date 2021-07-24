@@ -5,11 +5,11 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-class UCBirthmarkExtractMethodVisitor extends MethodVisitor {
+class UCBirthmarkExtractMethodVisitor<T> extends MethodVisitor {
     private UCBirthmarkHelper helper;
-    private UCBirthmarkExtractVisitor visitor;
+    private UsedClassesBirthmarkExtractVisitor<T> visitor;
 
-    public UCBirthmarkExtractMethodVisitor(MethodVisitor visitor, UCBirthmarkHelper helper, UCBirthmarkExtractVisitor cVisitor) {
+    public UCBirthmarkExtractMethodVisitor(MethodVisitor visitor, UCBirthmarkHelper helper, UsedClassesBirthmarkExtractVisitor<T> cVisitor) {
         super(Opcodes.ASM5, visitor);
         this.helper = helper;
         this.visitor = cVisitor;
