@@ -7,16 +7,16 @@ import jp.cafebabe.birthmarks.extractors.PochiClassVisitor;
 import jp.cafebabe.pochi.util.VisitorSupplier;
 import org.objectweb.asm.ClassVisitor;
 
-public class VisitorBirthmarkExtractor extends AbstractExtractor {
-    private VisitorSupplier<? extends PochiClassVisitor> visitorSupplier;
+public class VisitorBirthmarkExtractor<T> extends AbstractExtractor {
+    private VisitorSupplier<? extends PochiClassVisitor<T>> visitorSupplier;
 
     public VisitorBirthmarkExtractor(BirthmarkType type, Configuration config,
-                                     VisitorSupplier<? extends PochiClassVisitor> visitorSupplier) {
+                                     VisitorSupplier<? extends PochiClassVisitor<T>> visitorSupplier) {
         super(type, config);
         this.visitorSupplier = visitorSupplier;
     }
 
-    public PochiClassVisitor visitor(ClassVisitor parent) {
+    public PochiClassVisitor<T> visitor(ClassVisitor parent) {
         return visitorSupplier.get(parent, type(), configuration());
     }
 }

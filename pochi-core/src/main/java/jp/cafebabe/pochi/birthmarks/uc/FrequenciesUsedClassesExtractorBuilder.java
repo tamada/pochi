@@ -16,8 +16,7 @@ public class FrequenciesUsedClassesExtractorBuilder implements ExtractorBuilder 
 
     @Override
     public Extractor build(Configuration config) {
-        return new VisitorBirthmarkExtractor(type(), config,
+        return new VisitorBirthmarkExtractor<Frequency>(type(), config,
                 (parent, type, configuration) -> new FUCBirhtmakrExtractVisitor(parent, configuration, type));
     }
-
 }

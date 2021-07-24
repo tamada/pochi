@@ -15,7 +15,7 @@ public class UsedClassesExtractorBuilder implements ExtractorBuilder {
 
     @Override
     public Extractor build(Configuration config) {
-        return new VisitorBirthmarkExtractor(type(), config,
+        return new VisitorBirthmarkExtractor<String>(type(), config,
                 (parent, type, configuration) -> new UCBirthmarkExtractVisitor(parent, configuration, type));
     }
 
