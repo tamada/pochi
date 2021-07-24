@@ -1,6 +1,5 @@
 package jp.cafebabe.pochi.birthmarks.uc;
 
-import jp.cafebabe.birthmarks.entities.Element;
 import jp.cafebabe.birthmarks.entities.Elements;
 
 import java.util.HashSet;
@@ -13,10 +12,9 @@ public class Names {
         set.add(name);
     }
 
-    public Elements build(){
-        return new Elements(set.stream()
-                .sorted()
-                .map(Element::new));
+    public Elements<String> build(){
+        return new Elements<String>(set.stream()
+                .sorted());
     }
 
     public boolean contains(String name){

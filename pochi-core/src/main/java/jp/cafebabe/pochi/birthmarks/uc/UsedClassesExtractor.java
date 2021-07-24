@@ -7,13 +7,12 @@ import jp.cafebabe.birthmarks.extractors.PochiClassVisitor;
 import org.objectweb.asm.ClassVisitor;
 
 public class UsedClassesExtractor extends AbstractExtractor {
-
     public UsedClassesExtractor(Configuration config) {
         super(new BirthmarkType("uc"), config);
     }
 
     @Override
-    public PochiClassVisitor visitor(ClassVisitor parent) {
+    public PochiClassVisitor<String> visitor(ClassVisitor parent) {
         return new UCBirthmarkExtractVisitor(parent, configuration(), type());
     }
 }

@@ -15,7 +15,7 @@ import jp.cafebabe.kunai.entries.Entry;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 
-public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor {
+public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<KGram<Integer>> {
     private Map<String, List<Integer>> opcodes = new LinkedHashMap<>();
     private KGramBuilder<Integer> builder;
 
@@ -25,9 +25,9 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor {
     }
 
     @Override
-    public Birthmark build(Entry entry) {
+    public Birthmark<KGram<Integer>> build(Entry entry) {
         Metadata metadata = Metadata.build(entry, type());
-        return new Birthmark(metadata, buildElements(opcodes));
+        return new Birthmark<>(metadata, buildElements(opcodes));
     }
 
     @Override
@@ -47,14 +47,13 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor {
         return new OpcodeExtractionMethodVisitor(visitor, list);
     }
 
-    private Elements buildElements(Map<String, List<Integer>> map){
+    private Elements<KGram<Integer>> buildElements(Map<String, List<Integer>> map){
         return map.values()
                 .stream().map(this::toElements)
                 .reduce(Elements.empty(), Elements::merge);
     }
 
-    private Elements toElements(List<Integer> list){
-        return new Elements(builder.build(list)
-                .map(KGram::toElement));
+    private Elements<KGram<Integer>> toElements(List<Integer> list){
+        return new Elements<>(builder.build(list));
     }
 }

@@ -17,23 +17,23 @@ import org.junit.Test;
 import jp.cafebabe.kunai.entries.ClassName;
 
 public class BirthmarksTest {
-    private Birthmarks birthmarks;
+    private Birthmarks<String> birthmarks;
 
     @Before
     public void setUp() throws Exception{
-        Birthmark[] array = new Birthmark[3];
-        array[0] = new Birthmark(new Metadata(new ClassName("c1"), new URI("source1"), new BirthmarkType("hoge1")),
-                new Elements(IntStream.range(1, 2).mapToObj(label -> new Element("e" + label))));
-        array[1] = new Birthmark(new Metadata(new ClassName("c2"), new URI("source2"), new BirthmarkType("hoge1")),
-                new Elements(IntStream.range(1, 4).mapToObj(label -> new Element("e" + label))));
-        array[2] = new Birthmark(new Metadata(new ClassName("c3"), new URI("source3"), new BirthmarkType("hoge1")),
-                new Elements(IntStream.range(1, 6).mapToObj(label -> new Element("e" + label))));
-        birthmarks = new Birthmarks(Arrays.stream(array));
+        List<Birthmark<String>> list = new ArrayList<>();
+        list.add(new Birthmark<String>(new Metadata(new ClassName("c1"), new URI("source1"), new BirthmarkType("hoge1")),
+                new Elements<String>(IntStream.range(1, 2).mapToObj(label -> "e" + label))));
+        list.add(new Birthmark<String>(new Metadata(new ClassName("c2"), new URI("source2"), new BirthmarkType("hoge1")),
+                new Elements<String>(IntStream.range(1, 4).mapToObj(label -> "e" + label))));
+        list.add(new Birthmark<String>(new Metadata(new ClassName("c3"), new URI("source3"), new BirthmarkType("hoge1")),
+                new Elements<String>(IntStream.range(1, 6).mapToObj(label -> "e" + label))));
+        this.birthmarks = new Birthmarks<>(list.stream());
     }
 
     @Test
     public void testBasic(){
-        List<Birthmark> list = new ArrayList<>();
+        List<Birthmark<String>> list = new ArrayList<>();
         birthmarks.forEach(item -> list.add(item));
 
         assertThat(birthmarks.count(), is(3L));
@@ -48,7 +48,7 @@ public class BirthmarksTest {
 
     @Test
     public void testBirthmarkType() throws Exception{
-        List<Birthmark> list = new ArrayList<>();
+        List<Birthmark<String>> list = new ArrayList<>();
         birthmarks.forEach(item -> list.add(item));
 
         assertThat(list.get(0).className(), is(new ClassName("c1")));
@@ -58,12 +58,12 @@ public class BirthmarksTest {
 
     @Test
     public void testAppend() throws Exception{
-        Birthmark b1 = new Birthmark(new Metadata(new ClassName("o1"), new URI("otherSource"), new BirthmarkType("hoge1")),
-                new Elements(IntStream.range(1, 7).mapToObj(label -> new Element("e" + label))));
+        Birthmark<String> b1 = new Birthmark<>(new Metadata(new ClassName("o1"), new URI("otherSource"), new BirthmarkType("hoge1")),
+                new Elements<>(IntStream.range(1, 7).mapToObj(label -> "e" + label)));
 
-        Birthmarks other = birthmarks.merge(new Birthmarks(Stream.of(b1)));
+        Birthmarks<String> other = birthmarks.merge(new Birthmarks<>(Stream.of(b1)));
 
-        List<Birthmark> list = other.stream().collect(Collectors.toList());
+        List<Birthmark<String>> list = other.stream().collect(Collectors.toList());
         assertThat(list.size(), is(4));
         assertThat(list.get(0).metadata().toString(), is("c1,source1,hoge1"));
         assertThat(list.get(1).metadata().toString(), is("c2,source2,hoge1"));

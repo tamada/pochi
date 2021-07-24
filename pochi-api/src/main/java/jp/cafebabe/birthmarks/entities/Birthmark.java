@@ -8,13 +8,13 @@ import java.util.function.Predicate;
 
 import jp.cafebabe.kunai.entries.ClassName;
 
-public class Birthmark implements Acceptor<Birthmark>, Serializable{
+public class Birthmark<T> implements Acceptor<T>, Serializable{
     private static final long serialVersionUID = -2383836180204233756L;
 
-    private Elements elements;
+    private Elements<T> elements;
     private Metadata metadata;
 
-    public Birthmark(Metadata metadata, Elements elements){
+    public Birthmark(Metadata metadata, Elements<T> elements){
         this.metadata = metadata;
         this.elements = elements;
     }
@@ -23,7 +23,7 @@ public class Birthmark implements Acceptor<Birthmark>, Serializable{
         return metadata.className();
     }
 
-    public boolean contains(Element element){
+    public boolean contains(T element){
         return elements.contains(element);
     }
 
@@ -31,12 +31,12 @@ public class Birthmark implements Acceptor<Birthmark>, Serializable{
         return elements.size();
     }
 
-    public void forEach(Consumer<Element> consumer){
+    public void forEach(Consumer<T> consumer){
         elements.forEach(consumer);
     }
 
-    public Birthmark filter(Predicate<Element> predicate){
-        return new Birthmark(metadata(),
+    public Birthmark<T> filter(Predicate<T> predicate){
+        return new Birthmark<>(metadata(),
                 elements.filter(predicate));
     }
 
@@ -65,7 +65,7 @@ public class Birthmark implements Acceptor<Birthmark>, Serializable{
     }
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor<T> visitor) {
         metadata.accept(visitor);
         elements.accept(visitor);
     }

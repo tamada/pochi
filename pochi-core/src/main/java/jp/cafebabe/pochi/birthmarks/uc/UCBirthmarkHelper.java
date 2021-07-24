@@ -14,7 +14,7 @@ public class UCBirthmarkHelper {
         this.context = context;
     }
 
-    public Elements build(){
+    public Elements<String> build(){
         return names.build();
     }
 

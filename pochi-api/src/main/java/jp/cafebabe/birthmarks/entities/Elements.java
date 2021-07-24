@@ -2,50 +2,49 @@ package jp.cafebabe.birthmarks.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Elements implements Acceptor<Elements>, Serializable{
+public class Elements<T> implements Acceptor<T>, Serializable, Iterable<T> {
     private static final long serialVersionUID = -8713896078315146158L;
 
-    private List<Element> list = new ArrayList<>();
+    private List<T> list = new ArrayList<>();
 
-    public Elements(Stream<Element> stream){
+    public Elements(Stream<T> stream){
         stream.forEach(list::add);
     }
 
-    public boolean contains(Element element){
+    public boolean contains(T element){
         return list.contains(element);
     }
 
-    public void forEach(Consumer<Element> consumer){
-        list.stream()
-        .forEach(consumer);
+    public Iterator<T> iterator() {
+        return list.iterator();
     }
 
     public int size(){
         return list.size();
     }
 
-    public Elements filter(Predicate<Element> predicate){
-        return new Elements(list.stream()
+    public Elements<T> filter(Predicate<T> predicate){
+        return new Elements<>(list.stream()
                 .filter(predicate));
     }
 
-    public static Elements empty(){
-        return new Elements(Stream.of());
+    public static <T> Elements<T> empty(){
+        return new Elements<>(Stream.of());
     }
 
-    public Elements merge(Elements other){
-        return new Elements(Stream.concat(list.stream(), 
+    public Elements<T> merge(Elements<T> other){
+        return new Elements<>(Stream.concat(list.stream(),
                 other.list.stream()));
     }
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor<T> visitor) {
         list.stream().forEach(element -> visitor.visitElement(element));
     }
 

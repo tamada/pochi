@@ -5,24 +5,24 @@ import jp.cafebabe.birthmarks.entities.Pair;
 
 import java.io.Serializable;
 
-public class Comparison implements Serializable {
-    private Pair<Birthmark> pair;
+public class Comparison<T> implements Serializable {
+    private Pair<Birthmark<T>> pair;
     private Similarity similarity;
 
-    public Comparison(Birthmark left, Birthmark right, Similarity similarity){
+    public Comparison(Birthmark<T> left, Birthmark<T> right, Similarity similarity){
         this(new Pair<>(left, right), similarity);
     }
 
-    public Comparison(Pair<Birthmark> pair, Similarity similarity){
+    public Comparison(Pair<Birthmark<T>> pair, Similarity similarity){
         this.pair = pair;
         this.similarity = similarity;
     }
 
-    public Birthmark left(){
+    public Birthmark<T> left(){
         return pair.left();
     }
 
-    public Birthmark right(){
+    public Birthmark<T> right(){
         return pair.right();
     }
 
