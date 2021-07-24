@@ -58,7 +58,8 @@ module jp.cafebabe.pochi {
 
     provides jp.cafebabe.birthmarks.extractors.ExtractorBuilder with
             jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder,
-            jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder;
+            jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder,
+            jp.cafebabe.pochi.birthmarks.uc.FrequenciesUsedClassesExtractorBuilder;
 
     provides jp.cafebabe.birthmarks.comparators.ComparatorBuilder with
             jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder,
