@@ -15,7 +15,7 @@ public class KGramBasedBirthmarkExtractor extends AbstractExtractor {
     }
 
     @Override
-    public PochiClassVisitor visitor(ClassVisitor parent) {
+    public PochiClassVisitor<KGram<Integer>> visitor(ClassVisitor parent) {
         return new KGramBasedBirthmarkExtractVisitor(parent, configuration(), type(), kvalue);
     }
 }

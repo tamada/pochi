@@ -7,7 +7,7 @@ public class Result<T extends Acceptor<T>> {
         this.result = result;
     }
 
-    public void accept(Visitor visitor){
+    public void accept(Visitor<T> visitor){
         result.accept(visitor);
     }
 }

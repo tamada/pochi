@@ -9,16 +9,6 @@ public class Pair<T extends Serializable> extends Couple<T, T> implements Serial
         super(item1, item2);
     }
 
-    public <R> R ifEquals(R trueCaseValue, R falseCaseValue) {
-        return ifEquals(() -> trueCaseValue, () -> falseCaseValue);
-    }
-
-    public <R> R ifEquals(Supplier<R> trueCase, Supplier<R> falseCase) {
-        if(Objects.equals(left(), right()))
-            return trueCase.get();
-        return falseCase.get();
-    }
-
     @Override
     public String toString() {
         return this.map(

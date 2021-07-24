@@ -19,7 +19,7 @@ public abstract class AbstractExtractor extends AbstractTask<BirthmarkType> impl
     }
 
     @Override
-    public final Either<Exception, Birthmark> extractEach(Entry entry) {
+    public final <T> Either<Exception, Birthmark<T>> extractEach(Entry entry) {
         try {
             return Either.right(extractImpl(entry));
         } catch (Exception e) {
@@ -27,14 +27,14 @@ public abstract class AbstractExtractor extends AbstractTask<BirthmarkType> impl
         }
     }
 
-    private Birthmark extractImpl(Entry entry) throws IOException {
+    private <T> Birthmark<T> extractImpl(Entry entry) throws IOException {
         try (InputStream in = entry.openStream()) {
-            PochiClassVisitor visitor = visitor(new ClassWriter(0));
+            PochiClassVisitor<T> visitor = visitor(new ClassWriter(0));
             return accept(in, entry, visitor);
         }
     }
 
-    private Birthmark accept(InputStream in, Entry entry, PochiClassVisitor visitor) throws IOException {
+    private <T> Birthmark<T> accept(InputStream in, Entry entry, PochiClassVisitor<T> visitor) throws IOException {
         ClassReader reader = new ClassReader(in);
         reader.accept(visitor, ClassReader.SKIP_DEBUG);
         return visitor.build(entry);

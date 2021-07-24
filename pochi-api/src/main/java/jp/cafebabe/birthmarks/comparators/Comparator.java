@@ -11,18 +11,18 @@ public interface Comparator extends Task<ComparatorType> {
     @Override
     ComparatorType type();
 
-    Comparisons compare(Birthmarks results, PairMatcher<Birthmark> maker);
+    <T> Comparisons compare(Birthmarks<T> results, PairMatcher<Birthmark<T>> maker);
 
-    Comparisons compare(Birthmarks left, Birthmarks right, PairMatcher<Birthmark> maker);
+    <T> Comparisons compare(Birthmarks<T> left, Birthmarks<T> right, PairMatcher<Birthmark<T>> maker);
 
-    Either<Exception, Similarity> similarity(Pair<Birthmark> pair);
+    <T> Either<Exception, Similarity> similarity(Pair<Birthmark<T>> pair);
 
-    default Either<Exception, Comparison> compare(Pair<Birthmark> pair){
+    default <T> Either<Exception, Comparison<T>> compare(Pair<Birthmark<T>> pair){
         return similarity(pair)
-                .map(sim -> new Comparison(pair, sim));
+                .map(sim -> new Comparison<>(pair, sim));
     }
 
-    default Either<Exception, Comparison> compare(Birthmark left, Birthmark right) {
+    default <T> Either<Exception, Comparison<T>> compare(Birthmark<T> left, Birthmark<T> right) {
         return compare(new Pair<>(left, right));
     }
 }

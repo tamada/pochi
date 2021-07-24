@@ -1,12 +1,9 @@
 package jp.cafebabe.pochi.birthmarks.uc;
 
-import jp.cafebabe.birthmarks.entities.Element;
 import jp.cafebabe.birthmarks.entities.Elements;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class Names {
     private Map<String, Integer> set = new HashMap<>();
@@ -15,10 +12,9 @@ public class Names {
         set.put(name, set.getOrDefault(name, 0) + 1);
     }
 
-    public Elements build(){
-        return new Elements(set.keySet().stream()
-                .sorted()
-                .map(Element::new));
+    public Elements<String> build(){
+        return new Elements<String>(set.keySet().stream()
+                .sorted());
     }
 
     public boolean contains(String name){

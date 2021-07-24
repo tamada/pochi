@@ -18,7 +18,7 @@ import org.objectweb.asm.signature.SignatureReader;
  *
  * @author Haruaki TAMADA
  */
-public class UCBirthmarkExtractVisitor extends PochiClassVisitor {
+public class UCBirthmarkExtractVisitor extends PochiClassVisitor<String> {
     private UCBirthmarkHelper helper;
 
     public UCBirthmarkExtractVisitor(ClassVisitor visitor, Configuration context, BirthmarkType type){
@@ -27,9 +27,9 @@ public class UCBirthmarkExtractVisitor extends PochiClassVisitor {
     }
 
     @Override
-    public Birthmark build(Entry entry){
+    public Birthmark<String> build(Entry entry){
         Metadata source = Metadata.build(entry, type());
-        return new Birthmark(source, helper.build());
+        return new Birthmark<>(source, helper.build());
     }
 
     @Override
