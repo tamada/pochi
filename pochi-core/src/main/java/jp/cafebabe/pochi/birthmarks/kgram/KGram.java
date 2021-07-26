@@ -43,12 +43,13 @@ public class KGram<T extends Serializable> implements Serializable{
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof KGram
-                && getClass().isAssignableFrom(other.getClass())
-                && sameList(this.values, ((KGram<T>)other).values);
-    }
-
-    private boolean sameList(List<T> list, List<T> other) {
-        return list.equals(other);
+        Boolean flag = other instanceof KGram
+                && getClass().isAssignableFrom(other.getClass());
+        if(flag) {
+            @SuppressWarnings("unchecked")
+            KGram<T> kgram = (KGram<T>)other;
+            return values.equals(kgram.values);
+        }
+        return false;
     }
 }

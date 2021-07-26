@@ -12,7 +12,7 @@ public abstract class PochiClassVisitor<T> extends ClassVisitor{
     private Configuration context;
     private BirthmarkType type;
 
-    public PochiClassVisitor(ClassVisitor parent, Configuration context, BirthmarkType type) {
+    public PochiClassVisitor(ClassVisitor parent, BirthmarkType type, Configuration context) {
         super(Opcodes.ASM5, parent);
         this.context = context;
         this.type = type;

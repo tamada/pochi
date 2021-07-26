@@ -8,8 +8,8 @@ import jp.cafebabe.kunai.entries.Entry;
 import org.objectweb.asm.ClassVisitor;
 
 public class FUCBirhtmakrExtractVisitor extends UsedClassesBirthmarkExtractVisitor<Frequency> {
-    public FUCBirhtmakrExtractVisitor(ClassVisitor parent, Configuration configuration, BirthmarkType type) {
-        super(parent, configuration, type);
+    public FUCBirhtmakrExtractVisitor(ClassVisitor parent, BirthmarkType type, Configuration configuration) {
+        super(parent, type, configuration);
     }
 
     @Override

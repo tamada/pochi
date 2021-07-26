@@ -12,8 +12,8 @@ import org.objectweb.asm.ClassVisitor;
  * @author Haruaki TAMADA
  */
 public class UCBirthmarkExtractVisitor extends UsedClassesBirthmarkExtractVisitor<String> {
-    public UCBirthmarkExtractVisitor(ClassVisitor visitor, Configuration context, BirthmarkType type){
-        super(visitor, context, type);
+    public UCBirthmarkExtractVisitor(ClassVisitor visitor, BirthmarkType type, Configuration context){
+        super(visitor, type, context);
     }
 
     @Override
