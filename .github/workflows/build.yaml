@@ -34,8 +34,7 @@ jobs:
             - name: build
               working-directory: .
               run: |
-                  pwd
-                  ls -la .
+                  bash ./bin/setup_project.sh
                   mvn package
 
             - name: send coverage to coveralls
