@@ -8,7 +8,6 @@ import jp.cafebabe.birthmarks.extractors.Extractor;
 import jp.cafebabe.kunai.entries.ClassName;
 import jp.cafebabe.kunai.source.DataSource;
 import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
-import net.sf.extjwnl.dictionary.Dictionary;
 import org.junit.Test;
 
 import java.net.URL;
@@ -18,24 +17,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class VerbsOfMethodsBirthmarkExtractorTest {
+    @Test
+    public void testExtracrVerb() throws Exception {
+
+    }
+
     public Birthmarks<String> extract(String path) throws Exception{
         URL location = getClass().getResource(path);
         Configuration config = new ConfigurationBuilder().configuration();
         Extractor extractor = new VerbsOfMethodsExtractorBuilder().build(config);
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
         return extractor.extract(source);
-    }
-
-    @Test
-    public void testCheckEnvironment() throws Exception {
-        URL url = Dictionary.class.getResource("/extjwnl_resource_properties.xml");
-        System.out.println(url);
-        assertThat(url, is(not(nullValue())));
     }
 
     @Test
@@ -82,9 +77,9 @@ public class VerbsOfMethodsBirthmarkExtractorTest {
         List<String> elements = new ArrayList<>();
         list.get(0).forEach(item -> elements.add(item));
 
-        assertThat(elements.size(), is(6));
+        assertThat(elements.size(), is(4));
         assertThat(elements.get(0), is("build"));
-        assertThat(elements.get(1), is("init"));
+        assertThat(elements.get(1), is("initialize"));
         assertThat(elements.get(2), is("make"));
         assertThat(elements.get(3), is("run"));
     }

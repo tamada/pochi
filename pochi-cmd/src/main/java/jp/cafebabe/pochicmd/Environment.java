@@ -1,5 +1,7 @@
 package jp.cafebabe.pochicmd;
 
+import jp.cafebabe.pochi.Pochi;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class Environment {
-    private Path pochiHome = findPochiHome();
     private Classpath classpath = new Classpath();
 
     public String classpath(Arguments args) {
@@ -18,23 +19,6 @@ public class Environment {
     }
 
     public Path pochiHome() {
-        return pochiHome;
-    }
-
-    private static List<String> targetPaths() {
-        return Arrays.asList(System.getenv("POCHI_HOME"), "/opt/pochi", "/usr/local/opt/pochi", String.format("pochi-%s", Main.VERSION), ".");
-    }
-
-    private Path findPochiHome() {
-        List<String> paths = targetPaths();
-        Optional<String> path = paths.stream()
-                .filter(p -> isExistDirectory(p))
-                .findFirst();
-        return Paths.get(path.orElse("."));
-    }
-
-    private boolean isExistDirectory(String path) {
-        if(path == null) return false;
-        return Files.isDirectory(Paths.get(path));
+        return Pochi.home();
     }
 }

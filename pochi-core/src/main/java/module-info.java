@@ -47,8 +47,7 @@ import jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
 module jp.cafebabe.pochi {
     requires jp.cafebabe.birthmarks;
     requires java.logging;
-    requires extjwnl;
-    requires extjwnl.data.wn31;
+    requires org.apache.opennlp.tools;
 
     uses jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
     uses jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
