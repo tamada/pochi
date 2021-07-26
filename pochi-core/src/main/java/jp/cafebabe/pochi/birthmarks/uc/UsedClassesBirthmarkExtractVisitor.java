@@ -3,7 +3,6 @@ package jp.cafebabe.pochi.birthmarks.uc;
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.BirthmarkType;
-import jp.cafebabe.birthmarks.entities.Metadata;
 import jp.cafebabe.birthmarks.extractors.PochiClassVisitor;
 import jp.cafebabe.kunai.entries.Entry;
 import org.objectweb.asm.ClassVisitor;
@@ -21,8 +20,8 @@ import java.util.Arrays;
 abstract class UsedClassesBirthmarkExtractVisitor<T> extends PochiClassVisitor<T> {
     protected UCBirthmarkHelper helper;
 
-    public UsedClassesBirthmarkExtractVisitor(ClassVisitor visitor, Configuration context, BirthmarkType type){
-        super(visitor, context, type);
+    public UsedClassesBirthmarkExtractVisitor(ClassVisitor visitor, BirthmarkType type, Configuration context){
+        super(visitor, type, context);
         this.helper = new UCBirthmarkHelper(context);
     }
 
@@ -52,7 +51,7 @@ abstract class UsedClassesBirthmarkExtractVisitor<T> extends PochiClassVisitor<T
         helper.addAll(exceptions);
         addMethodDescriptor(desc);
         addSignatureClass(signature);
-        return new UCBirthmarkExtractMethodVisitor(
+        return new UCBirthmarkExtractMethodVisitor<>(
                 super.visitMethod(access, name, desc, signature, exceptions), helper, this);
     }
 

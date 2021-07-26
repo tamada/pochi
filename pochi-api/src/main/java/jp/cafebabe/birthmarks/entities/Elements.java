@@ -2,18 +2,20 @@ package jp.cafebabe.birthmarks.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class Elements<T> implements Acceptor<T>, Serializable, Iterable<T> {
     private static final long serialVersionUID = -8713896078315146158L;
 
     private List<T> list = new ArrayList<>();
 
-    public Elements(Stream<T> stream){
+    private Elements(Stream<T> stream){
         stream.forEach(list::add);
     }
 
@@ -36,6 +38,19 @@ public class Elements<T> implements Acceptor<T>, Serializable, Iterable<T> {
 
     public static <T> Elements<T> empty(){
         return new Elements<>(Stream.of());
+    }
+
+    @SafeVarargs
+    public static <T> Elements<T> of(T... elements) {
+        return of(Arrays.stream(elements));
+    }
+
+    public static <T> Elements<T> of(Iterable<T> elements) {
+        return of(StreamSupport.stream(elements.spliterator(), false));
+    }
+
+    public static <T> Elements<T> of(Stream<T> stream) {
+        return new Elements<>(stream);
     }
 
     public Elements<T> merge(Elements<T> other){

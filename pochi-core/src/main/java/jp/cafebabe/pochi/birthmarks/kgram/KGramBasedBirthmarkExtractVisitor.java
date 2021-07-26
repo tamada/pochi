@@ -19,8 +19,8 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<KGram<I
     private Map<String, List<Integer>> opcodes = new LinkedHashMap<>();
     private KGramBuilder<Integer> builder;
 
-    public KGramBasedBirthmarkExtractVisitor(ClassVisitor parent, Configuration context, BirthmarkType type, int kvalue) {
-        super(parent, context, type);
+    public KGramBasedBirthmarkExtractVisitor(ClassVisitor parent, BirthmarkType type, Configuration context, int kvalue) {
+        super(parent, type, context);
         builder = new KGramBuilder<>(kvalue);
     }
 
@@ -54,6 +54,6 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<KGram<I
     }
 
     private Elements<KGram<Integer>> toElements(List<Integer> list){
-        return new Elements<>(builder.build(list));
+        return Elements.of(builder.build(list));
     }
 }

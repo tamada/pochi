@@ -14,7 +14,7 @@ public class Names {
     }
 
     public <T> Elements<T> build(BiFunction<String, Integer, T> mapper) {
-        return new Elements<T>(set.entrySet().stream()
+        return Elements.of(set.entrySet().stream()
                 .map(entry -> mapper.apply(entry.getKey(), entry.getValue()))
                 .sorted());
     }

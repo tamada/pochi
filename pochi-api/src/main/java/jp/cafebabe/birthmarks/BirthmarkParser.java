@@ -31,7 +31,7 @@ public interface BirthmarkParser<String> extends Task<ParserType> {
     List<Birthmark<String>> parseEntry(Entry entry);
 
     default Elements<String> buildElements(Stream<String> stream){
-        return new Elements<String>(stream);
+        return Elements.of(stream);
     }
 
     Stream<Metadata> failedSources();    

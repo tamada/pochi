@@ -1,3 +1,5 @@
+import jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
+
 /**
  * <p>
  * The module <code>jp.cafebabe.pochi</code> contains the implementation classes of the APIs defined in the module <code>{@link jp.cafebabe.birthmarks}</code>.
@@ -45,6 +47,8 @@
 module jp.cafebabe.pochi {
     requires jp.cafebabe.birthmarks;
     requires java.logging;
+    requires extjwnl;
+    requires extjwnl.data.wn31;
 
     uses jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
     uses jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
@@ -59,7 +63,8 @@ module jp.cafebabe.pochi {
     provides jp.cafebabe.birthmarks.extractors.ExtractorBuilder with
             jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder,
             jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder,
-            jp.cafebabe.pochi.birthmarks.uc.FrequenciesUsedClassesExtractorBuilder;
+            jp.cafebabe.pochi.birthmarks.uc.FrequenciesUsedClassesExtractorBuilder,
+            VerbsOfMethodsExtractorBuilder;
 
     provides jp.cafebabe.birthmarks.comparators.ComparatorBuilder with
             jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder,

@@ -17,13 +17,7 @@ public class ElementsTest {
 
     @Before
     public void setUp() throws Exception{
-        List<String> list = new ArrayList<>();
-        list.add("element1");
-        list.add("element2");
-        list.add("element3");
-        list.add("element4");
-
-        elements = new Elements<>(list.stream());
+        elements = Elements.of("element1", "element2", "element3", "element4");
     }
 
     @Test
@@ -57,7 +51,7 @@ public class ElementsTest {
 
     @Test
     public void testMergeElements(){
-        Elements<String> elements2 = new Elements<>(Stream.of("element0"));
+        Elements<String> elements2 = Elements.of("element0");
         Elements<String> elements3 = elements2.merge(elements);
 
         assertThat(elements3.size(), is(5));

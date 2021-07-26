@@ -12,6 +12,6 @@ import java.util.stream.Stream;
 public class BirthmarkBuilderHelper {
     public Birthmark<String> buildBirthmark(String name, Stream<String> elements) throws Exception{
         Metadata metadata = new Metadata(new ClassName(name), new URI("somelocation"), BirthmarkType.UNKNOWN);
-        return new Birthmark<>(metadata, new Elements<>(elements));
+        return new Birthmark<>(metadata, Elements.of(elements));
     }
 }

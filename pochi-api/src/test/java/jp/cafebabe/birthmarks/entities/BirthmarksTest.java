@@ -1,20 +1,18 @@
 package jp.cafebabe.birthmarks.entities;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import jp.cafebabe.kunai.entries.ClassName;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import jp.cafebabe.kunai.entries.ClassName;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class BirthmarksTest {
     private Birthmarks<String> birthmarks;
@@ -23,11 +21,11 @@ public class BirthmarksTest {
     public void setUp() throws Exception{
         List<Birthmark<String>> list = new ArrayList<>();
         list.add(new Birthmark<String>(new Metadata(new ClassName("c1"), new URI("source1"), new BirthmarkType("hoge1")),
-                new Elements<String>(IntStream.range(1, 2).mapToObj(label -> "e" + label))));
+                Elements.of(IntStream.range(1, 2).mapToObj(label -> "e" + label))));
         list.add(new Birthmark<String>(new Metadata(new ClassName("c2"), new URI("source2"), new BirthmarkType("hoge1")),
-                new Elements<String>(IntStream.range(1, 4).mapToObj(label -> "e" + label))));
+                Elements.of(IntStream.range(1, 4).mapToObj(label -> "e" + label))));
         list.add(new Birthmark<String>(new Metadata(new ClassName("c3"), new URI("source3"), new BirthmarkType("hoge1")),
-                new Elements<String>(IntStream.range(1, 6).mapToObj(label -> "e" + label))));
+                Elements.of(IntStream.range(1, 6).mapToObj(label -> "e" + label))));
         this.birthmarks = new Birthmarks<>(list.stream());
     }
 
@@ -59,7 +57,7 @@ public class BirthmarksTest {
     @Test
     public void testAppend() throws Exception{
         Birthmark<String> b1 = new Birthmark<>(new Metadata(new ClassName("o1"), new URI("otherSource"), new BirthmarkType("hoge1")),
-                new Elements<>(IntStream.range(1, 7).mapToObj(label -> "e" + label)));
+                Elements.of(IntStream.range(1, 7).mapToObj(label -> "e" + label)));
 
         Birthmarks<String> other = birthmarks.merge(new Birthmarks<>(Stream.of(b1)));
 

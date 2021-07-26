@@ -19,7 +19,7 @@ public class BirthmarkTest {
     @Before
     public void setUp() throws Exception{
         Metadata metadata = new Metadata(new ClassName("test"), new URI("source1"), new BirthmarkType("type1"));
-        Elements<String> elements = new Elements<>(Arrays.stream(new String[] { "e1", "e2", "e3" }));
+        Elements<String> elements = Elements.of("e1", "e2", "e3");
         this.birthmark = new Birthmark<>(metadata, elements);
     }
 
