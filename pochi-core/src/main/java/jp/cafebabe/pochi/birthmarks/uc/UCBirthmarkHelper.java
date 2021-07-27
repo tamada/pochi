@@ -5,6 +5,7 @@ import java.util.function.BiFunction;
 
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Frequency;
 import org.objectweb.asm.Type;
 
 public class UCBirthmarkHelper {
@@ -15,12 +16,12 @@ public class UCBirthmarkHelper {
         this.context = context;
     }
 
-    public <T> Elements<T> build(BiFunction<String, Integer, T> mapper) {
-        return names.build(mapper);
+    public Elements<Frequency> frequencies() {
+        return names.frequencyElements();
     }
 
-    public Elements<String> build() {
-        return names.build((k, v) -> k);
+    public Elements<String> list() {
+        return names.listElements();
     }
 
     public void addAll(String[] names){

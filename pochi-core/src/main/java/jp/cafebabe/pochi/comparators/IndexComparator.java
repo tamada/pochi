@@ -4,9 +4,11 @@ import jp.cafebabe.birthmarks.comparators.AbstractComparator;
 import jp.cafebabe.birthmarks.comparators.ComparatorType;
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.entities.elements.ListElements;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class IndexComparator extends AbstractComparator {
     public IndexComparator(ComparatorType type, Configuration config){
@@ -22,8 +24,10 @@ public abstract class IndexComparator extends AbstractComparator {
 
     <T> Set<T> intersect(Birthmark<T> left, Birthmark<T> right){
         Set<T> intersection = new HashSet<>();
-        right.filter(left::contains)
-            .forEach(intersection::add);
+        ListElements rightList = right.elements().asSet();
+        left.elements().asSet().stream()
+                .filter(rightList::contains)
+                .forEach(item -> intersection.add((T) item));
         return intersection;
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Birthmark;
@@ -15,7 +16,7 @@ import jp.cafebabe.kunai.entries.Entry;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 
-public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<KGram<Integer>> {
+public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<String> {
     private Map<String, List<Integer>> opcodes = new LinkedHashMap<>();
     private KGramBuilder<Integer> builder;
 
@@ -25,7 +26,7 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<KGram<I
     }
 
     @Override
-    public Birthmark<KGram<Integer>> build(Entry entry) {
+    public Birthmark<String> build(Entry entry) {
         Metadata metadata = Metadata.build(entry, type());
         return new Birthmark<>(metadata, buildElements(opcodes));
     }
@@ -47,13 +48,14 @@ public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<KGram<I
         return new OpcodeExtractionMethodVisitor(visitor, list);
     }
 
-    private Elements<KGram<Integer>> buildElements(Map<String, List<Integer>> map){
+    private Elements<String> buildElements(Map<String, List<Integer>> map){
         return map.values()
                 .stream().map(this::toElements)
-                .reduce(Elements.empty(), Elements::merge);
+                .reduce(Elements.listElements(), Elements::merge);
     }
 
-    private Elements<KGram<Integer>> toElements(List<Integer> list){
-        return Elements.of(builder.build(list));
+    private Elements<String> toElements(List<Integer> list){
+        return Elements.listElements(builder.build(list)
+                .map(kgram -> kgram.toString()));
     }
 }

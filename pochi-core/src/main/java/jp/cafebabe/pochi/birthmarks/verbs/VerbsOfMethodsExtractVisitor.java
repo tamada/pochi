@@ -29,7 +29,7 @@ public class VerbsOfMethodsExtractVisitor extends PochiClassVisitor<String> {
     public Birthmark<String> build(Entry entry){
         Metadata source = Metadata.build(entry, type());
         return new Birthmark<String>(source,
-                Elements.of(verbs.stream().sorted()));
+                Elements.listElements(verbs.stream().sorted()));
     }
 
     @Override

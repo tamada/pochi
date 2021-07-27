@@ -16,6 +16,7 @@ public class ComparatorBuildersTest {
         List<ComparatorType> types = new ComparatorBuilders().availableTypes()
                 .collect(Collectors.toList());
 
+        assertThat(types, hasItem(new ComparatorType("Cosine")));
         assertThat(types, hasItem(new ComparatorType("JaccardIndex")));
         assertThat(types, hasItem(new ComparatorType("DiceIndex")));
         assertThat(types, hasItem(new ComparatorType("EditDistance")));

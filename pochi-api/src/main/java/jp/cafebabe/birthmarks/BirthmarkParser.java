@@ -4,6 +4,7 @@ import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Birthmarks;
 import jp.cafebabe.birthmarks.entities.Elements;
 import jp.cafebabe.birthmarks.entities.Metadata;
+import jp.cafebabe.birthmarks.entities.elements.ListElements;
 import jp.cafebabe.kunai.entries.Entry;
 import jp.cafebabe.kunai.source.DataSource;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public interface BirthmarkParser<String> extends Task<ParserType> {
+public interface BirthmarkParser extends Task<ParserType> {
     @Override
     ParserType type();
 
@@ -30,8 +31,8 @@ public interface BirthmarkParser<String> extends Task<ParserType> {
 
     List<Birthmark<String>> parseEntry(Entry entry);
 
-    default Elements<String> buildElements(Stream<String> stream){
-        return Elements.of(stream);
+    default Elements<String> buildElements(Stream<String> array){
+        return Elements.listElements(array);
     }
 
     Stream<Metadata> failedSources();    

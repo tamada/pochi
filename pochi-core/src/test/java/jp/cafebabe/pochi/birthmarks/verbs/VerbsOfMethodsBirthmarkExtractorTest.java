@@ -20,11 +20,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class VerbsOfMethodsBirthmarkExtractorTest {
-    @Test
-    public void testExtracrVerb() throws Exception {
-
-    }
-
     public Birthmarks<String> extract(String path) throws Exception{
         URL location = getClass().getResource(path);
         Configuration config = new ConfigurationBuilder().configuration();

@@ -33,7 +33,7 @@
  *   <dd>
  *     <ul>
  *       <li>{@link jp.cafebabe.birthmarks.entities.Birthmark}
- *         shows the birthmark of the certain class file, which contains the list of {@link jp.cafebabe.birthmarks.entities.Element}.
+ *         shows the birthmark of the certain class file, which contains {@link jp.cafebabe.birthmarks.entities.Elements}.
  *       </li>
  *       <li>{@link jp.cafebabe.birthmarks.entities.Pair Pair&lt;Birthmark&gt;}
  *         is the pair of birthmarks for comparing them.
@@ -57,6 +57,7 @@ module jp.cafebabe.birthmarks {
    exports jp.cafebabe.birthmarks.comparators;
    exports jp.cafebabe.birthmarks.config;
    exports jp.cafebabe.birthmarks.entities;
+   exports jp.cafebabe.birthmarks.entities.elements;
    exports jp.cafebabe.birthmarks.extractors;
    exports jp.cafebabe.birthmarks.pairs;
 
