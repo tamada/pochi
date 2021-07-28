@@ -56,7 +56,7 @@ jobs:
           bash ./bin/setup_project.sh
           POCHI_HOME=$PWD mvn package
           mkdir lib
-          cp */target/*.jar lib
+          cp pochi-cmd/target/*.jar lib
 
       - name: Build Site
         run: |
