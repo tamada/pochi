@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pochi</title>
+    <link>https://tamada.github.io/pochi/categories/pochi/</link>
+    <description>Recent content on Pochi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 29 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://tamada.github.io/pochi/categories/pochi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview（概要）</title>
+      <link>https://tamada.github.io/pochi/v1.0.0/overview/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/v1.0.0/overview/</guid>
+      <description>Overview This product is the software birthmark platform for Java programs. The software birthmark aims to detect the theft of programs from characteristics of the programs.
+Typical scenario of the birthmarking is:
+ to extract birthmarks of the specified type from programs, to compare extracted birthmarks, and compute similarities among birthmarks, and to detect similar programs from the computed similarities.  Note that birthmarks do not prove the theft, just detect suspected theft.</description>
+    </item>
+    
+  </channel>
+</rss>
