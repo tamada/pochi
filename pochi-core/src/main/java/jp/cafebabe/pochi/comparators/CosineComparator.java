@@ -6,10 +6,7 @@ import jp.cafebabe.birthmarks.comparators.Similarity;
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Elements;
-import jp.cafebabe.birthmarks.entities.Frequency;
-import jp.cafebabe.birthmarks.entities.elements.FrequencyElements;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

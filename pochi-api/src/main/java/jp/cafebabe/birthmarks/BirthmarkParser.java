@@ -4,7 +4,6 @@ import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Birthmarks;
 import jp.cafebabe.birthmarks.entities.Elements;
 import jp.cafebabe.birthmarks.entities.Metadata;
-import jp.cafebabe.birthmarks.entities.elements.ListElements;
 import jp.cafebabe.kunai.entries.Entry;
 import jp.cafebabe.kunai.source.DataSource;
 

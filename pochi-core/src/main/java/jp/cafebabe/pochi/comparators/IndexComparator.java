@@ -8,7 +8,6 @@ import jp.cafebabe.birthmarks.entities.elements.ListElements;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public abstract class IndexComparator extends AbstractComparator {
     public IndexComparator(ComparatorType type, Configuration config){

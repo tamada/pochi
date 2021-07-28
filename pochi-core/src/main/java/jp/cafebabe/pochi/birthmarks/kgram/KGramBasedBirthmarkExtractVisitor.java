@@ -1,11 +1,5 @@
 package jp.cafebabe.pochi.birthmarks.kgram;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
-
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.BirthmarkType;
@@ -15,6 +9,11 @@ import jp.cafebabe.birthmarks.extractors.PochiClassVisitor;
 import jp.cafebabe.kunai.entries.Entry;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class KGramBasedBirthmarkExtractVisitor extends PochiClassVisitor<String> {
     private Map<String, List<Integer>> opcodes = new LinkedHashMap<>();

@@ -1,7 +1,6 @@
 package jp.cafebabe.pochi.birthmarks.uc;
 
 import java.util.Arrays;
-import java.util.function.BiFunction;
 
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Elements;

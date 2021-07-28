@@ -1,6 +1,8 @@
 package jp.cafebabe.birthmarks.entities.elements;
 
-import jp.cafebabe.birthmarks.entities.*;
+import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Frequency;
+import jp.cafebabe.birthmarks.entities.Visitor;
 
 import java.util.Arrays;
 import java.util.Iterator;
