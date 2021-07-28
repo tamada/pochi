@@ -19,6 +19,6 @@ public class UCBirthmarkExtractVisitor extends UsedClassesBirthmarkExtractVisito
     @Override
     public Birthmark<String> build(Entry entry){
         Metadata source = Metadata.build(entry, type());
-        return new Birthmark<>(source, helper.build((k, v) -> k));
+        return new Birthmark<>(source, helper.list());
     }
 }

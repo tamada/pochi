@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public interface BirthmarkParser<String> extends Task<ParserType> {
+public interface BirthmarkParser extends Task<ParserType> {
     @Override
     ParserType type();
 
@@ -30,8 +30,8 @@ public interface BirthmarkParser<String> extends Task<ParserType> {
 
     List<Birthmark<String>> parseEntry(Entry entry);
 
-    default Elements<String> buildElements(Stream<String> stream){
-        return Elements.of(stream);
+    default Elements<String> buildElements(Stream<String> array){
+        return Elements.listElements(array);
     }
 
     Stream<Metadata> failedSources();    

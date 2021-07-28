@@ -11,6 +11,10 @@ public class Similarity implements Serializable{
         this.value = value;
     }
 
+    public double value() {
+        return value;
+    }
+
     public boolean isCloseTo(Similarity similarity, double delta){
         return Math.abs(value - similarity.value) < delta;
     }

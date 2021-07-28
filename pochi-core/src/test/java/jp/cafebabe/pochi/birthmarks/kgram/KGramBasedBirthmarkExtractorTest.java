@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class KGramBasedBirthmarkExtractorTest {
-    public Birthmarks<KGram<Integer>> extract(String path, String type) throws Exception{
+    public Birthmarks<String> extract(String path, String type) throws Exception{
         URL location = getClass().getResource(path);
         ExtractorBuilder builder = new ExtractorBuilders().builder(new BirthmarkType(type));
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
@@ -33,34 +33,34 @@ public class KGramBasedBirthmarkExtractorTest {
 
     @Test
     public void testBasic() throws Exception{
-        Birthmarks<KGram<Integer>> birthmarks = extract("/test-resources/HelloWorld.class", "2-gram");
+        Birthmarks<String> birthmarks = extract("/test-resources/HelloWorld.class", "2-gram");
 
         assertThat(birthmarks.find(new ClassName("HelloWorld")).count(), is(1L));
 
-        List<Birthmark<KGram<Integer>>> list = birthmarks.stream().collect(Collectors.toList());
+        List<Birthmark<String>> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
 
-        List<KGram<Integer>> elements = new ArrayList<>();
+        List<String> elements = new ArrayList<>();
         list.get(0).forEach(item -> elements.add(item));
 
         assertThat(elements.size(), is(5));
-        assertThat(elements.get(0).toString(), is("25 183"));  // aload(19) invokespecial(b7)
-        assertThat(elements.get(1).toString(), is("183 177")); // invokespecial(b7) return(b1)
-        assertThat(elements.get(2).toString(), is("178 18"));  // getstatic(b2) ldc(12)
-        assertThat(elements.get(3).toString(), is("18 182"));  // ldc(12) invokevirtual(b6)
-        assertThat(elements.get(4).toString(), is("182 177")); // invokevirtual(b6) return(b1)
+        assertThat(elements.get(0), is("25 183"));  // aload(19) invokespecial(b7)
+        assertThat(elements.get(1), is("183 177")); // invokespecial(b7) return(b1)
+        assertThat(elements.get(2), is("178 18"));  // getstatic(b2) ldc(12)
+        assertThat(elements.get(3), is("18 182"));  // ldc(12) invokevirtual(b6)
+        assertThat(elements.get(4), is("182 177")); // invokevirtual(b6) return(b1)
     }
 
     @Test
     public void testBasic2() throws Exception{
-        Birthmarks<KGram<Integer>> birthmarks = extract("/test-resources/Fibonacci.class", "3-gram");
+        Birthmarks<String> birthmarks = extract("/test-resources/Fibonacci.class", "3-gram");
 
         assertThat(birthmarks.find(new ClassName("Fibonacci")).count(), is(1L));
 
-        List<Birthmark<KGram<Integer>>> list = birthmarks.stream().collect(Collectors.toList());
+        List<Birthmark<String>> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
 
-        List<KGram<Integer>> elements = new ArrayList<>();
+        List<String> elements = new ArrayList<>();
         list.get(0).forEach(item -> elements.add(item));
         assertThat(elements.size(), is(40));
 
@@ -117,20 +117,20 @@ public class KGramBasedBirthmarkExtractorTest {
         assertThat(elements.get(39), is(toKGram(Opcodes.ILOAD, Opcodes.INVOKESPECIAL, Opcodes.ARETURN)));
     }
 
-    private KGram<Integer> toKGram(int... values){
-        return KGramBuilder.from(values);
+    private String toKGram(int... values){
+        return KGramBuilder.from(values).toString();
     }
 
     @Test
     public void testBasic3() throws Exception{
-        Birthmarks<KGram<Integer>> birthmarks = extract("/test-resources/MazeBuilder.class", "4-gram");
+        Birthmarks<String> birthmarks = extract("/test-resources/MazeBuilder.class", "4-gram");
 
         assertThat(birthmarks.find(new ClassName("MazeBuilder")).count(), is(1L));
 
-        List<Birthmark<KGram<Integer>>> list = birthmarks.stream().collect(Collectors.toList());
+        List<Birthmark<String>> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
 
-        List<KGram<Integer>> elements = new ArrayList<>();
+        List<String> elements = new ArrayList<>();
         list.get(0).forEach(item -> elements.add(item));
 
         // assertThat(elements.size(), is(6));
@@ -138,14 +138,14 @@ public class KGramBasedBirthmarkExtractorTest {
 
     @Test
     public void testBasic4() throws Exception{
-        Birthmarks<KGram<Integer>> birthmarks = extract("/test-resources/MyServer2.class", "5-gram");
+        Birthmarks<String> birthmarks = extract("/test-resources/MyServer2.class", "5-gram");
 
         assertThat(birthmarks.find(new ClassName("MyServer2")).count(), is(1L));
 
-        List<Birthmark<KGram<Integer>>> list = birthmarks.stream().collect(Collectors.toList());
+        List<Birthmark<String>> list = birthmarks.stream().collect(Collectors.toList());
         assertThat(list.size(), is(1));
 
-        List<KGram<Integer>> elements = new ArrayList<>();
+        List<String> elements = new ArrayList<>();
         list.get(0).forEach(item -> elements.add(item));
 
         // assertThat(elements.size(), is(3));

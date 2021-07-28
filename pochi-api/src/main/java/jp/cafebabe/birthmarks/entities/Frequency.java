@@ -1,8 +1,4 @@
-package jp.cafebabe.pochi.birthmarks.uc;
-
-import jp.cafebabe.birthmarks.entities.Couple;
-
-import java.io.Serializable;
+package jp.cafebabe.birthmarks.entities;
 
 public class Frequency extends Couple<String, Integer> implements Comparable<Frequency> {
     private Frequency(String left, Integer right) {

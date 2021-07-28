@@ -40,7 +40,7 @@ for i in bin/make_dist.sh bin/build_site.sh ; do
     chmod 755 $i
 done
 
-target=pochi-cmd/src/main/java/jp/cafebabe/pochicmd/Main.java
+target=pochi-core/src/main/java/jp/cafebabe/pochi/Pochi.java
 sed "s/public static final String VERSION = \"[0-9.]*\"/public static final String VERSION = \"${VERSION}\"/g" "$target" > a ; mv a "$target"
 
 mvn versions:set -DnewVersion="${VERSION}"

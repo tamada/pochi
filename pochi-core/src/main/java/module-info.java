@@ -69,7 +69,8 @@ module jp.cafebabe.pochi {
             jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder,
             jp.cafebabe.pochi.comparators.EditDistanceComparatorBuilder,
             jp.cafebabe.pochi.comparators.JaccardIndexComparatorBuilder,
-            jp.cafebabe.pochi.comparators.SimpsonIndexComparatorBuilder;
+            jp.cafebabe.pochi.comparators.SimpsonIndexComparatorBuilder,
+            jp.cafebabe.pochi.comparators.CosineComparatorBuilder;
 
     exports jp.cafebabe.pochi;
     exports jp.cafebabe.pochi.comparators;
