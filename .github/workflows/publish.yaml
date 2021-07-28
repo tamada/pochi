@@ -52,9 +52,14 @@ jobs:
 
 # Build packages, site
       - name: Build Site
-        run:
+        run: |
           bash ./bin/setup_project.sh
           bash ./bin/build_site.sh
+
+      - name: Publish Site
+        run:
+          git -C site/public push origin gh-pages
+
 
       - name: Build Dist
         run:
