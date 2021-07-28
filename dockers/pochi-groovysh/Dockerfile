@@ -15,7 +15,7 @@ RUN    apk --no-cache add openjdk11=11.0.4_p4-r1 \
 # building pochi
 FROM alpine:3.10.1
 
-ARG PochiVersion="2.4.2"
+ARG PochiVersion="2.4.3"
 ARG GroovyVersion="3.0.8"
 
 LABEL maintainer="Haruaki Tamada" \

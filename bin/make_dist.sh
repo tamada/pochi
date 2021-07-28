@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.4.2"
+VERSION="2.4.3"
 
 function mkdirIfNeeded () {
   if [ ! -d $1 ] ; then
