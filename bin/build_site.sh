@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.4.5"
+VERSION="2.4.6"
 
 function build_apidocs() {
   mkdir -p site/msp
@@ -20,7 +20,13 @@ function build_apidocs() {
 }
 
 if [ ! -d site/public ]; then
+  echo "============== git worktree ==========="
+  git worktree
+  echo "============== git branch -a ==========="
+  git branch -a
   git worktree add site/public origin/gh-pages
+  echo "============== git worktree list ==========="
+  git worktree list
 fi
 
 if [ ! -f site/themes/cayman-hugo-theme/theme.toml ]; then
