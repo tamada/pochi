@@ -53,13 +53,13 @@ jobs:
 # Build packages, site
       - name: Build
         run: |
+          bash ./bin/setup_project.sh
           mvn package
           mkdir lib
           cp */target/*.jar lib
 
       - name: Build Site
         run: |
-          bash ./bin/setup_project.sh
           bash ./bin/build_site.sh
 
       - name: Publish Site
