@@ -23,7 +23,7 @@ public class UCBirthmarkExtractorTest {
     public Birthmarks<String> extract(String path) throws Exception{
         URL location = getClass().getResource(path);
         Configuration config = new ConfigurationBuilder().configuration();
-        Extractor extractor = new UsedClassesExtractorBuilder().build(config);
+        Extractor extractor = new UCBirthmarkExtractorBuilder().build(config);
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
         return extractor.extract(source);
     }

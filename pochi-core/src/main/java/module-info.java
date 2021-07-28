@@ -1,4 +1,4 @@
-import jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
+import jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder;
 
 /**
  * <p>
@@ -61,9 +61,9 @@ module jp.cafebabe.pochi {
 
     provides jp.cafebabe.birthmarks.extractors.ExtractorBuilder with
             jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder,
-            jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder,
-            jp.cafebabe.pochi.birthmarks.uc.FrequenciesUsedClassesExtractorBuilder,
-            VerbsOfMethodsExtractorBuilder;
+            jp.cafebabe.pochi.birthmarks.uc.UCBirthmarkExtractorBuilder,
+            FUCBirthmarkExtractorBuilder,
+            jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
 
     provides jp.cafebabe.birthmarks.comparators.ComparatorBuilder with
             jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder,

@@ -25,7 +25,7 @@ public class FUCBirthmarkExtractorTest {
     public Birthmarks<Frequency> extract(String path) throws Exception{
         URL location = getClass().getResource(path);
         Configuration config = new ConfigurationBuilder().configuration();
-        Extractor extractor = new FrequenciesUsedClassesExtractorBuilder().build(config);
+        Extractor extractor = new FUCBirthmarkExtractorBuilder().build(config);
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
         return extractor.extract(source);
     }

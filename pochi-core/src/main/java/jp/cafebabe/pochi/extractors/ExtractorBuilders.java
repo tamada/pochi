@@ -7,7 +7,10 @@ import jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
 import jp.cafebabe.birthmarks.AbstractTaskBuilders;
 import jp.cafebabe.birthmarks.entities.BirthmarkType;
 import jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder;
+import jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder;
+import jp.cafebabe.pochi.birthmarks.uc.UCBirthmarkExtractorBuilder;
 import jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder;
+import jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
 
 public class ExtractorBuilders extends AbstractTaskBuilders<BirthmarkType, ExtractorBuilder>{
     public ExtractorBuilders() {
@@ -16,7 +19,9 @@ public class ExtractorBuilders extends AbstractTaskBuilders<BirthmarkType, Extra
     }
 
     private void register() {
-        register(new UsedClassesExtractorBuilder());
+        register(new UCBirthmarkExtractorBuilder());
+        register(new FUCBirthmarkExtractorBuilder());
+        register(new VerbsOfMethodsExtractorBuilder());
         kgramStream().forEach(this::register);
     }
 
