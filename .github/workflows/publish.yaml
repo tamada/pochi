@@ -54,7 +54,7 @@ jobs:
       - name: Build
         run: |
           bash ./bin/setup_project.sh
-          mvn package
+          POCHI_HOME=$PWD mvn package
           mkdir lib
           cp */target/*.jar lib
 
