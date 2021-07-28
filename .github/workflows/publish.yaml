@@ -51,15 +51,21 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
 # Build packages, site
+      - name: Build
+        run: |
+          mvn package
+          mkdir lib
+          cp */target/*.jar lib
+
       - name: Build Site
         run: |
           bash ./bin/setup_project.sh
           bash ./bin/build_site.sh
 
       - name: Publish Site
-        run:
+        run: |
+          git worktree list
           git -C site/public push origin gh-pages
-
 
       - name: Build Dist
         run:
