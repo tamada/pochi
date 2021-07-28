@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Frequency;
 import org.objectweb.asm.Type;
 
 public class UCBirthmarkHelper {
@@ -14,8 +15,12 @@ public class UCBirthmarkHelper {
         this.context = context;
     }
 
-    public Elements build(){
-        return names.build();
+    public Elements<Frequency> frequencies() {
+        return names.frequencyElements();
+    }
+
+    public Elements<String> list() {
+        return names.listElements();
     }
 
     public void addAll(String[] names){
@@ -32,7 +37,7 @@ public class UCBirthmarkHelper {
 
     public void add(String name){
         String normalizedName = normalize(name);
-        if(!names.contains(normalizedName) && context.match(normalizedName))
+        if(context.match(normalizedName))
             names.add(normalizedName);
     }
 

@@ -53,6 +53,7 @@ jobs:
 # Build packages, site
       - name: Build Site
         run:
+          bash ./bin/setup_project.sh
           bash ./bin/build_site.sh
 
       - name: Build Dist

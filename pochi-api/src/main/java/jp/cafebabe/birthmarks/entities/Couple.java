@@ -11,7 +11,7 @@ public class Couple<L extends Serializable, R extends Serializable> implements S
     private L left;
     private R right;
 
-    public Couple(L left, R right) {
+    protected Couple(L left, R right) {
         this.left = Objects.requireNonNull(left);
         this.right = Objects.requireNonNull(right);
     }

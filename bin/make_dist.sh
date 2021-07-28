@@ -14,6 +14,7 @@ function copyImpl () {
   mkdir -p "$1/docs"
   cp -r site/public/* "$1/docs"
   cp bin/pochi "$1/bin"
+  cp data/* "$1/data"
   cp pochi-cmd/target/bash-completions-pochi.sh "$1/completions/bash/pochi"
   cp pochi-cmd/target/bash-completions-pochi.sh "$1/completions/zsh/pochi"
   find "$1" -name '.git*' | xargs rm -f
@@ -25,6 +26,7 @@ function makeWithoutJvm() {
   mkdirIfNeeded "dist/${NAME}"
   mkdirIfNeeded "dist/${NAME}/bin"
   mkdirIfNeeded "dist/${NAME}/lib"
+  mkdirIfNeeded "dist/${NAME}/data"
   mkdirIfNeeded "dist/${NAME}/completions/bash"
   mkdirIfNeeded "dist/${NAME}/completions/zsh"
   copyImpl "dist/$NAME"

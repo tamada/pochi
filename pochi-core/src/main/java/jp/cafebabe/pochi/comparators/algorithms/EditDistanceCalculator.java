@@ -1,13 +1,12 @@
 package jp.cafebabe.pochi.comparators.algorithms;
 
-import jp.cafebabe.birthmarks.entities.Pair;
+import jp.cafebabe.pochi.util.Tuple;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-public class EditDistanceCalculator<T extends Serializable> {
+public class EditDistanceCalculator<T> {
     private static final int BIG_NUMBER = 10;
 
     public int compute(List<T> list1, List<T> list2) {
@@ -22,21 +21,22 @@ public class EditDistanceCalculator<T extends Serializable> {
                         .ifPresent(pair -> computeCost(table, index, pair)));
     }
 
-    private Optional<Pair<T>> findPair(Index2D index, List<T> list1, List<T> list2) {
+    private Optional<Tuple<T>> findPair(Index2D index, List<T> list1, List<T> list2) {
         if(index.x() == 0 || index.y() == 0)
             return Optional.empty();
-        return Optional.of(new Pair<>(list1.get(index.x() - 1), list2.get(index.y() - 1)));
+        return Optional.of(Tuple.of(list1.get(index.x() - 1), list2.get(index.y() - 1)));
     }
 
-    private void computeCost(Table table, Index2D index, Pair<T> pair) {
+    private void computeCost(Table table, Index2D index, Tuple<T> pair) {
         int newValue = computeCostImpl(table, index, pair);
         table.set(newValue, index);
     }
 
-    private int computeCostImpl(Table table, Index2D index, Pair<T> pair) {
+    private int computeCostImpl(Table table, Index2D index, Tuple<T> pair) {
         int d1 = tableValue(table, index.relativeOf(-1,  0)) + 1;
         int d2 = tableValue(table, index.relativeOf( 0, -1)) + 1;
-        int d3 = tableValue(table, index.relativeOf(-1, -1)) + pair.ifEquals(0, 1);
+        int d3 = tableValue(table, index.relativeOf(-1, -1)) +
+                pair.ifEquals((l, r) -> l == r, 0, 1);
         return minimum(d1, d2, d3);
     }
 

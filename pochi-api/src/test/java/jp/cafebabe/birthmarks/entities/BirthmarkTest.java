@@ -14,14 +14,13 @@ import org.junit.Test;
 import jp.cafebabe.kunai.entries.ClassName;
 
 public class BirthmarkTest {
-    private Birthmark birthmark;
+    private Birthmark<String> birthmark;
 
     @Before
     public void setUp() throws Exception{
         Metadata metadata = new Metadata(new ClassName("test"), new URI("source1"), new BirthmarkType("type1"));
-        Elements elements = new Elements(Arrays.stream(new String[] { "e1", "e2", "e3" })
-                .map(string -> new Element(string)));
-        this.birthmark = new Birthmark(metadata, elements);
+        Elements<String> elements = Elements.listElements("e1", "e2", "e3");
+        this.birthmark = new Birthmark<>(metadata, elements);
     }
 
     @Test
@@ -30,20 +29,20 @@ public class BirthmarkTest {
         assertThat(birthmark.isSame(new BirthmarkType("type1")), is(true));
         assertThat(birthmark.isSame(new URI("source1")), is(true));
 
-        List<Element> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         birthmark.forEach(e -> list.add(e));
 
         assertThat(birthmark.elementCount(), is(3));
         assertThat(list.size(), is(3));
-        assertThat(list.get(0), is(new Element("e1")));
-        assertThat(list.get(1), is(new Element("e2")));
-        assertThat(list.get(2), is(new Element("e3")));
+        assertThat(list.get(0), is("e1"));
+        assertThat(list.get(1), is("e2"));
+        assertThat(list.get(2), is("e3"));
 
         list.clear();
 
-        birthmark.filter(e -> e.equals(new Element("e3"))).forEach(e -> list.add(e));
+        birthmark.filter(e -> e.equals("e3")).forEach(e -> list.add(e));
         assertThat(list.size(), is(1));
-        assertThat(list.get(0), is(new Element("e3")));
+        assertThat(list.get(0), is("e3"));
 
     }
 
@@ -58,7 +57,7 @@ public class BirthmarkTest {
 
     @Test
     public void testContainsElement(){
-        assertThat(birthmark.contains(new Element("e1")), is(true));
-        assertThat(birthmark.contains(new Element("not contained element")), is(false));
+        assertThat(birthmark.contains("e1"), is(true));
+        assertThat(birthmark.contains("not contained element"), is(false));
     }
 }

@@ -1,7 +1,9 @@
 package jp.cafebabe.pochicmd;
 
+import jp.cafebabe.pochi.Pochi;
+
 public class Main {
-    public static final String VERSION = "2.3.24";
+    public static final String VERSION = Pochi.VERSION;
     public static final String CONFIG_NAME = "POCHI_CONFIG_PATH";
 
     public Main(String[] args) throws Exception {

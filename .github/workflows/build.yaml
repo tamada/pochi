@@ -34,10 +34,9 @@ jobs:
             - name: build
               working-directory: .
               run: |
-                  pwd
-                  ls -la .
-                  mvn package
+                  bash ./bin/setup_project.sh
+                  POCHI_HOME=$PWD mvn package
 
             - name: send coverage to coveralls
               if: matrix.os == 'ubuntu-latest'
-              run:  mvn -DrepoToken=${{ secrets.COVERALLS_REPO_TOKEN }} verify coveralls:report
+              run:  POCHI_HOME=$PWD mvn -DrepoToken=${{ secrets.COVERALLS_REPO_TOKEN }} verify coveralls:report

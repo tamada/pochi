@@ -9,22 +9,23 @@ import java.util.stream.Stream;
 import jp.cafebabe.birthmarks.pairs.Streamable;
 import jp.cafebabe.kunai.entries.ClassName;
 
-public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark>, Streamable<Birthmark>, Serializable {
-    private List<Birthmark> list;
+public class Birthmarks<T> implements Acceptor<T>, Iterable<Birthmark<T>>, Streamable<Birthmark<T>>, Serializable {
+    private List<Birthmark<T>> list;
 
     public Birthmarks(){
         this(Stream.empty());
     }
 
-    public Birthmarks(Stream<Birthmark> stream) {
+    public Birthmarks(Stream<Birthmark<T>> stream) {
         this.list = stream.collect(Collectors.toList());
     }
 
-    public Stream<Birthmark> find(ClassName name) {
-        return list.stream().filter(birthmark -> birthmark.isSame(name));
+    public Stream<Birthmark<T>> find(ClassName name) {
+        return list.stream()
+                .filter(birthmark -> birthmark.isSame(name));
     }
 
-    public Stream<Birthmark> stream() {
+    public Stream<Birthmark<T>> stream() {
         return list.stream();
     }
 
@@ -33,20 +34,21 @@ public class Birthmarks implements Acceptor<Birthmarks>, Iterable<Birthmark>, St
     }
 
     @Override
-    public Iterator<Birthmark> iterator() {
+    public Iterator<Birthmark<T>> iterator() {
         return list.iterator();
     }
 
-    public Birthmarks merge(Stream<Birthmark> stream) {
-        return new Birthmarks(Stream.concat(stream(), stream));
+    public Birthmarks<T> merge(Stream<Birthmark<T>> stream) {
+        return new Birthmarks<>(Stream.concat(stream(), stream));
     }
 
-    public Birthmarks merge(Birthmarks other) {
+    public Birthmarks<T> merge(Birthmarks<T> other) {
         return merge(other.stream());
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        list.stream().forEach(birthmark -> birthmark.accept(visitor));
+    public void accept(Visitor<T> visitor) {
+        list.stream()
+                .forEach(birthmark -> birthmark.accept(visitor));
     }
 }

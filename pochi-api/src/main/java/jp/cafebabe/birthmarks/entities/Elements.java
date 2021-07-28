@@ -1,58 +1,50 @@
 package jp.cafebabe.birthmarks.entities;
 
+import jp.cafebabe.birthmarks.entities.elements.FrequencyElements;
+import jp.cafebabe.birthmarks.entities.elements.ListElements;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.Iterator;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Elements implements Acceptor<Elements>, Serializable{
-    private static final long serialVersionUID = -8713896078315146158L;
+public interface Elements<T> extends Iterable<T>, Acceptor<T>, Serializable {
 
-    private List<Element> list = new ArrayList<>();
+    FrequencyElements asFrequencies();
 
-    public Elements(Stream<Element> stream){
-        stream.forEach(list::add);
+    ListElements asList();
+
+    ListElements asSet();
+
+    boolean contains(String key);
+
+    Elements<T> filter(Predicate<T> value);
+
+    Iterator<T> iterator();
+
+    Stream<T> stream();
+
+    Elements<T> merge(Elements<T> other);
+
+    int size();
+
+    static ListElements listElements(String... elements) {
+        return ListElements.of(elements);
     }
 
-    public boolean contains(Element element){
-        return list.contains(element);
+    static ListElements listElements(Stream<String> elements) {
+        return ListElements.of(elements);
     }
 
-    public void forEach(Consumer<Element> consumer){
-        list.stream()
-        .forEach(consumer);
+    static ListElements setElements(String... elements) {
+        return ListElements.asSetOf(elements);
     }
 
-    public int size(){
-        return list.size();
+    static FrequencyElements frequencyElements(String... elements) {
+        return FrequencyElements.of(elements);
     }
 
-    public Elements filter(Predicate<Element> predicate){
-        return new Elements(list.stream()
-                .filter(predicate));
-    }
-
-    public static Elements empty(){
-        return new Elements(Stream.of());
-    }
-
-    public Elements merge(Elements other){
-        return new Elements(Stream.concat(list.stream(), 
-                other.list.stream()));
-    }
-
-    @Override
-    public void accept(Visitor visitor) {
-        list.stream().forEach(element -> visitor.visitElement(element));
-    }
-
-    @Override
-    public String toString() {
-        return list.stream()
-                .map(element -> element.toString())
-                .collect(Collectors.joining(","));
+    static FrequencyElements frequencyElements(Stream<Frequency> stream) {
+        return FrequencyElements.of(stream);
     }
 }

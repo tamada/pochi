@@ -16,17 +16,17 @@ public interface Extractor extends Task<BirthmarkType>{
     @Override
     BirthmarkType type();
 
-    default Stream<Either<Exception, Birthmark>> extractStream(DataSource source){
+    default <T> Stream<Either<Exception, Birthmark<T>>> extractStream(DataSource source){
         return source.stream()
                 .filter(entry -> entry.endsWith(".class"))
                 .map(entry -> extractEach(entry));
     }
 
-    default Birthmarks extract(DataSource source){
-        return new Birthmarks(stripEither(extractStream(source)));
+    default <T> Birthmarks<T> extract(DataSource source){
+        return new Birthmarks<T>(stripEither(extractStream(source)));
     }
 
-    PochiClassVisitor visitor(ClassVisitor visitor);
+    <T> PochiClassVisitor<T> visitor(ClassVisitor visitor);
 
-    Either<Exception, Birthmark> extractEach(Entry entry);
+    <T> Either<Exception, Birthmark<T>> extractEach(Entry entry);
 }

@@ -1,25 +1,30 @@
 package jp.cafebabe.pochi.birthmarks.uc;
 
-import jp.cafebabe.birthmarks.entities.Element;
 import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Frequency;
+import jp.cafebabe.birthmarks.entities.elements.FrequencyElements;
+import jp.cafebabe.birthmarks.entities.elements.ListElements;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Names {
-    private Set<String> set = new HashSet<>();
+    private Map<String, Integer> map = new HashMap<>();
 
     public void add(String name){
-        set.add(name);
+        map.put(name, map.getOrDefault(name, 0) + 1);
     }
 
-    public Elements build(){
-        return new Elements(set.stream()
-                .sorted()
-                .map(Element::new));
+    public ListElements listElements() {
+        return Elements.listElements(map.keySet().stream().sorted());
+    }
+
+    public FrequencyElements frequencyElements() {
+        return Elements.frequencyElements(map.entrySet().stream()
+                .map(entry -> Frequency.of(entry.getKey(), entry.getValue())));
     }
 
     public boolean contains(String name){
-        return set.contains(name);
+        return map.containsKey(name);
     }
 }

@@ -8,11 +8,11 @@ import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.BirthmarkType;
 import jp.cafebabe.kunai.entries.Entry;
 
-public abstract class PochiClassVisitor extends ClassVisitor{
+public abstract class PochiClassVisitor<T> extends ClassVisitor{
     private Configuration context;
     private BirthmarkType type;
 
-    public PochiClassVisitor(ClassVisitor parent, Configuration context, BirthmarkType type) {
+    public PochiClassVisitor(ClassVisitor parent, BirthmarkType type, Configuration context) {
         super(Opcodes.ASM5, parent);
         this.context = context;
         this.type = type;
@@ -26,5 +26,5 @@ public abstract class PochiClassVisitor extends ClassVisitor{
         return context;
     }
 
-    public abstract Birthmark build(Entry entry);
+    public abstract Birthmark<T> build(Entry entry);
 }

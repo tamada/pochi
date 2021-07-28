@@ -1,3 +1,5 @@
+import jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder;
+
 /**
  * <p>
  * The module <code>jp.cafebabe.pochi</code> contains the implementation classes of the APIs defined in the module <code>{@link jp.cafebabe.birthmarks}</code>.
@@ -45,6 +47,7 @@
 module jp.cafebabe.pochi {
     requires jp.cafebabe.birthmarks;
     requires java.logging;
+    requires org.apache.opennlp.tools;
 
     uses jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
     uses jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
@@ -58,13 +61,16 @@ module jp.cafebabe.pochi {
 
     provides jp.cafebabe.birthmarks.extractors.ExtractorBuilder with
             jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder,
-            jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder;
+            jp.cafebabe.pochi.birthmarks.uc.UCBirthmarkExtractorBuilder,
+            FUCBirthmarkExtractorBuilder,
+            jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
 
     provides jp.cafebabe.birthmarks.comparators.ComparatorBuilder with
             jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder,
             jp.cafebabe.pochi.comparators.EditDistanceComparatorBuilder,
             jp.cafebabe.pochi.comparators.JaccardIndexComparatorBuilder,
-            jp.cafebabe.pochi.comparators.SimpsonIndexComparatorBuilder;
+            jp.cafebabe.pochi.comparators.SimpsonIndexComparatorBuilder,
+            jp.cafebabe.pochi.comparators.CosineComparatorBuilder;
 
     exports jp.cafebabe.pochi;
     exports jp.cafebabe.pochi.comparators;

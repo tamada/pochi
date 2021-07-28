@@ -1,6 +1,6 @@
 -locale en_US
 --module-path
-#{PROJECT_DIR}/lib/pochi-cmd-#{pochi.version}.jar:#{PROJECT_DIR}/lib/kunai2-#{pochi.version}.jar:#{PROJECT_DIR}/lib/pochi-api-#{pochi.version}.jar:#{PROJECT_DIR}/lib/pochi-core-${pochi.version}.jar:#{PROJECT_DIR}/lib/vavr-0.10.3.jar:#{PROJECT_DIR}/lib/asm-8.0.1.jar:#{PROJECT_DIR}/lib/vavr-match-0.10.3.jar:#{PROJECT_DIR}/lib/jackson-annotations-2.11.0.jar:#{PROJECT_DIR}/lib/jackson-databind-2.11.0.jar:#{PROJECT_DIR}/lib/jackson-core-2.11.0.jar:#{PROJECT_DIR}/lib/picocli-4.6.1.jar
+#{PROJECT_DIR}/lib/pochi-cmd-#{pochi.version}.jar:#{PROJECT_DIR}/lib/kunai2-#{pochi.version}.jar:#{PROJECT_DIR}/lib/pochi-api-#{pochi.version}.jar:#{PROJECT_DIR}/lib/pochi-core-${pochi.version}.jar:#{PROJECT_DIR}/lib/vavr-0.10.3.jar:#{PROJECT_DIR}/lib/asm-8.0.1.jar:#{PROJECT_DIR}/lib/vavr-match-0.10.3.jar:#{PROJECT_DIR}/lib/jackson-annotations-2.11.0.jar:#{PROJECT_DIR}/lib/jackson-databind-2.11.0.jar:#{PROJECT_DIR}/lib/jackson-core-2.11.0.jar:#{PROJECT_DIR}/lib/picocli-4.6.1.jar:#{PROJECT_DIR}/lib/opennlp-tools-1.9.3.jar
 -encoding
 'UTF-8'
 -protected

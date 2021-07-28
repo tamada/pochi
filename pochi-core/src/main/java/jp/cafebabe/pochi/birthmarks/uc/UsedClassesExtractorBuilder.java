@@ -4,17 +4,19 @@ import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.BirthmarkType;
 import jp.cafebabe.birthmarks.extractors.Extractor;
 import jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
+import jp.cafebabe.birthmarks.extractors.PochiClassVisitor;
+import jp.cafebabe.pochi.birthmarks.VisitorBirthmarkExtractor;
+import jp.cafebabe.pochi.util.VisitorSupplier;
 
-public class UsedClassesExtractorBuilder implements ExtractorBuilder {
+public abstract class UsedClassesExtractorBuilder implements ExtractorBuilder {
 
     @Override
-    public BirthmarkType type() {
-        return new BirthmarkType("uc");
-    }
+    public abstract BirthmarkType type();
 
     @Override
     public Extractor build(Configuration config) {
-        return new UsedClassesExtractor(config);
+        return new VisitorBirthmarkExtractor<String>(type(), config, visitorSupplier());
     }
 
+    public abstract <T> VisitorSupplier<PochiClassVisitor<T>> visitorSupplier();
 }

@@ -1,10 +1,9 @@
 package jp.cafebabe.pochi.birthmarks.kgram;
 
-import jp.cafebabe.birthmarks.entities.Element;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,7 +36,20 @@ public class KGram<T extends Serializable> implements Serializable{
                 .collect(Collectors.joining(" "));
     }
 
-    public Element toElement(){
-        return new Element(toString());
+    @Override
+    public int hashCode() {
+        return Objects.hash("KGram", values);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        Boolean flag = other instanceof KGram
+                && getClass().isAssignableFrom(other.getClass());
+        if(flag) {
+            @SuppressWarnings("unchecked")
+            KGram<T> kgram = (KGram<T>)other;
+            return values.equals(kgram.values);
+        }
+        return false;
     }
 }

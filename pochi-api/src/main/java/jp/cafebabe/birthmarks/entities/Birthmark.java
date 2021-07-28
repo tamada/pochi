@@ -2,19 +2,21 @@ package jp.cafebabe.birthmarks.entities;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.Iterator;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import jp.cafebabe.kunai.entries.ClassName;
 
-public class Birthmark implements Acceptor<Birthmark>, Serializable{
+public class Birthmark<T> implements Acceptor<T>, Serializable, Iterable<T> {
     private static final long serialVersionUID = -2383836180204233756L;
 
-    private Elements elements;
+    private Elements<T> elements;
     private Metadata metadata;
 
-    public Birthmark(Metadata metadata, Elements elements){
+    public Birthmark(Metadata metadata, Elements<T> elements){
         this.metadata = metadata;
         this.elements = elements;
     }
@@ -23,20 +25,29 @@ public class Birthmark implements Acceptor<Birthmark>, Serializable{
         return metadata.className();
     }
 
-    public boolean contains(Element element){
+    public boolean contains(String element){
         return elements.contains(element);
+    }
+
+    public Elements<T> elements() {
+        return elements;
     }
 
     public int elementCount(){
         return elements.size();
     }
 
-    public void forEach(Consumer<Element> consumer){
-        elements.forEach(consumer);
+    public Iterator<T> iterator() {
+        return elements.iterator();
     }
 
-    public Birthmark filter(Predicate<Element> predicate){
-        return new Birthmark(metadata(),
+    public Stream<T> stream() {
+        return elements.stream();
+    }
+
+
+    public Birthmark<T> filter(Predicate<T> predicate){
+        return new Birthmark<>(metadata(),
                 elements.filter(predicate));
     }
 
@@ -65,7 +76,7 @@ public class Birthmark implements Acceptor<Birthmark>, Serializable{
     }
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor<T> visitor) {
         metadata.accept(visitor);
         elements.accept(visitor);
     }
