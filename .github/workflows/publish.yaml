@@ -50,7 +50,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-# Build packages, site
+# Build packages, site, distribution file
       - name: Build
         run: |
           bash ./bin/setup_project.sh
@@ -61,11 +61,6 @@ jobs:
       - name: Build Site
         run: |
           bash ./bin/build_site.sh
-
-      - name: Publish Site
-        run: |
-          git worktree list
-          git -C site/public push origin gh-pages
 
       - name: Build Dist
         run:
