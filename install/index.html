@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Hugo 0.85.0" />
+  <meta name="generator" content="Hugo 0.86.0" />
   <link rel="stylesheet" href="https://tamada.github.io/pochi/css/normalize.css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   
   
   
-  <link rel="stylesheet" href="https://tamada.github.io/pochi/scss/cayman.scss">
+  <link rel="stylesheet" href="https://tamada.github.io/pochi/css/cayman.ea0e967413f3851071cc8ace3621bc4205fe8fa79b2abe3d7bf94ff2841f0d47.css">
   
   
   <link rel="stylesheet" href="https://tamada.github.io/pochi/css/pochi.css">
@@ -99,13 +99,13 @@
   <h1>⚓ Install</h1>
   <h2 id="-homebrew">🍺 Homebrew</h2>
 <p>For macOS user, <strong>pochi</strong> supports homebrew installation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ brew tap tamada/brew
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ brew tap tamada/brew
 $ brew install pochi
 </code></pre></div><p class="navigation"><a href="#top" class="badge goto"><span class="label"><span class="far fa-caret-square-up label"></span> Go to</span><span class="value">top of the page</span></a></p>
 
 <h2 id="-compiling-pochi-yourself">💪 Compiling <strong>pochi</strong> yourself</h2>
 <p>For building yourself, clone the source code from GitHub, and build it with <a href="https://maven.apache.org/">Maven</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/tamada/pochi.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/tamada/pochi.git
 $ cd pochi
 $ mvn package
 </code></pre></div><p>Then, <code>./bin/make_dist.sh</code> creates <code>dist/pochi-${VERSION}</code> directory contains the interpreter (<code>bin/pochi</code>), and dependent jar files (<code>lib</code>), documents (<code>docs</code>) and misc files (<code>README.md</code>, <code>LICENSE</code>, <code>completions</code>, <code>examples</code>, and <code>Dockerfile</code>).</p>
@@ -113,7 +113,7 @@ $ mvn package
 
 <h2 id="-maven-repository">📦 Maven repository</h2>
 <p>Copy and paste the following snippet into your <code>pom.xml</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  <span style="color:#f92672">&lt;repositories&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  <span style="color:#f92672">&lt;repositories&gt;</span>
     <span style="color:#f92672">&lt;repository&gt;</span>
       <span style="color:#f92672">&lt;id&gt;</span>tamada_github<span style="color:#f92672">&lt;/id&gt;</span>
       <span style="color:#f92672">&lt;name&gt;</span>Apache Maven Packages of tamada<span style="color:#f92672">&lt;/name&gt;</span>

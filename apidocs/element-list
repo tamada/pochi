@@ -3,7 +3,6 @@ jp.cafebabe.birthmarks
 jp.cafebabe.birthmarks.comparators
 jp.cafebabe.birthmarks.config
 jp.cafebabe.birthmarks.entities
-jp.cafebabe.birthmarks.entities.elements
 jp.cafebabe.birthmarks.extractors
 jp.cafebabe.birthmarks.pairs
 jp.cafebabe.birthmarks.rules
