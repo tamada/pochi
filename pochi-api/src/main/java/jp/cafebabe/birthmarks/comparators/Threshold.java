@@ -2,7 +2,7 @@ package jp.cafebabe.birthmarks.comparators;
 
 import java.io.Serializable;
 
-public class Threshold implements Serializable{
+public class Threshold implements Serializable, Comparable<Threshold> {
     private static final long serialVersionUID = -9068711885782138926L;
 
     public static final Threshold DEFAULT = new Threshold(0.25);
@@ -24,5 +24,10 @@ public class Threshold implements Serializable{
 
     public boolean isInnocent(Similarity similarity){
         return similarity.value <= value;
+    }
+
+    @Override
+    public int compareTo(Threshold other) {
+        return Double.compare(value, other.value);
     }
 }

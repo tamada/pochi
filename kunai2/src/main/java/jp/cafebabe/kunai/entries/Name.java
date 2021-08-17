@@ -3,7 +3,7 @@ package jp.cafebabe.kunai.entries;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Name implements Serializable{
+public class Name implements Serializable, Comparable<Name> {
     private static final long serialVersionUID = -3739333182235166571L;
 
     private String name;
@@ -14,6 +14,11 @@ public class Name implements Serializable{
 
     String name(){
         return name;
+    }
+
+    @Override
+    public int compareTo(Name other) {
+        return name().compareTo(other.name());
     }
 
     public boolean matches(String pattern) {
