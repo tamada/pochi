@@ -10,7 +10,7 @@ public class KGramBasedBirthmarkExtractor extends AbstractExtractor {
     private int kvalue;
 
     public KGramBasedBirthmarkExtractor(int kvalue, Configuration config) {
-        super(new BirthmarkType(kvalue + "-gram"), config);
+        super(BirthmarkType.of(kvalue + "-gram"), config);
         this.kvalue = kvalue;
     }
 

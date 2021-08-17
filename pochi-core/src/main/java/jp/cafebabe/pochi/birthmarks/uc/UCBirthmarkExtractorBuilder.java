@@ -8,7 +8,7 @@ public class UCBirthmarkExtractorBuilder extends UsedClassesExtractorBuilder {
 
     @Override
     public BirthmarkType type() {
-        return new BirthmarkType("uc");
+        return BirthmarkType.of("uc");
     }
 
     @Override

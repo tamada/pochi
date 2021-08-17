@@ -18,7 +18,7 @@ public class BirthmarkTest {
 
     @Before
     public void setUp() throws Exception{
-        Metadata metadata = new Metadata(new ClassName("test"), new URI("source1"), new BirthmarkType("type1"));
+        Metadata metadata = new Metadata(new ClassName("test"), new URI("source1"), BirthmarkType.of("type1"));
         Elements<String> elements = Elements.listElements("e1", "e2", "e3");
         this.birthmark = new Birthmark<>(metadata, elements);
     }
@@ -26,7 +26,7 @@ public class BirthmarkTest {
     @Test
     public void testBasic() throws Exception{
         assertThat(birthmark.isSame(new ClassName("test")), is(true));
-        assertThat(birthmark.isSame(new BirthmarkType("type1")), is(true));
+        assertThat(birthmark.isSame(BirthmarkType.of("type1")), is(true));
         assertThat(birthmark.isSame(new URI("source1")), is(true));
 
         List<String> list = new ArrayList<>();
@@ -50,7 +50,7 @@ public class BirthmarkTest {
     public void testMetadata() throws Exception{
         Metadata metadata = birthmark.metadata();
         assertThat(metadata.isSame(new ClassName("test")), is(true));
-        assertThat(metadata.isSame(new BirthmarkType("type1")), is(true));
+        assertThat(metadata.isSame(BirthmarkType.of("type1")), is(true));
         assertThat(metadata.isSame(new URI("source1")), is(true));
         assertThat(metadata.toString(), is("test,source1,type1"));
     }

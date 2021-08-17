@@ -60,7 +60,7 @@ public class BirthmarkSystemHelper {
     }
 
     public Extractor extractor(String name) {
-        return system.extractor(new BirthmarkType(name))
+        return system.extractor(BirthmarkType.of(name))
                 .build(config);
     }
 
