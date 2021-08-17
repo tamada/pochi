@@ -46,18 +46,20 @@ public interface Extractor extends Task<BirthmarkType>{
     }
 
     /**
+     * create and return the visitor for creating the birthmarks from the class file.
      *
-     * @param visitor
-     * @param <T>
-     * @return
+     * @param visitor parent visitor
+     * @param <T> element type of the extracted birthmarks
+     * @return created visitor
      */
     <T> PochiClassVisitor<T> visitor(ClassVisitor visitor);
 
     /**
+     * extract the birhtmark from the given entry.
      *
-     * @param entry
-     * @param <T>
-     * @return
+     * @param entry extracting source entry of DataSource
+     * @param <T> element type of the extracted birthmarks
+     * @return extracted birthmark from the given entry or some extraction error
      */
     <T> Either<Exception, Birthmark<T>> extractEach(Entry entry);
 }

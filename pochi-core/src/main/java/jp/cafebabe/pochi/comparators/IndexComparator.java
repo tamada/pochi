@@ -21,6 +21,7 @@ public abstract class IndexComparator extends AbstractComparator {
         return union;
     }
 
+    @SuppressWarnings("unchecked")
     <T> Set<T> intersect(Birthmark<T> left, Birthmark<T> right){
         Set<T> intersection = new HashSet<>();
         ListElements rightList = right.elements().asSet();

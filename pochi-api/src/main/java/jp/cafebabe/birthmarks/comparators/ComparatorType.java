@@ -8,7 +8,11 @@ public class ComparatorType implements Serializable, Comparable<ComparatorType> 
 
     private String type;
 
-    public ComparatorType(String type){
+    public static ComparatorType of(String type) {
+        return new ComparatorType(type);
+    }
+
+    private ComparatorType(String type){
         this.type = type;
     }
 

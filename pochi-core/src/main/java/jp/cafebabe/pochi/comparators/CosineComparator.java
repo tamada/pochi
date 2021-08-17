@@ -1,8 +1,6 @@
 package jp.cafebabe.pochi.comparators;
 
-import jp.cafebabe.birthmarks.comparators.AbstractComparator;
-import jp.cafebabe.birthmarks.comparators.ComparatorType;
-import jp.cafebabe.birthmarks.comparators.Similarity;
+import jp.cafebabe.birthmarks.comparators.*;
 import jp.cafebabe.birthmarks.config.Configuration;
 import jp.cafebabe.birthmarks.entities.Birthmark;
 import jp.cafebabe.birthmarks.entities.Elements;
@@ -12,8 +10,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CosineComparator extends AbstractComparator {
+    private static final ComparatorType thisType = ComparatorType.of("Cosine");
+
+    public static final class Builder implements ComparatorBuilder {
+        @Override
+        public ComparatorType type() {
+            return thisType;
+        }
+
+        @Override
+        public Comparator build(Configuration config) {
+            return new CosineComparator(config);
+        }
+    }
+
     public CosineComparator(Configuration config) {
-        super(new ComparatorType("Cosine"), config);
+        super(thisType, config);
     }
 
     protected <T> Similarity calculate(Birthmark<T> left, Birthmark<T> right) {

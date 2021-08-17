@@ -30,10 +30,11 @@ import jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder;
  *   <dt>{@link jp.cafebabe.birthmarks.comparators.ComparatorBuilder}</dt>
  *   <dd>
  *     <ul>
- *       <li>{@link jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder}</li>
- *       <li>{@link jp.cafebabe.pochi.comparators.EditDistanceComparatorBuilder}</li>
- *       <li>{@link jp.cafebabe.pochi.comparators.JaccardIndexComparatorBuilder}</li>
- *       <li>{@link jp.cafebabe.pochi.comparators.SimpsonIndexComparatorBuilder}</li>
+ *       <li>{@link jp.cafebabe.pochi.comparators.CosineComparator.Builder}</li>
+ *       <li>{@link jp.cafebabe.pochi.comparators.DiceIndexComparator.Builder}</li>
+ *       <li>{@link jp.cafebabe.pochi.comparators.EditDistanceComparator.Builder}</li>
+ *       <li>{@link jp.cafebabe.pochi.comparators.JaccardIndexComparator.Builder}</li>
+ *       <li>{@link jp.cafebabe.pochi.comparators.SimpsonIndexComparator.Builder}</li>
  *     </ul>
  *   </dd>
  *   <dt>{@link jp.cafebabe.birthmarks.BirthmarkParser}</dt>
@@ -66,11 +67,11 @@ module jp.cafebabe.pochi {
             jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
 
     provides jp.cafebabe.birthmarks.comparators.ComparatorBuilder with
-            jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder,
-            jp.cafebabe.pochi.comparators.EditDistanceComparatorBuilder,
-            jp.cafebabe.pochi.comparators.JaccardIndexComparatorBuilder,
-            jp.cafebabe.pochi.comparators.SimpsonIndexComparatorBuilder,
-            jp.cafebabe.pochi.comparators.CosineComparatorBuilder;
+            jp.cafebabe.pochi.comparators.DiceIndexComparator.Builder,
+            jp.cafebabe.pochi.comparators.EditDistanceComparator.Builder,
+            jp.cafebabe.pochi.comparators.JaccardIndexComparator.Builder,
+            jp.cafebabe.pochi.comparators.SimpsonIndexComparator.Builder,
+            jp.cafebabe.pochi.comparators.CosineComparator.Builder;
 
     exports jp.cafebabe.pochi;
     exports jp.cafebabe.pochi.comparators;
@@ -79,5 +80,6 @@ module jp.cafebabe.pochi {
     exports jp.cafebabe.pochi.parsers;
     exports jp.cafebabe.pochi.birthmarks.kgram;
     exports jp.cafebabe.pochi.birthmarks.uc;
+    exports jp.cafebabe.pochi.birthmarks.verbs;
     exports jp.cafebabe.pochi.util;
 }

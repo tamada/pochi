@@ -50,22 +50,15 @@ Container images of **pochi** for Docker are:
 
 * [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
     * `2.4.6`, `latest`
-  * `2.4.5`
-  * `2.4.4`
-  * `2.4.3`
-  * `2.4.2`
-  * `2.4.1`
-  * `2.4.0`
-  * `2.3.24`
-  * `2.3.24`
+    * `2.4.0`
     * `2.3.24`
-    * `2.3.24`
-    * `2.3.21`
+    * `2.3.23`
     * `2.3.21`
     * `2.3.19`
     * `2.3.18`
     * `2.3.17`
     * `2.3.16`
+    * `2.3.10`
     * `2.3.2`
     * `2.3.1`
     * `2.3.0`
@@ -91,7 +84,8 @@ $ docker run --rm -it -v "$PWD":/home/pochi ghcr.io/tamada/pochi:latest [OPTIONS
 * `-v "$PWD":/home/pochi`: share volume `$PWD` in host OS to `/home/pochi` in the container OS.
     * `$PWD` must be the absolute path.
 
-`ghcr.io/tamada/pochi` does not include groovy, therefore, it does not work on interactive mode.
+`ghcr.io/tamada/pochi` does not include groovy interactive shell environment.
+Therefore, it does not work on interactive mode.
 If want to run `pochi` on the interactive mode, use `ghcr.io/tamada/pochi-groovysh` image instead.
 
 #### Environments in the docker container

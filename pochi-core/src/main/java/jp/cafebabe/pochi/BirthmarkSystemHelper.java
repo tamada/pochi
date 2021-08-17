@@ -55,7 +55,7 @@ public class BirthmarkSystemHelper {
     }
 
     public Comparator comparator(String name) {
-        return system.comparator(new ComparatorType(name))
+        return system.comparator(ComparatorType.of(name))
                 .build(config);
     }
 

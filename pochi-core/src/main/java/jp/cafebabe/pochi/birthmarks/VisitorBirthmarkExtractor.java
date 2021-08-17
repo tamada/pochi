@@ -8,10 +8,10 @@ import jp.cafebabe.pochi.util.VisitorSupplier;
 import org.objectweb.asm.ClassVisitor;
 
 public class VisitorBirthmarkExtractor<T> extends AbstractExtractor {
-    private VisitorSupplier<? extends PochiClassVisitor<T>> visitorSupplier;
+    private VisitorSupplier<PochiClassVisitor<T>> visitorSupplier;
 
     public VisitorBirthmarkExtractor(BirthmarkType type, Configuration config,
-                                     VisitorSupplier<? extends PochiClassVisitor<T>> visitorSupplier) {
+                                     VisitorSupplier<PochiClassVisitor<T>> visitorSupplier) {
         super(type, config);
         this.visitorSupplier = visitorSupplier;
     }
