@@ -16,10 +16,10 @@ public class ComparatorBuildersTest {
         List<ComparatorType> types = new ComparatorBuilders().availableTypes()
                 .collect(Collectors.toList());
 
-        assertThat(types, hasItem(new ComparatorType("Cosine")));
-        assertThat(types, hasItem(new ComparatorType("JaccardIndex")));
-        assertThat(types, hasItem(new ComparatorType("DiceIndex")));
-        assertThat(types, hasItem(new ComparatorType("EditDistance")));
-        assertThat(types, hasItem(new ComparatorType("SimpsonIndex")));
+        assertThat(types, hasItem(ComparatorType.of("Cosine")));
+        assertThat(types, hasItem(ComparatorType.of("JaccardIndex")));
+        assertThat(types, hasItem(ComparatorType.of("DiceIndex")));
+        assertThat(types, hasItem(ComparatorType.of("EditDistance")));
+        assertThat(types, hasItem(ComparatorType.of("SimpsonIndex")));
     }
 }

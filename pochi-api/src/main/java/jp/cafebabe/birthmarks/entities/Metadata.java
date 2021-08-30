@@ -8,7 +8,7 @@ import java.util.StringJoiner;
 import jp.cafebabe.kunai.entries.ClassName;
 import jp.cafebabe.kunai.entries.Entry;
 
-public class Metadata implements Acceptor<Metadata>, Serializable{
+public class Metadata implements Acceptor<Metadata>, Serializable, Comparable<Metadata> {
     private static final long serialVersionUID = 5188434750286102391L;
 
     private URI location;
@@ -64,5 +64,11 @@ public class Metadata implements Acceptor<Metadata>, Serializable{
     @Override
     public void accept(Visitor visitor) {
         visitor.visitMetadata(type, name, location);
+    }
+
+    public int compareTo(Metadata other) {
+        if(isSame(other.location()))
+            return name.compareTo(other.className());
+        return location().compareTo(other.location());
     }
 }

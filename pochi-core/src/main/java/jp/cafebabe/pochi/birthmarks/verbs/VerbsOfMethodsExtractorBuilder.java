@@ -10,7 +10,7 @@ public class VerbsOfMethodsExtractorBuilder implements ExtractorBuilder {
 
     @Override
     public BirthmarkType type() {
-        return new BirthmarkType("vom");
+        return BirthmarkType.of("vom");
     }
 
     @Override

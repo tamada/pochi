@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.stream.Stream;
 
-public class AbstractTaskBuilders<T extends Comparable, V extends TaskBuilder<T>> implements TaskBuilders<T, V>{
-    private Map<T, V> builders = new HashMap<>();
+public class AbstractTaskBuilders<T extends Comparable<T>, V extends TaskBuilder<T>> implements TaskBuilders<T, V>{
+    private final Map<T, V> builders = new HashMap<>();
 
     public AbstractTaskBuilders(Class<? extends V> targetClass){
         registerServices(targetClass);

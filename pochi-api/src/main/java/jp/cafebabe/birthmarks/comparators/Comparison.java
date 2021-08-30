@@ -5,7 +5,7 @@ import jp.cafebabe.birthmarks.entities.Pair;
 
 import java.io.Serializable;
 
-public class Comparison<T> implements Serializable {
+public class Comparison<T> implements Serializable, Comparable<Comparison> {
     private Pair<Birthmark<T>> pair;
     private Similarity similarity;
 
@@ -47,5 +47,10 @@ public class Comparison<T> implements Serializable {
         return String.format("%s,%s,%s", 
                 left().className(),
                 right().className(), similarity);
+    }
+
+    @Override
+    public int compareTo(Comparison other) {
+        return similarity().compareTo(other.similarity());
     }
 }

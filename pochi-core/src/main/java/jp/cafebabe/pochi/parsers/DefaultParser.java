@@ -54,7 +54,7 @@ public class DefaultParser extends AbstractParser{
 
     private Metadata buildMetadata(String className, String uri, String type){
         try {
-            return new Metadata(new ClassName(className), new URI(uri), new BirthmarkType(type));
+            return new Metadata(new ClassName(className), new URI(uri), BirthmarkType.of(type));
         } catch (URISyntaxException e) {
             throw new URLFormatException(e);
         }

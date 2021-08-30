@@ -18,7 +18,7 @@ public class KGramBasedExtractorBuilder implements ExtractorBuilder {
 
     @Override
     public BirthmarkType type() {
-        return new BirthmarkType(kvalue + "-gram");
+        return BirthmarkType.of(kvalue + "-gram");
     }
 
     @Override

@@ -10,7 +10,11 @@ public final class BirthmarkType implements Serializable, Comparable<BirthmarkTy
 
     private String type;
 
-    public BirthmarkType(String name){
+    public static BirthmarkType of(String name) {
+        return new BirthmarkType(name);
+    }
+
+    private BirthmarkType(String name){
         this.type = name;
     }
 

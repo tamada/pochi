@@ -55,12 +55,12 @@ public class BirthmarkSystemHelper {
     }
 
     public Comparator comparator(String name) {
-        return system.comparator(new ComparatorType(name))
+        return system.comparator(ComparatorType.of(name))
                 .build(config);
     }
 
     public Extractor extractor(String name) {
-        return system.extractor(new BirthmarkType(name))
+        return system.extractor(BirthmarkType.of(name))
                 .build(config);
     }
 

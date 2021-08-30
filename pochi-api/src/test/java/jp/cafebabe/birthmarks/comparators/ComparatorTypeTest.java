@@ -10,10 +10,10 @@ public class ComparatorTypeTest {
 
     @Test
     public void testType(){
-        ComparatorType type = new ComparatorType("type1");
+        ComparatorType type = ComparatorType.of("type1");
 
-        assertThat(type, is(new ComparatorType("type1")));
-        assertThat(type, is(not(new ComparatorType("type2"))));
+        assertThat(type, is(ComparatorType.of("type1")));
+        assertThat(type, is(not(ComparatorType.of("type2"))));
         assertThat(type, is(not(new Object())));
 
         assertThat(type.toString(), is("type1"));
@@ -21,10 +21,10 @@ public class ComparatorTypeTest {
 
     @Test
     public void testHashCode() {
-        ComparatorType type = new ComparatorType("type");
+        ComparatorType type = ComparatorType.of("type");
         
-        assertThat(type.hashCode(), is(new ComparatorType("type").hashCode()));
-        assertThat(type.hashCode(), is(not(new ComparatorType("type1").hashCode())));
+        assertThat(type.hashCode(), is(ComparatorType.of("type").hashCode()));
+        assertThat(type.hashCode(), is(not(ComparatorType.of("type1").hashCode())));
         assertThat(type.hashCode(), is(not("type".hashCode())));
     }
 }

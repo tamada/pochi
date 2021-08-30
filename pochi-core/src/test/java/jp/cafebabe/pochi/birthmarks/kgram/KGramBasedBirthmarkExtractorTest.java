@@ -25,7 +25,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class KGramBasedBirthmarkExtractorTest {
     public Birthmarks<String> extract(String path, String type) throws Exception{
         URL location = getClass().getResource(path);
-        ExtractorBuilder builder = new ExtractorBuilders().builder(new BirthmarkType(type));
+        ExtractorBuilder builder = new ExtractorBuilders().builder(BirthmarkType.of(type));
         DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
         Extractor extractor = builder.build(new ConfigurationBuilder().configuration());
         return extractor.extract(source);

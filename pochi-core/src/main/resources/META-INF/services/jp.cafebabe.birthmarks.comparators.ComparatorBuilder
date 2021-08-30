@@ -1,4 +1,5 @@
-jp.cafebabe.pochi.comparators.DiceIndexComparatorBuilder
-jp.cafebabe.pochi.comparators.JaccardIndexComparatorBuilder
-jp.cafebabe.pochi.comparators.SimpsonIndexComparatorBuilder
-jp.cafebabe.pochi.comparators.EditDistanceComparatorBuilder
+jp.cafebabe.pochi.comparators.CosineComparator$Builder
+jp.cafebabe.pochi.comparators.DiceIndexComparator$Builder
+jp.cafebabe.pochi.comparators.JaccardIndexComparator$Builder
+jp.cafebabe.pochi.comparators.SimpsonIndexComparator$Builder
+jp.cafebabe.pochi.comparators.EditDistanceComparator$Builder

@@ -20,11 +20,11 @@ public class BirthmarksTest {
     @Before
     public void setUp() throws Exception{
         List<Birthmark<String>> list = new ArrayList<>();
-        list.add(new Birthmark<String>(new Metadata(new ClassName("c1"), new URI("source1"), new BirthmarkType("hoge1")),
+        list.add(new Birthmark<String>(new Metadata(new ClassName("c1"), new URI("source1"), BirthmarkType.of("hoge1")),
                 Elements.listElements(IntStream.range(1, 2).mapToObj(label -> "e" + label))));
-        list.add(new Birthmark<String>(new Metadata(new ClassName("c2"), new URI("source2"), new BirthmarkType("hoge1")),
+        list.add(new Birthmark<String>(new Metadata(new ClassName("c2"), new URI("source2"), BirthmarkType.of("hoge1")),
                 Elements.listElements(IntStream.range(1, 4).mapToObj(label -> "e" + label))));
-        list.add(new Birthmark<String>(new Metadata(new ClassName("c3"), new URI("source3"), new BirthmarkType("hoge1")),
+        list.add(new Birthmark<String>(new Metadata(new ClassName("c3"), new URI("source3"), BirthmarkType.of("hoge1")),
                 Elements.listElements(IntStream.range(1, 6).mapToObj(label -> "e" + label))));
         this.birthmarks = new Birthmarks<>(list.stream());
     }
@@ -51,12 +51,12 @@ public class BirthmarksTest {
 
         assertThat(list.get(0).className(), is(new ClassName("c1")));
         assertThat(list.get(0).location(), is(new URI("source1")));
-        assertThat(list.get(0).type(), is(new BirthmarkType("hoge1")));
+        assertThat(list.get(0).type(), is(BirthmarkType.of("hoge1")));
     }
 
     @Test
     public void testAppend() throws Exception{
-        Birthmark<String> b1 = new Birthmark<>(new Metadata(new ClassName("o1"), new URI("otherSource"), new BirthmarkType("hoge1")),
+        Birthmark<String> b1 = new Birthmark<>(new Metadata(new ClassName("o1"), new URI("otherSource"), BirthmarkType.of("hoge1")),
                 Elements.listElements(IntStream.range(1, 7).mapToObj(label -> "e" + label)));
 
         Birthmarks<String> other = birthmarks.merge(new Birthmarks<>(Stream.of(b1)));

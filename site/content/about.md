@@ -54,12 +54,17 @@ However, the correct name of the dog in the tale was SHIRO. :stuck_out_tongue_cl
 
 ## :surfer: References
 
-### :basketball: Surveys
+### :basketball: Books
+
+* Silvio Cesare and Yang Xiang, "Software Similarity and Classification (SpringerBriefs in Computer Science)," Springer, 2012. [Kindle](https://amzn.to/3m6j6Gm) [Paperback](https://amzn.to/3jRpKgV)
+* Jasvir Nagra and Christian Collberg, "Surreptitious Software: Obfuscation, Watermarking, and Tamperproofing for Software Protection," Addison-Wesley Professional, 2009. [Kindle](https://amzn.to/3m0YzD0) [Paperback](https://amzn.to/3yLAtQ9)
+
+### :soccer: Surveys
 
 * {{< anchor "#2019ajse_nazir" >}} Shah Nazir, Sara Shahzad and Neelam Mukhtar, "Software Birthmark Design and Estimation: A Systematic Literature Review," Journal of Arabian Journal for Science and Engineering, pp 1–23, Jan 2019.
 * {{< anchor "#2009protection_collberg" >}} Christian Collberg and Jasvir Nagra, "Surreptitious Software: Obfuscation, Watermarking, and Tamperproofing for Software Protection," Addison-Wesley Professional, July 2009.
  
-### :soccer: Articles of supported birthmark types
+### :tennis: Articles of supported birthmark types
 
 * *k*-gram based birthmarks
     * {{< anchor "#2005sac_myles" >}} Ginger Myles and Christian Collberg, "*k*-gram based software birthmarks," Proc. 2005 ACM symposium on Applied computing (SAC 2005), pp.314--318, March 2005.
@@ -67,7 +72,7 @@ However, the correct name of the dog in the tale was SHIRO. :stuck_out_tongue_cl
     * {{< anchor "#2008ieice_lim" >}} Hyun-il LIM, Heewan PARK, Seokwoo CHOI, Taisook HAN, "Detecting Theft of Java Applications via a Static Birthmark Based on Weighted Stack Patterns", IEICE Transactions on Information and Systems, Vol.E91-D, No.9, pp.2323-2332, September 2008.
     * Not implement yet.
 
-### :tennis: Articles by H. Tamada
+### :baseball: Articles by H. Tamada
 
 * {{< anchor "#2018snpd_yokoi" >}} Takanori Yokoi, and Haruaki Tamada, "A Beforehand Extraction Method for Dynamic Software Birthmarks using Unit Test Codes," In Proc. 19th ACIS International Conference on Software Engineering, Artificial Intelligence, Networking and Parallel/Distributed Computing (SNPD 2018), July 2018 (Busan, Korea).
 {{< doi id="10.1109/SNPD.2018.8441058" >}}

@@ -9,7 +9,7 @@ public class FUCBirthmarkExtractorBuilder extends UsedClassesExtractorBuilder {
 
     @Override
     public BirthmarkType type() {
-        return new BirthmarkType("fuc");
+        return BirthmarkType.of("fuc");
     }
 
     @Override

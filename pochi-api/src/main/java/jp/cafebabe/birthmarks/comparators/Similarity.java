@@ -2,7 +2,7 @@ package jp.cafebabe.birthmarks.comparators;
 
 import java.io.Serializable;
 
-public class Similarity implements Serializable{
+public class Similarity implements Serializable, Comparable<Similarity> {
     private static final long serialVersionUID = 5432533004464914833L;
 
     double value;
@@ -34,5 +34,10 @@ public class Similarity implements Serializable{
     @Override
     public String toString(){
         return Double.toString(value);
+    }
+
+    @Override
+    public int compareTo(Similarity other) {
+        return Double.compare(value(), other.value());
     }
 }

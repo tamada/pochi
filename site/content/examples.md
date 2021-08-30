@@ -189,8 +189,8 @@ Also, the script can filter by the similarity value.
 ### :grapes: Source file
 
 ```groovy
-import jp.cafebabe.pochi.birthmarks.comparators.Threshold;
-import jp.cafebabe.pochi.birthmarks.entities.Birthmarks;
+import jp.cafebabe.birthmarks.comparators.Threshold;
+import jp.cafebabe.birthmarks.entities.Birthmarks;
 
 // extract birthmarks by given extractor from given file path.
 def extract(path, extractor) {

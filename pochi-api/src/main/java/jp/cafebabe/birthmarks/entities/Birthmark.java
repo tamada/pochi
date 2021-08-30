@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import jp.cafebabe.kunai.entries.ClassName;
 
-public class Birthmark<T> implements Acceptor<T>, Serializable, Iterable<T> {
+public class Birthmark<T> implements Acceptor<T>, Serializable, Iterable<T>, Comparable<Birthmark> {
     private static final long serialVersionUID = -2383836180204233756L;
 
     private Elements<T> elements;
@@ -86,5 +86,10 @@ public class Birthmark<T> implements Acceptor<T>, Serializable, Iterable<T> {
         return new StringJoiner(",").add(metadata.toString())
                 .add(elements.toString())
                 .toString();
+    }
+
+    @Override
+    public int compareTo(Birthmark other) {
+        return metadata().compareTo(other.metadata());
     }
 }

@@ -28,7 +28,7 @@ public class ComparisonTest {
     }
 
     private Birthmark<String> buildBirthmark(String className, String uri, String type, List<String> list) throws URISyntaxException {
-        Metadata metadata = new Metadata(new ClassName(className), new URI(uri), new BirthmarkType(type));
+        Metadata metadata = new Metadata(new ClassName(className), new URI(uri), BirthmarkType.of(type));
         Elements<String> elements = Elements.listElements(list.stream());
         return new Birthmark<>(metadata, elements);
     }
