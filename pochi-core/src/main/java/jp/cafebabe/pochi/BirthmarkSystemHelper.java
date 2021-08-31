@@ -64,7 +64,7 @@ public class BirthmarkSystemHelper {
                 .build(config);
     }
 
-    public PairMatcher<Birthmark> matcher(String name) {
+    public PairMatcher<Birthmark<?>> matcher(String name) {
         return pairMatchers.builder(new PairMatcherType(name))
                 .build(config);
     }
@@ -120,7 +120,7 @@ public class BirthmarkSystemHelper {
         system.register(builder);
     }
 
-    public void register(PairMatcherBuilder<Birthmark> builder) {
+    public void register(PairMatcherBuilder<Birthmark<?>> builder) {
         pairMatchers.register(builder);
     }
 }

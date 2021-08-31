@@ -20,10 +20,11 @@ public class PairMatcherBuildersTest {
     public void testBasic() {
         PairMatcherType[] types = builders.availableTypes().toArray(size -> new PairMatcherType[size]);
 
-        assertThat(types.length, is(3));
+        assertThat(types.length, is(4));
         assertThat(types[0], is(GuessedPairMatcher.TYPE));
         assertThat(types[1], is(RoundRobinPairMatcher.TYPE));
         assertThat(types[2], is(RoundRobinPairMatcher.SAME_PAIR_TYPE));
+        assertThat(types[3], is(SpecifiedPairMatcher.TYPE));
     }
 
     @Test
@@ -31,6 +32,7 @@ public class PairMatcherBuildersTest {
         assertThat(builders.available(GuessedPairMatcher.TYPE), is(true));
         assertThat(builders.available(RoundRobinPairMatcher.SAME_PAIR_TYPE), is(true));
         assertThat(builders.available(RoundRobinPairMatcher.TYPE), is(true));
+        assertThat(builders.available(SpecifiedPairMatcher.TYPE), is(true));
         assertThat(builders.available(NullPairMatcherBuilder.TYPE), is(false));
     }
 

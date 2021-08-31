@@ -25,6 +25,7 @@ import jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder;
  *       <li>{@link jp.cafebabe.pochi.pairs.builders.GuessedPairMatcherBuilder}</li>
  *       <li>{@link jp.cafebabe.pochi.pairs.builders.RoundRobinPairMatcherBuilder}</li>
  *       <li>{@link jp.cafebabe.pochi.pairs.builders.RoundRobinWithSamePairMatcherBuilder}</li>
+ *       <li>{@link jp.cafebabe.pochi.pairs.builders.SpecifiedPairMatcherBuilder}</li>
  *     </ul>
  *   </dd>
  *   <dt>{@link jp.cafebabe.birthmarks.comparators.ComparatorBuilder}</dt>
