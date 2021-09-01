@@ -7,8 +7,19 @@ import jp.cafebabe.birthmarks.pairs.PairMatcherType;
 import jp.cafebabe.birthmarks.pairs.Streamable;
 
 import java.io.Serializable;
+import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * This matcher matches the pair by the specified pairs from the csv file.
+ * The csv file is given through the property of {@link Configuration <code>Configruation</code>} with key <code>pair.list</code>.
+ *
+ * <pre><code>
+ * pochi.config().put("pair.list", "csv/file/path");
+ * matcher = pochi.matcher("Specified");
+ * ....
+ * </code></pre>
+ */
 public class SpecifiedPairMatcher<T extends Serializable> extends AbstractPairMatcher<T> {
     public static final PairMatcherType TYPE = new PairMatcherType("Specified");
 
@@ -34,9 +45,11 @@ public class SpecifiedPairMatcher<T extends Serializable> extends AbstractPairMa
     }
 
     private Stream<Pair<T>> makeMatch(T item, Streamable<T> birthmarks) {
-        return birthmarks.stream()
-                .filter(item2 -> checker.isCorrespond(item, item2))
-                .map(item2 -> new Pair<>(item, item2));
+        Optional<String> opponent = pairs.pairOf(checker.extract(item));
+        return opponent.map(baseItem -> birthmarks.stream()
+                .filter(targetItem -> checker.isCorrespond(baseItem, targetItem))
+                .map(item2 -> new Pair<>(item, item2)))
+                .orElse(Stream.empty());
     }
 
     @Override

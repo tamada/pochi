@@ -16,7 +16,7 @@ public class PairMatcherBuilders implements TaskBuilders<PairMatcherType, PairMa
     private Map<PairMatcherType, PairMatcherBuilder<Birthmark<?>>> map = new HashMap<>();
 
     public PairMatcherBuilders() {
-        registerBuilders((b1, b2) -> matchClassName(b1.metadata(), b2.metadata()));
+        registerBuilders((birthmark) -> birthmark.className().toString());
     }
 
     private boolean matchClassName(Metadata b1, Metadata b2) {

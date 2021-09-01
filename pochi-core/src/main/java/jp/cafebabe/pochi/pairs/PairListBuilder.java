@@ -2,9 +2,12 @@ package jp.cafebabe.pochi.pairs;
 
 import io.vavr.control.Try;
 import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.pochi.util.ResourceFinder;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -16,27 +19,25 @@ class PairListBuilder implements Serializable {
     public static final String CONFIG_KEY = "pair.list";
 
     public static final PairList build(Configuration config) {
-        return new PairListBuilder().buildImpl(
-                Optional.ofNullable(config.getProperty(CONFIG_KEY, null))
-                        .map(p -> Path.of(p)));
+        return new PairListBuilder().buildImpl(ResourceFinder.find(config.getProperty(CONFIG_KEY, null)));
     }
 
-    private PairList buildImpl(Optional<Path> path) {
+    private PairList buildImpl(Optional<URL> path) {
         return new PairList(readPairs(path));
     }
 
-    private Map<String, String> readPairs(Optional<Path> path) {
+    private Map<String, String> readPairs(Optional<URL> path) {
         return path.map(p -> readPairs(p))
                 .orElseGet(() -> new HashMap<>());
     }
 
-    private Map<String, String> readPairs(Path path) {
-        return readPairsImpl(path)
+    private Map<String, String> readPairs(URL url) {
+        return readPairsImpl(url)
                 .getOrElse(() -> new HashMap<>());
     }
 
-    private Try<Map<String, String>> readPairsImpl(Path path) {
-        return Try.withResources(() -> Files.newBufferedReader(path))
+    private Try<Map<String, String>> readPairsImpl(URL url) {
+        return Try.withResources(() -> new BufferedReader(new InputStreamReader(url.openStream())))
                 .of(in -> readPairsImpl(in));
     }
 

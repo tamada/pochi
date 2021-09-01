@@ -10,7 +10,7 @@ public class PairList {
         this.pairs = pairs;
     }
 
-    private Optional<String> pair(String name) {
+    public Optional<String> pairOf(String name) {
         return Optional.ofNullable(pairs.get(name));
     }
 }

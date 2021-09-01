@@ -12,7 +12,7 @@ public class SpecifiedPairMatcherBuilder<T extends Serializable> extends Abstrac
     private CorrespondenceChecker<T> checker;
 
     public SpecifiedPairMatcherBuilder() {
-        this((item1, item2) -> Objects.equals(item1, item2));
+        this(item -> item.toString());
     }
 
     public SpecifiedPairMatcherBuilder(CorrespondenceChecker<T> checker) {
