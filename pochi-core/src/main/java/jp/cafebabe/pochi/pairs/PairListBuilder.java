@@ -2,14 +2,12 @@ package jp.cafebabe.pochi.pairs;
 
 import io.vavr.control.Try;
 import jp.cafebabe.birthmarks.config.Configuration;
-import jp.cafebabe.pochi.util.ResourceFinder;
+import jp.cafebabe.pochi.util.ResourceFindingHelper;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -19,7 +17,7 @@ class PairListBuilder implements Serializable {
     public static final String CONFIG_KEY = "pair.list";
 
     public static final PairList build(Configuration config) {
-        return new PairListBuilder().buildImpl(ResourceFinder.find(config.getProperty(CONFIG_KEY, null)));
+        return new PairListBuilder().buildImpl(ResourceFindingHelper.find(config.getProperty(CONFIG_KEY, null)));
     }
 
     private PairList buildImpl(Optional<URL> path) {

@@ -46,10 +46,14 @@ public class SpecifiedPairMatcher<T extends Serializable> extends AbstractPairMa
 
     private Stream<Pair<T>> makeMatch(T item, Streamable<T> birthmarks) {
         Optional<String> opponent = pairs.pairOf(checker.extract(item));
-        return opponent.map(baseItem -> birthmarks.stream()
-                .filter(targetItem -> checker.isCorrespond(baseItem, targetItem))
-                .map(item2 -> new Pair<>(item, item2)))
+        return opponent.map(baseItem -> makeMatchImpl(item, baseItem, birthmarks))
                 .orElse(Stream.empty());
+    }
+
+    private Stream<Pair<T>> makeMatchImpl(T item, String opponent, Streamable<T> birthmarks) {
+        return birthmarks.stream()
+                .filter(targetItem -> checker.isCorrespond(opponent, targetItem))
+                .map(item2 -> new Pair<>(item, item2));
     }
 
     @Override

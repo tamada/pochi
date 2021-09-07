@@ -7,8 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
-public class ResourceFinder {
-    private ResourceFinder() {
+public class ResourceFindingHelper {
+    private ResourceFindingHelper() {
     }
 
     private static Optional<URL> findFromPath(String from) {
@@ -24,7 +24,7 @@ public class ResourceFinder {
     }
 
     private static Optional<URL> findFromClassLoader(String name) {
-        return Optional.ofNullable(ResourceFinder.class
+        return Optional.ofNullable(ResourceFindingHelper.class
                 .getResource(name));
     }
 

@@ -6,7 +6,6 @@ import jp.cafebabe.pochi.pairs.CorrespondenceChecker;
 import jp.cafebabe.pochi.pairs.SpecifiedPairMatcher;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class SpecifiedPairMatcherBuilder<T extends Serializable> extends AbstractPairMatcherBuilder<T> {
     private CorrespondenceChecker<T> checker;

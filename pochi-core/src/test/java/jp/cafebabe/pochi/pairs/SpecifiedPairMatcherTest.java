@@ -1,8 +1,6 @@
 package jp.cafebabe.pochi.pairs;
 
 import jp.cafebabe.birthmarks.config.Configuration;
-import jp.cafebabe.birthmarks.config.ItemKey;
-import jp.cafebabe.birthmarks.config.ItemValue;
 import jp.cafebabe.birthmarks.entities.Pair;
 import jp.cafebabe.birthmarks.pairs.PairMatcher;
 import jp.cafebabe.birthmarks.pairs.PairMatcherType;

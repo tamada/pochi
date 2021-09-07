@@ -1,5 +1,3 @@
-import jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder;
-
 /**
  * <p>
  * The module <code>jp.cafebabe.pochi</code> contains the implementation classes of the APIs defined in the module <code>{@link jp.cafebabe.birthmarks}</code>.
@@ -16,7 +14,9 @@ import jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder;
  *   <dd>
  *     <ul>
  *       <li>{@link jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder}</li>
- *       <li>{@link jp.cafebabe.pochi.birthmarks.uc.UsedClassesExtractorBuilder}</li>
+ *       <li>{@link jp.cafebabe.pochi.birthmarks.uc.UCBirthmarkExtractorBuilder}</li>
+ *       <li>{@link jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder}</li>
+ *       <li>{@link jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder}</li>
  *     </ul>
  *   </dd>
  *   <dt>{@link jp.cafebabe.birthmarks.pairs.PairMatcherBuilder}</dt>
@@ -59,12 +59,13 @@ module jp.cafebabe.pochi {
     provides jp.cafebabe.birthmarks.pairs.PairMatcherBuilder with
             jp.cafebabe.pochi.pairs.builders.GuessedPairMatcherBuilder,
             jp.cafebabe.pochi.pairs.builders.RoundRobinPairMatcherBuilder,
-            jp.cafebabe.pochi.pairs.builders.RoundRobinWithSamePairMatcherBuilder;
+            jp.cafebabe.pochi.pairs.builders.RoundRobinWithSamePairMatcherBuilder,
+            jp.cafebabe.pochi.pairs.builders.SpecifiedPairMatcherBuilder;
 
     provides jp.cafebabe.birthmarks.extractors.ExtractorBuilder with
             jp.cafebabe.pochi.birthmarks.kgram.KGramBasedExtractorBuilder,
             jp.cafebabe.pochi.birthmarks.uc.UCBirthmarkExtractorBuilder,
-            FUCBirthmarkExtractorBuilder,
+            jp.cafebabe.pochi.birthmarks.uc.FUCBirthmarkExtractorBuilder,
             jp.cafebabe.pochi.birthmarks.verbs.VerbsOfMethodsExtractorBuilder;
 
     provides jp.cafebabe.birthmarks.comparators.ComparatorBuilder with
