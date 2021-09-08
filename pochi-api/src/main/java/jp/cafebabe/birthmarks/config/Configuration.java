@@ -33,6 +33,10 @@ public class Configuration {
         return value.orElse(defaultValue);
     }
 
+    public void put(String key, String value) {
+        setProperty(ItemKey.of(key), ItemValue.of(value));
+    }
+
     public boolean match(String targetName) {
         return rules.match(targetName);
     }

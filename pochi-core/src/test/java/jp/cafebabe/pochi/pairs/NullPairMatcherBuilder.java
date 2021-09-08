@@ -10,7 +10,7 @@ import jp.cafebabe.pochi.pairs.builders.AbstractPairMatcherBuilder;
 
 import java.util.stream.Stream;
 
-public class NullPairMatcherBuilder extends AbstractPairMatcherBuilder<Birthmark> {
+public class NullPairMatcherBuilder extends AbstractPairMatcherBuilder<Birthmark<?>> {
     public static PairMatcherType TYPE = new PairMatcherType("null");
 
     public NullPairMatcherBuilder() {
@@ -18,30 +18,30 @@ public class NullPairMatcherBuilder extends AbstractPairMatcherBuilder<Birthmark
     }
 
     @Override
-    public PairMatcher<Birthmark> build(Configuration config) {
-        return new PairMatcher<Birthmark>() {
+    public PairMatcher<Birthmark<?>> build(Configuration config) {
+        return new PairMatcher<Birthmark<?>>() {
             @Override
             public PairMatcherType type() {
                 return TYPE;
             }
 
             @Override
-            public Stream<Pair<Birthmark>> match(Streamable<Birthmark> birthmarks) {
+            public Stream<Pair<Birthmark<?>>> match(Streamable<Birthmark<?>> birthmarks) {
                 return Stream.empty();
             }
 
             @Override
-            public Stream<Pair<Birthmark>> match(Streamable<Birthmark> birthmarks1, Streamable<Birthmark> birthmarks2) {
+            public Stream<Pair<Birthmark<?>>> match(Streamable<Birthmark<?>> birthmarks1, Streamable<Birthmark<?>> birthmarks2) {
                 return Stream.empty();
             }
 
             @Override
-            public long count(Streamable<Birthmark> birthmarks) {
+            public long count(Streamable<Birthmark<?>> birthmarks) {
                 return 0L;
             }
 
             @Override
-            public long count(Streamable<Birthmark> birthmarks1, Streamable<Birthmark> birthmarks2) {
+            public long count(Streamable<Birthmark<?>> birthmarks1, Streamable<Birthmark<?>> birthmarks2) {
                 return 0L;
             }
 

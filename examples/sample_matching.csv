@@ -1,0 +1,5 @@
+jp.cafebabe.kunai.sink.WarFileDataSink,jp.cafebabe.kunai.source.factories.WarFileDataSourceFactory
+jp.cafebabe.kunai.source.WarFileDataSource,jp.cafebabe.kunai.source.factories.WarFileDataSourceFactory
+jp.cafebabe.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.kunai.source.factories.WarFileDataSourceFactory
+jp.cafebabe.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.kunai.source.factories.PlainFileDataSourceFactory
+jp.cafebabe.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.kunai.source.factories.DirectoryDataSourceFactory

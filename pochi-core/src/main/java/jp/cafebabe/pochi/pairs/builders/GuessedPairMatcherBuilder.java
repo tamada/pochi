@@ -12,7 +12,7 @@ public class GuessedPairMatcherBuilder<T extends Serializable> extends AbstractP
     private CorrespondenceChecker<T> checker;
 
     public GuessedPairMatcherBuilder() {
-        this((item1, item2) -> Objects.equals(item1, item2));
+        this(item -> item.toString());
     }
 
     public GuessedPairMatcherBuilder(CorrespondenceChecker<T> checker) {
