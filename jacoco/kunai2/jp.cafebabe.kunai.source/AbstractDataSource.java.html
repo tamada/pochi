@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractDataSource.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">kunai2</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.kunai.source</a> &gt; <span class="el_source">AbstractDataSource.java</span></div><h1>AbstractDataSource.java</h1><pre class="source lang-java linenums">package jp.cafebabe.kunai.source;
+
+import java.nio.file.Path;
+
+public abstract class AbstractDataSource implements DataSource {
+    private Path basePath;
+
+<span class="fc" id="L8">    public AbstractDataSource(Path base) {</span>
+<span class="fc" id="L9">        this.basePath = base;</span>
+<span class="fc" id="L10">    }</span>
+
+    @Override
+    public Path base() {
+<span class="fc" id="L14">        return basePath;</span>
+    }
+
+    protected int getLastIndex(String name, String extension){
+<span class="fc" id="L18">        return name.lastIndexOf(extension);</span>
+    }
+
+    protected int getStartIndex(String name){
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if(name.startsWith(&quot;/&quot;))</span>
+<span class="fc" id="L23">            return 1;</span>
+<span class="fc" id="L24">        return 0;</span>
+    }
+
+    protected String parseClassName(String name){
+<span class="fc" id="L28">        int start = getStartIndex(name);</span>
+<span class="fc" id="L29">        int last = getLastIndex(name, &quot;.class&quot;);</span>
+<span class="fc" id="L30">        return trimName(name, start, last);</span>
+    }
+
+    String trimName(String name, int start, int last){
+<span class="fc bfc" id="L34" title="All 4 branches covered.">        if(start &gt;= 0 &amp;&amp; start &lt; last)</span>
+<span class="fc" id="L35">            return name.substring(start, last);</span>
+<span class="fc" id="L36">        return name;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

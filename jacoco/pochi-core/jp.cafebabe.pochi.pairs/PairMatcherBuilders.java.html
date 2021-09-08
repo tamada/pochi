@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PairMatcherBuilders.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.pairs</a> &gt; <span class="el_source">PairMatcherBuilders.java</span></div><h1>PairMatcherBuilders.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.pairs;
+
+import jp.cafebabe.birthmarks.TaskBuilders;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
+import jp.cafebabe.birthmarks.pairs.PairMatcherType;
+import jp.cafebabe.pochi.pairs.builders.GuessedPairMatcherBuilder;
+import jp.cafebabe.pochi.pairs.builders.RoundRobinPairMatcherBuilder;
+import jp.cafebabe.pochi.pairs.builders.SpecifiedPairMatcherBuilder;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
+
+public class PairMatcherBuilders implements TaskBuilders&lt;PairMatcherType, PairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt;&gt;{
+<span class="fc" id="L16">    private Map&lt;PairMatcherType, PairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt;&gt; map = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L18">    public PairMatcherBuilders() {</span>
+<span class="pc" id="L19">        registerBuilders((birthmark) -&gt; birthmark.className().toString());</span>
+<span class="fc" id="L20">    }</span>
+
+    private void registerBuilders(CorrespondenceChecker&lt;Birthmark&lt;?&gt;&gt; checker) {
+<span class="fc" id="L23">        map.put(GuessedPairMatcher.TYPE, new GuessedPairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt;(checker));</span>
+<span class="fc" id="L24">        map.put(RoundRobinPairMatcher.SAME_PAIR_TYPE, new RoundRobinPairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt;(true));</span>
+<span class="fc" id="L25">        map.put(RoundRobinPairMatcher.TYPE, new RoundRobinPairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt;(false));</span>
+<span class="fc" id="L26">        map.put(SpecifiedPairMatcher.TYPE, new SpecifiedPairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt;(checker));</span>
+<span class="fc" id="L27">    }</span>
+
+    public void register(PairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt; builder) {
+<span class="fc" id="L30">        map.put(builder.type(), builder);</span>
+<span class="fc" id="L31">    }</span>
+
+    @Override
+    public PairMatcherBuilder&lt;Birthmark&lt;?&gt;&gt; builder(PairMatcherType type) {
+<span class="fc" id="L35">        return map.get(type);</span>
+    }
+
+    @Override
+    public boolean available(PairMatcherType type) {
+<span class="fc" id="L40">        return map.containsKey(type);</span>
+    }
+
+    @Override
+    public Stream&lt;PairMatcherType&gt; availableTypes() {
+<span class="fc" id="L45">        return map.keySet().stream().sorted();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

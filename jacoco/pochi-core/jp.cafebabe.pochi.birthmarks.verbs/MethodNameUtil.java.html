@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MethodNameUtil.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.birthmarks.verbs</a> &gt; <span class="el_source">MethodNameUtil.java</span></div><h1>MethodNameUtil.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.birthmarks.verbs;
+
+import java.util.Optional;
+
+<span class="nc" id="L5">public class MethodNameUtil {</span>
+<span class="fc" id="L6">    private static EnglishDictionary dict = EnglishDictionary.defaultInstance();</span>
+
+    public static Optional&lt;String&gt; verb(String methodName) {
+<span class="fc" id="L9">        String verb = extractVerb(methodName);</span>
+<span class="fc" id="L10">        Optional&lt;String&gt; lemmatizedVerb = dict.lemmatize(verb);</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if(lemmatizedVerb.map(v -&gt; dict.isVerb(v)).orElse(false))</span>
+<span class="fc" id="L12">            return lemmatizedVerb;</span>
+<span class="fc" id="L13">        return Optional.empty();</span>
+    }
+
+    public static String extractVerb(String name) {
+<span class="fc" id="L17">        return new String(name.chars()</span>
+<span class="pc bpc" id="L18" title="1 of 4 branches missed.">                .takeWhile(value -&gt; value &gt;= 'a' &amp;&amp; value &lt;= 'z')</span>
+<span class="fc" id="L19">                .collect(() -&gt; new StringBuilder(),</span>
+<span class="fc" id="L20">                        (sb, value) -&gt; sb.append((char)value),</span>
+<span class="nc" id="L21">                        (sb1, sb2) -&gt; sb1.append(sb2)));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

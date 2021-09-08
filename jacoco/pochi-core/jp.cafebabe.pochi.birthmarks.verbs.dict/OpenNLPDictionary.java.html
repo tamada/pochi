@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>OpenNLPDictionary.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.birthmarks.verbs.dict</a> &gt; <span class="el_source">OpenNLPDictionary.java</span></div><h1>OpenNLPDictionary.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.birthmarks.verbs.dict;
+
+import io.vavr.CheckedFunction1;
+import io.vavr.control.Try;
+import jp.cafebabe.pochi.Pochi;
+import jp.cafebabe.pochi.birthmarks.verbs.EnglishDictionary;
+import opennlp.tools.lemmatizer.DictionaryLemmatizer;
+import opennlp.tools.lemmatizer.Lemmatizer;
+import opennlp.tools.postag.POSModel;
+import opennlp.tools.postag.POSTagger;
+import opennlp.tools.postag.POSTaggerME;
+import opennlp.tools.postag.TagDictionary;
+
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+
+class OpenNLPDictionary implements EnglishDictionary {
+    private POSTagger tagger;
+    private TagDictionary dict;
+    private Lemmatizer lemmatizer;
+
+<span class="fc" id="L26">    private OpenNLPDictionary(POSModel model, Lemmatizer lemmatizer) {</span>
+<span class="fc" id="L27">        this.tagger = new POSTaggerME(model);</span>
+<span class="fc" id="L28">        this.dict = model.getFactory().getTagDictionary();</span>
+<span class="fc" id="L29">        this.lemmatizer = lemmatizer;</span>
+<span class="fc" id="L30">    }</span>
+
+    public String[] tags(String term) {
+<span class="fc" id="L33">        return dict.getTags(term);</span>
+    }
+
+    private boolean checkVerb(String[] tags) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if(tags == null)</span>
+<span class="fc" id="L38">            return false;</span>
+<span class="fc" id="L39">        return Arrays.stream(tags)</span>
+<span class="fc" id="L40">                .anyMatch(tag -&gt; tag.startsWith(&quot;V&quot;));</span>
+    }
+
+    public boolean isVerb(String verb) {
+<span class="fc" id="L44">        return checkVerb(tags(verb));</span>
+    }
+
+    public Optional&lt;String&gt; lemmatize(String term) {
+<span class="fc" id="L48">        String[] tags = tagger.tag(new String[] { term });</span>
+<span class="fc" id="L49">        String lemmatizedTerm = lemmatizer.lemmatize(new String[] { term }, tags)[0];</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(Objects.equals(lemmatizedTerm, &quot;O&quot;))</span>
+<span class="fc" id="L51">            return Optional.empty();</span>
+<span class="fc" id="L52">        return Optional.of(lemmatizedTerm);</span>
+    }
+
+    static EnglishDictionary defaultInstance() {
+<span class="fc" id="L56">        Path data = Pochi.home().resolve(&quot;data&quot;);</span>
+<span class="fc" id="L57">        return new OpenNLPDictionary(build(data.resolve(&quot;en-pos-maxent.bin&quot;), posModelBuilder()),</span>
+<span class="fc" id="L58">                build(data.resolve(&quot;en-lemmatizer.dict&quot;), lemmatizerBuilder()));</span>
+    }
+
+    private static &lt;T&gt; T build(Path path, CheckedFunction1&lt;InputStream, T&gt; mapper) {
+<span class="fc" id="L62">        return Try.withResources(() -&gt; Files.newInputStream(path))</span>
+<span class="fc" id="L63">                .of(in -&gt; mapper.apply(in))</span>
+<span class="pc" id="L64">                .getOrElseThrow(throwable -&gt; new InternalError(throwable));</span>
+    }
+
+    private static CheckedFunction1&lt;InputStream, Lemmatizer&gt; lemmatizerBuilder() {
+<span class="fc" id="L68">        return (in) -&gt; new DictionaryLemmatizer(in);</span>
+    }
+
+    private static CheckedFunction1&lt;InputStream, POSModel&gt; posModelBuilder() {
+<span class="fc" id="L72">        return in -&gt; new POSModel(in);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

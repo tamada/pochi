@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EditDistanceComparator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.comparators</a> &gt; <span class="el_source">EditDistanceComparator.java</span></div><h1>EditDistanceComparator.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.comparators;
+
+import jp.cafebabe.birthmarks.comparators.*;
+import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.pochi.comparators.algorithms.EditDistanceCalculator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EditDistanceComparator extends AbstractComparator {
+<span class="fc" id="L12">    private static final ComparatorType thisType = ComparatorType.of(&quot;EditDistance&quot;);</span>
+<span class="fc" id="L13">    public static final class Builder implements ComparatorBuilder {</span>
+        @Override
+        public ComparatorType type() {
+<span class="fc" id="L16">            return thisType;</span>
+        }
+
+        @Override
+        public Comparator build(Configuration config) {
+<span class="nc" id="L21">            return new EditDistanceComparator(config);</span>
+        }
+    }
+
+    public EditDistanceComparator(Configuration config){
+<span class="fc" id="L26">        super(thisType, config);</span>
+<span class="fc" id="L27">    }</span>
+
+    @Override
+    protected &lt;T&gt; Similarity calculate(Birthmark&lt;T&gt; left, Birthmark&lt;T&gt; right) {
+<span class="fc" id="L31">        List&lt;T&gt; leftList = toList(left);</span>
+<span class="fc" id="L32">        List&lt;T&gt; rightList = toList(right);</span>
+<span class="fc" id="L33">        return new Similarity(calculate(leftList, rightList));</span>
+    }
+
+    private &lt;T&gt; List&lt;T&gt; toList(Birthmark&lt;T&gt; birthmark){
+<span class="fc" id="L37">        List&lt;T&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L38">        birthmark.forEach(list::add);</span>
+<span class="fc" id="L39">        return list;</span>
+    }
+
+    private &lt;T&gt; double calculate(List&lt;T&gt; left, List&lt;T&gt; right){
+<span class="fc" id="L43">        int distance = new EditDistanceCalculator&lt;T&gt;()</span>
+<span class="fc" id="L44">                .compute(left, right);</span>
+<span class="fc" id="L45">        return 1d - (1.0 * distance / Math.max(left.size(), right.size()));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

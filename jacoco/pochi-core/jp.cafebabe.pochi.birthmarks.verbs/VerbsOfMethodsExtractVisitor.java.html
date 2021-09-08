@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>VerbsOfMethodsExtractVisitor.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.birthmarks.verbs</a> &gt; <span class="el_source">VerbsOfMethodsExtractVisitor.java</span></div><h1>VerbsOfMethodsExtractVisitor.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.birthmarks.verbs;
+
+import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.entities.BirthmarkType;
+import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Metadata;
+import jp.cafebabe.birthmarks.extractors.PochiClassVisitor;
+import jp.cafebabe.kunai.entries.Entry;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.MethodVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ *
+ * @author Haruaki TAMADA
+ */
+public class VerbsOfMethodsExtractVisitor extends PochiClassVisitor&lt;String&gt; {
+<span class="fc" id="L22">    private List&lt;String&gt; verbs = new ArrayList&lt;&gt;();</span>
+
+    public VerbsOfMethodsExtractVisitor(ClassVisitor visitor, BirthmarkType type, Configuration context){
+<span class="fc" id="L25">        super(visitor, type, context);</span>
+<span class="fc" id="L26">    }</span>
+
+    @Override
+    public Birthmark&lt;String&gt; build(Entry entry){
+<span class="fc" id="L30">        Metadata source = Metadata.build(entry, type());</span>
+<span class="fc" id="L31">        return new Birthmark&lt;String&gt;(source,</span>
+<span class="fc" id="L32">                Elements.listElements(verbs.stream().sorted()));</span>
+    }
+
+    @Override
+    public MethodVisitor visitMethod(int access, String name, String desc,
+                                     String signature, String[] exceptions){
+<span class="fc" id="L38">        putVerbsIfNeeded(name);</span>
+<span class="fc" id="L39">        return super.visitMethod(access, name, desc, signature, exceptions);</span>
+    }
+
+    private void putVerbsIfNeeded(String methodName) {
+<span class="fc" id="L43">        Optional&lt;String&gt; verb = MethodNameUtil.verb(methodName);</span>
+<span class="fc" id="L44">        verb.ifPresent(v -&gt; verbs.add(v));</span>
+<span class="fc" id="L45">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

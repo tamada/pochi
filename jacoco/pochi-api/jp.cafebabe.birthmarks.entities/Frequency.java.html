@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Frequency.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-api</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.birthmarks.entities</a> &gt; <span class="el_source">Frequency.java</span></div><h1>Frequency.java</h1><pre class="source lang-java linenums">package jp.cafebabe.birthmarks.entities;
+
+public class Frequency extends Couple&lt;String, Integer&gt; implements Comparable&lt;Frequency&gt; {
+    private Frequency(String left, Integer right) {
+<span class="fc" id="L5">        super(left, right);</span>
+<span class="fc" id="L6">    }</span>
+
+    public static Frequency of(String item, Integer frequency) {
+<span class="fc" id="L9">        return new Frequency(item, frequency);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L14">        return String.format(&quot;%s=%d&quot;, left(), right());</span>
+    }
+
+    @Override
+    public int compareTo(Frequency other) {
+<span class="nc" id="L19">        return left().compareTo(other.left());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

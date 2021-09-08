@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Rule.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-api</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.birthmarks.rules</a> &gt; <span class="el_source">Rule.java</span></div><h1>Rule.java</h1><pre class="source lang-java linenums">package jp.cafebabe.birthmarks.rules;
+
+import java.util.StringJoiner;
+
+public class Rule {
+    private Position position;
+    private Snippet snippet;
+
+<span class="fc" id="L9">    public Rule(Position position, Snippet snippet){</span>
+<span class="fc" id="L10">        this.position = position;</span>
+<span class="fc" id="L11">        this.snippet = snippet;</span>
+<span class="fc" id="L12">    }</span>
+
+    public Rule(String position, String snippet){
+<span class="fc" id="L15">        this(Position.valueOf(position.toUpperCase()),</span>
+                new Snippet(snippet));
+<span class="fc" id="L17">    }</span>
+
+    private String position(){
+<span class="fc" id="L20">        return position.name();</span>
+    }
+
+    private String snippet(){
+<span class="fc" id="L24">        return snippet.toString();</span>
+    }
+
+    public boolean match(String string){
+<span class="fc" id="L28">        return position.match(snippet, string);</span>
+    }
+
+    public String toJson() {
+<span class="fc" id="L32">        return String.format(&quot;{\&quot;type\&quot;:\&quot;%s\&quot;,\&quot;pattern\&quot;:\&quot;%s\&quot;}&quot;, position(), snippet());</span>
+    }
+
+    @Override
+    public String toString(){
+<span class="fc" id="L37">        StringJoiner joiner = new StringJoiner(&quot;,&quot;);</span>
+<span class="fc" id="L38">        joiner.add(position());</span>
+<span class="fc" id="L39">        joiner.add(snippet());</span>
+<span class="fc" id="L40">        return joiner.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ListElements.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-api</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.birthmarks.entities.elements</a> &gt; <span class="el_source">ListElements.java</span></div><h1>ListElements.java</h1><pre class="source lang-java linenums">package jp.cafebabe.birthmarks.entities.elements;
+
+import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Visitor;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class ListElements implements Elements&lt;String&gt; {
+    private List&lt;String&gt; list;
+
+<span class="fc" id="L16">    ListElements(Stream&lt;String&gt; stream) {</span>
+<span class="fc" id="L17">        list = stream.collect(Collectors.toList());</span>
+<span class="fc" id="L18">    }</span>
+
+    @Override
+    public void accept(Visitor&lt;String&gt; visitor) {
+<span class="nc" id="L22">        list.forEach(element -&gt; visitor.visitElement(element));</span>
+<span class="nc" id="L23">    }</span>
+
+    @Override
+    public FrequencyElements asFrequencies() {
+<span class="fc" id="L27">        return new FrequencyElements(list);</span>
+    }
+
+    @Override
+    public ListElements asList() {
+<span class="nc" id="L32">        return this;</span>
+    }
+
+    @Override
+    public ListElements asSet() {
+<span class="fc" id="L37">        return new ListElements(list.stream().distinct());</span>
+    }
+
+    public Elements&lt;String&gt; filter(Predicate&lt;String&gt; elements) {
+<span class="fc" id="L41">        return new ListElements(list.stream()</span>
+<span class="fc" id="L42">                .filter(elements));</span>
+    }
+
+    @Override
+    public boolean contains(String key) {
+<span class="fc" id="L47">        return list.contains(key);</span>
+    }
+
+    @Override
+    public Iterator&lt;String&gt; iterator() {
+<span class="fc" id="L52">        return list.iterator();</span>
+    }
+
+    @Override
+    public Stream&lt;String&gt; stream() {
+<span class="fc" id="L57">        return list.stream();</span>
+    }
+
+    @Override
+    public int size() {
+<span class="fc" id="L62">        return list.size();</span>
+    }
+
+    public Elements&lt;String&gt; merge(Elements&lt;String&gt; other) {
+<span class="fc" id="L66">        return new ListElements(Stream.concat(list.stream(), other.stream()));</span>
+    }
+
+    public static ListElements of(String... elements) {
+<span class="fc" id="L70">        return new ListElements(Arrays.stream(elements));</span>
+    }
+
+    public static ListElements of(Stream&lt;String&gt; elements) {
+<span class="fc" id="L74">        return new ListElements(elements);</span>
+    }
+
+    public static ListElements asSetOf(String... elements) {
+<span class="nc" id="L78">        return new ListElements(Arrays.stream(elements)</span>
+<span class="nc" id="L79">                .distinct());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

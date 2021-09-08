@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PairListBuilder.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.pairs</a> &gt; <span class="el_source">PairListBuilder.java</span></div><h1>PairListBuilder.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.pairs;
+
+import io.vavr.control.Try;
+import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.pochi.util.ResourceFindingHelper;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.Serializable;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+<span class="fc" id="L18">class PairListBuilder implements Serializable {</span>
+    public static final String CONFIG_KEY = &quot;pair.list&quot;;
+
+    public static final PairList build(Configuration config) {
+<span class="fc" id="L22">        return new PairListBuilder().buildImpl(ResourceFindingHelper.find(config.getProperty(CONFIG_KEY, null)));</span>
+    }
+
+    private PairList buildImpl(Optional&lt;URL&gt; path) {
+<span class="fc" id="L26">        return new PairList(readPairs(path));</span>
+    }
+
+    private Map&lt;String, List&lt;String&gt;&gt; readPairs(Optional&lt;URL&gt; path) {
+<span class="fc" id="L30">        return path.map(p -&gt; readPairs(p))</span>
+<span class="pc" id="L31">                .orElseGet(() -&gt; new HashMap&lt;&gt;());</span>
+    }
+
+    private Map&lt;String, List&lt;String&gt;&gt; readPairs(URL url) {
+<span class="fc" id="L35">        return readPairsImpl(url)</span>
+<span class="pc" id="L36">                .getOrElse(() -&gt; new HashMap&lt;&gt;());</span>
+    }
+
+    private Try&lt;Map&lt;String, List&lt;String&gt;&gt;&gt; readPairsImpl(URL url) {
+<span class="fc" id="L40">        return Try.withResources(() -&gt; new BufferedReader(new InputStreamReader(url.openStream())))</span>
+<span class="fc" id="L41">                .of(in -&gt; readPairsImpl(in));</span>
+    }
+
+    private Map&lt;String, List&lt;String&gt;&gt; readPairsImpl(BufferedReader in) {
+<span class="fc" id="L45">        return in.lines()</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                .filter(line -&gt; !line.trim().startsWith(&quot;#&quot;))</span>
+<span class="fc" id="L47">                .map(line -&gt; line.split(&quot;,&quot;))</span>
+<span class="fc" id="L48">                .collect(Collectors.toMap(items -&gt; items[0], items -&gt; List.of(items[1]),</span>
+<span class="nc" id="L49">                        (before, after) -&gt; merge(before, after)));</span>
+    }
+
+    private List&lt;String&gt; merge(List&lt;String&gt; before, List&lt;String&gt; after) {
+<span class="nc" id="L53">        return Stream.concat(before.stream(), after.stream()).collect(Collectors.toList());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

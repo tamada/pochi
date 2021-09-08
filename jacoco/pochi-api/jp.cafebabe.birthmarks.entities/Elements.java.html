@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Elements.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-api</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.birthmarks.entities</a> &gt; <span class="el_source">Elements.java</span></div><h1>Elements.java</h1><pre class="source lang-java linenums">package jp.cafebabe.birthmarks.entities;
+
+import jp.cafebabe.birthmarks.entities.elements.FrequencyElements;
+import jp.cafebabe.birthmarks.entities.elements.ListElements;
+
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
+public interface Elements&lt;T&gt; extends Iterable&lt;T&gt;, Acceptor&lt;T&gt;, Serializable {
+
+    FrequencyElements asFrequencies();
+
+    ListElements asList();
+
+    ListElements asSet();
+
+    boolean contains(String key);
+
+    Elements&lt;T&gt; filter(Predicate&lt;T&gt; value);
+
+    Iterator&lt;T&gt; iterator();
+
+    Stream&lt;T&gt; stream();
+
+    Elements&lt;T&gt; merge(Elements&lt;T&gt; other);
+
+    int size();
+
+    static ListElements listElements(String... elements) {
+<span class="fc" id="L32">        return ListElements.of(elements);</span>
+    }
+
+    static ListElements listElements(Stream&lt;String&gt; elements) {
+<span class="fc" id="L36">        return ListElements.of(elements);</span>
+    }
+
+    static ListElements setElements(String... elements) {
+<span class="nc" id="L40">        return ListElements.asSetOf(elements);</span>
+    }
+
+    static FrequencyElements frequencyElements(String... elements) {
+<span class="nc" id="L44">        return FrequencyElements.of(elements);</span>
+    }
+
+    static FrequencyElements frequencyElements(Stream&lt;Frequency&gt; stream) {
+<span class="fc" id="L48">        return FrequencyElements.of(stream);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

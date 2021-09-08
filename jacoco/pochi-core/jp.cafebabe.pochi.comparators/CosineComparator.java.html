@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CosineComparator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.comparators</a> &gt; <span class="el_source">CosineComparator.java</span></div><h1>CosineComparator.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.comparators;
+
+import jp.cafebabe.birthmarks.comparators.*;
+import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.entities.Elements;
+
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class CosineComparator extends AbstractComparator {
+<span class="fc" id="L13">    private static final ComparatorType thisType = ComparatorType.of(&quot;Cosine&quot;);</span>
+
+<span class="fc" id="L15">    public static final class Builder implements ComparatorBuilder {</span>
+        @Override
+        public ComparatorType type() {
+<span class="fc" id="L18">            return thisType;</span>
+        }
+
+        @Override
+        public Comparator build(Configuration config) {
+<span class="nc" id="L23">            return new CosineComparator(config);</span>
+        }
+    }
+
+    public CosineComparator(Configuration config) {
+<span class="fc" id="L28">        super(thisType, config);</span>
+<span class="fc" id="L29">    }</span>
+
+    protected &lt;T&gt; Similarity calculate(Birthmark&lt;T&gt; left, Birthmark&lt;T&gt; right) {
+<span class="fc" id="L32">        return calculateImpl(toFreqMap(left.elements()), toFreqMap(right.elements()));</span>
+    }
+
+    private &lt;T&gt; Map&lt;String, Integer&gt; toFreqMap(Elements&lt;T&gt; elements) {
+<span class="fc" id="L36">        return elements.asFrequencies().stream()</span>
+<span class="fc" id="L37">                .collect(Collectors.toMap(f -&gt; f.left(), f -&gt; f.right()));</span>
+    }
+
+    private Similarity calculateImpl(Map&lt;String, Integer&gt; left, Map&lt;String, Integer&gt; right) {
+<span class="fc" id="L41">        double leftNorm = norm(left);</span>
+<span class="fc" id="L42">        double rightNorm = norm(right);</span>
+<span class="fc" id="L43">        double innerProduct = innerProduct(left, right);</span>
+<span class="fc" id="L44">        return new Similarity(innerProduct / (leftNorm * rightNorm));</span>
+    }
+
+    private double innerProduct(Map&lt;String, Integer&gt; left, Map&lt;String, Integer&gt; right) {
+<span class="fc" id="L48">        Stream&lt;String&gt; keyStream = keyStream(left, right);</span>
+<span class="fc" id="L49">        return keyStream.map(key -&gt; product(key, left, right))</span>
+<span class="fc" id="L50">                .reduce(0, (b, c) -&gt; b + c);</span>
+    }
+
+    private int product(String key, Map&lt;String, Integer&gt; left, Map&lt;String, Integer&gt; right) {
+<span class="fc" id="L54">        return left.getOrDefault(key, 0) *</span>
+<span class="fc" id="L55">                right.getOrDefault(key, 0);</span>
+    }
+
+    private Stream&lt;String&gt; keyStream(Map&lt;String, Integer&gt; left, Map&lt;String, Integer&gt; right) {
+<span class="fc" id="L59">        return Stream.concat(left.keySet().stream(), right.keySet().stream())</span>
+<span class="fc" id="L60">                .distinct();</span>
+    }
+
+    private double norm(Map&lt;String, Integer&gt; map) {
+<span class="fc" id="L64">        return Math.sqrt(map.values()</span>
+<span class="fc" id="L65">                .stream().map(v -&gt; v * v)</span>
+<span class="fc" id="L66">                .reduce(0, (b, c) -&gt; b + c));</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

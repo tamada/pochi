@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Pochi.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi</a> &gt; <span class="el_source">Pochi.java</span></div><h1>Pochi.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+public class Pochi {
+    public static final String VERSION = &quot;2.5.0&quot;;
+<span class="fc" id="L12">    private static final Pochi INSTANCE = new Pochi();</span>
+
+    private final Path home;
+
+<span class="fc" id="L16">    private Pochi() {</span>
+<span class="fc" id="L17">         home = findPochiHome();</span>
+<span class="fc" id="L18">    }</span>
+
+    public static final Path home() {
+<span class="fc" id="L21">        return INSTANCE.home;</span>
+    }
+
+    private static List&lt;String&gt; targetPaths() {
+<span class="fc" id="L25">        return Arrays.asList(System.getenv(&quot;POCHI_HOME&quot;), &quot;/opt/pochi&quot;, &quot;/usr/local/opt/pochi&quot;, String.format(&quot;pochi-%s&quot;, Pochi.VERSION), &quot;.&quot;);</span>
+    }
+
+    private Path findPochiHome() {
+<span class="fc" id="L29">        List&lt;String&gt; paths = targetPaths();</span>
+<span class="fc" id="L30">        Optional&lt;String&gt; path = paths.stream()</span>
+<span class="fc" id="L31">                .filter(p -&gt; isExistDirectory(p))</span>
+<span class="fc" id="L32">                .findFirst();</span>
+<span class="fc" id="L33">        return Path.of(path.orElse(&quot;.&quot;));</span>
+    }
+
+    private boolean isExistDirectory(String path) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if(path == null) return false;</span>
+<span class="fc" id="L38">        return Files.isDirectory(Paths.get(path));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

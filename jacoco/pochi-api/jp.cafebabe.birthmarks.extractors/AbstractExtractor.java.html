@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractExtractor.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-api</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.birthmarks.extractors</a> &gt; <span class="el_source">AbstractExtractor.java</span></div><h1>AbstractExtractor.java</h1><pre class="source lang-java linenums">package jp.cafebabe.birthmarks.extractors;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import io.vavr.control.Either;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+
+import jp.cafebabe.birthmarks.AbstractTask;
+import jp.cafebabe.birthmarks.config.Configuration;
+import jp.cafebabe.birthmarks.entities.Birthmark;
+import jp.cafebabe.birthmarks.entities.BirthmarkType;
+import jp.cafebabe.kunai.entries.Entry;
+
+public abstract class AbstractExtractor extends AbstractTask&lt;BirthmarkType&gt; implements Extractor {
+    public AbstractExtractor(BirthmarkType type, Configuration config){
+<span class="fc" id="L18">        super(type, config);</span>
+<span class="fc" id="L19">    }</span>
+
+    @Override
+    public final &lt;T&gt; Either&lt;Exception, Birthmark&lt;T&gt;&gt; extractEach(Entry entry) {
+        try {
+<span class="fc" id="L24">            return Either.right(extractImpl(entry));</span>
+<span class="nc" id="L25">        } catch (Exception e) {</span>
+<span class="nc" id="L26">            return Either.left(e);</span>
+        }
+    }
+
+    private &lt;T&gt; Birthmark&lt;T&gt; extractImpl(Entry entry) throws IOException {
+<span class="fc" id="L31">        try (InputStream in = entry.openStream()) {</span>
+<span class="fc" id="L32">            PochiClassVisitor&lt;T&gt; visitor = visitor(new ClassWriter(0));</span>
+<span class="fc" id="L33">            return accept(in, entry, visitor);</span>
+        }
+    }
+
+    private &lt;T&gt; Birthmark&lt;T&gt; accept(InputStream in, Entry entry, PochiClassVisitor&lt;T&gt; visitor) throws IOException {
+<span class="fc" id="L38">        ClassReader reader = new ClassReader(in);</span>
+<span class="fc" id="L39">        reader.accept(visitor, ClassReader.SKIP_DEBUG);</span>
+<span class="fc" id="L40">        return visitor.build(entry);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

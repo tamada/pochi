@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Configuration.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-api</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.birthmarks.config</a> &gt; <span class="el_source">Configuration.java</span></div><h1>Configuration.java</h1><pre class="source lang-java linenums">package jp.cafebabe.birthmarks.config;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import jp.cafebabe.birthmarks.rules.Rule;
+import jp.cafebabe.birthmarks.rules.Rules;
+
+public class Configuration {
+<span class="fc" id="L13">    private Rules rules = new Rules();</span>
+
+<span class="fc" id="L15">    private Map&lt;String, String&gt; properties = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L17">    public Configuration() {</span>
+<span class="fc" id="L18">    }</span>
+
+<span class="fc" id="L20">    Configuration(Rules rules, Map&lt;String, String&gt; properties) {</span>
+<span class="fc" id="L21">        this.rules = rules;</span>
+<span class="fc" id="L22">        this.properties = properties;</span>
+<span class="fc" id="L23">    }</span>
+
+    public Optional&lt;ItemValue&gt; property(ItemKey key) {
+<span class="fc" id="L26">        return Optional.ofNullable(</span>
+<span class="fc" id="L27">                properties.get(key.toString()))</span>
+<span class="fc" id="L28">                .map(ItemValue::new);</span>
+    }
+
+    public ItemValue property(ItemKey key, ItemValue defaultValue) {
+<span class="fc" id="L32">        Optional&lt;ItemValue&gt; value = property(key);</span>
+<span class="fc" id="L33">        return value.orElse(defaultValue);</span>
+    }
+
+    public void put(String key, String value) {
+<span class="fc" id="L37">        setProperty(ItemKey.of(key), ItemValue.of(value));</span>
+<span class="fc" id="L38">    }</span>
+
+    public boolean match(String targetName) {
+<span class="fc" id="L41">        return rules.match(targetName);</span>
+    }
+
+    void setProperty(ItemKey key, ItemValue value) {
+<span class="fc" id="L45">        properties.put(key.toString(), value.toString());</span>
+<span class="fc" id="L46">    }</span>
+
+    public String getProperty(String key, String defaultValue) {
+<span class="fc" id="L49">        return property(ItemKey.of(key))</span>
+<span class="fc" id="L50">                .map(value -&gt; value.toString())</span>
+<span class="fc" id="L51">                .orElse(defaultValue);</span>
+    }
+
+    public Stream&lt;Item&gt; propertyStream() {
+<span class="fc" id="L55">        return properties.entrySet().stream().map(Item::new);</span>
+    }
+
+    public Stream&lt;Rule&gt; rules() {
+<span class="fc" id="L59">        return rules.stream();</span>
+    }
+
+    public String toJson() {
+<span class="fc" id="L63">        return String.format(&quot;{\&quot;rules\&quot;:%s,\&quot;properties\&quot;:{%s}}&quot;, rules.toJson(),</span>
+<span class="fc" id="L64">                toPropertiesJson());</span>
+    }
+
+    private String toPropertiesJson() {
+<span class="fc" id="L68">        return properties.entrySet().stream()</span>
+<span class="pc" id="L69">                .map(entry -&gt; String.format(&quot;\&quot;%s\&quot;:\&quot;%s\&quot;&quot;, entry.getKey(), entry.getValue()))</span>
+<span class="fc" id="L70">                .collect(Collectors.joining(&quot;,&quot;));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

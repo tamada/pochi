@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>FrequencyElements.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-api</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.birthmarks.entities.elements</a> &gt; <span class="el_source">FrequencyElements.java</span></div><h1>FrequencyElements.java</h1><pre class="source lang-java linenums">package jp.cafebabe.birthmarks.entities.elements;
+
+import jp.cafebabe.birthmarks.entities.Elements;
+import jp.cafebabe.birthmarks.entities.Frequency;
+import jp.cafebabe.birthmarks.entities.Visitor;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class FrequencyElements implements Elements&lt;Frequency&gt; {
+    private Map&lt;String, Integer&gt; frequencies;
+
+<span class="fc" id="L18">    FrequencyElements(List&lt;String&gt; elements) {</span>
+<span class="fc" id="L19">        frequencies = elements.stream()</span>
+<span class="pc" id="L20">                .collect(Collectors.toMap(e -&gt; e, e -&gt; 1, (b, c) -&gt; b + c));</span>
+<span class="fc" id="L21">    }</span>
+
+<span class="nc" id="L23">    FrequencyElements(String... elements) {</span>
+<span class="nc" id="L24">        frequencies = Arrays.stream(elements)</span>
+<span class="nc" id="L25">                .collect(Collectors.toMap(element -&gt; element, e -&gt; 1, (b, c) -&gt; b + c));</span>
+<span class="nc" id="L26">    }</span>
+
+<span class="fc" id="L28">    FrequencyElements(Stream&lt;Frequency&gt; stream) {</span>
+<span class="pc" id="L29">        frequencies = stream.collect(Collectors.toMap(c -&gt; c.left(), c -&gt; c.right(), (b, c) -&gt; b + c));</span>
+<span class="fc" id="L30">    }</span>
+
+    @Override
+    public FrequencyElements asFrequencies() {
+<span class="nc" id="L34">        return this;</span>
+    }
+
+    @Override
+    public ListElements asList() {
+<span class="nc" id="L39">        return new ListElements(frequencies.keySet()</span>
+<span class="nc" id="L40">                .stream());</span>
+    }
+
+    @Override
+    public ListElements asSet() {
+<span class="nc" id="L45">        return new ListElements(frequencies.keySet()</span>
+<span class="nc" id="L46">                .stream().distinct());</span>
+    }
+
+    public Elements&lt;Frequency&gt; filter(Predicate&lt;Frequency&gt; predicate) {
+<span class="nc" id="L50">        return new FrequencyElements(frequencies.entrySet()</span>
+<span class="nc" id="L51">                .stream()</span>
+<span class="nc" id="L52">                .map(e -&gt; Frequency.of(e.getKey(), e.getValue()))</span>
+<span class="nc" id="L53">                .filter(predicate));</span>
+    }
+
+    @Override
+    public boolean contains(String key) {
+<span class="nc" id="L58">        return frequencies.containsKey(key);</span>
+    }
+
+    @Override
+    public Iterator&lt;Frequency&gt; iterator() {
+<span class="fc" id="L63">        Iterator&lt;Map.Entry&lt;String, Integer&gt;&gt; iterator = frequencies.entrySet().iterator();</span>
+<span class="fc" id="L64">        return new Iterator&lt;&gt;() {</span>
+            @Override
+            public boolean hasNext() {
+<span class="fc" id="L67">                return iterator.hasNext();</span>
+            }
+
+            @Override
+            public Frequency next() {
+<span class="fc" id="L72">                return entryToCouple(iterator.next());</span>
+            }
+        };
+    }
+
+    public Stream&lt;Frequency&gt; stream() {
+<span class="fc" id="L78">        return frequencies.entrySet()</span>
+<span class="fc" id="L79">                .stream()</span>
+<span class="fc" id="L80">                .map(entry -&gt; entryToCouple(entry));</span>
+    }
+
+    @Override
+    public Elements&lt;Frequency&gt; merge(Elements&lt;Frequency&gt; other) {
+<span class="nc" id="L85">        return new FrequencyElements(Stream.concat(stream(), other.stream()));</span>
+    }
+
+    @Override
+    public int size() {
+<span class="nc" id="L90">        return 0;</span>
+    }
+
+    private Frequency entryToCouple(Map.Entry&lt;String, Integer&gt; entry) {
+<span class="fc" id="L94">        return Frequency.of(entry.getKey(), entry.getValue());</span>
+    }
+
+    @Override
+    public void accept(Visitor&lt;Frequency&gt; visitor) {
+<span class="nc" id="L99">        stream().forEach(visitor::visitElement);</span>
+<span class="nc" id="L100">    }</span>
+
+    public static FrequencyElements of(String... elements) {
+<span class="nc" id="L103">        return new FrequencyElements(elements);</span>
+    }
+
+    public static FrequencyElements of(Stream&lt;Frequency&gt; stream) {
+<span class="fc" id="L107">        return new FrequencyElements(stream);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

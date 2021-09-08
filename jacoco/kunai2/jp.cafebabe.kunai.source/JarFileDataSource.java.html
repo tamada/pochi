@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>JarFileDataSource.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">kunai2</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.kunai.source</a> &gt; <span class="el_source">JarFileDataSource.java</span></div><h1>JarFileDataSource.java</h1><pre class="source lang-java linenums">package jp.cafebabe.kunai.source;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileSystem;
+import java.nio.file.Path;
+import java.nio.file.spi.FileSystemProvider;
+import java.util.List;
+import java.util.stream.Stream;
+
+import jp.cafebabe.kunai.entries.ClassName;
+import jp.cafebabe.kunai.entries.Entry;
+import jp.cafebabe.kunai.entries.PathEntry;
+import jp.cafebabe.kunai.util.StreamHelper;
+
+public class JarFileDataSource extends AbstractDataSource implements PathResolver{
+    private FileSystem system;
+
+    public JarFileDataSource(Path path, FileSystem system) {
+<span class="fc" id="L20">        super(path);</span>
+<span class="fc" id="L21">        this.system = system;</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public Stream&lt;Entry&gt; stream(){
+<span class="fc" id="L26">        List&lt;Path&gt; list = getAllFilesFromPaths(getRootPaths());</span>
+<span class="fc" id="L27">        return list.stream()</span>
+<span class="fc" id="L28">                .map(path -&gt; toEntry(path));</span>
+    }
+
+    private List&lt;Path&gt; getAllFilesFromPaths(Path[] paths){
+<span class="fc" id="L32">        FileSystemProvider provider = system.provider();</span>
+<span class="fc" id="L33">        return new DirectoryTraverser()</span>
+<span class="fc" id="L34">                .traverse(provider, paths);</span>
+    }
+
+    private Path[] getRootPaths(){
+<span class="fc" id="L38">        return StreamHelper</span>
+<span class="fc" id="L39">                .stream(system.getRootDirectories())</span>
+<span class="fc" id="L40">                .toArray(size -&gt; new Path[size]);</span>
+    }
+
+    @Override
+    public ClassName parseClassName(Path path){
+<span class="fc" id="L45">        String name = parseClassName(path.toString());</span>
+<span class="fc" id="L46">        return new ClassName(name);        </span>
+    }
+
+    @Override
+    public InputStream openStream(Path entry) throws IOException{
+<span class="fc" id="L51">        FileSystemProvider provider = system.provider();</span>
+<span class="fc" id="L52">        return provider.newInputStream(entry);</span>
+    }
+
+    private Entry toEntry(Path path){
+<span class="fc" id="L56">        return new PathEntry(path, this);</span>
+    }
+
+    @Override
+    public void close() throws IOException{
+<span class="fc" id="L61">        system.close();</span>
+<span class="fc" id="L62">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

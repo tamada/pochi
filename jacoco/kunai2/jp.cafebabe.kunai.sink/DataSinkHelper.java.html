@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DataSinkHelper.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">kunai2</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.kunai.sink</a> &gt; <span class="el_source">DataSinkHelper.java</span></div><h1>DataSinkHelper.java</h1><pre class="source lang-java linenums">package jp.cafebabe.kunai.sink;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.spi.FileSystemProvider;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import io.vavr.control.Try;
+
+<span class="nc" id="L17">class DataSinkHelper {</span>
+    public static FileSystem buildFileSystem(Path path){
+<span class="fc" id="L19">        Map&lt;String, String&gt; environment = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L20">        environment.put(&quot;create&quot;, &quot;true&quot;);</span>
+<span class="fc" id="L21">        return buildFileSystem(path, environment).get();</span>
+    }
+
+    private static Optional&lt;FileSystem&gt; buildFileSystem(Path path, Map&lt;String, String&gt; environment) {
+<span class="fc" id="L25">        return Try.of(() -&gt; newFileSystem(path, environment))</span>
+<span class="fc" id="L26">                .toJavaOptional();</span>
+    }
+
+    private static FileSystem newFileSystem(Path path, Map&lt;String, String&gt; environment) throws IOException {
+<span class="fc" id="L30">        URI uri = URI.create(&quot;jar:file:&quot; + path.toAbsolutePath());</span>
+<span class="fc" id="L31">        return FileSystems.newFileSystem(uri, environment);</span>
+    }
+
+    public static OutputStream newOutputStream(FileSystem system, Path path) throws IOException{
+<span class="fc" id="L35">        FileSystemProvider provider = system.provider();</span>
+<span class="fc" id="L36">        return provider.newOutputStream(path);</span>
+    }
+
+    public static void copy(InputStream in, OutputStream out) throws IOException{
+        int data;
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        while((data = in.read()) != -1)</span>
+<span class="fc" id="L42">            out.write(data);</span>
+<span class="fc" id="L43">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

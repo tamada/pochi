@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EditDistanceCalculator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Coverage reports of pochi</a> &gt; <a href="../index.html" class="el_bundle">pochi-core</a> &gt; <a href="index.source.html" class="el_package">jp.cafebabe.pochi.comparators.algorithms</a> &gt; <span class="el_source">EditDistanceCalculator.java</span></div><h1>EditDistanceCalculator.java</h1><pre class="source lang-java linenums">package jp.cafebabe.pochi.comparators.algorithms;
+
+import jp.cafebabe.pochi.util.Tuple;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
+
+<span class="fc" id="L9">public class EditDistanceCalculator&lt;T&gt; {</span>
+    private static final int BIG_NUMBER = 10;
+
+    public int compute(List&lt;T&gt; list1, List&lt;T&gt; list2) {
+<span class="fc" id="L13">        Table table = initTable(list1.size(), list2.size());</span>
+<span class="fc" id="L14">        computeCosts(table, list1, list2);</span>
+<span class="fc" id="L15">        return table.cost();</span>
+    }
+
+    private void computeCosts(Table table, List&lt;T&gt; list1, List&lt;T&gt; list2) {
+<span class="fc" id="L19">        table.indexStream()</span>
+<span class="fc" id="L20">                .forEach(index -&gt; findPair(index, list1, list2)</span>
+<span class="fc" id="L21">                        .ifPresent(pair -&gt; computeCost(table, index, pair)));</span>
+<span class="fc" id="L22">    }</span>
+
+    private Optional&lt;Tuple&lt;T&gt;&gt; findPair(Index2D index, List&lt;T&gt; list1, List&lt;T&gt; list2) {
+<span class="fc bfc" id="L25" title="All 4 branches covered.">        if(index.x() == 0 || index.y() == 0)</span>
+<span class="fc" id="L26">            return Optional.empty();</span>
+<span class="fc" id="L27">        return Optional.of(Tuple.of(list1.get(index.x() - 1), list2.get(index.y() - 1)));</span>
+    }
+
+    private void computeCost(Table table, Index2D index, Tuple&lt;T&gt; pair) {
+<span class="fc" id="L31">        int newValue = computeCostImpl(table, index, pair);</span>
+<span class="fc" id="L32">        table.set(newValue, index);</span>
+<span class="fc" id="L33">    }</span>
+
+    private int computeCostImpl(Table table, Index2D index, Tuple&lt;T&gt; pair) {
+<span class="fc" id="L36">        int d1 = tableValue(table, index.relativeOf(-1,  0)) + 1;</span>
+<span class="fc" id="L37">        int d2 = tableValue(table, index.relativeOf( 0, -1)) + 1;</span>
+<span class="fc" id="L38">        int d3 = tableValue(table, index.relativeOf(-1, -1)) +</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                pair.ifEquals((l, r) -&gt; l == r, 0, 1);</span>
+<span class="fc" id="L40">        return minimum(d1, d2, d3);</span>
+    }
+
+    private int minimum(int... array) {
+<span class="fc" id="L44">        return IntStream.of(array)</span>
+<span class="fc" id="L45">                .reduce(BIG_NUMBER, (p, n) -&gt; Math.min(p, n));</span>
+    }
+
+    private int tableValue(Table table, Optional&lt;Index2D&gt; optionalIndex) {
+<span class="fc" id="L49">        return optionalIndex.map(index -&gt; table.get(index))</span>
+<span class="fc" id="L50">                .orElse(BIG_NUMBER);</span>
+    }
+
+    private Table initTable(int width, int height) {
+<span class="fc" id="L54">        Table table = new Table(width + 1, height + 1);</span>
+<span class="fc" id="L55">        IntStream.rangeClosed(0, width)</span>
+<span class="fc" id="L56">                .forEach(x -&gt; table.set(x, new Index2D(x, 0)));</span>
+<span class="fc" id="L57">        IntStream.rangeClosed(0, height)</span>
+<span class="fc" id="L58">                .forEach(y -&gt; table.set(y, new Index2D(0, y)));</span>
+<span class="fc" id="L59">        return table;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
