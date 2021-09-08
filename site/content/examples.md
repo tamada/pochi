@@ -1,6 +1,6 @@
 ---
 title: ":ant: Examples"
-date: 2020-10-08
+date: 2021-09-08
 ---
 
 ## :mega: Overview
@@ -24,7 +24,8 @@ Also, we should know [the birthmarking flow](../description#) in the pochi.
 * [:three: `extracting_birthmarks.groovy`](#3-extracting_birthmarksgroovy)
 * [:four: `filtering_source.groovy`](#4-filtering_sourcegroovy)
 * [:five: `comparing_birthmarks.groovy`](#5-comparing_birthmarksgroovy)
-* [:six: `registering_new_extractor.groovy`](#6-registering_new_extractorgroovy)
+* [:six: `comparing_birthmarks_with_specified_pair_matcher.groovy`](#6-comparing_birthmarks_with_specified_pair_matchergroovy)
+* [:seven: `registering_new_extractor.groovy`](#7-registering_new_extractorgroovy)
 
 ## :one: `printing_args.groovy`
 
@@ -80,23 +81,23 @@ config.propertyStream()
 ```sh
 $ pochi examples/printing_pochi_info.groovy
 ========== birthmark extractor names ==========
-[6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 3-gram]
+[1-gram, 2-gram, 3-gram, 4-gram, 5-gram, 6-gram, fuc, uc, vom]
 ========== birthmark comparator names ==========
-[DiceIndex, EditDistance, SimpsonIndex, JaccardIndex]
+[Cosine, DiceIndex, EditDistance, JaccardIndex, SimpsonIndex]
 ========== pair matcher names ==========
-[RoundRobin, Guessed, RoundRobinWithSamePair]
+[Guessed, RoundRobin, RoundRobinWithSamePair, Specified]
 ========== system library rules ==========
-{PREFIX,java.,PREFIX,javax.,PREFIX,org.omg.,PREFIX,org.ietf.,PREFIX,org.w3c.,PREFIX,org.xml.sax.,PREFIX,org.apache.}
+[PREFIX,java., PREFIX,javax., PREFIX,org.omg., PREFIX,org.ietf., PREFIX,org.w3c., PREFIX,org.xml.sax., PREFIX,org.apache.]
 ========== properties ==========
 $ pochi examples/printing_pochi_info.groovy -C examples/sample_config.json
 ========== birthmark extractor names ==========
-[6-gram, 4-gram, 2-gram, 5-gram, uc, 1-gram, 3-gram]
+[1-gram, 2-gram, 3-gram, 4-gram, 5-gram, 6-gram, fuc, uc, vom]
 ========== birthmark comparator names ==========
-[DiceIndex, EditDistance, SimpsonIndex, JaccardIndex]
+[Cosine, DiceIndex, EditDistance, JaccardIndex, SimpsonIndex]
 ========== pair matcher names ==========
-[RoundRobin, Guessed, RoundRobinWithSamePair]
+[Guessed, RoundRobin, RoundRobinWithSamePair, Specified]
 ========== system library rules ==========
-{PREFIX,java.,PREFIX,javax.,PREFIX,org.omg.,PREFIX,org.ietf.,PREFIX,org.w3c.,PREFIX,org.xml.sax.,PREFIX,org.apache.}
+[PREFIX,java., PREFIX,javax., PREFIX,org.omg., PREFIX,org.ietf., PREFIX,org.w3c., PREFIX,org.xml.sax., PREFIX,org.apache.]
 ========== properties ==========
 key1: value1 # <--- sample_config.json adds this property key, and value pair.
 ```
@@ -110,9 +111,14 @@ Extracting specified type of birthmarks from given jar files.
 ### :grapes: Source file
 
 ```groovy
+// extract UC birthmarks from given jar files.
+
 // extract birthmarks by given extractor from given file path.
 def extract(path, extractor) {
+    printf("extract uc birthmark from %s%n", path)
+    // obtains DataSource object for extracting birthmarks.
     source = pochi.source(path)
+    // returns Birthmarks object contains Birthmark objects.
     return extractor.extract(source)
 }
 
@@ -122,11 +128,12 @@ def printBirthmarks(birthmarks) {
 }
 
 // gets UC birthmark extractor.
-extractor = pochi.extractor("uc") // specifies birthmark type.
+extractor = pochi.extractor("uc")
 
 Arrays.stream(args)
     .map(file -> extract(file, extractor)) // converts to Birthmarks
     .each(birthmarks -> printBirthmarks(birthmarks)) // print given birthmarks.
+
 ```
 
 ### :wine_glass: Output
@@ -172,11 +179,12 @@ Arrays.stream(args)
 ### :wine_glass: Output
 
 ```sh
-$ pochi examples/filtering_source.groovy lib/pochi-api-2.0.0.jar
-# no output was given, because, all of classes contains `pochi` keyword in the package name.
+$ pochi examples/filtering_source.groovy lib/pochi-core-2.5.0.jar
+# Only the following line shows, because all of class contains `pochi` in the package name.
+jar:file://POCHI_HOME/lib/pochi-core-2.5.0.jar!/module-info.class
 $ pochi examples/filtering_source.groovy lib/vavr-match-0.10.3.jar # prints all classes included in the given jar.
-jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Unapply.class
-jar:file:///POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Patterns.class
+jar:file://POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Unapply.class
+jar:file://POCHI_HOME/lib/vavr-match-0.10.3.jar!/io/vavr/match/annotation/Patterns.class
 ```
 
 {{< gototop >}}
@@ -237,7 +245,62 @@ jp.cafebabe.pochi.kunai.entries.Entry,jp.cafebabe.pochi.kunai.entries.PathEntry,
 
 {{< gototop >}}
 
-## :six: `registering_new_extractor.groovy`
+## :six: `comparing_birthmarks_with_specified_pair_matcher.groovy`
+
+Comparing the birthmarks with the specified pairs.
+The pairs are specified by the given csv file, 
+The pair list in the example is shown in `example/sample_matching.csv`.
+
+### :grapes: Source file
+
+```groovy
+// compare extracted birthmarks from given jar files with the specified_pair_matcher.
+
+import jp.cafebabe.birthmarks.comparators.Threshold;
+import jp.cafebabe.birthmarks.entities.Birthmarks;
+
+// extract birthmarks by given extractor from given file path.
+def extract(path, extractor) {
+    source = pochi.source(path)
+    return extractor.extract(source)
+}
+
+// gets UC birthmark extractor.
+extractor = pochi.extractor("uc")
+
+birthmarks = Arrays.stream(args)
+    .map(file -> extract(file, extractor))              // converts to Birthmarks
+    .reduce(new Birthmarks(), (b1, b2) -> b1.merge(b2)) // merges to one Birthmarks object
+
+pochi.config().put("pair.list", "examples/sample_matching.csv") // specified pairs by csv file with the key "pair.list".
+comparator = pochi.comparator("JaccardIndex")
+matcher = pochi.matcher("Specified")
+
+// default threshold (0.75)
+threshold = Threshold.DEFAULT
+
+matcher.match(birthmarks)
+    .map(pair -> comparator.compare(pair))
+    .filter(either -> either.isRight())
+    .map(either -> either.get())
+    // .filter(comparison -> comparison.isStolen(threshold)) //  no filtering
+    .forEach(comparison -> println(comparison))
+```
+
+### :wine_glass: Output
+
+```
+$ pochi examples/comparing_birthmarks_with_specified_pair_matcher.groovy lib/kunai2-2.5.0.jar
+jp.cafebabe.kunai.sink.WarFileDataSink,jp.cafebabe.kunai.source.factories.WarFileDataSourceFactory,0.75
+jp.cafebabe.kunai.source.WarFileDataSource,jp.cafebabe.kunai.source.factories.WarFileDataSourceFactory,0.75
+jp.cafebabe.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.kunai.source.factories.WarFileDataSourceFactory,0.8
+jp.cafebabe.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.kunai.source.factories.PlainFileDataSourceFactory,0.8
+jp.cafebabe.kunai.source.factories.ClassFileDataSourceFactory,jp.cafebabe.kunai.source.factories.DirectoryDataSourceFactory,1.0
+```
+
+{{< gototop >}}
+
+## :seven: `registering_new_extractor.groovy`
 
 This sample registers the new birthmark extractor (`7-gram` based birthmark extractor).
 

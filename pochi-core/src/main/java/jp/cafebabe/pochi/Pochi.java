@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Pochi {
-    public static final String VERSION = "2.4.6";
+    public static final String VERSION = "2.5.0";
     private static final Pochi INSTANCE = new Pochi();
 
     private final Path home;

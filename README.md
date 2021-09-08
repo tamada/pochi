@@ -5,11 +5,11 @@
 [![codebeat badge](https://codebeat.co/badges/8e8c5e70-cb07-4f58-941c-3ddb64f3c059)](https://codebeat.co/projects/github-com-tamada-pochi-main)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/tamada/pochi/blob/master/LICENSE)
-[![Version](https://img.shields.io/badge/Version-2.4.6-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.4.6)
+[![Version](https://img.shields.io/badge/Version-2.5.0-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.5.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.4271132-green.svg)](https://zenodo.org/badge/latestdoi/82773287)
 
-[![Javadoc](https://img.shields.io/badge/Javadoc-v2.4.6-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.4.6-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Javadoc](https://img.shields.io/badge/Javadoc-v2.5.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
+[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.5.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 [![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-blue?logo=github)](https://github.com/tamada/pochi/discussions)
 
 Detecting the software theft, the birthmark toolkit for the JVM platform.
@@ -82,7 +82,8 @@ For more detail, see [:ant: Examples](https://tamada.github.io/pochi/examples).
 Container images of **pochi** for Docker are:
 
 * [`ghcr.io/tamada/pochi`](https://github.com/users/tamada/packages/container/package/pochi)
-    * `2.4.6`, `latest`
+    * `2.5.0`, `latest`
+  * `2.4.6`
     * `2.4.0`
     * `2.3.24`
     * `2.3.23`
@@ -102,7 +103,7 @@ Container images of **pochi** for Docker are:
     * `1.0.0`
         * accept only `.js` script files.
 
-[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.4.6-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Docker](https://img.shields.io/badge/Docker-ghcir.io%2Ftamada%2Fpochi%3A2.5.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 
 To run **pochi** on Docker container OS, type the following commands.
 
@@ -154,10 +155,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `kunai2`     | `2.4.6` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.4.6` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.4.6` |
-|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.4.6` |
+|`jp.cafebabe.pochi` | `kunai2`     | `2.5.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.5.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.5.0` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.5.0` |
 
 ## Modules
 
