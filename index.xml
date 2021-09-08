@@ -48,6 +48,17 @@ In general, the process of birthmarking is composed of extraction phase, and com
     </item>
     
     <item>
+      <title>:ant: Examples</title>
+      <link>https://tamada.github.io/pochi/examples/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamada.github.io/pochi/examples/</guid>
+      <description>📣 Overview The examples directory in the pochi directory contains the following example programs. To write groovy script for the pochi, see the API document of pochi, especially, BirthmarkSystemHelper.
+The groovy script of pochi defines the two variables as follows.
+ the variable pochi as the type of BirthmarkSystemHelper for the start points of processing, and the variable args as the type of List&amp;lt;String&amp;gt; for reflecting the command line arguments to the script.</description>
+    </item>
+    
+    <item>
       <title>:anchor: Install</title>
       <link>https://tamada.github.io/pochi/install/</link>
       <pubDate>Mon, 19 Jul 2021 00:00:00 +0000</pubDate>
@@ -57,17 +68,6 @@ In general, the process of birthmarking is composed of extraction phase, and com
 $ brew tap tamada/brew $ brew install pochi  Go totop of the page
 💪 Compiling pochi yourself For building yourself, clone the source code from GitHub, and build it with Maven.
 $ git clone https://github.com/tamada/pochi.git $ cd pochi $ mvn package Then, ./bin/make_dist.sh creates dist/pochi-${VERSION} directory contains the interpreter (bin/pochi), and dependent jar files (lib), documents (docs) and misc files (README.</description>
-    </item>
-    
-    <item>
-      <title>:ant: Examples</title>
-      <link>https://tamada.github.io/pochi/examples/</link>
-      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://tamada.github.io/pochi/examples/</guid>
-      <description>📣 Overview The examples directory in the pochi directory contains the following example programs. To write groovy script for the pochi, see the API document of pochi, especially, BirthmarkSystemHelper.
-The groovy script of pochi defines the two variables as follows.
- the variable pochi as the type of BirthmarkSystemHelper for the start points of processing, and the variable args as the type of List&amp;lt;String&amp;gt; for reflecting the command line arguments to the script.</description>
     </item>
     
     <item>
