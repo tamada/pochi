@@ -1,16 +1,16 @@
 package jp.cafebabe.pochi.pairs;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class PairList {
-    private Map<String, String> pairs;
+    private Map<String, List<String>> pairs;
 
-    public PairList(Map<String, String> pairs) {
+    public PairList(Map<String, List<String>> pairs) {
         this.pairs = pairs;
     }
 
-    public Optional<String> pairOf(String name) {
-        return Optional.ofNullable(pairs.get(name));
+    public List<String> pairOf(String name) {
+        return pairs.getOrDefault(name, List.of());
     }
 }
