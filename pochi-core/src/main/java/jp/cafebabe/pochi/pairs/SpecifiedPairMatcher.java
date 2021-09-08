@@ -7,7 +7,7 @@ import jp.cafebabe.birthmarks.pairs.PairMatcherType;
 import jp.cafebabe.birthmarks.pairs.Streamable;
 
 import java.io.Serializable;
-import java.util.Optional;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -45,9 +45,9 @@ public class SpecifiedPairMatcher<T extends Serializable> extends AbstractPairMa
     }
 
     private Stream<Pair<T>> makeMatch(T item, Streamable<T> birthmarks) {
-        Optional<String> opponent = pairs.pairOf(checker.extract(item));
-        return opponent.map(baseItem -> makeMatchImpl(item, baseItem, birthmarks))
-                .orElse(Stream.empty());
+        List<String> opponents = pairs.pairOf(checker.extract(item));
+        return opponents.stream()
+                .flatMap(baseItem -> makeMatchImpl(item, baseItem, birthmarks));
     }
 
     private Stream<Pair<T>> makeMatchImpl(T item, String opponent, Streamable<T> birthmarks) {

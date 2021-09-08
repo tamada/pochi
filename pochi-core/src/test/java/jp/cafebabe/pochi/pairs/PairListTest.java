@@ -1,13 +1,12 @@
 package jp.cafebabe.pochi.pairs;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import jp.cafebabe.birthmarks.config.Configuration;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Optional;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 public class PairListTest {
     private PairList list;
@@ -21,11 +20,11 @@ public class PairListTest {
 
     @Test
     public void testLoadCsv() {
-        assertThat(list.pairOf("a"), is(Optional.of("a")));
-        assertThat(list.pairOf("b"), is(Optional.of("b")));
-        assertThat(list.pairOf("c"), is(Optional.of("c")));
-        assertThat(list.pairOf("d"), is(Optional.of("e")));
-        assertThat(list.pairOf("e"), is(Optional.of("d")));
-        assertThat(list.pairOf("f"), is(Optional.empty()));
+        assertThat(list.pairOf("a"), is(contains("a")));
+        assertThat(list.pairOf("b"), is(contains("b")));
+        assertThat(list.pairOf("c"), is(contains("c")));
+        assertThat(list.pairOf("d"), is(contains("e")));
+        assertThat(list.pairOf("e"), is(contains("d")));
+        assertThat(list.pairOf("f").size(), is(0));
     }
 }

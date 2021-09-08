@@ -9,9 +9,11 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class PairListBuilder implements Serializable {
     public static final String CONFIG_KEY = "pair.list";
@@ -24,25 +26,30 @@ class PairListBuilder implements Serializable {
         return new PairList(readPairs(path));
     }
 
-    private Map<String, String> readPairs(Optional<URL> path) {
+    private Map<String, List<String>> readPairs(Optional<URL> path) {
         return path.map(p -> readPairs(p))
                 .orElseGet(() -> new HashMap<>());
     }
 
-    private Map<String, String> readPairs(URL url) {
+    private Map<String, List<String>> readPairs(URL url) {
         return readPairsImpl(url)
                 .getOrElse(() -> new HashMap<>());
     }
 
-    private Try<Map<String, String>> readPairsImpl(URL url) {
+    private Try<Map<String, List<String>>> readPairsImpl(URL url) {
         return Try.withResources(() -> new BufferedReader(new InputStreamReader(url.openStream())))
                 .of(in -> readPairsImpl(in));
     }
 
-    private Map<String, String> readPairsImpl(BufferedReader in) {
+    private Map<String, List<String>> readPairsImpl(BufferedReader in) {
         return in.lines()
                 .filter(line -> !line.trim().startsWith("#"))
                 .map(line -> line.split(","))
-                .collect(Collectors.toMap(item -> item[0], item -> item[1], (before, after) -> before));
+                .collect(Collectors.toMap(items -> items[0], items -> List.of(items[1]),
+                        (before, after) -> merge(before, after)));
+    }
+
+    private List<String> merge(List<String> before, List<String> after) {
+        return Stream.concat(before.stream(), after.stream()).collect(Collectors.toList());
     }
 }
