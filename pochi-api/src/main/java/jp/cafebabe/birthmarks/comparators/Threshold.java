@@ -14,7 +14,7 @@ public class Threshold implements Serializable, Comparable<Threshold> {
     }
 
     public boolean isStolen(Similarity similarity){
-        return similarity.value >= (1 - value);
+        return similarity.value >= value;
     }
 
     public boolean isInconclusive(Similarity similarity){
@@ -23,7 +23,7 @@ public class Threshold implements Serializable, Comparable<Threshold> {
     }
 
     public boolean isInnocent(Similarity similarity){
-        return similarity.value <= value;
+        return similarity.value <= (1 - value);
     }
 
     @Override
