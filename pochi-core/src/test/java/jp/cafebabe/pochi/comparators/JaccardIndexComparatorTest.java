@@ -6,6 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.stream.Stream;
 
+import io.vavr.control.Either;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,4 +41,13 @@ public class JaccardIndexComparatorTest extends BirthmarkBuilderHelper{
         assertThat(similarity.isInnocent(threshold), is(false));
     }
 
+    @Test
+    public void testZeroDivision() throws Exception {
+        Birthmark<String> birthmark1 = buildBirthmark("name1", Stream.empty());
+        Birthmark<String> birthmark2 = buildBirthmark("name2", Stream.empty());
+
+        Either<Exception, Similarity> either = comparator.similarity(new Pair<>(birthmark1, birthmark2));
+        assertThat(either.isRight(), is(true));
+        assertThat(either.get().isCloseTo(new Similarity(1d), 1E-6), is(true));
+    }
 }

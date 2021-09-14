@@ -29,6 +29,8 @@ public class JaccardIndexComparator extends IndexComparator {
 
     @Override
     protected <T> Similarity calculate(Birthmark<T> left, Birthmark<T> right) {
+        if(left.elementCount() == 0 && right.elementCount() == 0)
+            return new Similarity(1d);
         Set<T> intersection = intersect(left, right);
         Set<T> union = union(left, right);
         return new Similarity((1.0 * intersection.size()) / union.size());

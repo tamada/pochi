@@ -30,6 +30,10 @@ public class SimpsonIndexComparator extends IndexComparator {
 
     @Override
     protected <T> Similarity calculate(Birthmark<T> left, Birthmark<T> right) {
+        if(left.elementCount() == 0 && right.elementCount() == 0)
+            return new Similarity(1d);
+        else if(left.elementCount() == 0 || right.elementCount() == 0)
+            return new Similarity(0d);
         Set<T> intersection = intersect(left, right);
         int denominator = Math.min(left.elementCount(), right.elementCount());
         return new Similarity(1.0 * intersection.size() / denominator);

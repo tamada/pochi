@@ -10,7 +10,7 @@ function mkdirIfNeeded () {
 
 function copyImpl () {
   cp {pochi-cmd,pochi-api,pochi-core,kunai2}/target/*.jar "$1/lib"
-  cp -r README.md LICENSE Dockerfile examples "$1"
+  cp -r README.md LICENSE Dockerfile examples dockers "$1"
   mkdir -p "$1/docs"
   cp -r site/public/* "$1/docs"
   cp bin/pochi "$1/bin"
