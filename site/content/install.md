@@ -47,10 +47,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `kunai2`     | `2.5.0` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.5.0` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.5.0` |
-|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.5.0` |
+|`jp.cafebabe.pochi` | `kunai2`     | `2.5.1` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.5.1` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.5.1` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.5.1` |
 
 
 ## :briefcase: Requirements
@@ -58,7 +58,7 @@ Then, add the dependencies of your `pom.xml`.
 * [Jackson](https://github.com/FasterXML/jackson) 2.10.0
 * [Vavr](https://www.vavr.io/) 0.10.3
 * [ASM](https://asm.ow2.io/) 8.0.1
-* [Groovy](https://groovy-lang.org) 3.0.8
+* [Groovy](https://groovy-lang.org) 3.0.9
     * [groovy-jsr223](https://groovy-lang.org/integrating.html#jsr223)
 * [picocli](https://picocli.info) 4.6.1
 

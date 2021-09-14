@@ -6,7 +6,7 @@
   <parent>
     <groupId>jp.cafebabe</groupId>
     <artifactId>pochi</artifactId>
-    <version>2.5.0</version>
+    <version>2.5.1</version>
   </parent>
 
   <groupId>jp.cafebabe.pochi</groupId>
@@ -25,20 +25,20 @@
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-jsr223</artifactId>
-      <version>3.0.8</version>
+      <version>3.0.9</version>
       <scope>compile</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy</artifactId>
-      <version>3.0.8</version>
+      <version>3.0.9</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>jp.cafebabe.pochi</groupId>
       <artifactId>pochi-core</artifactId>
-      <version>2.5.0</version>
+      <version>2.5.1</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

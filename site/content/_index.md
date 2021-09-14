@@ -9,11 +9,11 @@ draft: false
 [![codebeat badge](https://codebeat.co/badges/8e8c5e70-cb07-4f58-941c-3ddb64f3c059)](https://codebeat.co/projects/github-com-tamada-pochi-main)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg?style=flat)](https://github.com/tamada/pochi/blob/master/LICENSE)
-[![Version](https://img.shields.io/badge/Version-2.5.0-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.5.0)
+[![Version](https://img.shields.io/badge/Version-2.5.1-green.svg)](https://github.com/tamada/pochi/releases/tag/v2.5.1)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.4271132-green.svg)](https://zenodo.org/badge/latestdoi/82773287)
 
-[![Javadoc](https://img.shields.io/badge/Javadoc-v2.5.0-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
-[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.5.0-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
+[![Javadoc](https://img.shields.io/badge/Javadoc-v2.5.1-blue?logo=java)](https://tamada.github.io/pochi/apidocs)
+[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftamada%2Fpochi%3A2.5.1-blue?logo=docker)](https://github.com/users/tamada/packages/container/package/pochi)
 [![GitHub Discussion](https://img.shields.io/badge/GitHub-Discussions-blue?logo=github)](https://github.com/tamada/pochi/discussions)
 
 Detecting the software theft, the birthmark toolkit for the JVM platform.
