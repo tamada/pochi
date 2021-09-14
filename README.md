@@ -44,7 +44,8 @@ The resultant similarities shows the copy relation possibilities between two pro
   - [:three: `extracting_birthmarks.groovy`](https://tamada.github.io/pochi/examples#3-extracting_birthmarksgroovy)
   - [:four: `filtering_source.groovy`](https://tamada.github.io/pochi/examples#4-filtering_sourcegroovy)
   - [:five: `comparing_birthmarks.groovy`](https://tamada.github.io/pochi/examples#5-comparing_birthmarksgroovy)
-  - [:six: `registering_new_extractor.groovy`](https://tamada.github.io/pochi/examples#6-registering_new_extractorgroovy)
+  - [:six: `comparing_birthmarks_with_specified_pair_matcher.groovy`](https://tamada.github.io/pochi/examples#6-comparing_birthmarks_with_specified_pair_matchergroovy)
+  - [:seven: `registering_new_extractor.groovy`](https://tamada.github.io/pochi/examples#6-registering_new_extractorgroovy)
 * :smile: About
   - [:scroll: License](https://tamada.github.io/pochi/about#-license)
   - [:man_office_worker: Developers :woman_office_worker:](https://tamada.github.io/pochi/about#-developers-)

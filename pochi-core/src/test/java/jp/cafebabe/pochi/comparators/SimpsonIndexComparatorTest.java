@@ -4,8 +4,10 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.io.IOException;
 import java.util.stream.Stream;
 
+import io.vavr.control.Either;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,5 +58,24 @@ public class SimpsonIndexComparatorTest extends BirthmarkBuilderHelper{
         assertThat(comparison.isInnocent(threshold), is(false));
 
         assertThat(comparison.toString(), is("a,b,1.0"));
+    }
+
+    @Test
+    public void testZeroDivisionCase1() throws Exception {
+        Birthmark<String> birthmark1 = buildBirthmark("b1", Stream.empty());
+        Birthmark<String> birthmark2 = buildBirthmark("b2", Stream.of("a", "b"));
+        Either<Exception, Similarity> either = comparator.similarity(new Pair<>(birthmark1, birthmark2));
+
+        assertThat(either.isRight(), is(true));
+        assertThat(either.get().isCloseTo(new Similarity(0d), 1E-6), is(true));
+    }
+    @Test
+    public void testZeroDivisionCase2() throws Exception {
+        Birthmark<String> birthmark1 = buildBirthmark("b1", Stream.empty());
+        Birthmark<String> birthmark2 = buildBirthmark("b2", Stream.empty());
+        Either<Exception, Similarity> either = comparator.similarity(new Pair<>(birthmark1, birthmark2));
+
+        assertThat(either.isRight(), is(true));
+        assertThat(either.get().isCloseTo(new Similarity(1d), 1E-6), is(true));
     }
 }
