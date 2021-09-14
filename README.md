@@ -129,7 +129,7 @@ If want to run `pochi` on the interactive mode, use `ghcr.io/tamada/pochi-groovy
 * `WORKDIR`: `/home/pochi`
 * `JAVA_HOME`: `/opt/java` (symbolic link from `/opt/openjdk-11-minimal`)
   * This Java runtime environment do not include unnecessary modules.
-* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-3.0.8`)
+* `GROOVY_HOME`: `/opt/groovy` (symbolic link from `/opt/groovy-**3.0.9**`)
 * `POCHI_HOME`: `/opt/pochi` (symbolic link from `/opt/pochi-2.0.0`)
 
 ## Discussion
