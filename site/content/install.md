@@ -47,10 +47,10 @@ Then, add the dependencies of your `pom.xml`.
 
 | groupId            | artifactId   | version |
 |--------------------|--------------|---------|
-|`jp.cafebabe.pochi` | `kunai2`     | `2.5.2` |
-|`jp.cafebabe.pochi` | `pochi-core` | `2.5.2` |
-|`jp.cafebabe.pochi` | `pochi-api`  | `2.5.2` |
-|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.5.2` |
+|`jp.cafebabe.pochi` | `kunai2`     | `2.6.0` |
+|`jp.cafebabe.pochi` | `pochi-core` | `2.6.0` |
+|`jp.cafebabe.pochi` | `pochi-api`  | `2.6.0` |
+|`jp.cafebabe.pochi` | `pochi-cmd`  | `2.6.0` |
 
 
 ## :briefcase: Requirements

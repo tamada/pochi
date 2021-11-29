@@ -1,6 +1,6 @@
 #! /bin/sh
 
-VERSION="2.5.2"
+VERSION="2.6.0"
 
 function build_apidocs() {
   mkdir -p site/msp
