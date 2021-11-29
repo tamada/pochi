@@ -42,7 +42,7 @@ public interface Extractor extends Task<BirthmarkType>{
      * @return extracted birthmarks
      */
     default <T> Birthmarks<T> extract(DataSource source){
-        return new Birthmarks<T>(stripEither(extractStream(source)));
+        return new Birthmarks<T>(extractStream(source));
     }
 
     /**

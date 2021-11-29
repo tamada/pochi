@@ -22,7 +22,7 @@ public class Pochi {
     }
 
     private static List<String> targetPaths() {
-        return Arrays.asList(System.getenv("POCHI_HOME"), "/opt/pochi", "/usr/local/opt/pochi", String.format("pochi-%s", Pochi.VERSION), ".");
+        return Arrays.asList(System.getenv("POCHI_HOME"), "/opt/pochi", "/usr/local/opt/pochi", "/opt/homebrew/opt/pochi", String.format("pochi-%s", Pochi.VERSION), ".");
     }
 
     private Path findPochiHome() {

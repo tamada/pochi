@@ -25,7 +25,7 @@ public interface BirthmarkParser extends Task<ParserType> {
     default Birthmarks<String> parse(DataSource source){
         List<Birthmark<String>> stream = parseForStream(source);
         // do termination operation before calling ```type()``` 
-        return new Birthmarks<>(stream.stream());
+        return Birthmarks.of(stream.stream());
     }
 
     List<Birthmark<String>> parseEntry(Entry entry);

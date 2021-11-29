@@ -11,7 +11,7 @@ public class Frequency extends Couple<String, Integer> implements Comparable<Fre
 
     @Override
     public String toString() {
-        return String.format("%s=%d", left(), right());
+        return String.format("<%s,%d>", left(), right());
     }
 
     @Override

@@ -26,7 +26,7 @@ public class BirthmarksTest {
                 Elements.listElements(IntStream.range(1, 4).mapToObj(label -> "e" + label))));
         list.add(new Birthmark<String>(new Metadata(new ClassName("c3"), new URI("source3"), BirthmarkType.of("hoge1")),
                 Elements.listElements(IntStream.range(1, 6).mapToObj(label -> "e" + label))));
-        this.birthmarks = new Birthmarks<>(list.stream());
+        this.birthmarks = Birthmarks.of(list.stream());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class BirthmarksTest {
         Birthmark<String> b1 = new Birthmark<>(new Metadata(new ClassName("o1"), new URI("otherSource"), BirthmarkType.of("hoge1")),
                 Elements.listElements(IntStream.range(1, 7).mapToObj(label -> "e" + label)));
 
-        Birthmarks<String> other = birthmarks.merge(new Birthmarks<>(Stream.of(b1)));
+        Birthmarks<String> other = birthmarks.merge(Birthmarks.of(Stream.of(b1)));
 
         List<Birthmark<String>> list = other.stream().collect(Collectors.toList());
         assertThat(list.size(), is(4));
