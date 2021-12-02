@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -67,5 +68,17 @@ public class BirthmarksTest {
         assertThat(list.get(1).metadata().toString(), is("c2,source2,hoge1"));
         assertThat(list.get(2).metadata().toString(), is("c3,source3,hoge1"));
         assertThat(list.get(3).metadata().toString(), is("o1,otherSource,hoge1"));
+    }
+
+    @Test
+    public void testUnify() throws Exception {
+        Optional<Birthmark<String>> optionalResult = birthmarks.unify();
+        if(optionalResult.isEmpty())
+            throw new InternalError();
+        Birthmark<String> result = optionalResult.get();
+        Elements<String> elements = result.elements();
+
+        assertThat(result.className(), is(new ClassName("source")));
+        assertThat(elements.size(), is(9));
     }
 }
