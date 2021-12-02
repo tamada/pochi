@@ -5,7 +5,6 @@ import jp.cafebabe.birthmarks.utils.LongestCommonSubstring;
 import jp.cafebabe.kunai.entries.ClassName;
 
 import java.net.URI;
-import java.nio.file.Path;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

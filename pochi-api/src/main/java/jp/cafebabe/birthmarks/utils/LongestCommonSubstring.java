@@ -1,9 +1,5 @@
 package jp.cafebabe.birthmarks.utils;
 
-import jp.cafebabe.birthmarks.entities.Couple;
-
-import java.util.Optional;
-
 public class LongestCommonSubstring {
     public static final String of(String s1, String s2) {
         return new LongestCommonSubstring()
@@ -33,7 +29,8 @@ public class LongestCommonSubstring {
     }
 
     private static final class Result {
-        private int i, j;
+        private int i;
+        private int j;
         private int max;
         private Result(int i, int j, int max) {
             this.i = i;
