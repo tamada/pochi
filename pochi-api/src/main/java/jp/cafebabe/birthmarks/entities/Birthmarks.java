@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import io.vavr.control.Either;
@@ -22,6 +24,10 @@ public class Birthmarks<T> implements Acceptor<T>, Iterable<Birthmark<T>>, Strea
         list = new ArrayList<>();
         exceptions = new ArrayList<>();
         stream.forEach(either -> either.bimap(t -> exceptions.add(t), r -> list.add(r)));
+    }
+
+    public Optional<Birthmark<T>> unify() {
+        return BirthmarksMerger.unifyTo(this);
     }
 
     public Stream<Birthmark<T>> find(ClassName name) {

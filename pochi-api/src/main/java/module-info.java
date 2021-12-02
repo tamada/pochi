@@ -60,8 +60,9 @@ module jp.cafebabe.birthmarks {
    exports jp.cafebabe.birthmarks.entities.elements;
    exports jp.cafebabe.birthmarks.extractors;
    exports jp.cafebabe.birthmarks.pairs;
+    exports jp.cafebabe.birthmarks.utils;
 
-   uses jp.cafebabe.birthmarks.comparators.ComparatorBuilder;
+    uses jp.cafebabe.birthmarks.comparators.ComparatorBuilder;
    uses jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
    uses jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
 }
