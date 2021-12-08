@@ -35,4 +35,8 @@ public interface DataSourceFactory {
     default DataSource build(File file) throws KunaiException{
         return build(file.toPath());
     }
+
+    static DataSourceFactory instance() {
+        return new DefaultDataSourceFactory();
+    }
 }

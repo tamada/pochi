@@ -8,4 +8,8 @@ public interface DataSinkFactory {
     DataSink create(Path path);
 
     boolean isTarget(Path path);
+
+    static DataSinkFactory instance() {
+        return new DefaultDataSinkFactory();
+    }
 }
