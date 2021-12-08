@@ -7,7 +7,7 @@ import jp.cafebabe.birthmarks.entities.Birthmarks;
 import jp.cafebabe.birthmarks.extractors.Extractor;
 import jp.cafebabe.kunai.entries.ClassName;
 import jp.cafebabe.kunai.source.DataSource;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
 import org.junit.Test;
 
 import java.net.URL;
@@ -24,7 +24,7 @@ public class UCBirthmarkExtractorTest {
         URL location = getClass().getResource(path);
         Configuration config = new ConfigurationBuilder().configuration();
         Extractor extractor = new UCBirthmarkExtractorBuilder().build(config);
-        DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
+        DataSource source = DataSourceFactory.instance().build(Paths.get(location.toURI()));
         return extractor.extract(source);
     }
 

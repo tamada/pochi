@@ -1,18 +1,16 @@
 package jp.cafebabe.kunai.source;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import jp.cafebabe.kunai.entries.ClassName;
+import jp.cafebabe.kunai.entries.Entry;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import jp.cafebabe.kunai.entries.ClassName;
-import jp.cafebabe.kunai.entries.Entry;
-import jp.cafebabe.kunai.source.factories.DataSourceFactory;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class JarFileDataSourceTest {
     private Path path;
@@ -24,7 +22,7 @@ public class JarFileDataSourceTest {
 
     @Test
     public void testDataSource() throws Exception{
-        DataSourceFactory factory = new DefaultDataSourceFactory();
+        DataSourceFactory factory = DataSourceFactory.instance();
 
         assertThat(factory.isTarget(path), is(true));
 

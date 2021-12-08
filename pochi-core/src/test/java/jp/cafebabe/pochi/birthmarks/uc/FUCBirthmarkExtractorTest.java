@@ -8,7 +8,7 @@ import jp.cafebabe.birthmarks.entities.Frequency;
 import jp.cafebabe.birthmarks.extractors.Extractor;
 import jp.cafebabe.kunai.entries.ClassName;
 import jp.cafebabe.kunai.source.DataSource;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
 import org.junit.Test;
 
 import java.net.URL;
@@ -17,16 +17,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FUCBirthmarkExtractorTest {
     public Birthmarks<Frequency> extract(String path) throws Exception{
         URL location = getClass().getResource(path);
         Configuration config = new ConfigurationBuilder().configuration();
         Extractor extractor = new FUCBirthmarkExtractorBuilder().build(config);
-        DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
+        DataSource source = DataSourceFactory.instance().build(Paths.get(location.toURI()));
         return extractor.extract(source);
     }
 

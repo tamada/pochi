@@ -8,7 +8,7 @@ import jp.cafebabe.birthmarks.extractors.Extractor;
 import jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
 import jp.cafebabe.kunai.entries.ClassName;
 import jp.cafebabe.kunai.source.DataSource;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
 import jp.cafebabe.pochi.extractors.ExtractorBuilders;
 import org.junit.Test;
 import org.objectweb.asm.Opcodes;
@@ -26,7 +26,7 @@ public class KGramBasedBirthmarkExtractorTest {
     public Birthmarks<String> extract(String path, String type) throws Exception{
         URL location = getClass().getResource(path);
         ExtractorBuilder builder = new ExtractorBuilders().builder(BirthmarkType.of(type));
-        DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
+        DataSource source = DataSourceFactory.instance().build(Paths.get(location.toURI()));
         Extractor extractor = builder.build(new ConfigurationBuilder().configuration());
         return extractor.extract(source);
     }

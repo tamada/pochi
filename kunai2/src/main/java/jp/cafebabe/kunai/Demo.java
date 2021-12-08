@@ -3,9 +3,9 @@ package jp.cafebabe.kunai;
 import java.nio.file.Paths;
 
 import jp.cafebabe.kunai.sink.DataSink;
-import jp.cafebabe.kunai.sink.factories.DefaultDataSinkFactory;
+import jp.cafebabe.kunai.sink.factories.DataSinkFactory;
 import jp.cafebabe.kunai.source.DataSource;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
 
 public class Demo {
     public Demo(String[] args) throws Exception{
@@ -13,8 +13,8 @@ public class Demo {
     }
 
     private void copy(String from, String to) throws Exception{
-        try(DataSource source = new DefaultDataSourceFactory().build(Paths.get(from));
-            DataSink sink = new DefaultDataSinkFactory().create(Paths.get(to))){
+        try(DataSource source = DataSourceFactory.instance().build(Paths.get(from));
+                DataSink sink = DataSinkFactory.instance().create(Paths.get(to))) {
             copy(source, sink);
         }
     }
