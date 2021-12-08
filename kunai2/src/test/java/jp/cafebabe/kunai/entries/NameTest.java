@@ -26,4 +26,21 @@ public class NameTest {
         assertThat(name.toString(), is("Haruaki Tamada"));
         assertThat(name.name(), is("Haruaki Tamada"));
     }
+
+    @Test
+    public void testMatch() {
+        assertThat(name.matches("H.*Tamada"), is(true));
+        assertThat(name.matches("tamada"), is(false));
+        assertThat(name.contains("ki Ta"), is(true));
+        assertThat(name.endsWith("a"), is(true));
+        assertThat(name.startsWith("H"), is(true));
+    }
+
+    @Test
+    public void testEquals() {
+        assertThat(name.equals(new Name("Haruaki Tamada")), is(true));
+        assertThat(name.equals(new Name("Different Name")), is(false));
+        assertThat(name.equals(new Object()), is(false));
+        assertThat(name.equals(null), is(false));
+    }
 }
