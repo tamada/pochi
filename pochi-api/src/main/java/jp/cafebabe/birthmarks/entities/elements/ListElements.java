@@ -78,4 +78,9 @@ public class ListElements implements Elements<String> {
         return new ListElements(Arrays.stream(elements)
                 .distinct());
     }
+
+    @Override
+    public String toString() {
+        return list.stream().collect(Collectors.joining(","));
+    }
 }

@@ -9,11 +9,11 @@ Kunai2 implemented for Java 8 and used streaming API.
 ```java
 // Reading
 Path sourcePath = Paths.get("path/of/source/file/or/directory");
-DataSourceFactory sourceFactory = new DefaultDataSourceFactory();
+DataSourceFactory sourceFactory = DataSourceFactory.instance();
 try(DataSource source = sourceFactory.build(sourcePath)){
     // Storing
     Path outputPath = Paths.get("path/of/output/file.jar");
-    DataSinkFactory sinkFactory = new DefaultDataSinkFactory();
+    DataSinkFactory sinkFactory = DataSinkFactory.instance();
     try(DataSink sink = sinkFactory.build(outputPath)){
         sink.consume(source);
         //     above lines means following code.

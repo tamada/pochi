@@ -16,6 +16,11 @@ public class Couple<L extends Serializable, R extends Serializable> implements S
         this.right = Objects.requireNonNull(right);
     }
 
+    public void applyIf(BiPredicate<L, R> predicate, BiConsumer<L, R> consumer) {
+        if(predicate.test(left, right))
+            consumer.accept(left, right);
+    }
+
     public L left() {
         return left;
     }

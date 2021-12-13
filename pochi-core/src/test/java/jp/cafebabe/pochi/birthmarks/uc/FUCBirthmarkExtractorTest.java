@@ -8,7 +8,7 @@ import jp.cafebabe.birthmarks.entities.Frequency;
 import jp.cafebabe.birthmarks.extractors.Extractor;
 import jp.cafebabe.kunai.entries.ClassName;
 import jp.cafebabe.kunai.source.DataSource;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
 import org.junit.Test;
 
 import java.net.URL;
@@ -17,16 +17,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FUCBirthmarkExtractorTest {
     public Birthmarks<Frequency> extract(String path) throws Exception{
         URL location = getClass().getResource(path);
         Configuration config = new ConfigurationBuilder().configuration();
         Extractor extractor = new FUCBirthmarkExtractorBuilder().build(config);
-        DataSource source = new DefaultDataSourceFactory().build(Paths.get(location.toURI()));
+        DataSource source = DataSourceFactory.instance().build(Paths.get(location.toURI()));
         return extractor.extract(source);
     }
 
@@ -43,8 +43,8 @@ public class FUCBirthmarkExtractorTest {
         list.get(0).forEach(item -> elements.add(item.toString()));
 
         assertThat(elements.size(), is(4));
-        assertThat(elements, is(containsInAnyOrder("java.io.PrintStream=2",
-                "java.lang.Object=2", "java.lang.String=2", "java.lang.System=1")));
+        assertThat(elements, is(containsInAnyOrder("<java.io.PrintStream,2>",
+                "<java.lang.Object,2>", "<java.lang.String,2>", "<java.lang.System,1>")));
     }
 
     @Test
@@ -60,12 +60,12 @@ public class FUCBirthmarkExtractorTest {
         list.get(0).forEach(item -> elements.add(item.toString()));
 
         assertThat(elements.size(), is(13));
-        assertThat(elements, is(containsInAnyOrder("java.io.PrintStream=2",
-                "java.lang.Integer=5", "java.lang.Object=5", "java.lang.String=1",
-                "java.lang.System=1", "java.util.Iterator=3", "java.util.List=5",
-                "java.util.function.IntFunction=1", "java.util.function.IntUnaryOperator=1",
-                "java.util.stream.Collector=2", "java.util.stream.Collectors=1",
-                "java.util.stream.IntStream=7", "java.util.stream.Stream=2")));
+        assertThat(elements, is(containsInAnyOrder("<java.io.PrintStream,2>",
+                "<java.lang.Integer,5>", "<java.lang.Object,5>", "<java.lang.String,1>",
+                "<java.lang.System,1>", "<java.util.Iterator,3>", "<java.util.List,5>",
+                "<java.util.function.IntFunction,1>", "<java.util.function.IntUnaryOperator,1>",
+                "<java.util.stream.Collector,2>", "<java.util.stream.Collectors,1>",
+                "<java.util.stream.IntStream,7>", "<java.util.stream.Stream,2>")));
     }
 
     @Test
@@ -81,9 +81,9 @@ public class FUCBirthmarkExtractorTest {
         list.get(0).forEach(item -> elements.add(item.toString()));
 
         assertThat(elements.size(), is(6));
-        assertThat(elements, is(containsInAnyOrder("java.io.PrintStream=4",
-                "java.lang.Integer=70", "java.lang.Object=2", "java.lang.String=10",
-                "java.lang.System=2", "java.util.Random=4")));
+        assertThat(elements, is(containsInAnyOrder("<java.io.PrintStream,4>",
+                "<java.lang.Integer,70>", "<java.lang.Object,2>", "<java.lang.String,10>",
+                "<java.lang.System,2>", "<java.util.Random,4>")));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class FUCBirthmarkExtractorTest {
         list.get(0).forEach(item -> elements.add(item.toString()));
 
         assertThat(elements.size(), is(3));
-        assertThat(elements, is(containsInAnyOrder("java.io.IOException=1",
-                "java.lang.Object=2", "java.net.ServerSocket=7")));
+        assertThat(elements, is(containsInAnyOrder("<java.io.IOException,1>",
+                "<java.lang.Object,2>", "<java.net.ServerSocket,7>")));
     }
 }

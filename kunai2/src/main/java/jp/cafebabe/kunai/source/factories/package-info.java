@@ -4,7 +4,7 @@
  * Typical usage is:
  * <pre>
  * Path path = Paths.get("some/data/source/path");
- * DataSourceFactory factory = DefaultDataSourceFactory();
+ * DataSourceFactory factory = DataSourceFactory.instance();
  * try(DataSource source = factory.build(path)){
  *     source.stream()
  *         .forEach(entry -&gt;

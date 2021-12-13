@@ -11,7 +11,7 @@ import jp.cafebabe.kunai.sink.DirectoryDataSink;
 import jp.cafebabe.kunai.sink.JarFileDataSink;
 import jp.cafebabe.kunai.sink.WarFileDataSink;
 
-public class DefaultDataSinkFactory implements DataSinkFactory{
+class DefaultDataSinkFactory implements DataSinkFactory{
     private List<DataSinkFactory> factories = new ArrayList<>();
 
     public DefaultDataSinkFactory(){

@@ -13,11 +13,11 @@ import jp.cafebabe.birthmarks.extractors.ExtractorBuilder;
 import jp.cafebabe.birthmarks.pairs.PairMatcher;
 import jp.cafebabe.birthmarks.pairs.PairMatcherBuilder;
 import jp.cafebabe.birthmarks.pairs.PairMatcherType;
-import jp.cafebabe.pochi.pairs.PairMatcherBuilders;
-import jp.cafebabe.pochi.parsers.DefaultParser;
 import jp.cafebabe.kunai.entries.KunaiException;
 import jp.cafebabe.kunai.source.DataSource;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
+import jp.cafebabe.pochi.pairs.PairMatcherBuilders;
+import jp.cafebabe.pochi.parsers.DefaultParser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -50,7 +50,7 @@ public class BirthmarkSystemHelper {
     }
 
     public DataSource source(String path) throws KunaiException {
-        return new DefaultDataSourceFactory()
+        return DataSourceFactory.instance()
                 .build(Paths.get(path));
     }
 

@@ -1,7 +1,7 @@
 import jp.cafebabe.kunai.sink.DataSink;
-import jp.cafebabe.kunai.sink.factories.DefaultDataSinkFactory;
+import jp.cafebabe.kunai.sink.factories.DataSinkFactory;
 import jp.cafebabe.kunai.source.DataSource;
-import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
+import jp.cafebabe.kunai.source.factories.DataSourceFactory;
 
 /**
  * <p>
@@ -15,8 +15,8 @@ import jp.cafebabe.kunai.source.factories.DefaultDataSourceFactory;
  *
  * <pre>
  * public void copy(String from, String to) throws Exception {
- *     try({@link DataSource} source = new {@link DefaultDataSourceFactory}().build(Paths.get(from));
- *             {@link DataSink} sink = new {@link DefaultDataSinkFactory}().create(Paths.get(to))){
+ *     try({@link DataSource} source = {@link DataSourceFactory}.instance().build(Paths.get(from));
+ *             {@link DataSink} sink = {@link DataSinkFactory}.instance().create(Paths.get(to))){
  *         copy(source, sink);
  *     }
  * }
@@ -33,6 +33,7 @@ module jp.cafebabe.kunai {
 
     exports jp.cafebabe.kunai.entries;
     exports jp.cafebabe.kunai.sink;
+    exports jp.cafebabe.kunai.sink.factories;
     exports jp.cafebabe.kunai.source;
     exports jp.cafebabe.kunai.source.factories;
 }

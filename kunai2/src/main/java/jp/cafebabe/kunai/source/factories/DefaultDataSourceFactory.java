@@ -9,7 +9,7 @@ import java.util.Optional;
 import jp.cafebabe.kunai.entries.KunaiException;
 import jp.cafebabe.kunai.source.DataSource;
 
-public class DefaultDataSourceFactory implements DataSourceFactory{
+class DefaultDataSourceFactory implements DataSourceFactory{
     private DataSourceFactories factories = new DataSourceFactories();
 
     @Override

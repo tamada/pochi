@@ -106,4 +106,11 @@ public class FrequencyElements implements Elements<Frequency> {
     public static FrequencyElements of(Stream<Frequency> stream) {
         return new FrequencyElements(stream);
     }
+
+    @Override
+    public String toString() {
+        return frequencies.entrySet()
+                .stream().map(entry -> String.format("<%s,%d>", entry.getKey(), entry.getValue()))
+                .collect(Collectors.joining(","));
+    }
 }
