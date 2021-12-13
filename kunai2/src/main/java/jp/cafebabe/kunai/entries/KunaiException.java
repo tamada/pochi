@@ -7,4 +7,7 @@ public class KunaiException extends Exception {
         super(message);
     }
 
+    public KunaiException(Exception e) {
+        super(e);
+    }
 }
